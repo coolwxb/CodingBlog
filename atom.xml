@@ -1,0 +1,1879 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[小小程序猿]]></title>
+  <link href="http://daycoding.com/atom.xml" rel="self"/>
+  <link href="http://daycoding.com/"/>
+  <updated>2017-09-19T20:45:25+08:00</updated>
+  <id>http://daycoding.com/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.coderforart.com/">CoderForArt</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[webGL浏览器支持]]></title>
+    <link href="http://daycoding.com/14944963010893.html"/>
+    <updated>2017-05-11T17:51:41+08:00</updated>
+    <id>http://daycoding.com/14944963010893.html</id>
+    <content type="html"><![CDATA[
+<p><img src="media/14944963010893/14980083105786.jpg" alt=""/><br/>
+<a href="http://caniuse.com/#search=gl">WebGL 浏览器支持</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。]]></title>
+    <link href="http://daycoding.com/14944738769390.html"/>
+    <updated>2017-05-11T11:37:56+08:00</updated>
+    <id>http://daycoding.com/14944738769390.html</id>
+    <content type="html"><![CDATA[
+<p>在没使用IQKerboard之前，给一个textField添加点击事件，只需要在</p>
+
+<ul>
+<li>(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+   if(textField == myTextField) {
+        do something....
+        return NO;
+   }else {
+        return YES;
+   }
+}
+这样就能很简单地做一些操作。
+但是在集成了IQKeyboard之后，就会有一个问题，当一个页面有多个textField之后，点击任意一个textfield，IQKeyboard都会强制执行textFieldShouldBeginEditing这个代理方法，而且是多次执行，执行的次数取决于你有多少个textfield添加了delegate。所以就会出现一个很尴尬的情况：
+我第二个textfield有一个点击事件，添加代理，放在代理方法内判断执行，但是第一个textfield并没有添加代理，当我点击第一个textfield的时候，就会强制执行shouldBegin这个方法，方法的参数是添加带来的第二个textfield。。。。。。</li>
+</ul>
+
+<p>解决办法想了好几种，一开始是想添加事件</p>
+
+<p>[tf addTarget:self action:@selector(textfieldTapped) forControlEvents:UIControlEventTouchDown];<br/>
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {<br/>
+    if(textField == myTextField) {<br/>
+         return NO;<br/>
+    }else {<br/>
+         return YES;<br/>
+    }<br/>
+}<br/>
+但是这样我测试的时候发现当我轻点一下会没有效果，只有重按一下才行，不知道是不是哪里出了问题？<br/>
+后来又想到</p>
+
+<ul>
+<li>(void)textFieldDidBeginEditing:(UITextField *)textField {
+if(textField == myTextField) {
+     [textField performSelector:@selector(resignFirstResponder) withObject:nil afterDelay:0];
+     do something......
+}
+}
+当进入到这个方法内的时候，键盘已经弹出来了，这时候虽然用这个方法能把键盘再收回去，但屏幕上还是能看到，体验很不好。
+解决方案很多，但都不完美。后来在作者的issues里发现作者说了这个</li>
+</ul>
+
+<p>When textField is requested to test that it can become first responder using &#39;[textField canBecomeFirstResponder]; then it asks for it&#39;s delegate via &#39;textFieldShouldBeginEditing&#39; that it can become first responder or not.<br/>
+I&#39;m asking for &#39;canBecomeFirstResponder&#39; in &#39;IQUIView+Hierarchy.m&#39; line no. 118.<br/>
+I tried by adding controlEvents action on textField, but no luck.<br/>
+We really need to find out a solution for this case.<br/>
+command+shift+o进入这个分类里面，看到这个属性</p>
+
+<p>/**<br/>
+ Returns YES if IQKeyboardManager asking for canBecomeFirstResponder. Useful when doing custom work in textFieldShouldBeginEditing: delegate.<br/>
+/**<br/>
+@property (nonatomic, readonly) BOOL isAskingCanBecomeFirstResponder;<br/>
+好像明白了什么。。。</p>
+
+<ul>
+<li>(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+if (textField == myTextField1) {
+    if (textField.isAskingCanBecomeFirstResponder == NO) {
+        NSLog(@&quot;do something...&quot;);
+    }
+    return NO;
+}else if (textField == myTextField2) {
+    if (textField.isAskingCanBecomeFirstResponder == NO) {
+        NSLog(@&quot;do another something...&quot;);
+    }
+    return NO;
+}else {
+  return YES;
+}
+}
+这样就能完美解决每个添加delegate的textfield都会调用textFieldShouldBeginEditing而产生的问题了！！！
+事实证明，还是应该多看看作者的源码啊。。。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VSCode 智能感知配置]]></title>
+    <link href="http://daycoding.com/14924298431586.html"/>
+    <updated>2017-04-17T19:50:43+08:00</updated>
+    <id>http://daycoding.com/14924298431586.html</id>
+    <content type="html"><![CDATA[
+<p>VSCode的好用Extension：typings-autoinstaller</p>
+
+<p>typings</p>
+
+<p>用來管理TypeScritp的定義檔 *.d.ts</p>
+
+<p>安裝語法 npm install typings -g</p>
+
+<p>定義檔來源可以是DefinitelyTyped(dt)、github、npm、bower等</p>
+
+<p>建立 typings.json 並 下載定義檔</p>
+
+<p>typings.json 用來設定typings如何抓取定義檔</p>
+
+<p>typings install dt~lodash --global --save</p>
+
+<p>有一些套件不知道其定義檔來源，且一個一個找來源有點麻煩</p>
+
+<p>使用VSCode的Extension幫你快速安裝</p>
+
+<p>安裝VSCode Extension typings-autoinstaller</p>
+
+<p>Ctrl or Cmd+Shfit+P 叫出 Command Palette</p>
+
+<p>輸入Typings: Install definitions for all dependencies，按下Enter</p>
+
+<p>此Extension會依據package.json所安裝的模組，</p>
+
+<p>自動幫你建立或設定typings.json及下載相關的定義檔。</p>
+
+<p>package.json的dependencies區塊</p>
+
+<p>其定義檔下載設定會放在typings.json的globalDependencies</p>
+
+<p>package.json的devDependencies區塊</p>
+
+<p>其定義檔下載設定會放在typings.json的globalDevDependencies</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[销售易Pass]]></title>
+    <link href="http://daycoding.com/14917937079752.html"/>
+    <updated>2017-04-10T11:08:27+08:00</updated>
+    <id>http://daycoding.com/14917937079752.html</id>
+    <content type="html"><![CDATA[
+<p>字段<br/>
+一个对象上的字段使用数据类型来定义这个字段可以包含哪些内容，特殊的字段 类型在销售易平台将会有不同的展现方式，有时也将有不同的响应方式。<br/>
+Table 1   字段类型<br/>
+字段类型 描述<br/>
+Bool 布尔值，数据通常存储为 Y, N，展现为是、否选项或者 check box。<br/>
+Currency 标示存储数据为货币数额，此类型字段将支持多币种功能。 ID 系统级唯一标识符。<br/>
+Sequence 自增长的数字序列。<br/>
+Integer 整数类型。<br/>
+Note 长字符。<br/>
+Number 数字类型。<br/>
+Phone 电话类型。显示时，可分割区号。<br/>
+Email 电子邮件地址类型。<br/>
+Text 字符类型，长度不超过 2000 字符。<br/>
+Date 日期类型，仅保存和显示日期，无时间信息。<br/>
+Datetime 日期时间类型，保存和显示日期 + 时间信息。<br/>
+URL 保存超链接，用户点击此字段可以打开浏览器前往该网址。</p>
+
+<p>URL 保存超链接，用户点击此字段可以打开浏览器前往该网址。<br/>
+ Open API<br/>
+销售易 Open API 基于 REST API 的风格，支持 GET、POST 操作。 在使用 Open API 注意时，请注意如下限制:<br/>
+— 每日次数访问限制:<br/>
+Open API 每日访问次数与购买的 API 用户数有关，每个租户每日可用用 户 <em>1000 次;假如您购买了 100 个 API 用户，那您每日的 API 访问次数 为 100</em>1000=100000 次<br/>
+— 每秒并发数限制<br/>
+每个用户在 1 秒内可调用 15 次 API</p>
+
+<p>Bulk API<br/>
+批量 API 是基于 Open API，并对载入或删除大型数据集进行了优化。通过提 交批次，您可以使用异步查询、插入、更新、更新插入或删除许多记录。<br/>
+在使用 Bulk API 注意时，请注意如下限制: <br/>
+— 每天每账号Bulk API请求次数最大1000 <br/>
+— 每秒每账号Bulk API请求次数最大为15 <br/>
+— 每账号文件上传大小限制20M<br/>
+— 每异步任务提交数据量最大为5000<br/>
+— 每异步任务查询返回数据量最大为5000 <br/>
+销售易 Open API 支持以下两种 OAuth2.0 授权方式:<br/>
+• 授权码模式<br/>
+• 密码模式<br/>
+注意:在使用 OAuth2.0 认证前，您必需先在销售易的后台管理系统创建连接器， 此连接器与您需要对接的应用程序相关，详情参见创建连接器。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PM2日志分割]]></title>
+    <link href="http://daycoding.com/14914632553537.html"/>
+    <updated>2017-04-06T15:20:55+08:00</updated>
+    <id>http://daycoding.com/14914632553537.html</id>
+    <content type="html"><![CDATA[
+<p>pm2的日志文件默认在根目录下的.pm2/logs文件夹中，每个程序都会自动生成一个out.log和error.log文件。但是程序的日志只会写在这个两个文件中，并不会自动分割。</p>
+
+<p>如果程序的日志量很大，而且长期运行必然使out.log的文件会无限增大。打开日志很慢，日志跟踪就成了问题。</p>
+
+<p>解决的办法就是进行日志分割。本文是使用logrotate进行分割。</p>
+
+<p>使用<code>liunx</code>的<code>logrotate</code></p>
+
+<p>在pm2的官方文档中，提供了使用logrotate的方案<code>sudo pm2 logrotate -u user</code></p>
+
+<p>会自动生成一个<code>logrotate</code>的默认配置文件，文件路径为<code>/etc/logrotate.d/pm2-user</code>，配置内容为：</p>
+
+<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
+        rotate 12
+        weekly
+        missingok
+        notifempty
+        compress
+        delaycompress
+        create 0640 user user
+}
+</code></pre>
+
+<p><strong>这里</strong>：</p>
+
+<p><code>rotate 12</code>：存储归档日志的最大个数，超过就会更早的日志文件删除，一直保持12个；<br/>
+<code>weekly</code>：日志文件按周轮询，其值可以为：<code>daily</code>、<code>weekly</code>、<code>monthly</code>、<code>yearly</code>；<br/>
+<code>missingok</code>：在日志轮循期间，任何错误将被忽略，例如“文件无法找到”之类的错误；<br/>
+<code>notifempty</code>：如果日志文件为空，轮循不会进行；<br/>
+<code>compress</code>：在轮循任务完成后，已轮循的归档将使用<code>gzip</code>进行压缩；<br/>
+<code>delaycompress</code>：总是与<code>compress</code>选项一起用，<code>delaycompress</code>选项指示<code>logrotate</code>不要将最近的归档压缩，压缩将在下一次轮循周期进行。这在你或任何软件仍然需要读取最新归档时很有用；<br/>
+<code>create 0640 user user</code>：以指定的权限创建全新的日志文件，同时logrotate也会重命名原始日志文件。</p>
+
+<p><strong>还可以添加以下配置</strong>：<br/>
+<code>dateext</code>：让旧日志文件以创建日期命名；<br/>
+<code>size=50M</code>：日志文件以50MB的大小作为一次轮询<br/>
+<code>prerotate/endscript</code>：在转储以前需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
+<code>postrotate/endscript</code>：在转储以后需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
+在此我们可以定制化的修改配置，比如想要每周轮询一次，并且以日期进行命名，则：</p>
+
+<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
+        rotate 12
+        weekly
+        dateext
+        missingok
+        notifempty
+        compress
+        delaycompress
+        create 0640 user user
+        postrotate
+             pm2 reloadLogs
+        endscript
+}
+</code></pre>
+
+<p>这个生成出来的日志就是以<code>out.log-日期</code>的格式。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Promise 使用]]></title>
+    <link href="http://daycoding.com/14909323944752.html"/>
+    <updated>2017-03-31T11:53:14+08:00</updated>
+    <id>http://daycoding.com/14909323944752.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">.spread</h2>
+
+<pre><code>//对应promise数组里的返回值
+.spread(
+    [function(any values...) fulfilledHandler]
+) -&gt; Promise
+
+
+Promise.all([
+    fs.readFileAsync(&quot;file1.txt&quot;),
+    fs.readFileAsync(&quot;file2.txt&quot;)
+]).spread(function(file1text, file2text) {
+    if (file1text === file2text) {
+        console.log(&quot;files are equal&quot;);
+    }
+    else {
+        console.log(&quot;files are not equal&quot;);
+    }
+});
+
+Promise.delay(500).then(function() {
+   return [fs.readFileAsync(&quot;file1.txt&quot;),
+           fs.readFileAsync(&quot;file2.txt&quot;)] ;
+}).spread(function(file1text, file2text) {
+    if (file1text === file2text) {
+        console.log(&quot;files are equal&quot;);
+    }
+    else {
+        console.log(&quot;files are not equal&quot;);
+    }
+});
+</code></pre>
+
+<h2 id="toc_1">.tap</h2>
+
+<pre><code>.tap(function(any value) handler) -&gt; Promise
+
+getUser().tap(function(user) {
+  //Like in finally, if you return a promise from the handler
+  //the promise is awaited for before passing the original value through
+  return recordStatsAsync();
+}).then(function(user) {
+  //user is the user from getUser(), not recordStatsAsync()
+});
+</code></pre>
+
+<p><img src="media/14909323944752/14943788547606.jpg" alt=""/></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NPM 使用]]></title>
+    <link href="http://daycoding.com/14904296924146.html"/>
+    <updated>2017-03-25T16:14:52+08:00</updated>
+    <id>http://daycoding.com/14904296924146.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">查看npm 版本</h2>
+
+<pre><code>npm -v
+</code></pre>
+
+<h2 id="toc_1">更新NPM最新版本</h2>
+
+<pre><code>npm install npm@latest -g
+</code></pre>
+
+<h2 id="toc_2">安装packeage</h2>
+
+<pre><code>npm install &lt;package_name&gt;  //install locally，会创建node_modules文件夹并放入其中
+</code></pre>
+
+<h2 id="toc_3">package.json管理package</h2>
+
+<p>优点：</p>
+
+<ul>
+<li>通过文件管理项目所依赖模块</li>
+<li>能够制定使用特定版本的模块</li>
+<li>更方便多人协作开发</li>
+</ul>
+
+<p><code>package.json</code>最少含有下面属性：<br/>
+* <code>name</code>：不能有空格<br/>
+* <code>version</code>：x.x.x格式</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;my-awesome-package&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;
+}
+</code></pre>
+
+<h3 id="toc_4">创建package.json</h3>
+
+<pre><code>npm init //会有帮助提示
+npm init --yes //不会有帮助提示
+</code></pre>
+
+<p>demo：</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;my_package&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package.git&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;bugs&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package/issues&quot;
+  },
+  &quot;homepage&quot;: &quot;https://github.com/ashleygwilliams/my_package&quot;
+}
+</code></pre>
+
+<ul>
+<li><code>name</code>:当前文件夹名称</li>
+<li><code>version</code>:默认‘1.0.0’</li>
+<li><code>description</code>:描述,作用同readme</li>
+<li><p><code>main</code>:默认<code>index.js</code></p>
+
+<h3 id="toc_5">在package.json 中指定依赖包</h3></li>
+<li><p><code>dependencies</code>:应用用到的依赖</p></li>
+<li><p><code>devDependencies</code>:只有开发和测试时需要用到的</p></li>
+</ul>
+
+<pre><code>npm install &lt;package_name&gt; --save  //添加到`package.json`中的 `dependencies`
+npm install &lt;package_name&gt; --save-dev  //添加到`package.json`中的 `devDependencies`
+
+</code></pre>
+
+<h2 id="toc_6">更新package</h2>
+
+<pre><code>npm update  //与`package.json`在同级下执行命令
+</code></pre>
+
+<h2 id="toc_7">删除package</h2>
+
+<pre><code>npm uninstall lodash
+npm uninstall --save lodash//会更新到`package.json`
+</code></pre>
+
+<h2 id="toc_8">全局global安装package</h2>
+
+<pre><code>npm install -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_9">全局global更新package</h2>
+
+<pre><code>npm update -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_10">全局global删除package</h2>
+
+<pre><code>npm uninstall -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_11">Package与Modules</h2>
+
+<ul>
+<li><code>package</code>:是在<code>package.json</code>中描述的。可以是一个文件或是一个目录</li>
+<li><code>module</code>:能被<code>Node.js</code> <strong>require()</strong>的称为<code>module</code></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reids使用]]></title>
+    <link href="http://daycoding.com/14903271954232.html"/>
+    <updated>2017-03-24T11:46:35+08:00</updated>
+    <id>http://daycoding.com/14903271954232.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">启动客户端</h2>
+
+<pre><code>$ redis-cli
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PostGreSql]]></title>
+    <link href="http://daycoding.com/14901728464166.html"/>
+    <updated>2017-03-22T16:54:06+08:00</updated>
+    <id>http://daycoding.com/14901728464166.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">导出表</h2>
+
+<p><code>pg_dump -h 10.15.128.51 -U postgres -d lakala -t \&quot;DailyActiveTerminalInfos\&quot; &gt;daily.sql；</code></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Node 学习]]></title>
+    <link href="http://daycoding.com/14896551414725.html"/>
+    <updated>2017-03-16T17:05:41+08:00</updated>
+    <id>http://daycoding.com/14896551414725.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">全局对象和全局变量</h2>
+
+<p>它们是所有模块都可以调用的。<br/>
+全局对象：</p>
+
+<blockquote>
+<blockquote>
+<p><code>global</code>：表示Node所在的全局环境，类似于浏览器的window对象。需要注意的是，如果在浏览器中声明一个全局变量，实际上是声明了一个全局对象的属性，比如var x = 1等同于设置window.x = 1，但是Node不是这样，至少在模块中不是这样（REPL环境的行为与浏览器一致）。在模块文件中，声明var x = 1，该变量不是global对象的属性，global.x等于undefined。这是因为模块的全局变量都是该模块私有的，其他模块无法取到。<br/>
+<code>process</code>：该对象表示Node所处的当前进程，允许开发者与该进程互动。<br/>
+<code>console</code>：指向Node内置的console模块，提供命令行环境中的标准输入、标准输出功能。<br/>
+<code>Buffer</code>:Node处理二进制数据的一个接口。</p>
+</blockquote>
+</blockquote>
+
+<p>全局变量：</p>
+
+<blockquote>
+<blockquote>
+<p>__filename：指向当前运行的脚本文件名。<br/>
+__dirname：指向当前运行的脚本所在的目录。</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_1">核心模块</h2>
+
+<p>Node.js的用处在于，它本身还提供了一系列功能模块，与操作系统互动。这些核心的功能模块，不用安装就可以使用</p>
+
+<blockquote>
+<blockquote>
+<p><code>http</code>：提供HTTP服务器功能。<br/>
+<code>url</code>：解析URL。<br/>
+<code>fs</code>：与文件系统交互。<br/>
+<code>querystring</code>：解析URL的查询字符串。<br/>
+<code>child_process</code>：新建子进程。<br/>
+<code>util</code>：提供一系列实用小工具。<br/>
+<code>path</code>：处理文件路径。<br/>
+<code>crypto</code>：提供加密和解密功能，基本上是对OpenSSL的包装。</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_2">Child Process模块</h2>
+
+<p>child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。</p>
+
+<h2 id="toc_3">Node 升级</h2>
+
+<p>node有一个模块叫n，是专门用来管理node.js的版本的。<br/>
+首先安装n模块：</p>
+
+<pre><code>npm install -g n
+</code></pre>
+
+<p>升级node.js到最新稳定版</p>
+
+<pre><code>n stable
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[常用正则]]></title>
+    <link href="http://daycoding.com/14892247193418.html"/>
+    <updated>2017-03-11T17:31:59+08:00</updated>
+    <id>http://daycoding.com/14892247193418.html</id>
+    <content type="html"><![CDATA[
+<p>数字和字母组合4-20位</p>
+
+<p><code>^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{3,19}$</code></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[sequelize. 钩子]]></title>
+    <link href="http://daycoding.com/14892215616260.html"/>
+    <updated>2017-03-11T16:39:21+08:00</updated>
+    <id>http://daycoding.com/14892215616260.html</id>
+    <content type="html"><![CDATA[
+<p>user.update 调用<br/>
+hooks: {<br/>
+            beforeUpdate(user, options, next) {<br/>
+                bcrypt.genSalt(10, (err, salt) =&gt; {<br/>
+                    bcrypt.hash(user.password, salt, null, (error, hash) =&gt; {<br/>
+                        user.password = hash;<br/>
+                        next(null, user);<br/>
+                    });<br/>
+                });<br/>
+            },</p>
+
+<pre><code>    },
+
+    ##sequelize 事务
+</code></pre>
+
+<pre><code>return db.lakalaSequelize.transaction(t =&gt;
+                    Promise.map(sqlArray, (sql, index) =&gt; db.lakalaSequelize.query(sql,
+                        { type: db.lakalaSequelize.QueryTypes.SELECT, transaction: t })
+                    .then((result) =&gt; {
+                        if (!_.isEmpty(result)) {
+                            const item = itemArray[index];
+                            item.BUSINESS_NAME = result[0].business_name;
+                            item.MERCHANT_CODE = result[0].merchant_code;
+                            item.MERCHANT_ADDR = result[0].MERCHANT_ADDR;
+                            return item;
+                        }
+                        return itemArray[index];
+                    }))).then(result =&gt; result);
+</code></pre>
+
+<h2 id="toc_0">Sequelize 外键</h2>
+
+<p>数据库中的表之间存在一定的关联关系，表之间的关系基于主/外键进行关联、创建约束等。关系表中的数据分为1对1(1:1)、1对多(1:M)、多对多(N:M)三种关联关系。</p>
+
+<p>在Sequelize中建立关联关系，通过调用模型(源模型)的belongsTo、hasOne、hasMany、belongsToMany方法，再将要建立关系的模型(目标模型)做为参数传入即可。这些方法会按以下规则创建关联关系：</p>
+
+<p>hasOne - 与目标模型建立1:1关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasOne()<br/>
+belongsTo - 与目标模型建立1:1关联关系，关联关系(外键)存在于源模型中。详见：Model.belongsTo()<br/>
+hasMany - 与目标模型建立1:N关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasMany()<br/>
+belongsToMany - 与目标模型建立N:M关联关系，会通过sourceId和targetId创建交叉表。详见：Model.belongsToMany()</p>
+
+<p>用户(User)－与其它模型存在1:1、1:N、N:M<br/>
+用户登录信息(UserCheckin)－与User存在1:1关系<br/>
+用户地址(UserAddress)－与User存在N:1关系<br/>
+角色(Role)－与User存在N:M关系<br/>
+<img src="media/14892215616260/14920682242135.png" alt=""/></p>
+
+<pre><code>module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;User&#39;, {
+    id:{type:DataTypes.BIGINT(11), autoIncrement:true, primaryKey : true, unique : true},
+    username: { type: DataTypes.STRING,  allowNull: false, comment:&#39;用户名&#39; },
+    password: { type: DataTypes.STRING, allowNull: false, comment:&#39;用户密码&#39; },
+    active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, comment:&#39;是否正常状态&#39; }
+  },
+  {
+    timestamps: true,
+    underscored: true,
+    paranoid: true,
+    freezeTableName: true,
+    tableName: &#39;user&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;
+});
+}
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;UserCheckin&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true },
+    userId: { 
+      type: DataTypes.BIGINT(11), 
+      field: &#39;user_id&#39;,
+      unique: true, 
+      references: {
+        model: &#39;User&#39;,
+        key: &#39;id&#39;
+      },
+      comment:&#39;用户Id&#39; },
+    loginIp: { type: DataTypes.STRING, field: &#39;login_ip&#39;, allowNull: false, defaultValue: &#39;&#39; , validate: {isIP: true}, comment:&#39;登录IP&#39;}
+  },
+  {
+    underscored: true,
+    timestamps: true,
+    tableName: &#39;userCheckin&#39;,
+    comment: &#39;用户登录信息&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;,
+    indexes: [{
+      name: &#39;userCheckin_userId&#39;,
+      method: &#39;BTREE&#39;,
+     fields: [&#39;user_id&#39;]
+    }]
+  });
+}
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;UserAddress&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;主键&#39; },
+    userId: {type: DataTypes.BIGINT(11), field: &#39;user_id&#39;, allowNull: false, comment:&#39;用户Id&#39; },
+    consignee : { type: DataTypes.STRING, field: &#39;consignee&#39;, allowNull: false, comment:&#39;收货人&#39; },
+    address: { type: DataTypes.STRING(1024), field: &#39;address&#39;, allowNull: false, comment:&#39;详细地址&#39; },
+    zipCode: { type: DataTypes.STRING(16), field: &#39;zip_code&#39;, allowNull: true, comment:&#39;邮编&#39; },
+    tel: { type: DataTypes.STRING(32), field: &#39;tel&#39;, allowNull: false, comment:&#39;电话&#39; },
+  },
+  {
+    underscore: true,
+    timestamps: false,
+    freezeTableName: true,
+    tableName: &#39;userAddress&#39;,
+    comment: &#39;用户地址表&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;,
+    indexes: [{
+      name: &#39;userAddress_userId&#39;,
+      method: &#39;BTREE&#39;,
+      fields: [&#39;user_id&#39;]
+    }]
+  });
+}
+</code></pre>
+
+<p>User模型与UserAddress存在1:N的关联关系，但在这样我们并没有用references特性显式的指定外键。这是因为，Sequlieze不仅可以在模型定义时指定外键，还可以在建立模型关系时指定，甚至主外键关系并不需要显示的存在，只要在建立模型关系时指定关联键即可。</p>
+
+<pre><code>module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;Role&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;角色Id&#39; },
+    roleName: { type: DataTypes.STRING, field: &#39;role_name&#39;, comment:&#39;角色名&#39; }
+  },
+  {
+    underscored: true,
+    timestamps: false,
+    freezeTableName: true,
+    tableName: &#39;role&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;
+  });
+}
+</code></pre>
+
+<p>Role模型与User存在N:M的关系，这样就需要两者通过一个关系表（关系模型）进行关联。但并不需要手工建立这个关系表，指定关联关系后Sequelize会自动创建关系表。</p>
+
+<p>注意：在上面定义模型时，我们使用了comment属性添加字段描述。经测试及查看Sequlize源码，这一特性并不会向数据中添加相关描述信息，但仍然建议添加这一属性以增强代码的可读性。</p>
+
+<p>1.3 模型关联与数据库同步</p>
+
+<p>定义好模型后，就可以建立模型关联关系，并将模型及关系同步到数据库中。</p>
+
+<p>模型导入</p>
+
+<p>在上面定义模型时，我们每个模型定义为了单独的文件，这样就需要通过sequlize.import()方法导入模型：</p>
+
+<p>var sequelize=require(&#39;./_db&#39;).sequelize();<br/>
+var User = sequelize.import(&#39;./user.js&#39;);<br/>
+var UserCheckin = sequelize.import(&#39;./userCheckin.js&#39;);<br/>
+var UserAddress = sequelize.import(&#39;./userAddress.js&#39;);<br/>
+var Role = sequelize.import(&#39;./role.js&#39;);<br/>
+关系建立</p>
+
+<p>导入后，建立模型关系：</p>
+
+<p>// 建立模型之间的关系<br/>
+User.hasOne(UserCheckin);<br/>
+UserCheckin.belongsTo(User);<br/>
+User.hasMany(UserAddress, {foreignKey:&#39;user_id&#39;, targetKey:&#39;id&#39;, as:&#39;Address&#39;});<br/>
+User.belongsToMany(Role, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});<br/>
+Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});<br/>
+在定义UserAddress模型时，我们没有定义关联模型，所以需要在hasMany()方法中通过foreignKey和targetKey来指定关联关系(主外键关系)，指定后该关系同样会被同步到数据库中。除指定关联关系外，我们还指定了as选项，该选项表示“别名”，目标模型会混入到源模型后会使用该名称。</p>
+
+<p>通过belongsToMany()方法建立Role与User之间的关系时，设置了through选项，该选项表示“关系”（可以是一个模型或字符串，使用字符串时表示在数据库中表名）。</p>
+
+<p>同步数据库</p>
+
+<p>建立关联关系后，调用sequelize.sync()方法即可以将模型及关联关系同步到数据库中。</p>
+
+<p>async function updateLayerStyle(layerUUID, style) {<br/>
+  const result = Layer.update(<br/>
+    {<br/>
+      style<br/>
+    },<br/>
+    {<br/>
+      where: {<br/>
+        uuid: layerUUID<br/>
+      },<br/>
+     ** returning: true, //返回结果<br/>
+**    **  plain: true //返回结果不带元数据<br/>
+**    }<br/>
+  )<br/>
+    .then(instance =&gt; instance[1].toJSON())<br/>
+    .catch((err) =&gt; {<br/>
+      const error = { error_code: 1000003, message: err };<br/>
+      throw error;<br/>
+    });<br/>
+  return result;<br/>
+}</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[passport]]></title>
+    <link href="http://daycoding.com/14892005669552.html"/>
+    <updated>2017-03-11T10:49:26+08:00</updated>
+    <id>http://daycoding.com/14892005669552.html</id>
+    <content type="html"><![CDATA[
+<p>passport的验证过程主要依赖具体的验证策略来实现的，比较常用的有session策略、local策略和github策略等，验证逻辑都是在这些策略类中定义的。passport模块的定义主要包括三个部分：passport类、相关中间件和验证策略，passport自带了session验证策略，如果要使用其他验证策略，需要自行添加。</p>
+
+<pre><code>    passport的使用分为五个部分：
+</code></pre>
+
+<p>首先必须通过app.use(passport.initialize())对passport进行初始化，否则后面的验证方法无法执行<br/>
+在全局范围内添加session验证中间件，app.use(passport.session());，这个主要是为了记住用户的登录状态，可以指定session过期时间<br/>
+给passport添加验证策略<br/>
+在具体的路由上使用第三步中添加的验证中间件<br/>
+给passport定义序列化和反序列化函数</p>
+
+<p>Username &amp; Password</p>
+
+<p>The most widely used way for websites to authenticate users is via a username and password. Support for this mechanism is provided by the passport-local module.</p>
+
+<p>Install</p>
+
+<p>$ npm install passport-local<br/>
+Configuration</p>
+
+<p>var passport = require(&#39;passport&#39;)<br/>
+  , LocalStrategy = require(&#39;passport-local&#39;).Strategy;</p>
+
+<p>passport.use(new LocalStrategy(<br/>
+  function(username, password, done) {<br/>
+    User.findOne({ username: username }, function(err, user) {<br/>
+      if (err) { return done(err); }<br/>
+      if (!user) {<br/>
+        return done(null, false, { message: &#39;Incorrect username.&#39; });<br/>
+      }<br/>
+      if (!user.validPassword(password)) {<br/>
+        return done(null, false, { message: &#39;Incorrect password.&#39; });<br/>
+      }<br/>
+      return done(null, user);<br/>
+    });<br/>
+  }<br/>
+));<br/>
+The verify callback for local authentication accepts username and password arguments, which are submitted to the application via a login form.</p>
+
+<p>Form</p>
+
+<p>A form is placed on a web page, allowing the user to enter their credentials and log in.</p>
+
+<form action="/login" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Log In"/>
+    </div>
+</form>
+
+<p>Route</p>
+
+<p>The login form is submitted to the server via the POST method. Using authenticate() with the local strategy will handle the login request.</p>
+
+<p>app.post(&#39;/login&#39;,<br/>
+  passport.authenticate(&#39;local&#39;, { successRedirect: &#39;/&#39;,<br/>
+                                   failureRedirect: &#39;/login&#39;,<br/>
+                                   failureFlash: true })<br/>
+);<br/>
+Setting the failureFlash option to true instructs Passport to flash an error message using the message option set by the verify callback above. This is helpful when prompting the user to try again.</p>
+
+<p>Parameters</p>
+
+<p>By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults.</p>
+
+<p>passport.use(new LocalStrategy({<br/>
+    usernameField: &#39;email&#39;,<br/>
+    passwordField: &#39;passwd&#39;<br/>
+  },<br/>
+  function(username, password, done) {<br/>
+    // ...<br/>
+  }<br/>
+));</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Promise 学习]]></title>
+    <link href="http://daycoding.com/14883392060267.html"/>
+    <updated>2017-03-01T11:33:26+08:00</updated>
+    <id>http://daycoding.com/14883392060267.html</id>
+    <content type="html"><![CDATA[
+<p>1.1. 什么是Promise<br/>
+Promise是抽象异步处理对象以及对其进行各种操作的组件。 其详细内容在接下来我们还会进行介绍，Promise并不是从JavaScript中发祥的概念。<br/>
+Promise最初被提出是在 E语言中， 它是基于并列/并行处理设计的一种编程语言。<br/>
+另外，如果说到基于JavaScript的异步处理，我想大多数都会想到利用回调函数。</p>
+
+<p>使用了回调函数的异步处理<br/>
+·<br/>
+getAsync(&quot;fileA.txt&quot;, function(error, result){<br/>
+    if(error){// 取得失败时的处理<br/>
+        throw error;<br/>
+    }<br/>
+    // 取得成功时的处理</p>
+
+<h2 id="toc_0">});</h2>
+
+<p><1> 传给回调函数的参数为(error对象， 执行结果)组合<br/>
+Node.js等则规定在JavaScript的回调函数的第一个参数为 Error 对象，这也是它的一个惯例。</p>
+
+<p>像上面这样基于回调函数的异步处理如果统一参数使用规则的话，写法也会很明了。 但是，这也仅是编码规约而已，即使采用不同的写法也不会出错。</p>
+
+<p>而Promise则是把类似的异步处理对象和处理规则进行规范化， 并按照采用统一的接口来编写，而采取规定方法之外的写法都会出错。</p>
+
+<pre><code>下面是使用了Promise进行异步处理的一个例子
+----
+var promise = getAsyncPromise(&quot;fileA.txt&quot;); 
+promise.then(function(result){
+    // 获取文件内容成功时的处理
+}).catch(function(error){
+    // 获取文件内容失败时的处理
+});
+----
+&lt;1&gt; 返回promise对象
+</code></pre>
+
+<p>我们可以向这个预设了抽象化异步处理的promise对象， 注册这个promise对象执行成功时和失败时相应的回调函数。</p>
+
+<p>这和回调函数方式相比有哪些不同之处呢？ 在使用promise进行一步处理的时候，我们必须按照接口规定的方法编写处理代码。</p>
+
+<p>也就是说，除promise对象规定的方法(这里的 then 或 catch)以外的方法都是不可以使用的， 而不会像回调函数方式那样可以自己自由的定义回调函数的参数，而必须严格遵守固定、统一的编程方式来编写代码。</p>
+
+<p>这样，基于Promise的统一接口的做法， 就可以形成基于接口的各种各样的异步处理模式。</p>
+
+<p>所以，promise的功能是可以将复杂的异步处理轻松地进行模式化， 这也可以说得上是使用promise的理由之一。</p>
+
+<p>目前大致有下面三种类型。</p>
+
+<p>Constructor</p>
+
+<p>Promise类似于 XMLHttpRequest，从构造函数 Promise 来创建一个新建新promise对象作为接口。</p>
+
+<p>要想创建一个promise对象、可以使用new来调用Promise的构造器来进行实例化。</p>
+
+<p>var promise = new Promise(function(resolve, reject) {<br/>
+    // 异步处理<br/>
+    // 处理结束后、调用resolve 或 reject<br/>
+});<br/>
+Instance Method</p>
+
+<p>对通过new生成的promise对象为了设置其值在 resolve(成功) / reject(失败)时调用的回调函数 可以使用promise.then() 实例方法。</p>
+
+<p>promise.then(onFulfilled, onRejected)<br/>
+resolve(成功)时<br/>
+onFulfilled 会被调用</p>
+
+<p>reject(失败)时<br/>
+onRejected 会被调用<br/>
+onFulfilled、onRejected 两个都为可选参数。</p>
+
+<p>promise.then 成功和失败时都可以使用。 另外在只想对异常进行处理时可以采用 promise.then(undefined, onRejected) 这种方式，只指定reject时的回调函数即可。 不过这种情况下 promise.catch(onRejected) 应该是个更好的选择。</p>
+
+<p>promise.catch(onRejected)<br/>
+Static Method</p>
+
+<p>像 Promise 这样的全局对象还拥有一些静态方法。</p>
+
+<p>包括 Promise.all() 还有 Promise.resolve() 等在内，主要都是一些对Promise进行操作的辅助方法。</p>
+
+<p>1.2.2. Promise的状态<br/>
+我们已经大概了解了Promise的处理流程，接下来让我们来稍微整理一下Promise的状态。</p>
+
+<p>用new Promise 实例化的promise对象有以下三个状态。</p>
+
+<p>&quot;has-resolution&quot; - Fulfilled<br/>
+resolve(成功)时。此时会调用 onFulfilled</p>
+
+<p>&quot;has-rejection&quot; - Rejected<br/>
+reject(失败)时。此时会调用 onRejected</p>
+
+<p>&quot;unresolved&quot; - Pending<br/>
+既不是resolve也不是reject的状态。也就是promise对象刚被创建后的初始化状态等<br/>
+关于上面这三种状态的读法，其中 左侧为在 ES6 Promises 规范中定义的术语， 而右侧则是在 Promises/A+ 中描述状态的术语。</p>
+
+<p>.3.1. 创建promise对象<br/>
+创建promise对象的流程如下所示。</p>
+
+<p>new Promise(fn) 返回一个promise对象</p>
+
+<p>在fn 中指定异步等处理</p>
+
+<p>处理结果正常的话，调用resolve(处理结果值)</p>
+
+<p>处理结果错误的话，调用reject(Error对象)</p>
+
+<p>promise对象拥有几个实例方法， 我们使用这些实例方法来为promise对象创建依赖于promise的具体状态、并且只会被执行一次的回调函数。</p>
+
+<p>为promise对象添加处理方法主要有以下两种</p>
+
+<p>promise对象被 resolve 时的处理(onFulfilled)</p>
+
+<p>promise对象被 reject 时的处理(onRejected)</p>
+
+<p>promise-resolve-flow<br/>
+Figure 2. promise value flow<br/>
+首先，我们来尝试一下为 getURL 通信成功并取到值时添加的处理函数。</p>
+
+<p>此时所谓的 通信成功 ， 指的就是在被resolve后， promise对象变为FulFilled状态 。</p>
+
+<p>被resolve后的处理，可以在.then 方法中传入想要调用的函数。</p>
+
+<p>var URL = &quot;<a href="http://httpbin.org/get">http://httpbin.org/get</a>&quot;;<br/>
+getURL(URL).then(function onFulfilled(value){ <br/>
+    console.log(value);<br/>
+});<br/>
+为了方便理解我们把函数命名为 onFulfilled</p>
+
+<p>总结</p>
+
+<p>在本章我们简单介绍了以下内容：</p>
+
+<p>用 new Promise 方法创建promise对象</p>
+
+<p>用.then 或 .catch 添加promise对象的处理函数</p>
+
+<p>2.1. Promise.resolve<br/>
+一般情况下我们都会使用 new Promise() 来创建promise对象，但是除此之外我们也可以使用其他方法。</p>
+
+<p>在这里，我们将会学习如何使用 Promise.resolve 和 Promise.reject这两个方法。</p>
+
+<p>2.1.1. new Promise的快捷方式<br/>
+静态方法Promise.resolve(value) 可以认为是 new Promise() 方法的快捷方式。</p>
+
+<p>比如 Promise.resolve(42); 可以认为是以下代码的语法糖。</p>
+
+<p>new Promise(function(resolve){<br/>
+    resolve(42);<br/>
+});<br/>
+在这段代码中的 resolve(42); 会让这个promise对象立即进入确定（即resolved）状态，并将 42 传递给后面then里所指定的 onFulfilled 函数。</p>
+
+<p>方法 Promise.resolve(value); 的返回值也是一个promise对象，所以我们可以像下面那样接着对其返回值进行 .then 调用。</p>
+
+<p>Promise.resolve(42).then(function(value){<br/>
+    console.log(value);<br/>
+});<br/>
+运行<br/>
+Promise.resolve作为 new Promise() 的快捷方式，在进行promise对象的初始化或者编写测试代码的时候都非常方便。</p>
+
+<p>2.1.2. Thenable<br/>
+Promise.resolve 方法另一个作用就是将 thenable 对象转换为promise对象。</p>
+
+<p>ES6 Promises里提到了Thenable这个概念，简单来说它就是一个非常类似promise的东西。</p>
+
+<p>就像我们有时称具有 .length 方法的非数组对象为Array like一样，thenable指的是一个具有 .then 方法的对象。</p>
+
+<p>这种将thenable对象转换为promise对象的机制要求thenable对象所拥有的 then 方法应该和Promise所拥有的 then 方法具有同样的功能和处理过程，在将thenable对象转换为promise对象的时候，还会巧妙的利用thenable对象原来具有的 then 方法。</p>
+
+<p>到底什么样的对象能算是thenable的呢，最简单的例子就是 jQuery.ajax()，它的返回值就是thenable的。</p>
+
+<p>因为jQuery.ajax() 的返回值是 jqXHR Object 对象，这个对象具有 .then 方法。</p>
+
+<p>$.ajax(&#39;/json/comment.json&#39;);// =&gt; 拥有 <code>.then</code> 方法的对象<br/>
+这个thenable的对象可以使用 Promise.resolve 来转换为一个promise对象。</p>
+
+<p>变成了promise对象的话，就能直接使用 then 或者 catch 等这些在 ES6 Promises里定义的方法了。</p>
+
+<p>将thenable对象转换promise对象<br/>
+var promise = Promise.resolve($.ajax(&#39;/json/comment.json&#39;));// =&gt; promise对象<br/>
+promise.then(function(value){<br/>
+   console.log(value);<br/>
+});<br/>
+jQuery和thenable<br/>
+jQuery.ajax()的返回值是一个具有 .then 方法的 jqXHR Object对象，这个对象继承了来自 Deferred Object 的方法和属性。</p>
+
+<p>但是Deferred Object并没有遵循Promises/A+或ES6 Promises标准，所以即使看上去这个对象转换成了一个promise对象，但是会出现缺失部分信息的问题。</p>
+
+<p>这个问题的根源在于jQuery的 Deferred Object 的 then 方法机制与promise不同。</p>
+
+<p>所以我们应该注意，即使一个对象具有 .then 方法，也不一定就能作为ES6 Promises对象使用。</p>
+
+<p>JavaScript Promises: There and back again - HTML5 Rocks</p>
+
+<p>You&#39;re Missing the Point of Promises</p>
+
+<p><a href="https://twitter.com/hirano_y_aa/status/398851806383452160">https://twitter.com/hirano_y_aa/status/398851806383452160</a></p>
+
+<p>Promise.resolve 只使用了共通的方法 then ，提供了在不同的类库之间进行promise对象互相转换的功能。</p>
+
+<p>这种转换为thenable的功能在之前是通过使用 Promise.cast 来完成的，从它的名字我们也不难想象它的功能是什么。</p>
+
+<p>除了在编写使用Promise的类库等软件时需要对Thenable有所了解之外，通常作为end-user使用的时候，我们可能不会用到此功能。</p>
+
+<p>我们会在后面第4章的Promise.resolve和Thenable中进行详细的说明，介绍一下结合使用了Thenable和Promise.resolve的具体例子。<br/>
+简单总结一下 Promise.resolve 方法的话，可以认为它的作用就是将传递给它的参数填充（Fulfilled）到promise对象后并返回这个promise对象。</p>
+
+<p>此外，Promise的很多处理内部也是使用了 Promise.resolve 算法将值转换为promise对象后再进行处理的。</p>
+
+<p>2.2. Promise.reject<br/>
+Promise.reject(error)是和 Promise.resolve(value) 类似的静态方法，是 new Promise() 方法的快捷方式。</p>
+
+<p>比如 Promise.reject(new Error(&quot;出错了&quot;)) 就是下面代码的语法糖形式。</p>
+
+<p>new Promise(function(resolve,reject){<br/>
+    reject(new Error(&quot;出错了&quot;));<br/>
+});<br/>
+这段代码的功能是调用该promise对象通过then指定的 onRejected 函数，并将错误（Error）对象传递给这个 onRejected 函数。</p>
+
+<p>Promise.reject(new Error(&quot;BOOM!&quot;)).catch(function(error){<br/>
+    console.error(error);<br/>
+});</p>
+
+<p>它和Promise.resolve(value) 的不同之处在于promise内调用的函数是reject而不是resolve，这在编写测试代码或者进行debug时，说不定会用得上。</p>
+
+<p>Promise只能进行异步操作？<br/>
+在使用Promise.resolve(value) 等方法的时候，如果promise对象立刻就能进入resolve状态的话，那么你是不是觉得 .then 里面指定的方法就是同步调用的呢？</p>
+
+<p>实际上， .then 中指定的方法调用是异步进行的。</p>
+
+<p>var promise = new Promise(function (resolve){<br/>
+    console.log(&quot;inner promise&quot;); // 1<br/>
+    resolve(42);<br/>
+});<br/>
+promise.then(function(value){<br/>
+    console.log(value); // 3<br/>
+});<br/>
+console.log(&quot;outer promise&quot;); // 2<br/>
+运行<br/>
+执行上面的代码会输出下面的log，从这些log我们清楚地知道了上面代码的执行顺序。</p>
+
+<p>inner promise // 1<br/>
+outer promise // 2<br/>
+42            // 3<br/>
+由于JavaScript代码会按照文件的从上到下的顺序执行，所以最开始 <1> 会执行，然后是 resolve(42); 被执行。这时候 promise 对象的已经变为确定状态，FulFilled被设置为了 42 。</p>
+
+<p>下面的代码 promise.then 注册了 <3> 这个回调函数，这是本专栏的焦点问题。</p>
+
+<p>由于 promise.then 执行的时候promise对象已经是确定状态，从程序上说对回调函数进行同步调用也是行得通的。</p>
+
+<p>但是即使在调用 promise.then 注册回调函数的时候promise对象已经是确定的状态，Promise也会以异步的方式调用该回调函数，这是在Promise设计上的规定方针。</p>
+
+<p>因此 <2> 会最先被调用，最后才会调用回调函数 <3> 。</p>
+
+<p>为什么要对明明可以以同步方式进行调用的函数，非要使用异步的调用方式呢？</p>
+
+<p>2.3.1. 同步调用和异步调用同时存在导致的混乱<br/>
+其实在Promise之外也存在这个问题，这里我们以一般的使用情况来考虑此问题。</p>
+
+<p>这个问题的本质是接收回调函数的函数，会根据具体的执行情况，可以选择是以同步还是异步的方式对回调函数进行调用。</p>
+
+<p>下面我们以 onReady(fn) 为例进行说明，这个函数会接收一个回调函数进行处理。</p>
+
+<p>console.log(&#39;DOM fully loaded and parsed&#39;);<br/>
+1<br/>
+function onReady(fn) {<br/>
+2<br/>
+    var readyState = document.readyState;<br/>
+3<br/>
+    if (readyState === &#39;interactive&#39; || readyState === &#39;complete&#39;) {<br/>
+4<br/>
+        fn();<br/>
+5<br/>
+    } else {<br/>
+6<br/>
+        window.addEventListener(&#39;DOMContentLoaded&#39;, fn);<br/>
+7<br/>
+    }<br/>
+8<br/>
+}<br/>
+9<br/>
+onReady(function () {<br/>
+10<br/>
+    console.log(&#39;DOM fully loaded and parsed&#39;);<br/>
+11<br/>
+});<br/>
+12<br/>
+console.log(&#39;<mark>Starting</mark>&#39;);<br/>
+运行  清除log  退出<br/>
+DOM fully loaded and parsed<br/>
+<mark>Starting</mark><br/>
+mixed-onready.js会根据执行时DOM是否已经装载完毕来决定是对回调函数进行同步调用还是异步调用。</p>
+
+<p>如果在调用onReady之前DOM已经载入的话<br/>
+对回调函数进行同步调用</p>
+
+<p>如果在调用onReady之前DOM还没有载入的话<br/>
+通过注册 DOMContentLoaded 事件监听器来对回调函数进行异步调用<br/>
+因此，如果这段代码在源文件中出现的位置不同，在控制台上打印的log消息顺序也会不同。</p>
+
+<p>为了解决这个问题，我们可以选择统一使用异步调用的方式。</p>
+
+<p>1<br/>
+function onReady(fn) {<br/>
+2<br/>
+    var readyState = document.readyState;<br/>
+3<br/>
+    if (readyState === &#39;interactive&#39; || readyState === &#39;complete&#39;) {<br/>
+4<br/>
+        setTimeout(fn, 0);<br/>
+5<br/>
+    } else {<br/>
+6<br/>
+        window.addEventListener(&#39;DOMContentLoaded&#39;, fn);<br/>
+7<br/>
+    }<br/>
+8<br/>
+}<br/>
+9<br/>
+onReady(function () {<br/>
+10<br/>
+    console.log(&#39;DOM fully loaded and parsed&#39;);<br/>
+11<br/>
+});<br/>
+12<br/>
+console.log(&#39;<mark>Starting</mark>&#39;);<br/>
+运行  清除log  退出<br/>
+<mark>Starting</mark><br/>
+DOM fully loaded and parsed<br/>
+<mark>Starting</mark><br/>
+DOM fully loaded and parsed<br/>
+关于这个问题，在 Effective JavaScript 的 第67项 不要对异步回调函数进行同步调用 中也有详细介绍。</p>
+
+<p>绝对不能对异步回调函数（即使在数据已经就绪）进行同步调用。</p>
+
+<p>如果对异步回调函数进行同步调用的话，处理顺序可能会与预期不符，可能带来意料之外的后果。</p>
+
+<p>对异步回调函数进行同步调用，还可能导致栈溢出或异常处理错乱等问题。</p>
+
+<p>如果想在将来某时刻调用异步回调函数的话，可以使用 setTimeout 等异步API。</p>
+
+<p>Effective JavaScript<br/>
+— David Herman<br/>
+前面我们看到的 promise.then 也属于此类，为了避免上述中同时使用同步、异步调用可能引起的混乱问题，Promise在规范上规定 Promise只能使用异步调用方式 。</p>
+
+<p>promise可以写成方法链的形式<br/>
+aPromise.then(function taskA(value){<br/>
+// task A<br/>
+}).then(function taskB(vaue){<br/>
+// task B<br/>
+}).catch(function onRejected(error){<br/>
+    console.log(error);<br/>
+});<br/>
+如果把在 then 中注册的每个回调函数称为task的话，那么我们就可以通过Promise方法链方式来编写能以taskA → task B 这种流程进行处理的逻辑了。</p>
+
+<p>Promise方法链这种叫法有点长（其实是在日语里有点长，中文还可以 --译者注），因此后面我们会简化为 promise chain 这种叫法。</p>
+
+<p>Promise之所以适合编写异步处理较多的应用，promise chain可以算得上是其中的一个原因吧。</p>
+
+<p>在第一章 promise chain 里我们看到了一个很简单的 then → catch 的例子，如果我们将方法链的长度变得更长的话，那在每个promise对象中注册的onFulfilled和onRejected将会怎样执行呢？</p>
+
+<p>promise chain - 即方法链越短越好。 在这个例子里我们是为了方便说明才选择了较长的方法链。<br/>
+我们先来看看下面这样的promise chain。</p>
+
+<p>1<br/>
+function taskA() {<br/>
+2<br/>
+    console.log(&quot;Task A&quot;);<br/>
+3<br/>
+}<br/>
+4<br/>
+function taskB() {<br/>
+5<br/>
+    console.log(&quot;Task B&quot;);<br/>
+6<br/>
+}<br/>
+7<br/>
+function onRejected(error) {<br/>
+8<br/>
+    console.log(&quot;Catch Error: A or B&quot;, error);<br/>
+9<br/>
+}<br/>
+10<br/>
+function finalTask() {<br/>
+11<br/>
+    console.log(&quot;Final Task&quot;);<br/>
+12<br/>
+}<br/>
+13<br/>
+​<br/>
+14<br/>
+var promise = Promise.resolve();<br/>
+15<br/>
+promise<br/>
+16<br/>
+    .then(taskA)<br/>
+17<br/>
+    .then(taskB)<br/>
+18<br/>
+    .catch(onRejected)<br/>
+19<br/>
+    .then(finalTask);<br/>
+运行  清除log  退出<br/>
+Task A<br/>
+Task B<br/>
+Final Task<br/>
+上面代码中的promise chain的执行流程，如果用一张图来描述一下的话，像下面的图那样。</p>
+
+<p>promise-then-catch-flow<br/>
+Figure 3. promise-then-catch-flow.js附图<br/>
+在 上述代码 中，我们没有为 then 方法指定第二个参数(onRejected)，也可以像下面这样来理解。</p>
+
+<p>then<br/>
+注册onFulfilled时的回调函数</p>
+
+<p>catch<br/>
+注册onRejected时的回调函数<br/>
+再看一下 上面的流程图 的话，我们会发现 Task A 和 Task B 都有指向 onRejected 的线出来。</p>
+
+<p>这些线的意思是在 Task A 或 Task B 的处理中，在下面的情况下就会调用 onRejected 方法。</p>
+
+<p>发生异常的时候</p>
+
+<p>返回了一个Rejected状态的promise对象</p>
+
+<p>在 第一章 中我们已经看到，Promise中的处理习惯上都会采用 try-catch 的风格，当发生异常的时候，会被 catch 捕获并被由在此函数注册的回调函数进行错误处理。</p>
+
+<p>另一种异常处理策略是通过 返回一个Rejected状态的promise对象 来实现的，这种方法不通过使用 throw 就能在promise chain中对 onRejected 进行调用。</p>
+
+<p>关于这种方法由于和本小节关系不大就不在这里详述了，大家可以参考一下第4章 使用reject而不是throw 中的内容。</p>
+
+<p>此外在promise chain中，由于在 onRejected 和 Final Task 后面没有 catch 处理了，因此在这两个Task中如果出现异常的话将不会被捕获，这点需要注意一下。</p>
+
+<p>下面我们再来看一个具体的关于 Task A → onRejected 的例子。</p>
+
+<p>Task A产生异常的例子</p>
+
+<p>Task A 处理中发生异常的话，会按照TaskA → onRejected → FinalTask 这个流程来进行处理。</p>
+
+<p>promise taska rejected flow<br/>
+Figure 4. Task A产生异常时的示意图<br/>
+将上面流程写成代码的话如下所示。</p>
+
+<p>promise-then-taska-throw.js<br/>
+function taskA() {<br/>
+    console.log(&quot;Task A&quot;);<br/>
+    throw new Error(&quot;throw Error @ Task A&quot;)<br/>
+}<br/>
+function taskB() {<br/>
+    console.log(&quot;Task B&quot;);// 不会被调用<br/>
+}<br/>
+function onRejected(error) {<br/>
+    console.log(error);// =&gt; &quot;throw Error @ Task A&quot;<br/>
+}<br/>
+function finalTask() {<br/>
+    console.log(&quot;Final Task&quot;);<br/>
+}</p>
+
+<p>var promise = Promise.resolve();<br/>
+promise<br/>
+    .then(taskA)<br/>
+    .then(taskB)<br/>
+    .catch(onRejected)<br/>
+    .then(finalTask);<br/>
+运行<br/>
+执行这段代码我们会发现 Task B 是不会被调用的。</p>
+
+<p>在本例中我们在taskA中使用了 throw 方法故意制造了一个异常。但在实际中想主动进行onRejected调用的时候，应该返回一个Rejected状态的promise对象。关于这种两种方法的异同，请参考 使用reject而不是throw 中的讲解。<br/>
+2.4.2. promise chain 中如何传递参数<br/>
+前面例子中的Task都是相互独立的，只是被简单调用而已。</p>
+
+<p>这时候如果 Task A 想给 Task B 传递一个参数该怎么办呢？</p>
+
+<p>答案非常简单，那就是在 Task A 中 return 的返回值，会在 Task B 执行时传给它。</p>
+
+<p>我们还是先来看一个具体例子吧。</p>
+
+<p>promise-then-passing-value.js<br/>
+function doubleUp(value) {<br/>
+    return value * 2;<br/>
+}<br/>
+function increment(value) {<br/>
+    return value + 1;<br/>
+}<br/>
+function output(value) {<br/>
+    console.log(value);// =&gt; (1 + 1) * 2<br/>
+}</p>
+
+<p>var promise = Promise.resolve(1);<br/>
+promise<br/>
+    .then(increment)<br/>
+    .then(doubleUp)<br/>
+    .then(output)<br/>
+    .catch(function(error){<br/>
+        // promise chain中出现异常的时候会被调用<br/>
+        console.error(error);<br/>
+    });<br/>
+运行<br/>
+这段代码的入口函数是 Promise.resolve(1); ，整体的promise chain执行流程如下所示。</p>
+
+<p>Promise.resolve(1); 传递 1 给 increment 函数</p>
+
+<p>函数 increment 对接收的参数进行 +1 操作并返回（通过return）</p>
+
+<p>这时参数变为2，并再次传给 doubleUp 函数</p>
+
+<p>最后在函数 output 中打印结果</p>
+
+<p>promise-then-passing-value<br/>
+Figure 5. promise-then-passing-value.js示意图<br/>
+每个方法中 return 的值不仅只局限于字符串或者数值类型，也可以是对象或者promise对象等复杂类型。</p>
+
+<p>return的值会由 Promise.resolve(return的返回值); 进行相应的包装处理，因此不管回调函数中会返回一个什么样的值，最终 then 的结果都是返回一个新创建的promise对象。</p>
+
+<p>关于这部分内容可以参考 专栏: 每次调用then都会返回一个新创建的promise对象 ，那里也对一些常见错误进行了介绍。<br/>
+也就是说， Promise#then 不仅仅是注册一个回调函数那么简单，它还会将回调函数的返回值进行变换，创建并返回一个promise对象。</p>
+
+<p>2.5. Promise#catch<br/>
+在 前面的Promise#then 的章节里，我们已经简单地使用了 Promise#catch 方法。</p>
+
+<p>这里我们再说一遍，实际上 Promise#catch 只是 promise.then(undefined, onRejected); 方法的一个别名而已。 也就是说，这个方法用来注册当promise对象状态变为Rejected时的回调函数。</p>
+
+<p>关于如何根据场景使用 Promise#then 和 Promise#catch 可以参考  then or catch? 中介绍的内容。<br/>
+2.5.1. IE8的问题<br/>
+Build Status</p>
+
+<p>上面的这张图，是下面这段代码在使用 polyfill 的情况下在个浏览器上执行的结果。</p>
+
+<p>polyfill是一个支持在不具备某一功能的浏览器上使用该功能的Library。 这里我们使用的例子则来源于 jakearchibald/es6-promise 。<br/>
+Promise#catch的运行结果<br/>
+var promise = Promise.reject(new Error(&quot;message&quot;));<br/>
+promise.catch(function (error) {<br/>
+    console.error(error);<br/>
+});<br/>
+运行<br/>
+如果我们在各种浏览器中执行这段代码，那么在IE8及以下版本则会出现 identifier not found 的语法错误。</p>
+
+<p>这是怎么回事呢？ 实际上这和 catch 是ECMAScript的 保留字 (Reserved Word)有关。</p>
+
+<p>在ECMAScript 3中保留字是不能作为对象的属性名使用的。 而IE8及以下版本都是基于ECMAScript 3实现的，因此不能将 catch 作为属性来使用，也就不能编写类似 promise.catch() 的代码，因此就出现了 identifier not found 这种语法错误了。</p>
+
+<p>而现在的浏览器都是基于ECMAScript 5的，而在ECMAScript 5中保留字都属于 IdentifierName ，也可以作为属性名使用了。</p>
+
+<p>在ECMAScript5中保留字也不能作为 Identifier 即变量名或方法名使用。 如果我们定义了一个名为 for 的变量的话，那么就不能和循环语句的 for 区分了。 而作为属性名的话，我们还是很容易区分 object.for 和 for 的，仔细想想我们就应该能接受将保留字作为属性名来使用了。<br/>
+当然，我们也可以想办法回避这个ECMAScript 3保留字带来的问题。</p>
+
+<p>点标记法（dot notation） 要求对象的属性必须是有效的标识符（在ECMAScript 3中则不能使用保留字），</p>
+
+<p>但是使用 中括号标记法（bracket notation）的话，则可以将非合法标识符作为对象的属性名使用。</p>
+
+<p>也就是说，上面的代码如果像下面这样重写的话，就能在IE8及以下版本的浏览器中运行了（当然还需要polyfill）。</p>
+
+<p>解决Promise#catch标识符冲突问题<br/>
+var promise = Promise.reject(new Error(&quot;message&quot;));<br/>
+promise<a href="function%20(error)%20%7B%0A%20%20%20%20console.error(error);%0A%7D">&quot;catch&quot;</a>;<br/>
+运行<br/>
+或者我们不单纯的使用 catch ，而是使用 then 也是可以避免这个问题的。</p>
+
+<p>使用Promise#then代替Promise#catch<br/>
+var promise = Promise.reject(new Error(&quot;message&quot;));<br/>
+promise.then(undefined, function (error) {<br/>
+    console.error(error);<br/>
+});<br/>
+运行<br/>
+由于 catch 标识符可能会导致问题出现，因此一些类库（Library）也采用了 caught 作为函数名，而函数要完成的工作是一样的。</p>
+
+<p>而且很多压缩工具自带了将 promise.catch 转换为 promise[&quot;catch&quot;] 的功能， 所以可能不经意之间也能帮我们解决这个问题。</p>
+
+<p>如果各位读者需要支持IE8及以下版本的浏览器的话，那么一定要将这个 catch 问题牢记在心中。</p>
+
+<p>2.6. 专栏: 每次调用then都会返回一个新创建的promise对象<br/>
+从代码上乍一看， aPromise.then(...).catch(...) 像是针对最初的 aPromise 对象进行了一连串的方法链调用。</p>
+
+<p>然而实际上不管是 then 还是 catch 方法调用，都返回了一个新的promise对象。</p>
+
+<p>下面我们就来看看如何确认这两个方法返回的到底是不是新的promise对象。</p>
+
+<p>var aPromise = new Promise(function (resolve) {<br/>
+    resolve(100);<br/>
+});<br/>
+var thenPromise = aPromise.then(function (value) {<br/>
+    console.log(value);<br/>
+});<br/>
+var catchPromise = thenPromise.catch(function (error) {<br/>
+    console.error(error);<br/>
+});<br/>
+console.log(aPromise !== thenPromise); // =&gt; true<br/>
+console.log(thenPromise !== catchPromise);// =&gt; true<br/>
+运行<br/>
+=== 是严格相等比较运算符，我们可以看出这三个对象都是互不相同的，这也就证明了 then 和 catch 都返回了和调用者不同的promise对象。</p>
+
+<p>Then Catch flow<br/>
+我们在对Promise进行扩展的时候需要牢牢记住这一点，否则稍不留神就有可能对错误的promise对象进行了处理。</p>
+
+<p>如果我们知道了 then 方法每次都会创建并返回一个新的promise对象的话，那么我们就应该不难理解下面代码中对 then 的使用方式上的差别了。</p>
+
+<p>// 1: 对同一个promise对象同时调用 <code>then</code> 方法<br/>
+var aPromise = new Promise(function (resolve) {<br/>
+    resolve(100);<br/>
+});<br/>
+aPromise.then(function (value) {<br/>
+    return value * 2;<br/>
+});<br/>
+aPromise.then(function (value) {<br/>
+    return value * 2;<br/>
+});<br/>
+aPromise.then(function (value) {<br/>
+    console.log(&quot;1: &quot; + value); // =&gt; 100<br/>
+})</p>
+
+<p>// vs</p>
+
+<p>// 2: 对 <code>then</code> 进行 promise chain 方式进行调用<br/>
+var bPromise = new Promise(function (resolve) {<br/>
+    resolve(100);<br/>
+});<br/>
+bPromise.then(function (value) {<br/>
+    return value * 2;<br/>
+}).then(function (value) {<br/>
+    return value * 2;<br/>
+}).then(function (value) {<br/>
+    console.log(&quot;2: &quot; + value); // =&gt; 100 * 2 * 2<br/>
+});<br/>
+运行<br/>
+第1种写法中并没有使用promise的方法链方式，这在Promise中是应该极力避免的写法。这种写法中的 then 调用几乎是在同时开始执行的，而且传给每个 then 方法的 value 值都是 100 。</p>
+
+<p>第2中写法则采用了方法链的方式将多个 then 方法调用串连在了一起，各函数也会严格按照 resolve → then → then → then 的顺序执行，并且传给每个 then 方法的 value 的值都是前一个promise对象通过 return 返回的值。</p>
+
+<p>下面是一个由方法1中的 then 用法导致的比较容易出现的很有代表性的反模式的例子。</p>
+
+<p>✘ then 的错误使用方法<br/>
+function badAsyncCall() {<br/>
+    var promise = Promise.resolve();<br/>
+    promise.then(function() {<br/>
+        // 任意处理<br/>
+        return newVar;<br/>
+    });<br/>
+    return promise;<br/>
+}<br/>
+这种写法有很多问题，首先在 promise.then 中产生的异常不会被外部捕获，此外，也不能得到 then 的返回值，即使其有返回值。</p>
+
+<p>由于每次 promise.then 调用都会返回一个新创建的promise对象，因此需要像上述方式2那样，采用promise chain的方式将调用进行链式化，修改后的代码如下所示。</p>
+
+<p>then 返回返回新创建的promise对象<br/>
+function anAsyncCall() {<br/>
+    var promise = Promise.resolve();<br/>
+    return promise.then(function() {<br/>
+        // 任意处理<br/>
+        return newVar;<br/>
+    });<br/>
+}<br/>
+关于这些反模式，详细内容可以参考 Promise Anti-patterns 。</p>
+
+<p>这种函数的行为贯穿在Promise整体之中， 包括我们后面要进行说明的 Promise.all 和 Promise.race ，他们都会接收一个promise对象为参数，并返回一个和接收参数不同的、新的promise对象。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[拉卡拉项目总结]]></title>
+    <link href="http://daycoding.com/14878507471218.html"/>
+    <updated>2017-02-23T19:52:27+08:00</updated>
+    <id>http://daycoding.com/14878507471218.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">数据库部分</h2>
+
+<h3 id="toc_1">链接远程数据库</h3>
+
+<p>-h:数据库地址，-u:用户，-p:密码<br/>
+```sql</p>
+
+<h1 id="toc_2">mysql -h192.168.1.13 -uroot -proot</h1>
+
+<pre><code>###数据库操作
+
+```sql
+mysql&gt;use lakala; //进入数据库
+mysql&gt;show tables; //显示所有表
+mysql&gt;desc table_user; //显示表结构
+mysql&gt;drop database newlakala;
+</code></pre>
+
+<p>导出筛选的mysql数据：<br/>
+<code><br/>
+mysqldump -h10.15.128.53 -ulakalagis -p lakalagis(数据库) dim_shop_info（表） --where=&quot;create_time between &#39;2017-04-04 00:00:00&#39; and &#39;2017-04-04 23:59:59&#39; &quot; &gt; dim_shop_info_04.sql<br/>
+</code></p>
+
+<h4 id="toc_3">homebrew 安装mysql 如果开启了自动启动</h4>
+
+<p>丢失密码后 停止服务<br/>
+mysql.server stop<br/>
+ps -a|grep mysql<br/>
+ 会发现 mysqld和mysqld_safe 不停地启动 关闭不了<br/>
+ 需要到<br/>
+ ~/Library/LauchAgents/下 删除com.brew.mysql*的文件 重启电脑 <br/>
+ 之后<br/>
+ mysql.server stop 停止服务<br/>
+ 进入守护mysqld_safe --skip-grant-tables<br/>
+ 新打开一个终端，进入 MySQL</p>
+
+<p>1<br/>
+-u root -p<br/>
+这里也和 mysqld_safe 一样。如果你是 OS X 上新装的 MySQL ，那么很有可能并不能直接使用 mysql 这个命令。而是要使用它的绝对路径： /usr/local/mysql/bin/mysql -u root -p</p>
+
+<p>然后输入任意密码就可以进入 MySQL 了。</p>
+
+<p>修改密码<br/>
+进入了之后先不要急着使用 update 命令修改密码，先看看表中的字段名。不同版本密码的字段名可能不一样。</p>
+
+<p>1<br/>
+2<br/>
+3<br/>
+MySQL 的用户信息是存在 mysql.user 这个表里面的。于是可以先选择 mysql 这个数据库，再看数据库中 user 表中的字段名称。<br/>
+use mysql; //切换数据库<br/>
+describe user; //查看user表的字段<br/>
+然后确定密码字段的名称，一般可能是 Password。然而在 OS X 的 MySQL 5.7 这个版本中，密码字段名称是 authentication_string 。记住这个字段名。</p>
+
+<p>然后修改密码啊：<br/>
+1<br/>
+UPDATE mysql.user SET authentication_string=PASSWORD(‘123456’) where User=’root’; //将root用户密码改成 123456<br/>
+5.刷新权限，使配置生效<br/>
+1<br/>
+flush privileges;<br/>
+最后再启动 MySQL<br/>
+1<br/>
+sudo /usr/local/mysql/support-files/mysql.server start</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SVGKit 导入]]></title>
+    <link href="http://daycoding.com/14875633942562.html"/>
+    <updated>2017-02-20T12:03:14+08:00</updated>
+    <id>http://daycoding.com/14875633942562.html</id>
+    <content type="html"><![CDATA[
+<p>framework导入<br/>
+```objc</p>
+
+<h1 id="toc_0">import <CocoaLumberjack/CocoaLumberjack.h></h1>
+
+<h1 id="toc_1">ifdef DEBUG</h1>
+
+<p>static const DDLogLevel ddLogLevel = DDLogLevelVerbose;</p>
+
+<h1 id="toc_2">else</h1>
+
+<p>static const DDLogLevel ddLogLevel = DDLogLevelWarning;</p>
+
+<h1 id="toc_3">endif</h1>
+
+<pre><code>
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2016年工作总结]]></title>
+    <link href="http://daycoding.com/14834244198095.html"/>
+    <updated>2017-01-03T14:20:19+08:00</updated>
+    <id>http://daycoding.com/14834244198095.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">回顾2016</h2>
+
+<p>忙忙碌碌又是一年，每到年终做工作总结总是在思考这一年做了什么，有哪些事情没有做。没有做的那些事情又是因为什么原因导致的。似乎总觉得自己做了好多事情，但是这些事情都是那些微不足道，还不足以纳入总结当中。。。。。。只好在这里回顾一下一年里做过的各种“微不足道”事情，算是对自己2016年总结，也是为了自己2017年更好的工作、学习做准备。</p>
+
+<h4 id="toc_1">2016年自己的计划</h4>
+
+<ul>
+<li>自己的小金库能够充实起来</li>
+<li>读5本技术书、3本杂文</li>
+<li>掌握Swift并写出一个应用</li>
+<li>实现博客流量日均50pv</li>
+<li>来一场说走就走的旅行</li>
+<li>掌握Python并搭建服务器
+严于律己</li>
+</ul>
+
+<p>说来惭愧，上述计划没有一项是完整实现的。。唯独第二项完成的只能说是相对比较好的，一年的时间零零散散看完了与工作相关的几种技术的Wiki（JSPatch、Swift、JavaScript、Node、React）还有半本Effective Objective-C 2.0。虽说对自己的懒惰意识认识的比较清楚没有计划安排几本书，不过从结果来看这个读书计划还是失败的。</p>
+
+<p><strong>自己总结的原因</strong>：<br/>
+    还是对自己要求不够严格，同时也是对时间安排的不够详细，懒惰意识较严重，每天晚上回到家中基本就是躺床上看娱乐视频，不愿意看专业书（看书犯困。。上学时期遗留病）。周末有一天的时间也没有安排时间出来读一会书。<br/>
+    至于说博客总结来说是平时的时候没有对工作遇到的问题进行很好的记录，这就导致更新的内容零零散散，没有系统总结。<br/>
+    至于说那场说走就走的旅行，由于囊中羞涩，旅行只能止步于诺大的京城当中。。。。。</p>
+
+<p><strong>自己的改善计划：</strong><br/>
+    今年还是一样列出一整年的年度计划，同时也将计划划分的粒度更细，细化到每个季度、每个月中。同时最重要的是<strong>严格按照计划执行</strong>、<strong>严格按照计划执行</strong>、<strong>严格按照计划执行</strong>，每个月做个小回顾，这样不至于到年底反思的时候脑海中一片空白。我相信如果严格按照计划来做2017年一定会很有收获。</p>
+
+<h4 id="toc_2">2016年的工作回顾</h4>
+
+<p>16年主要精力放在了iOS的版本开发上，从15年的1.3版本迭代到了现在16年底最新的2.3.1。经过一年时间的打磨，自我感觉在iOS开发上自己有了些许进步，总结来说是以下几个部分:</p>
+
+<ul>
+<li>学习并借用JSPatch实现了紧急bug的线上修复处理</li>
+<li>借用XCode的故事板功能快速完成界面开发任务</li>
+<li>对线程部分有了更深层次的理解认识</li>
+<li>对架构上的处理了有了更深层次的认识</li>
+<li>对iOS的前沿技术比较关注</li>
+</ul>
+
+<p>相比于15年我这个刚从Android开发转行的二把刀来说对于iOS的开发更得心应手了，遇到问题也不会举足无措了。15年的计划当中，有对项目的Swift重构和单独架构App服务器这两项没有实施。16年只是对项目的现有代码进行了重构，使项目更加规范合理。</p>
+
+<p><strong>工作的不足：</strong><br/>
+    * 基本每回发版本的时候都会比计划时间晚一周<br/>
+    * App的性能问题始终没有完美解决<br/>
+    * 对Android的技术掌握懈怠了<br/>
+    * 对一些技术问题总结的不够，知其然而不知其所以然，查阅过资料过后没有相关总结，只是简单实用。</p>
+
+<p><strong>改善计划：</strong><br/>
+    首先就是要对任务计划的严格实施，也是要对版本任务做详细的计划时间安排，避免延期发版的问题。<br/>
+    再有就是对遇到的典型问题做总结，问题重现方式和具体的解决方案要做详细的总结，以技术博客形式来记录。不断整理博客算是对知识的一种积累。</p>
+
+<h4 id="toc_3">2017年计划</h4>
+
+<p>总的计划还和2015年的大致一样，还是一下几个方面<br/>
+* 继续扩充自己的小金库<br/>
+* 读两本技术书籍，一本杂文，要有读书笔记<br/>
+* 每月两篇技术整理的博客<br/>
+* 完成项目swift改写或者是用swift完成一个新的项目<br/>
+* 继续来一场说走就走的旅行</p>
+
+<p>戒掉自己懒惰的毛病、戒掉自己懒惰的毛病、戒掉自己懒惰的毛病</p>
+
+<p><strong>告诫自己的话：</strong><br/>
+机遇总是有的，如果把握不住，不要怨天忧人，只因自己不够优秀；不要把时间当垃圾处理，唯有珍惜光阴，才能提升生命的质量；两点之间未必直线最短，有时迂回曲折能够更快地抵达终点；如果错了，那就停止，如果得不到，那就放弃；赶路并非越快越好，把握正确的方向最重要。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[拦截UIViewController的popViewController事件]]></title>
+    <link href="http://daycoding.com/%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html"/>
+    <updated>2016-12-26T15:33:14+08:00</updated>
+    <id>http://daycoding.com/%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html</id>
+    <content type="html"><![CDATA[
+<p>实现拦截<code>UIViewController</code>的<code>pop</code>操作有两种方式：</p>
+
+<ul>
+<li>自定义实现返回按钮，即设置<code>UIBarButtonItem</code>来实现自定义的返回操作。</li>
+<li>创建<code>UINavigatonController</code>的<code>Category</code>，来定制<code>navigationBar: shouldPopItem:</code>的逻辑。</li>
+</ul>
+
+<p><strong>UIViewController+BackButtonHandler.h：</strong></p>
+
+<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
+
+@protocol BackButtonHandlerProtocol &lt;NSObject&gt;
+@optional
+// Override this method in UIViewController derived class to handle &#39;Back&#39; button click
+-(BOOL)navigationShouldPopOnBackButton;
+@end
+
+@interface UIViewController (BackButtonHandler) &lt;BackButtonHandlerProtocol&gt;
+
+@end
+</code></pre>
+
+<p><strong>UIViewController+BackButtonHandler.m：</strong></p>
+
+<pre><code class="language-objc">#import &quot;UIViewController+BackButtonHandler.h&quot;
+
+@implementation UIViewController (BackButtonHandler)
+
+@end
+
+@implementation UINavigationController (ShouldPopOnBackButton)
+
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
+
+    if([self.viewControllers count] &lt; [navigationBar.items count]) {
+        return YES;
+    }
+
+    BOOL shouldPop = YES;
+    UIViewController* vc = [self topViewController];
+    if([vc respondsToSelector:@selector(navigationShouldPopOnBackButton)]) {
+        shouldPop = [vc navigationShouldPopOnBackButton];
+    }
+
+    if(shouldPop) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self popViewControllerAnimated:YES];
+        });
+    } else {
+        // Workaround for iOS7.1. Thanks to @boliva - http://stackoverflow.com/posts/comments/34452906
+        for(UIView *subview in [navigationBar subviews]) {
+            if(0. &lt; subview.alpha &amp;&amp; subview.alpha &lt; 1.) {
+                [UIView animateWithDuration:.25 animations:^{
+                    subview.alpha = 1.;
+                }];
+            }
+        }
+    }
+
+    return NO;
+}
+
+</code></pre>
+
+<p><strong>使用：</strong></p>
+
+<ul>
+<li>在<code>UIViewController</code>当中引入头文件</li>
+</ul>
+
+<pre><code>#import &quot;UIViewController+BackButtonHandler.h&quot;
+</code></pre>
+
+<ul>
+<li>在<code>UIViewController</code>中实现<code>navigationShouldPopOnBackButton</code>方法。</li>
+</ul>
+
+<pre><code class="language-objc">- (BOOL)navigationShouldPopOnBackButton{
+    [[[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;确定返回上一界面?&quot;
+                               delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil] show];
+    //renturn no 拦截pop事件
+    return NO;
+}
+</code></pre>
+
+<p><strong>参考：</strong></p>
+
+<ul>
+<li><p><a href="http://www.jianshu.com/p/25fd027916fa">iOS拦截导航栏返回按钮事件的正确方式</a></p></li>
+<li><p><a href="https://github.com/onegray/UIViewController-BackButtonHandler">UIViewController-BackButtonHandler</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[沙盒SandBox]]></title>
+    <link href="http://daycoding.com/iOS%E6%B2%99%E7%9B%92.html"/>
+    <updated>2016-12-22T11:06:07+08:00</updated>
+    <id>http://daycoding.com/iOS%E6%B2%99%E7%9B%92.html</id>
+    <content type="html"><![CDATA[
+<p>每个App都有自己的沙盒，也就是一个存储空间。App之间没有权限访问对方的沙盒资源。沙盒的目录下有三个文件夹：<code>Documents</code>、<code>Library</code>、<code>temp</code></p>
+
+<p><img src="media/14823759670877/14823785020292.png" alt="" style="width:383px;"/></p>
+
+<h2 id="toc_0">目录结构</h2>
+
+<p><img src="media/14823759670877/14823792632365.jpg" alt=""/><br/>
+* <code>Documents</code>：用于存储用户数据，<code>iTunes</code>备份和恢复的时候会包括此目录，所以，苹果建议将程序中建立的或在程序中浏览到的文件数据保存在该目录下。<br/>
+* <code>Documents/Inbox</code>:主要用来存放其他程序请求当前程序打开的文件。当前App只能读取和删除该目录下的文件，不能新建新文件和修改已存在的文件，如果想修改该目录下已存在的文件，需要将它先移动到别的文件夹下。<br/>
+* <code>Library</code>：包含两个子目录：<code>Caches</code> 和 <code>Preferences</code>。<code>Caches</code>用来存放用户存放的文件。<code>Preferences</code>是APP的偏好设置，可以通过<code>NSUserDefaults</code>来读取和设置。<code>itunes</code>会备份此目录。<br/>
+* <code>tmp</code>： 用于存放临时文件，这个可以放一些当APP退出后不再需要的文件。app不运行的时候，系统也可能会销毁此目录保存的临时文件。<code>itunes</code>不备份此目录</p>
+
+<h2 id="toc_1">目录路径获取</h2>
+
+<h4 id="toc_2">沙盒目录</h4>
+
+<pre><code> NSHomeDirectory()
+</code></pre>
+
+<h4 id="toc_3">.app</h4>
+
+<pre><code>[NSBundle mainBundle].bundlePath
+ .app 中的资源文件：[[NSBundle mainBundle] pathForResource:@&quot;audio&quot; ofType:@&quot;wav&quot;]
+</code></pre>
+
+<h4 id="toc_4">Documents</h4>
+
+<pre><code>// 在某个范围内容搜索文件夹的路径     // directory:获取哪个文件夹.这里:NSUserDomainMask 代表从用户文件夹下找
+// domainMask:在哪个范围下获取 NSUserDomainMask:在用户的范围内搜索
+// expandTilde是否展开全路径, NO:~(选NO存commond+G不进去) YES:显示全路径
+NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); // 在iOS中,只有一个目录跟传入的参数匹配,所以这个集合里面只有一个元素:
+NSString *documentsPath = [array objectAtIndex:0];
+</code></pre>
+
+<h4 id="toc_5">Preferences</h4>
+
+<pre><code>NSString *preferenceParh = NSSearchPathForDirectoriesInDomains(NSPreferencePanesDirectory, NSUserDomainMask, YES)[0];
+</code></pre>
+
+<h4 id="toc_6">Caches</h4>
+
+<pre><code>NSString *cachePath =           NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+</code></pre>
+
+<h4 id="toc_7">Tmp</h4>
+
+<pre><code> NSTemporaryDirectory()
+</code></pre>
+
+<p>参考：</p>
+
+<ul>
+<li><a href="http://www.lilongcnc.cc/2016/05/16/17-ios%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%B2%99%E7%9B%92sandbox%E8%B7%AF%E5%BE%84%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/"> iOS获取应用沙盒Sandbox路径和基础保存数据方式</a></li>
+<li><a href="http://www.superqq.com/blog/2015/07/20/ioskai-fa-zhi-sha-he-ji-zhi-(sandbox/)">iOS开发之沙盒机制</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[URL Loading System]]></title>
+    <link href="http://daycoding.com/14817135429113.html"/>
+    <updated>2016-12-14T19:05:42+08:00</updated>
+    <id>http://daycoding.com/14817135429113.html</id>
+    <content type="html"><![CDATA[
+<p><img src="media/14817135429113/14817135654190.png" alt=""/></p>
+
+<h1 id="toc_0">URL 资源访问</h1>
+
+<p>有两种方式：<br/>
+* 使用<code>URLSession</code>通过<code>NSURL</code>直接访问，获得<code>NSData</code>类型或文件<br/>
+* 向<code>URLSession</code>提供<code>NSURLRquest</code>获得资源<br/>
+无论怎样都有两种方法提供处理结果的方法<br/>
+* 提供一个完成回调block（completion handler block）<br/>
+* 提供一个自定义委托</p>
+
+<h1 id="toc_1">Sessions Type</h1>
+
+<ul>
+<li>Default sessions   常用来做下载回话，保存数据证书至用户磁盘目录</li>
+<li>Ephemeral sessions  短暂会话，一切结果保存到ram中</li>
+<li>Background sessions  上传任务会话，支持app在后台任务上传</li>
+</ul>
+
+<h1 id="toc_2">后台传输注意事项</h1>
+
+<p>要想在app挂起时继续执行后台传输数据任务，只有配置了<code>background session config</code>的<code>session</code>会话才能在app挂起时执行任务。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

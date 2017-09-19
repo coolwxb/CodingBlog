@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  算法 - 小小程序猿
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div class="blog-index">
+
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755264473.html">四叉树算法</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:52:06+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong><em>转载：<a href="http://blog.csdn.net/zhanxinhang/article/details/6706217">http://blog.csdn.net/zhanxinhang/article/details/6706217</a></em></strong></p>
+
+<p><a href="http://git.oschina.net/lbs/iOS_3D_ClusterAnnotation">高德iOS聚合实例</a></p>
+
+<p><a href="http://git.oschina.net/lbs/Android_CustomMarker">高德Android聚合实例</a></p>
+
+<p>四叉树或四元树也被称为Q树（Q-Tree）。四叉树广泛应用于图像处理、空间数据索引、2D中的快速碰撞检测、存储稀疏数据等，而八叉树（Octree）主要应用于3D图形处理。对游戏编程，这会很有用。本文着重于对四叉树与八叉树的原理与结构的介绍，帮助您在脑海中建立四叉树与八叉树的基本思想。本文并不对这两种数据结构同时进行详解，而只对四叉树进行详解，因为八叉树的建立可由四叉树的建立推得。</p>
+
+<p>四叉树与八叉树的结构与原理<br/>
+四叉树（Q-Tree）是一种树形数据结构。四叉树的定义是：它的每个节点下至多可以有四个子节点，通常把一部分二维空间细分为四个象限或区域并把该区域里的相关信息存入到四叉树节点中。这个区域可以是正方形、矩形或是任意形状。以下为四叉树的二维空间结构(左)和存储结构(右)示意图（注意节点颜色与网格边框颜色）：</p>
+
+<p><img src="media/14729755264473/69130165.jpg" alt=""/></p>
+
+<p>四叉树的每一个节点代表一个矩形区域（如上图黑色的根节点代表最外围黑色边框的矩形区域），每一个矩形区域又可划分为四个小矩形区域，这四个小矩形区域作为四个子节点所代表的矩形区域。<br/>
+较之四叉树，八叉树将场景从二维空间延伸到了三维空间。八叉树（Octree）的定义是：若不为空树的话，树中任一节点的子节点恰好只会有八个，或零个，也就是子节点不会有0与8以外的数目。那么，这要用来做什么？想象一个立方体，我们最少可以切成多少个相同等分的小立方体？答案就是8个。如下八叉树的结构示意图所示：</p>
+
+<p><img src="media/14729755264473/8882925.jpg" alt=""/></p>
+
+<pre><code>/* 一个矩形区域的象限划分：:
+
+       UL(1)   |    UR(0)
+     ----------|-----------
+       LL(2)   |    LR(3)
+以下对该象限类型的枚举
+*/
+typedef enum
+{
+    UR = 0,
+    UL = 1,
+    LL = 2,
+    LR = 3
+}QuadrantEnum;
+
+/* 矩形结构 */
+typedef struct quadrect_t
+{    
+    double  left, 
+            top, 
+            right, 
+            bottom;
+}quadrect_t;
+
+/* 四叉树节点类型结构 */
+typedef struct quadnode_t
+{
+    quadrect_t    rect;          //节点所代表的矩形区域
+    list_t        *lst_object;   //节点数据, 节点类型一般为链表，可存储多个对象
+    struct  quadnode_t  *sub[4]; //指向节点的四个孩子 
+}quadnode_t;
+
+/* 四叉树类型结构 */
+typedef struct quadtree_t
+{
+    quadnode_t  *root;
+    int         depth;           // 四叉树的深度                    
+}quadtree_t;
+
+</code></pre>
+
+<h4 id="toc_0">四叉树的建立</h4>
+
+<p>利用四叉树分网格，如本文的第一张图，根据左图的网格图形建立如右图所示的完全四叉树。</p>
+
+<p><strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadTreeBuild ( depth, rect )
+   {
+QuadTree-&gt;depth = depth;
+
+/*创建分支，root树的根，depth深度，rect根节点代表的矩形区域*/
+QuadCreateBranch (  root, depth, rect );
+   }
+
+Funtion QuadCreateBranch ( n, depth,rect )
+   {
+if ( depth!=0 )
+   {
+n = new node;    //开辟新节点
+n -&gt;rect = rect; //将该节点所代表的矩形区域存储到该节点中
+将rect划成四份 rect[UR], rect[UL], rect[LL], rect[LR];
+
+/*创建各孩子分支*/
+QuadCreateBranch ( n-&gt;sub[UR], depth-1, rect [UR] );
+QuadCreateBranch ( n-&gt;sub[UL], depth-1, rect [UL] );
+QuadCreateBranch ( n-&gt;sub[LL], depth-1, rect [LL] );
+QuadCreateBranch ( n-&gt;sub[LR], depth-1, rect [LR] );
+   }
+   }
+
+</code></pre>
+
+<p>假设在一个矩形区域里有N个对象，如下左图一个黑点代表一个对象，每个对象的坐标位置都是已知的，用四叉树的一个节点存储一个对象，构建成如下右图所示的四叉树。</p>
+
+<p><img src="media/14729755264473/23531676.jpg" alt=""/></p>
+
+<p>方法也是采用递归的方法对该矩形进行划分分区块，分完后再往里分，直到每一个子矩形区域里只包含一个对象为止。<br/>
+<strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadtreeBuild()
+  {
+     Quadtree = {empty}；
+     For (i = 1;i&lt;n;i++)      //遍历所有对象
+{
+   QuadInsert(i, root)；//将i对象插入四叉树
+}          
+         剔除多余的节点；       //执行完上面循环后，四叉树中可能有数据为空的叶子节点需要剔除
+  }    
+
+Funtion QuadInsert(i,n)      //该函数插入后四叉树中的每个节点所存储的对象数量不是1就是0
+  {  
+     if（节点n有孩子）
+ {      
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；       
+    QuadInsert(i,c)；
+ }
+     else if（节点n存储了一个对象）
+ {
+    为n节点创建四个孩子；
+    将n节点中的对象移到它应该放置的孩子节点中；
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；
+    QuadInsert(i,c)；
+ }
+     else if（n节点数据为空）    
+ {
+    将i存储到节点n中；
+ }
+  } 
+
+</code></pre>
+
+<h4 id="toc_1">用四叉树查找某一对象</h4>
+
+<p>1、采用盲目搜索，与二叉树的递归遍历类似，可采用后序遍历或前序遍历或中序遍历对其进行搜索某一对象，时间复杂度为O（n）。</p>
+
+<p>2、根据对象在区域里的位置来搜索，采用分而治之思想，时间复杂度只与四叉树的深度有关。比起盲目搜索，这种搜索在区域里的对象越多时效果越明显</p>
+
+<p><img src="media/14729755264473/88618967.jpg" alt=""/></p>
+
+<pre><code>Funtion find ( n, pos, )
+  {
+      If (n节点所存的对象位置为 pos所指的位置 )
+          Return n;
+      If ( pos位于第一象限 )
+          temp = find ( n-&gt;sub[UR], pos );
+      else if ( pos位于第二象限)
+          temp = find ( n-&gt;sub[UL], pos );
+      else if ( pos位于第三象限 )
+          temp = find ( n-&gt;sub[LL], pos );
+      else  //pos 位于第四象限
+          temp = find ( n-&gt;sub[LR], pos );
+      return temp;   
+  } 
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+  
+	<div class="pagination">
+	
+<a href="archives.html">Blog Archives</a>
+	 
+	    
+	</div>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="14944963010893.html">webGL浏览器支持</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14924298431586.html">VSCode 智能感知配置</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14917937079752.html">销售易Pass</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14914632553537.html">PM2日志分割</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a9e7585c72e6c3ff233103ec49aecd2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  UITabelView - 小小程序猿
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div>
+	<article class="hentry" role="article">
+	<header>
+			  	<h1 class="entry-title">UITabelView</h1>
+				<p class="meta"><time datetime="2016-09-04T15:43:08+08:00" pubdate data-updated="true">2016/9/4</time></p>
+			 </header>
+		  	<div class="entry-content">
+			  	<h2 id="toc_0">使用开源组件FDTemplateLayoutCell 动态计算Cell高度相关问题</h2>
+
+<ol>
+<li>自定义Cell</li>
+</ol>
+
+<p>需要注意tableview注册自定义的cell，否侧程序崩溃报错</p>
+
+<pre><code>[self.tbl_marker registerClass:[DataListOverLayerTableViewCell class] forCellReuseIdentifier:@&quot;LINE&quot;];
+
+</code></pre>
+
+<ol>
+<li>自定义Cell 约束条件</li>
+</ol>
+
+<p>如果自定义Cell约束条件错误会导致测量的高度为0，需逐步修改约束条件直至能计算出高度</p>
+
+<p><strong>注意：约束条件最好包括 top\bottom\left\right 和 width、height</strong>这样能最大程度保证能测量出来高度</p>
+
+<pre><code>[self.btn_title mas_makeConstraints:^(MASConstraintMaker *make) {
+
+make.left.equalTo(self.contentView.mas_left).offset(10);
+
+make.top.equalTo(self.contentView.mas_top).offset(10);
+
+make.bottom.equalTo(hline.mas_top).offset(-10);
+
+make.right.equalTo(self.contentView.mas_right).offset(-10);
+
+make.width.mas_equalTo(self.contentView.frame.size.width-20);
+
+make.height.greaterThanOrEqualTo(@60);
+
+}];       
+
+</code></pre>
+
+<h2 id="toc_1">设置cell点击选中状态去掉背景</h2>
+
+<p>由于使用FDTemplateLayoutCell 作为预加载cell高度计算，这时会先调用<code>**heightForRowAtIndexPath**</code>方法计算高度，在<code>tableView fd_heightForCellWithIdentifier:@&quot;MARKER&quot; configuration:^(DataListTableViewCell* cell)</code>中会生成cell，所以在执行方法<code>cellForRowAtIndexPath</code>的时候就会取得缓存cell<code>[tableView dequeueReusableCellWithIdentifier:@&quot;MARKER&quot;]</code>不会执行cell的初始化方法,所以在初始化里执行<code>cell.selectionStyle = UITableViewCellSelectionStyleNone;</code>不会有任何效果，需要移除到初始化方法外</p>
+
+<pre><code>-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//取消选中效果
+[self.tbl_marker deselectRowAtIndexPath:[self.tbl_marker indexPathForSelectedRow] animated:YES];
+}
+
+</code></pre>
+
+<h2 id="toc_2">就尼玛0.5进位问题导致cell高度不对，uitextview不显示文字</h2>
+
+<pre><code>//这里返回的height 是float 不能随意改成int
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+if (indexPath.section==1) {
+   return 108;
+}else
+{
+//这里返回的height 是float 不能随意改成int
+//如果返回int 会导致舍去0.5个单位 导致uitextview 高度被舍去1px 导致不显示文字
+   float height =  [tableView fd_heightForCellWithIdentifier:@&quot;cell&quot; configuration:^(EditMarkerExpandableTextCellTableViewCell* cell) {
+       MarkerAttr* attr = [self.attrArray objectAtIndex:indexPath.row];
+
+       cell.textView.text = [self.dataDic objectForKey:attr.key];
+
+   }];
+
+   return height;
+}
+return 100;
+
+}
+
+</code></pre>
+
+<h2 id="toc_3">获取被点击view所在的UITableViewCell</h2>
+
+<p><strong><em>原因</em></strong>：由于IOS系统不同，不能使用<code>LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[[view superview ] superview]</code>来获取cell，因为contentview和cell之间在不同版本里相隔了一个其他view</p>
+
+<p>使用如下代码解决问题：</p>
+
+<pre><code>CGPoint buttonPosition = [view convertPoint:CGPointZero toView:self.tbv_layers];
+NSIndexPath *indexPath = [self.tbv_layers indexPathForRowAtPoint:buttonPosition];
+LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[self.tbv_layers cellForRowAtIndexPath:indexPath];
+
+</code></pre>
+
+<h2 id="toc_4">利用UITable的group特性来设置cell之间的间距并取消header的悬浮效果</h2>
+
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = 10; //这里是我的headerView和footerView的高度
+    if (_tableView.contentOffset.y&lt;=sectionHeaderHeight&amp;&amp;_tableView.contentOffset.y&gt;=0) {
+        _tableView.contentInset = UIEdgeInsetsMake(-_tableView.contentOffset.y, 0, 0, 0);
+    } else if (_tableView.contentOffset.y&gt;=sectionHeaderHeight) {
+        _tableView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_5">刷新单个cell或者section</h2>
+
+<pre><code>//一个section刷新      
+NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];      
+[tableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];      
+//一个cell刷新      
+NSIndexPath *indexPath=[NSIndexPath indexPathForRow:3 inSection:0];      
+[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone]; 
+
+</code></pre>
+
+<h2 id="toc_6">UITableView 去掉底部多余分割线</h2>
+
+<pre><code>self.tableView.tableFooterView=[[UIView alloc]init];//关键语句     
+
+</code></pre>
+
+<h2 id="toc_7">UITableViewCell 选中时背景颜色改变</h2>
+
+<pre><code>tempCell.selectedBackgroundView = [[UIView alloc] initWithFrame:tempCell.frame] ;
+tempCell.selectedBackgroundView.backgroundColor = [ColorChangeUtil getColor:@&quot;#f1f1f1&quot;];
+
+</code></pre>
+
+<h2 id="toc_8">避免出现uitableview左移</h2>
+
+<pre><code>-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
+    {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_9">避免cell重用</h2>
+
+<p>通过为每个cell指定不同的重用标识符(reuseIdentifier)来解决。<br/>
+重用机制是根据相同的标识符来重用cell的，标识符不同的cell不能彼此重用。于是我们将每个cell的标识符都设置为不同，就可以避免不同cell重用的问题了。</p>
+
+<pre><code> NSString *ID = [NSString stringWithFormat:@&quot;Cell%ld%ld&quot;, [indexPath section], [indexPath row]];//以indexPath来唯一确定cell
+AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[AddGroupMemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+
+</code></pre>
+
+<h2 id="toc_10">使用FDCELL和xib配合加载自定义cell 约束警告的错误</h2>
+
+<p><code>self.tableView.estimatedRowHeight = 200;//预算行高</code>如果不加这句话控制台会报警告错误<br/>
+<code>objc<br/>
+&lt;NSLayoutConstraint:0x154f256f0 UILabel:0x159460f80.leading == UITableViewCellContentView:0x159460e00.leading + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x154f285e0 SZTextView:0x1557b1200.leading == UILabel:0x159460f80.leading&gt;,<br/>
+&lt;NSLayoutConstraint:0x159470c20 UITableViewCellContentView:0x159460e00.trailing == SZTextView:0x1557b1200.trailing + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x1561857d0 UITableViewCellContentView:0x159460e00.width == 0&gt;,<br/>
+</code></p>
+
+<p>总是提示<code>contentview.width</code>的宽度为0</p>
+
+<h2 id="toc_11">FDCELL 打印log</h2>
+
+<pre><code>self.tableView.fd_debugLogEnabled = YES;//开启log打印高度
+</code></pre>
+
+			</div>
+
+		
+	  
+		<footer>
+		 <p class="meta">
+
+			<strong>Categories:</strong>&nbsp; 
+			<span class="categories">
+			
+			    <a class='category' href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a>&nbsp;
+			 
+			</span>
+		    </p>
+		    <p class="meta">
+		      
+		 </p>
+	    
+		<div class="sharing">
+		  <!-- 多说评论框 start -->
+    <div class="ds-thread" ></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"mweb-zh"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- 多说公共JS代码 end -->
+          
+
+          
+
+		</div>
+
+	    <p class="meta">
+	    
+	        <a class="basic-alignment left" href="14729750129157.html" 
+	        title="Previous Post: UITextField">&laquo; UITextField</a>
+	    
+	    
+	        <a class="basic-alignment right" href="14729749117844.html" 
+	        title="Next Post: UIScreen">UIScreen &raquo;</a>
+	    
+	    </p>
+	  </footer>
+	</article>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="14944963010893.html">webGL浏览器支持</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14924298431586.html">VSCode 智能感知配置</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14917937079752.html">销售易Pass</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14914632553537.html">PM2日志分割</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a9e7585c72e6c3ff233103ec49aecd2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>

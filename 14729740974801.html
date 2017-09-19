@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  AFNetworking - 小小程序猿
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div>
+	<article class="hentry" role="article">
+	<header>
+			  	<h1 class="entry-title">AFNetworking</h1>
+				<p class="meta"><time datetime="2016-09-04T15:28:17+08:00" pubdate data-updated="true">2016/9/4</time></p>
+			 </header>
+		  	<div class="entry-content">
+			  	<h2 id="toc_0"><code>AFNetWoring</code> 同步方法的使用：</h2>
+
+<pre><code>NSURL* url = [[NSURL alloc] initWithString:[HOST stringByAppendingString:marker.icon.url]];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+[request setValue:@&quot;http://www.dituwuyou.com&quot; forHTTPHeaderField:@&quot;Referer&quot;];
+
+AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+operation.responseSerializer = [AFImageResponseSerializer serializer];
+
+/* 最终继承自 NSOperation，看到这个，大家可能就知道了怎么实现同步的了，也就是利用 NSOperation 来做的同步请求 */
+
+[operation start];
+//同步实现
+[operation waitUntilFinished];
+
+UIImage* image = (UIImage*)[operation responseObject];
+if(image!=nil)
+{
+  //做处理
+}
+return nil;
+
+</code></pre>
+
+<p>同步上传图片</p>
+
+<pre><code>AFHTTPRequestOperationManager *manager = [self getInitAFManager];
+
+[manager.requestSerializer setValue:[self getUserToken] forHTTPHeaderField:TOKEN];
+NSMutableURLRequest* request =  [manager.requestSerializer multipartFormRequestWithMethod:@&quot;POST&quot; URLString:[HOST stringByAppendingString:@&quot;/api/imgs/upload&quot;] parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt;  _Nonnull formData) {
+        [formData appendPartWithFileData:imgData name:@&quot;Filedata&quot; fileName:@&quot;pic&quot; mimeType:@&quot;image/jpg&quot;];
+    } error:nil];
+
+AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    //返回结果json格式化
+requestOperation.responseSerializer = manager.responseSerializer;
+[requestOperation start];
+[requestOperation waitUntilFinished];
+
+/* 请求结果 */
+NSDictionary *result = (NSDictionary *)[requestOperation responseObject];
+block(YES,result);
+
+</code></pre>
+
+<h2 id="toc_1">AFNetWorking 传递数组参数</h2>
+
+<p>要求发送的格式</p>
+
+<pre><code>POST /api/maps/KAyzFxCAsYV9YfwII1KiTA/invite HTTP/1.1
+Host: xxxxxxx
+Token: DCA6smjmEU_Qcc8zT_E7
+authenticity_token: m4XIJxCDw7mxNk/Eu7FbvS/H+jb09gi7cPBB5CUceVVC+fNdV0QAvXhtxrZDrl+uzqKmgBoUyghIU+FvkgkLVg==
+Cache-Control: no-cache
+Postman-Token: 71c7694b-0219-0579-1c0f-370e9eb9623a
+Content-Type: application/x-www-form-urlencoded
+
+phones[]=18610187749&amp;phones[]=18518700870
+
+</code></pre>
+
+<pre><code>AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//manager 要使用默认的requestSerialize
+//即要设置Content-Type: application/x-www-form-urlencoded
+manager.responseSerializer = [AFJSONResponseSerializer new];
+[manager.requestSerializer setValue:@&quot;iOS&quot; forHTTPHeaderField:@&quot;Source&quot;];
+[manager.requestSerializer setValue:[self getUserToken] forHTTPHeaderField:TOKEN];
+
+NSArray* array= @[phone];
+NSDictionary *parameters = @{@&quot;phones&quot;: array};
+[manager.requestSerializer setValue:self.getUserToken forHTTPHeaderField:TOKEN];
+NSString* url = [HOST stringByAppendingString:[NSString stringWithFormat:@&quot;/api/maps/%@/invite&quot;,mid]];
+[manager POST:url parameters:parameters success:success_block failure:fail_block];
+
+</code></pre>
+
+<h2 id="toc_2">AFNetWorking下载图片</h2>
+
+<p>使用<code>AFNetworking</code>下载图片得到的<code>image</code>默认被压缩，设置<code>AFImageResponseSerializer</code>的<code>ImageScale</code>属性可以决定是否压缩</p>
+
+<pre><code>NSURL *url = [[NSURL alloc] initWithString:[OSS_HOST stringByAppendingString:icon.url == nil ? @&quot;&quot; : icon.url]];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+
+AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+AFImageResponseSerializer *imageResponseSerializer = [AFImageResponseSerializer serializer];
+
+  //af 下载图片 会被压缩屏幕尺寸倍  设置有不会压缩
+ //[imageResponseSerializer setImageScale:1.0];  
+
+operation.responseSerializer = imageResponseSerializer;
+
+[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+    UIImage *image = (UIImage *) [operation responseObject];
+
+ } failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+}];
+[operation start];
+
+</code></pre>
+
+<p>如果不设置<code>[imageResponseSerializer setImageScale:1.0]</code>，<code>responseSerializer</code>的参数如下图：</p>
+
+<p><img src="media/14729740974801/QQ20160814-0.png" alt="QQ20160814-0"/></p>
+
+<h2 id="toc_3">Domain=NSURLErrorDomain Code=-1012 和 In order to validate a domain name for self signed certificates, you MUST use pinning错误</h2>
+
+<pre><code class="language-objc">AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+//解决“Error Domain=NSURLErrorDomain Code=-1012 &quot;The operation couldn’t be completed.”的问题，AFNetworking 2.0默认在检查SSL证书的时候比较严格
+manager.securityPolicy.allowInvalidCertificates = YES;
+manager.securityPolicy.validatesDomainName = NO;
+</code></pre>
+
+<h2 id="toc_4">Error Domain=NSCocoaErrorDomain Code=3840 &quot;The operation couldn’t be completed. (Cocoa error 3840.)&quot; (JSON text did not start with array or object and option to allow fragments not set.) UserInfo=0x9152780 {NSDebugDescription=JSON text did not start with array or object and option to allow fragments not set.}</h2>
+
+<p>这个问题需要对<code>AFHTTPRequestOperationManager</code>添加<code>requestSerializer</code>和<code>responseSerializer</code></p>
+
+<pre><code class="language-objc">manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+</code></pre>
+
+			</div>
+
+		
+	  
+		<footer>
+		 <p class="meta">
+
+			<strong>Categories:</strong>&nbsp; 
+			<span class="categories">
+			
+			    <a class='category' href='%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html'>第三方类库</a>&nbsp;
+			 
+			</span>
+		    </p>
+		    <p class="meta">
+		      
+		 </p>
+	    
+		<div class="sharing">
+		  <!-- 多说评论框 start -->
+    <div class="ds-thread" ></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"mweb-zh"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- 多说公共JS代码 end -->
+          
+
+          
+
+		</div>
+
+	    <p class="meta">
+	    
+	        <a class="basic-alignment left" href="14729743869940.html" 
+	        title="Previous Post: FastJson">&laquo; FastJson</a>
+	    
+	    
+	        <a class="basic-alignment right" href="14729740054667.html" 
+	        title="Next Post: Sqlite">Sqlite &raquo;</a>
+	    
+	    </p>
+	  </footer>
+	</article>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="14944963010893.html">webGL浏览器支持</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14924298431586.html">VSCode 智能感知配置</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14917937079752.html">销售易Pass</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14914632553537.html">PM2日志分割</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a9e7585c72e6c3ff233103ec49aecd2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>
