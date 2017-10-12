@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  android对svg矢量图的支持 - 小小程序猿
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div>
+	<article class="hentry" role="article">
+	<header>
+			  	<h1 class="entry-title">android对svg矢量图的支持</h1>
+				<p class="meta"><time datetime="2016-09-04T15:50:29+08:00" pubdate data-updated="true">2016/9/4</time></p>
+			 </header>
+		  	<div class="entry-content">
+			  	<h2 id="toc_0">什么是svg？</h2>
+
+<blockquote>
+<p>SVG可缩放矢量图形（Scalable Vector Graphics）是基于可扩展标记语言（XML），用于描述二维矢量图形的一种图形格式。SVG是W3C(&quot;World Wide Web ConSortium&quot; 即 &quot; 国际互联网标准组织&quot;)在2000年8月制定的一种新的二维矢量图形格式，也是规范中的网络矢量图形标准。SVG严格遵从XML语法，并用文本格式的描述性语言来描述图像内容，因此是一种和图像分辨率无关的矢量图形格式</p>
+</blockquote>
+
+<h2 id="toc_1">svg的优势？</h2>
+
+<blockquote>
+<p>1．任意放缩。<br/>
+用户可以任意缩放图像显示，而不会破坏图像的清晰度、细节等。<br/>
+2．文本独立。<br/>
+SVG图像中的文字独立于图像，文字保留可编辑和可搜寻的状态。也不会再有字体的限制，用户系统即使没有安装某一字体，也会看到和他们制作时完全相同的画面。<br/>
+3．较小文件。<br/>
+总体来讲，SVG文件比那些GIF和JPEG格式的文件要小很多，因而下载也很快。<br/>
+4．超强显示效果<br/>
+SVG图像在屏幕上总是边缘清晰，它的清晰度适合任何屏幕分辨率和打印分辨率。<br/>
+5．超级颜色控制。<br/>
+SVG图像提供一个1 600万种颜色的调色板，支持ICC颜色描述文件标准、RGB、线X填充、渐变和蒙版。</p>
+</blockquote>
+
+<h2 id="toc_2">Android对svg的支持</h2>
+
+<blockquote>
+<p>In Android 5.0 (API Level 21) and above, you can define vector drawables, which scale without losing definition. You need only one asset file for a vector image, as opposed to an asset file for each screen density in the case of bitmap images. To create a vector image, you define the details of the shape inside aXML element.</p>
+
+<pre><code>&lt;!-- res/drawable/heart.xml --&gt;
+&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    &lt;!-- intrinsic size of the drawable --&gt;
+    android:height=&quot;256dp&quot;
+    android:width=&quot;256dp&quot;
+    &lt;!-- size of the virtual canvas --&gt;
+    android:viewportWidth=&quot;32&quot;
+    android:viewportHeight=&quot;32&quot;&gt;
+  &lt;!-- draw a path --&gt;
+  &lt;path android:fillColor=&quot;#8fff&quot;
+      android:pathData=&quot;M20.5,9.5
+                        c-1.955,0,-3.83,1.268,-4.5,3
+                        c-0.67,-1.732,-2.547,-3,-4.5,-3
+                        C8.957,9.5,7,11.432,7,14
+                        c0,3.53,3.793,6.257,9,11.5
+                        c5.207,-5.242,9,-7.97,9,-11.5
+                        C25,11.432,23.043,9.5,20.5,9.5z&quot; /&gt;
+&lt;/vector&gt;
+</code></pre>
+
+<p><a href="https://developer.android.com/training/material/drawables.html">摘自：Android Create Vector Drawables</a></p>
+
+<pre><code></code></pre>
+</blockquote>
+
+<p>在5.0系统以上才能使用<code>vector</code>对svg有很好的支持，要想在5.0以下的系统使用我们就需要使用<em><a href="https://code.google.com/p/svg-android/">svg-android</a></em>这个类库来支持。</p>
+
+<p>简单实用方法：<br/>
+<code>java<br/>
+SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.filename);<br/>
+Picture picture = svg.getPicture();<br/>
+Drawable drawable = svg.createPictureDrawable();<br/>
+</code></p>
+
+<p>这样我们就能用imageview填充svg格式的矢量图片了。</p>
+
+<h2 id="toc_3">与现有图片加载类库Universal-Image-Loader集成</h2>
+
+<p>原有项目使用Universal-Image-Loader作为图片加载类库，使用服务器端发来的图片url即可完成异步加载图片，但是现在服务器端传回的数据中可能会包涵svg矢量图片的url，类似：</p>
+
+<blockquote>
+<p><code>http://xxxx.com/warehouse.svg</code></p>
+</blockquote>
+
+<p>这样就造成Universal-Image-Loader加载出错。</p>
+
+<p><strong>解决方案：</strong></p>
+
+<p>我对Universal-Image-Loader缓存策略进行了设置，设置开启Discache，这样就会在手机的存储空间内进行缓存。之后使用同步加载图片的方法加载图片url</p>
+
+<p><code>Bitmap bitmaptmp = imageLoader.loadImageSync(url, ImageUtil.getScaledDisOptions());</code></p>
+
+<p>这里就分为两种情况：<br/>
+- 正常图片的url，即后缀名为png或者jpg的url，这样会直接加载<br/>
+- 加载svg格式图的url，使用上述方法加载，返回的bitmaptmp的结果为null，但是会在手机磁盘上进行缓存</p>
+
+<p>这里对bitmaptmp是否为null做判断即可，如果是null，就根据url去寻找指定的svg源文件缓存，即调用方法</p>
+
+<p><code>FileInputStream fis = new FileInputStream(imageLoader.getDiskCache().get(url));</code></p>
+
+<p>获取svg文件流之后即可使用<code>avg-android</code>的方法转换图片了：</p>
+
+<pre><code>SVG svg = new SVGBuilder().readFromInputStream(fis)
+// if svg in res/raw
+// if svg in assets
+// .setWhiteMode(true)
+// draw fills in white, doesn&#39;t draw strokes
+// .setColorSwap(0xFF008800, 0xFF33AAFF)
+// swap a single colour
+// .setColorFilter(filter) 
+// run through a colour filter
+// .set[Stroke|Fill]ColorFilter(filter)
+// apply a colour filter to only the stroke or fill
+.build();
+PictureDrawable pictureDrawable = svg.getDrawable();
+Bitmap tmp =Bitmap.createBitmap(pictureDrawable.getIntrinsicWidth(), pictureDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_4444);
+Canvas canvas = new Canvas(tmp);
+canvas.drawPicture(pictureDrawable.getPicture());
+bitmaptmp = tmp;
+
+</code></pre>
+
+<p>至此即可使用imageview来加载bitmaptmp了。</p>
+
+<p><strong>欢迎拍砖指正！</strong></p>
+
+<p><strong><em>参考网站：</em></strong></p>
+
+<blockquote>
+<p><a href="http://stackoverflow.com/questions/7201542/svg-to-bitmap-at-runtime-conversion-in-android">http://stackoverflow.com/questions/7201542/svg-to-bitmap-at-runtime-conversion-in-android</a><br/>
+<a href="https://developer.android.com/training/material/drawables.html">https://developer.android.com/training/material/drawables.html</a><br/>
+<a href="http://www.w3.org/TR/SVG11/paths.html#PathData">http://www.w3.org/TR/SVG11/paths.html#PathData</a><br/>
+<a href="https://code.google.com/p/svg-android/">https://code.google.com/p/svg-android/</a><br/>
+<a href="http://baike.baidu.com/subview/85022/9539763.htm">http://baike.baidu.com/subview/85022/9539763.htm</a></p>
+</blockquote>
+
+			</div>
+
+		
+	  
+		<footer>
+		 <p class="meta">
+
+			<strong>Categories:</strong>&nbsp; 
+			<span class="categories">
+			
+			    <a class='category' href='Android.html'>Android</a>&nbsp;
+			 
+			</span>
+		    </p>
+		    <p class="meta">
+		      
+		 </p>
+	    
+		<div class="sharing">
+		  <!-- 多说评论框 start -->
+    <div class="ds-thread" ></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"mweb-zh"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- 多说公共JS代码 end -->
+          
+
+          
+
+		</div>
+
+	    <p class="meta">
+	    
+	        <a class="basic-alignment left" href="14729754588363.html" 
+	        title="Previous Post: 点在面内（1）">&laquo; 点在面内（1）</a>
+	    
+	    
+	        <a class="basic-alignment right" href="14729753957657.html" 
+	        title="Next Post: Android 6.0 (Marshmallow) 加载svg图片 报错">Android 6.0 (Marshmallow) 加载svg图片 报错 &raquo;</a>
+	    
+	    </p>
+	  </footer>
+	</article>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944963010893.html">webGL浏览器支持</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a9e7585c72e6c3ff233103ec49aecd2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>

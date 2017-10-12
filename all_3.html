@@ -1,0 +1,1620 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  小小程序猿
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div class="blog-index">
+
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755895496.html">BOOL / bool / Boolean / NSCFBoolean 区别</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:53:09+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<table>
+<thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Typedef</th>
+<th style="text-align: left">Header</th>
+<th style="text-align: left">True Value</th>
+<th style="text-align: left">False Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">BOOL</td>
+<td style="text-align: left">signed char</td>
+<td style="text-align: left">objc.h</td>
+<td style="text-align: left">YES</td>
+<td style="text-align: left">NO</td>
+</tr>
+<tr>
+<td style="text-align: left">bool</td>
+<td style="text-align: left">_Bool (int)</td>
+<td style="text-align: left">stdbool.h</td>
+<td style="text-align: left">true</td>
+<td style="text-align: left">false</td>
+</tr>
+<tr>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">unsigned char</td>
+<td style="text-align: left">MacTypes.h</td>
+<td style="text-align: left">True</td>
+<td style="text-align: left">False</td>
+</tr>
+<tr>
+<td style="text-align: left">NSNumber</td>
+<td style="text-align: left">__NSCFBoolean</td>
+<td style="text-align: left">Foundation.h</td>
+<td style="text-align: left">@(YES)</td>
+<td style="text-align: left">@(NO)</td>
+</tr>
+<tr>
+<td style="text-align: left">CFBooleanRef</td>
+<td style="text-align: left">struct</td>
+<td style="text-align: left">CoreFoundation.h</td>
+<td style="text-align: left">kCFBooleanTrue</td>
+<td style="text-align: left">kCFBooleanFalse</td>
+</tr>
+</tbody>
+</table>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755573166.html">解决xcode升级之后安装的插件失效</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:52:37+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>code升级之后uuid会发生变化，致使原来的plugin失效</p>
+
+<p><strong><em>解决方案</em></strong></p>
+
+<ul>
+<li><p>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add <code>defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID</code></p></li>
+<li><p>find every plugin&#39;s Info.plist</p></li>
+<li><p>default read current UUID of XCode</p></li>
+<li><p>default write current UUID of XCode into plugin&#39;s DVTPlugInCompatibilityUUIDs</p></li>
+</ul>
+
+<p><em>from:</em><a href="http://stackoverflow.com/questions/22324303/the-plugin-didnt-work-on-xcode-5-1">stackoverflow</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755264473.html">四叉树算法</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:52:06+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong><em>转载：<a href="http://blog.csdn.net/zhanxinhang/article/details/6706217">http://blog.csdn.net/zhanxinhang/article/details/6706217</a></em></strong></p>
+
+<p><a href="http://git.oschina.net/lbs/iOS_3D_ClusterAnnotation">高德iOS聚合实例</a></p>
+
+<p><a href="http://git.oschina.net/lbs/Android_CustomMarker">高德Android聚合实例</a></p>
+
+<p>四叉树或四元树也被称为Q树（Q-Tree）。四叉树广泛应用于图像处理、空间数据索引、2D中的快速碰撞检测、存储稀疏数据等，而八叉树（Octree）主要应用于3D图形处理。对游戏编程，这会很有用。本文着重于对四叉树与八叉树的原理与结构的介绍，帮助您在脑海中建立四叉树与八叉树的基本思想。本文并不对这两种数据结构同时进行详解，而只对四叉树进行详解，因为八叉树的建立可由四叉树的建立推得。</p>
+
+<p>四叉树与八叉树的结构与原理<br/>
+四叉树（Q-Tree）是一种树形数据结构。四叉树的定义是：它的每个节点下至多可以有四个子节点，通常把一部分二维空间细分为四个象限或区域并把该区域里的相关信息存入到四叉树节点中。这个区域可以是正方形、矩形或是任意形状。以下为四叉树的二维空间结构(左)和存储结构(右)示意图（注意节点颜色与网格边框颜色）：</p>
+
+<p><img src="media/14729755264473/69130165.jpg" alt=""/></p>
+
+<p>四叉树的每一个节点代表一个矩形区域（如上图黑色的根节点代表最外围黑色边框的矩形区域），每一个矩形区域又可划分为四个小矩形区域，这四个小矩形区域作为四个子节点所代表的矩形区域。<br/>
+较之四叉树，八叉树将场景从二维空间延伸到了三维空间。八叉树（Octree）的定义是：若不为空树的话，树中任一节点的子节点恰好只会有八个，或零个，也就是子节点不会有0与8以外的数目。那么，这要用来做什么？想象一个立方体，我们最少可以切成多少个相同等分的小立方体？答案就是8个。如下八叉树的结构示意图所示：</p>
+
+<p><img src="media/14729755264473/8882925.jpg" alt=""/></p>
+
+<pre><code>/* 一个矩形区域的象限划分：:
+
+       UL(1)   |    UR(0)
+     ----------|-----------
+       LL(2)   |    LR(3)
+以下对该象限类型的枚举
+*/
+typedef enum
+{
+    UR = 0,
+    UL = 1,
+    LL = 2,
+    LR = 3
+}QuadrantEnum;
+
+/* 矩形结构 */
+typedef struct quadrect_t
+{    
+    double  left, 
+            top, 
+            right, 
+            bottom;
+}quadrect_t;
+
+/* 四叉树节点类型结构 */
+typedef struct quadnode_t
+{
+    quadrect_t    rect;          //节点所代表的矩形区域
+    list_t        *lst_object;   //节点数据, 节点类型一般为链表，可存储多个对象
+    struct  quadnode_t  *sub[4]; //指向节点的四个孩子 
+}quadnode_t;
+
+/* 四叉树类型结构 */
+typedef struct quadtree_t
+{
+    quadnode_t  *root;
+    int         depth;           // 四叉树的深度                    
+}quadtree_t;
+
+</code></pre>
+
+<h4 id="toc_0">四叉树的建立</h4>
+
+<p>利用四叉树分网格，如本文的第一张图，根据左图的网格图形建立如右图所示的完全四叉树。</p>
+
+<p><strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadTreeBuild ( depth, rect )
+   {
+QuadTree-&gt;depth = depth;
+
+/*创建分支，root树的根，depth深度，rect根节点代表的矩形区域*/
+QuadCreateBranch (  root, depth, rect );
+   }
+
+Funtion QuadCreateBranch ( n, depth,rect )
+   {
+if ( depth!=0 )
+   {
+n = new node;    //开辟新节点
+n -&gt;rect = rect; //将该节点所代表的矩形区域存储到该节点中
+将rect划成四份 rect[UR], rect[UL], rect[LL], rect[LR];
+
+/*创建各孩子分支*/
+QuadCreateBranch ( n-&gt;sub[UR], depth-1, rect [UR] );
+QuadCreateBranch ( n-&gt;sub[UL], depth-1, rect [UL] );
+QuadCreateBranch ( n-&gt;sub[LL], depth-1, rect [LL] );
+QuadCreateBranch ( n-&gt;sub[LR], depth-1, rect [LR] );
+   }
+   }
+
+</code></pre>
+
+<p>假设在一个矩形区域里有N个对象，如下左图一个黑点代表一个对象，每个对象的坐标位置都是已知的，用四叉树的一个节点存储一个对象，构建成如下右图所示的四叉树。</p>
+
+<p><img src="media/14729755264473/23531676.jpg" alt=""/></p>
+
+<p>方法也是采用递归的方法对该矩形进行划分分区块，分完后再往里分，直到每一个子矩形区域里只包含一个对象为止。<br/>
+<strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadtreeBuild()
+  {
+     Quadtree = {empty}；
+     For (i = 1;i&lt;n;i++)      //遍历所有对象
+{
+   QuadInsert(i, root)；//将i对象插入四叉树
+}          
+         剔除多余的节点；       //执行完上面循环后，四叉树中可能有数据为空的叶子节点需要剔除
+  }    
+
+Funtion QuadInsert(i,n)      //该函数插入后四叉树中的每个节点所存储的对象数量不是1就是0
+  {  
+     if（节点n有孩子）
+ {      
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；       
+    QuadInsert(i,c)；
+ }
+     else if（节点n存储了一个对象）
+ {
+    为n节点创建四个孩子；
+    将n节点中的对象移到它应该放置的孩子节点中；
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；
+    QuadInsert(i,c)；
+ }
+     else if（n节点数据为空）    
+ {
+    将i存储到节点n中；
+ }
+  } 
+
+</code></pre>
+
+<h4 id="toc_1">用四叉树查找某一对象</h4>
+
+<p>1、采用盲目搜索，与二叉树的递归遍历类似，可采用后序遍历或前序遍历或中序遍历对其进行搜索某一对象，时间复杂度为O（n）。</p>
+
+<p>2、根据对象在区域里的位置来搜索，采用分而治之思想，时间复杂度只与四叉树的深度有关。比起盲目搜索，这种搜索在区域里的对象越多时效果越明显</p>
+
+<p><img src="media/14729755264473/88618967.jpg" alt=""/></p>
+
+<pre><code>Funtion find ( n, pos, )
+  {
+      If (n节点所存的对象位置为 pos所指的位置 )
+          Return n;
+      If ( pos位于第一象限 )
+          temp = find ( n-&gt;sub[UR], pos );
+      else if ( pos位于第二象限)
+          temp = find ( n-&gt;sub[UL], pos );
+      else if ( pos位于第三象限 )
+          temp = find ( n-&gt;sub[LL], pos );
+      else  //pos 位于第四象限
+          temp = find ( n-&gt;sub[LR], pos );
+      return temp;   
+  } 
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729754866475.html">点在面内（2）</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:51:26+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">导入</h2>
+
+<p>判断触摸点是否在一个多边形的内部<br/>
+方法</p>
+
+<h2 id="toc_1">数学方法</h2>
+
+<p>这个方法的好处是任意平台都可以使用，不仅现于Android<br/>
+算法：<br/>
+求解通过该点的水平线与多边形各边的交点，单边交点为奇数，则成立<br/>
+ok我们其实就是需要看这个点的单边射线与多边形的交点，代码实现如下：</p>
+
+<pre><code>public boolean isInPolygon(Point point, Point[] points, int n) {  
+        int nCross = 0;  
+        for (int i = 0; i &lt; n; i++) {  
+            Point p1 = points[i];  
+            Point p2 = points[(i + 1) % n];  
+            // 求解 y=p.y 与 p1 p2 的交点  
+            // p1p2 与 y=p0.y平行  
+            if (p1.y == p2.y)  
+                continue;  
+            // 交点在p1p2延长线上  
+            if (point.y &lt; Math.min(p1.y, p2.y))  
+                continue;  
+            // 交点在p1p2延长线上  
+            if (point.y &gt;= Math.max(p1.y, p2.y))  
+                continue;  
+            // 求交点的 X 坐标  
+            double x = (double) (point.y - p1.y) * (double) (p2.x - p1.x)  
+                    / (double) (p2.y - p1.y) + p1.x;  
+            // 只统计单边交点  
+            if (x &gt; point.x)  
+                nCross++;  
+        }  
+        return (nCross % 2 == 1);  
+    }  
+
+</code></pre>
+
+<p>经典算法，通用实现</p>
+
+<h2 id="toc_2">Android</h2>
+
+<p>借用Android开发中的碰撞检测的思想，我们使用Region来判断，Region的详细资料稍后会有总结：<br/>
+充分借助Android的api来实现：</p>
+
+<pre><code>RectF rectF = new RectF();  
+        path.computeBounds(rectF, true);  
+        Region region = new Region();  
+        region.setPath(path, new Region((int) rectF.left,  
+                        (int) rectF.top, (int) rectF.right,  
+                        (int) rectF.bottom));  
+        if (region.contains(point.x, point.y)) {  
+
+        }  
+
+</code></pre>
+
+<p>以上。</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729754588363.html">点在面内（1）</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:50:58+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>参考文献】：</p>
+
+<p>1、<a href="http://www.cnblogs.com/devymex/archive/2010/08/19/1803885.html">两条直线的关系</a></p>
+
+<p>2、<a href="http://wenku.baidu.com/view/5e3913a2b0717fd5360cdccf.html?qq-pf-to=pcqq.c2c">点与多边形的关系</a></p>
+
+<p>经过在网上的一番搜索，发现目前比较通用的就是射线法，而我采用的就是X轴射线法。主要理论来源于西安交大的一篇论文（即参考文献的第二条）</p>
+
+<p>代码讲解：<br/>
+主要的类有两个：一个是坐标点的抽象类，另一个是位置关系判断工具类。</p>
+
+<pre><code>package com.niux.crm.core.common.bmap;
+
+/**
+ * 用于构造百度地图中的经纬度点
+ * 
+ * @author zhengtian
+ * @date 2013-8-5 下午02:54:41
+ */
+public class BmapPoint {
+    private double lng;// 经度
+    private double lat;// 纬度
+
+    public BmapPoint() {
+
+    }
+
+    public BmapPoint(double lng, double lat) {
+        this.lng = lng;
+        this.lat = lat;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof BmapPoint) {
+            BmapPoint bmapPoint = (BmapPoint) obj;
+            return (bmapPoint.getLng() == lng &amp;&amp; bmapPoint.getLat() == lat) ? true : false;
+        } else {
+            return false;
+        }
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_0">位置关系判断工具类</h2>
+
+<p>点与多边形的位置关系的判定规则：</p>
+
+<p>1、根据多边形的坐标，虚拟出一个外包矩形，主要是为了提前过滤不相关的点，减少运算量。</p>
+
+<p>2、然后判断是否有重合的点。</p>
+
+<p>3、判断点与斜线的交点。</p>
+
+<p>4、判断点过顶点的情况。</p>
+
+<p>5、判断点与边重合的情况。</p>
+
+<p>6、判断点在边上的情况。</p>
+
+<p>其中点过顶点，以及点与边重合的情况，主要采用了加权边的思想，论文与代码中有注释。</p>
+
+<pre><code>package com.niux.crm.core.common.bmap;
+
+import java.util.Arrays;
+
+/**
+ * 用于点与多边形位置关系的判断
+ * 
+ * @author zhengtian
+ * @date 2013-8-5 上午11:59:35
+ */
+public class GraphUtils {
+
+    /**
+     * 判断点是否在多边形内(基本思路是用交点法)
+     * 
+     * @param point
+     * @param boundaryPoints
+     * @return
+     */
+    public static boolean isPointInPolygon(BmapPoint point, BmapPoint[] boundaryPoints) {
+        // 防止第一个点与最后一个点相同
+        if (boundaryPoints != null &amp;&amp; boundaryPoints.length &gt; 0
+                &amp;&amp; boundaryPoints[boundaryPoints.length - 1].equals(boundaryPoints[0])) {
+            boundaryPoints = Arrays.copyOf(boundaryPoints, boundaryPoints.length - 1);
+        }
+        int pointCount = boundaryPoints.length;
+
+        // 首先判断点是否在多边形的外包矩形内，如果在，则进一步判断，否则返回false
+        if (!isPointInRectangle(point, boundaryPoints)) {
+            return false;
+        }
+
+        // 如果点与多边形的其中一个顶点重合，那么直接返回true
+        for (int i = 0; i &lt; pointCount; i++) {
+            if (point.equals(boundaryPoints[i])) {
+                return true;
+            }
+        }
+
+        /**
+         * 基本思想是利用X轴射线法，计算射线与多边形各边的交点，如果是偶数，则点在多边形外，否则在多边形内。还会考虑一些特殊情况，如点在多边形顶点上
+         * ， 点在多边形边上等特殊情况。
+         */
+        // X轴射线与多边形的交点数
+        int intersectPointCount = 0;
+        // X轴射线与多边形的交点权值
+        float intersectPointWeights = 0;
+        // 浮点类型计算时候与0比较时候的容差
+        double precision = 2e-10;
+        // 边P1P2的两个端点
+        BmapPoint point1 = boundaryPoints[0], point2;
+        // 循环判断所有的边
+        for (int i = 1; i &lt;= pointCount; i++) {
+            point2 = boundaryPoints[i % pointCount];
+
+            /**
+             * 如果点的y坐标在边P1P2的y坐标开区间范围之外，那么不相交。
+             */
+            if (point.getLat() &lt; Math.min(point1.getLat(), point2.getLat())
+                    || point.getLat() &gt; Math.max(point1.getLat(), point2.getLat())) {
+                point1 = point2;
+                continue;
+            }
+
+            /**
+             * 此处判断射线与边相交
+             */
+            if (point.getLat() &gt; Math.min(point1.getLat(), point2.getLat())
+                    &amp;&amp; point.getLat() &lt; Math.max(point1.getLat(), point2.getLat())) {// 如果点的y坐标在边P1P2的y坐标开区间内
+                if (point1.getLng() == point2.getLng()) {// 若边P1P2是垂直的
+                    if (point.getLng() == point1.getLng()) {
+                        // 若点在垂直的边P1P2上，则点在多边形内
+                        return true;
+                    } else if (point.getLng() &lt; point1.getLng()) {
+                        // 若点在在垂直的边P1P2左边，则点与该边必然有交点
+                        ++intersectPointCount;
+                    }
+                } else {// 若边P1P2是斜线
+                    if (point.getLng() &lt;= Math.min(point1.getLng(), point2.getLng())) {// 点point的x坐标在点P1和P2的左侧
+                        ++intersectPointCount;
+                    } else if (point.getLng() &gt; Math.min(point1.getLng(), point2.getLng())
+                            &amp;&amp; point.getLng() &lt; Math.max(point1.getLng(), point2.getLng())) {// 点point的x坐标在点P1和P2的x坐标中间
+                        double slopeDiff = 0.0d;
+                        if (point1.getLat() &gt; point2.getLat()) {
+                            slopeDiff = (point.getLat() - point2.getLat()) / (point.getLng() - point2.getLng())
+                                    - (point1.getLat() - point2.getLat()) / (point1.getLng() - point2.getLng());
+                        } else {
+                            slopeDiff = (point.getLat() - point1.getLat()) / (point.getLng() - point1.getLng())
+                                    - (point2.getLat() - point1.getLat()) / (point2.getLng() - point1.getLng());
+                        }
+                        if (slopeDiff &gt; 0) {
+                            if (slopeDiff &lt; precision) {// 由于double精度在计算时会有损失，故匹配一定的容差。经试验，坐标经度可以达到0.0001
+                                // 点在斜线P1P2上
+                                return true;
+                            } else {
+                                // 点与斜线P1P2有交点
+                                intersectPointCount++;
+                            }
+                        }
+                    }
+                }
+            } else {
+                // 边P1P2水平
+                if (point1.getLat() == point2.getLat()) {
+                    if (point.getLng() &lt;= Math.max(point1.getLng(), point2.getLng())
+                            &amp;&amp; point.getLng() &gt;= Math.min(point1.getLng(), point2.getLng())) {
+                        // 若点在水平的边P1P2上，则点在多边形内
+                        return true;
+                    }
+                }
+                /**
+                 * 判断点通过多边形顶点
+                 */
+                if (((point.getLat() == point1.getLat() &amp;&amp; point.getLng() &lt; point1.getLng()))
+                        || (point.getLat() == point2.getLat() &amp;&amp; point.getLng() &lt; point2.getLng())) {
+                    if (point2.getLat() &lt; point1.getLat()) {
+                        intersectPointWeights += -0.5;
+                    } else if (point2.getLat() &gt; point1.getLat()) {
+                        intersectPointWeights += 0.5;
+                    }
+                }
+            }
+            point1 = point2;
+        }
+
+        if ((intersectPointCount + Math.abs(intersectPointWeights)) % 2 == 0) {// 偶数在多边形外
+            return false;
+        } else { // 奇数在多边形内
+            return true;
+        }
+    }
+
+    /**
+     * 判断点是否在矩形内在矩形边界上，也算在矩形内(根据这些点，构造一个外包矩形)
+     * 
+     * @param point
+     *            点对象
+     * @param boundaryPoints
+     *            矩形边界点
+     * @return
+     */
+    public static boolean isPointInRectangle(BmapPoint point, BmapPoint[] boundaryPoints) {
+        BmapPoint southWestPoint = getSouthWestPoint(boundaryPoints); // 西南角点
+        BmapPoint northEastPoint = getNorthEastPoint(boundaryPoints); // 东北角点
+        return (point.getLng() &gt;= southWestPoint.getLng() &amp;&amp; point.getLng() &lt;= northEastPoint.getLng()
+                &amp;&amp; point.getLat() &gt;= southWestPoint.getLat() &amp;&amp; point.getLat() &lt;= northEastPoint.getLat());
+
+    }
+
+    /**
+     * 根据这组坐标，画一个矩形，然后得到这个矩形西南角的顶点坐标
+     * 
+     * @param vertexs
+     * @return
+     */
+    private static BmapPoint getSouthWestPoint(BmapPoint[] vertexs) {
+        double minLng = vertexs[0].getLng(), minLat = vertexs[0].getLat();
+        for (BmapPoint bmapPoint : vertexs) {
+            double lng = bmapPoint.getLng();
+            double lat = bmapPoint.getLat();
+            if (lng &lt; minLng) {
+                minLng = lng;
+            }
+            if (lat &lt; minLat) {
+                minLat = lat;
+            }
+        }
+        return new BmapPoint(minLng, minLat);
+    }
+
+    /**
+     * 根据这组坐标，画一个矩形，然后得到这个矩形东北角的顶点坐标
+     * 
+     * @param vertexs
+     * @return
+     */
+    private static BmapPoint getNorthEastPoint(BmapPoint[] vertexs) {
+        double maxLng = 0.0d, maxLat = 0.0d;
+        for (BmapPoint bmapPoint : vertexs) {
+            double lng = bmapPoint.getLng();
+            double lat = bmapPoint.getLat();
+            if (lng &gt; maxLng) {
+                maxLng = lng;
+            }
+            if (lat &gt; maxLat) {
+                maxLat = lat;
+            }
+        }
+        return new BmapPoint(maxLng, maxLat);
+    }
+
+}
+
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729754295011.html">android对svg矢量图的支持</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:50:29+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">什么是svg？</h2>
+
+<blockquote>
+<p>SVG可缩放矢量图形（Scalable Vector Graphics）是基于可扩展标记语言（XML），用于描述二维矢量图形的一种图形格式。SVG是W3C(&quot;World Wide Web ConSortium&quot; 即 &quot; 国际互联网标准组织&quot;)在2000年8月制定的一种新的二维矢量图形格式，也是规范中的网络矢量图形标准。SVG严格遵从XML语法，并用文本格式的描述性语言来描述图像内容，因此是一种和图像分辨率无关的矢量图形格式</p>
+</blockquote>
+
+<h2 id="toc_1">svg的优势？</h2>
+
+<blockquote>
+<p>1．任意放缩。<br/>
+用户可以任意缩放图像显示，而不会破坏图像的清晰度、细节等。<br/>
+2．文本独立。<br/>
+SVG图像中的文字独立于图像，文字保留可编辑和可搜寻的状态。也不会再有字体的限制，用户系统即使没有安装某一字体，也会看到和他们制作时完全相同的画面。<br/>
+3．较小文件。<br/>
+总体来讲，SVG文件比那些GIF和JPEG格式的文件要小很多，因而下载也很快。<br/>
+4．超强显示效果<br/>
+SVG图像在屏幕上总是边缘清晰，它的清晰度适合任何屏幕分辨率和打印分辨率。<br/>
+5．超级颜色控制。<br/>
+SVG图像提供一个1 600万种颜色的调色板，支持ICC颜色描述文件标准、RGB、线X填充、渐变和蒙版。</p>
+</blockquote>
+
+<h2 id="toc_2">Android对svg的支持</h2>
+
+<blockquote>
+<p>In Android 5.0 (API Level 21) and above, you can define vector drawables, which scale without losing definition. You need only one asset file for a vector image, as opposed to an asset file for each screen density in the case of bitmap images. To create a vector image, you define the details of the shape inside aXML element.</p>
+
+<pre><code>&lt;!-- res/drawable/heart.xml --&gt;
+&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    &lt;!-- intrinsic size of the drawable --&gt;
+    android:height=&quot;256dp&quot;
+    android:width=&quot;256dp&quot;
+    &lt;!-- size of the virtual canvas --&gt;
+    android:viewportWidth=&quot;32&quot;
+    android:viewportHeight=&quot;32&quot;&gt;
+  &lt;!-- draw a path --&gt;
+  &lt;path android:fillColor=&quot;#8fff&quot;
+      android:pathData=&quot;M20.5,9.5
+                        c-1.955,0,-3.83,1.268,-4.5,3
+                        c-0.67,-1.732,-2.547,-3,-4.5,-3
+                        C8.957,9.5,7,11.432,7,14
+                        c0,3.53,3.793,6.257,9,11.5
+                        c5.207,-5.242,9,-7.97,9,-11.5
+                        C25,11.432,23.043,9.5,20.5,9.5z&quot; /&gt;
+&lt;/vector&gt;
+</code></pre>
+
+<p><a href="https://developer.android.com/training/material/drawables.html">摘自：Android Create Vector Drawables</a></p>
+
+<pre><code></code></pre>
+</blockquote>
+
+<p>在5.0系统以上才能使用<code>vector</code>对svg有很好的支持，要想在5.0以下的系统使用我们就需要使用<em><a href="https://code.google.com/p/svg-android/">svg-android</a></em>这个类库来支持。</p>
+
+<p>简单实用方法：<br/>
+<code>java<br/>
+SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.filename);<br/>
+Picture picture = svg.getPicture();<br/>
+Drawable drawable = svg.createPictureDrawable();<br/>
+</code></p>
+
+<p>这样我们就能用imageview填充svg格式的矢量图片了。</p>
+
+<h2 id="toc_3">与现有图片加载类库Universal-Image-Loader集成</h2>
+
+<p>原有项目使用Universal-Image-Loader作为图片加载类库，使用服务器端发来的图片url即可完成异步加载图片，但是现在服务器端传回的数据中可能会包涵svg矢量图片的url，类似：</p>
+
+<blockquote>
+<p><code>http://xxxx.com/warehouse.svg</code></p>
+</blockquote>
+
+<p>这样就造成Universal-Image-Loader加载出错。</p>
+
+<p><strong>解决方案：</strong></p>
+
+<p>我对Universal-Image-Loader缓存策略进行了设置，设置开启Discache，这样就会在手机的存储空间内进行缓存。之后使用同步加载图片的方法加载图片url</p>
+
+<p><code>Bitmap bitmaptmp = imageLoader.loadImageSync(url, ImageUtil.getScaledDisOptions());</code></p>
+
+<p>这里就分为两种情况：<br/>
+- 正常图片的url，即后缀名为png或者jpg的url，这样会直接加载<br/>
+- 加载svg格式图的url，使用上述方法加载，返回的bitmaptmp的结果为null，但是会在手机磁盘上进行缓存</p>
+
+<p>这里对bitmaptmp是否为null做判断即可，如果是null，就根据url去寻找指定的svg源文件缓存，即调用方法</p>
+
+<p><code>FileInputStream fis = new FileInputStream(imageLoader.getDiskCache().get(url));</code></p>
+
+<p>获取svg文件流之后即可使用<code>avg-android</code>的方法转换图片了：</p>
+
+<pre><code>SVG svg = new SVGBuilder().readFromInputStream(fis)
+// if svg in res/raw
+// if svg in assets
+// .setWhiteMode(true)
+// draw fills in white, doesn&#39;t draw strokes
+// .setColorSwap(0xFF008800, 0xFF33AAFF)
+// swap a single colour
+// .setColorFilter(filter) 
+// run through a colour filter
+// .set[Stroke|Fill]ColorFilter(filter)
+// apply a colour filter to only the stroke or fill
+.build();
+PictureDrawable pictureDrawable = svg.getDrawable();
+Bitmap tmp =Bitmap.createBitmap(pictureDrawable.getIntrinsicWidth(), pictureDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_4444);
+Canvas canvas = new Canvas(tmp);
+canvas.drawPicture(pictureDrawable.getPicture());
+bitmaptmp = tmp;
+
+</code></pre>
+
+<p>至此即可使用imageview来加载bitmaptmp了。</p>
+
+<p><strong>欢迎拍砖指正！</strong></p>
+
+<p><strong><em>参考网站：</em></strong></p>
+
+<blockquote>
+<p><a href="http://stackoverflow.com/questions/7201542/svg-to-bitmap-at-runtime-conversion-in-android">http://stackoverflow.com/questions/7201542/svg-to-bitmap-at-runtime-conversion-in-android</a><br/>
+<a href="https://developer.android.com/training/material/drawables.html">https://developer.android.com/training/material/drawables.html</a><br/>
+<a href="http://www.w3.org/TR/SVG11/paths.html#PathData">http://www.w3.org/TR/SVG11/paths.html#PathData</a><br/>
+<a href="https://code.google.com/p/svg-android/">https://code.google.com/p/svg-android/</a><br/>
+<a href="http://baike.baidu.com/subview/85022/9539763.htm">http://baike.baidu.com/subview/85022/9539763.htm</a></p>
+</blockquote>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:49:55+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>错误：</p>
+
+<pre><code>Caused by: java.lang.RuntimeException: java.lang.NoSuchFieldException: No field value in class Ljava/lang/String; (declaration of &#39;java.lang.String&#39; appears in /system/framework/core-libart.jar)
+
+</code></pre>
+
+<p>解决方案：<br/>
+<a href="http://stackoverflow.com/questions/33035866/android-6-0-marshmallow-static-initialization-exception-on-getdeclaredfield">StackOverflow解决方案</a></p>
+
+<p>合并分支自己打包jar包</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729753596363.html">NSDictionary不能写入文件</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:49:19+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>问题：</strong><br/>
+调用字典<code>- (BOOL)writeToURL:(NSURL *)url atomically:(BOOL)atomically;</code>写入文件失败</p>
+
+<p><strong>分析原因：</strong><br/>
+字典中有<code>null</code>值，所以需要<code>NSKeyedArchiver</code>将之转化为<code>NSData</code>后再写入文件<br/>
+<code>NSDictionary</code>中的数据：</p>
+
+<pre><code>{
+    style = &lt;null&gt;,
+    status = 1,
+    title = &quot;new&quot;,
+    source = 1,
+    mid = &quot;1iJltVKJ14kLn3sZgo3wCg&quot;,
+    user_id = 10011,
+    updated_at = &quot;2016-05-27T20:10:50.000+08:00&quot;,
+    city_code = 131,
+    permission = &quot;grp&quot;,
+    city = &quot;北京市&quot;,
+    backup_time = &lt;null&gt;,
+    is_del = 0,
+    id = 94445,
+    level = 12,
+    org_id = 10011,
+    base_map = &quot;normal&quot;,
+    rqcode = &quot;/uploads/rqcode/1iJltVKJ14kLn3sZgo3wCg.png&quot;,
+    avatar = &quot;/uploads/avatars/2016/5/11/8ed403c6652f4d599f1e50daa89c427e.png&quot;,
+    center = &quot;116.403874,39.914889&quot;,
+    created_at = &quot;2016-05-11T15:08:43.000+08:00&quot;,
+    rating = 0,
+    description = &quot;&quot;,
+}
+
+</code></pre>
+
+<p><strong>解决方法：</strong></p>
+
+<pre><code>//写入
+NSString* path = [[FileUtil dirCache] stringByAppendingPathComponent:@&quot;EDITMAP&quot;];
+BOOL success = [[NSKeyedArchiver archivedDataWithRootObject:_mapArray[indexPath.row]] writeToFile:path atomically:YES];
+
+//读取
+NSData* data  = [[NSData alloc]initWithContentsOfFile:[[FileUtil dirCache] stringByAppendingPathComponent:@&quot;EDITMAP&quot;]];
+NSDictionary* dic = (NSDictionary*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729753083362.html">iOS版本更新</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:48:28+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<pre><code>#pragma mark - 检查版本更新
+
+#define APP_URL @&quot;http://itunes.apple.com/lookup?id=你的apple id&quot;
+-(void)onCheckVersion
+{
+    NSString* currentVersion =  [[NSBundle mainBundle] objectForInfoDictionaryKey:@&quot;CFBundleShortVersionString&quot;];
+    NSString *URL = APP_URL;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer new];
+    manager.responseSerializer = [AFJSONResponseSerializer new];
+     [manager POST:URL parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+         NSArray *infoArray = [responseObject objectForKey:@&quot;results&quot;];
+         if ([infoArray count]) {
+             NSDictionary *releaseInfo = [infoArray objectAtIndex:0];
+             NSString *lastVersion = [releaseInfo objectForKey:@&quot;version&quot;];
+
+             if (![lastVersion isEqualToString:currentVersion]) {
+                NSString* trackViewURL = [releaseInfo objectForKey:@&quot;trackViewUrl&quot;];
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;更新&quot; message:[releaseInfo objectForKey:@&quot;releaseNotes&quot;] delegate:self cancelButtonTitle:@&quot;关闭&quot; otherButtonTitles:@&quot;更新&quot;, nil] ;
+                 [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
+                     if (buttonIndex==1) {
+                         UIApplication *application = [UIApplication sharedApplication];
+                         [application openURL:[NSURL URLWithString:trackViewURL]];
+                     }
+                 }];
+             }
+         }
+     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+
+     }];
+}
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729752771490.html">App字体被放大</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:47:57+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>分析原因：</strong></p>
+
+<p>由于新版本上线更换了LaunchImage,没有注意美工给的图片尺寸，由于图片尺寸不符合标准导致程序在真机上运行所有字体被放大显示发虚</p>
+
+<p><strong>解决</strong>：</p>
+
+<p>将<code>LaunchImage</code>的所有尺寸按照要求从新剪裁设置即可。<br/>
+<img src="media/14729752771490/66055389.jpg" alt=""/></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729752147247.html">结构体</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:46:54+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>在ios开发中我们经常要使用结构体，但是我们在使用结构体数组的时候xcode会有黄色警告提示。</p>
+
+<blockquote>
+<p>BMKMapPoint *points = new BMKMapPoint[pointCount];</p>
+</blockquote>
+
+<p>BMKMapPoint 是一个结构体，我动态声明一个结构体数组。</p>
+
+<blockquote>
+<p>delete [] points;</p>
+</blockquote>
+
+<p>释放一个结构体数组。</p>
+
+<p>编写函数希望返回一个结构体数组的时候</p>
+
+<pre><code>+ (CLLocationCoordinate2D *)arrayTransformCoordinate:(NSArray *)array
+{
+    CLLocationCoordinate2D coors[60];
+    int i =0;
+    for (NSDictionary *dic in array) {
+        coors[i].latitude = ((NSNumber *)([dic objectForKey:@&quot;latitude&quot;])).doubleValue;
+        coors[i].longitude = ((NSNumber *)([dic objectForKey:@&quot;longitude&quot;])).doubleValue;
+        i++;
+    }
+    return coors;
+}
+
+</code></pre>
+
+<p>我们可以这样来消除黄色警告：将.m后缀改为.mm </p>
+
+<p>这样就行了，意思就是 告诉编译器用objective-c++来编译文件。</p>
+
+<h2 id="toc_0">结构体数组长度</h2>
+
+<blockquote>
+<p>sz = (sizeof foo) / (sizeof foo[0]);</p>
+</blockquote>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729751822088.html">遍历</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:46:22+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">常用遍历方法</h2>
+
+<ul>
+<li>经典for循环</li>
+<li>for in (NSFastEnumeration)</li>
+<li>makeObjectsPerformSelector</li>
+<li>kvc集合运算符</li>
+<li>enumerateObjectsUsingBlock</li>
+<li>enumerateObjectsWithOptions(NSEnumerationConcurrent)</li>
+<li>dispatch_apply</li>
+</ul>
+
+<h2 id="toc_1">使用block遍历字典</h2>
+
+<p>使用block同时遍历字典key，value<br/>
+block版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：</p>
+
+<pre><code>NSDictionary *dict = @{@&quot;a&quot;: @&quot;1&quot;, @&quot;b&quot;: @&quot;2&quot;};
+[dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    NSLog(@&quot;key: %@, value: %@&quot;, key, obj);
+}];
+
+</code></pre>
+
+<h2 id="toc_2">Array、Set遍历</h2>
+
+<pre><code>NSArray *strings = @[@&quot;1&quot;, @&quot;2&quot;, @&quot;3&quot;];
+for (NSString *string in [strings reverseObjectEnumerator]) {
+    NSLog(@&quot;%@&quot;, string);
+}
+
+[array enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(Sark *sark, NSUInteger idx, BOOL *stop) {
+    [sark doSomething];
+}];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729751502502.html">UIWindow</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:45:50+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">获取屏幕window</h2>
+
+<pre><code>[UIApplication sharedApplication].keyWindow]
+
+</code></pre>
+
+<h2 id="toc_1">屏幕上手势监听</h2>
+
+<p><img src="media/14569958313677.jpg" alt=""/></p>
+
+<p>问题：设计弹出层使用window来实现，对<code>item</code>的背景设置了<code>tap</code>事件，并设置了跳转，对<code>window</code>的<code>touch</code>事件进行设置，点击后<code>window</code>消失，但是<code>touch</code>会拦截<code>tap</code>的事件，只好进行修改，对<code>tap</code>设置了代理来进行区别<code>tap</code>动作</p>
+
+<p>代码：</p>
+
+<pre><code>- (void)dismiss{
+    [self setHidden:YES];    
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    // 点击消失
+    [self dismiss];
+}
+//如果不加手势监听会直接执行touchesBegan  是对话框消失
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+
+    // Disallow recognition of tap gestures in the segmented control.
+    if ((touch.view ==_bg_head) &amp;&amp; (gestureRecognizer == _headtap)) {
+        [self gotoEditUserInfoController];
+    }
+    if ((touch.view ==_bg_setting) &amp;&amp; (gestureRecognizer == _settingtap)) {
+        [self gotoSettingController];
+    }
+    return YES;
+}
+
+</code></pre>
+
+<p>同时要对原有的<code>keywindow</code>进行保存，当弹出窗口退出时重新调用其<code>makeKeyAndVisible</code>方法，对弹出窗口调用<code>resignKeyWindow</code>方法并赋值为<code>nil</code></p>
+
+<pre><code> [_itemSettingView.originWindow makeKeyAndVisible];
+ [_itemSettingView resignKeyWindow];
+
+</code></pre>
+
+<h2 id="toc_2">模仿引导操作视图、添加遮罩view遮罩整个屏幕，包括status bar、navigationbar</h2>
+
+<p>在ios7中，获取当前UIWindow，向上添加遮罩view</p>
+
+<pre><code>UIView * bg =[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+bg.backgroundColor = [UIColor blackColor];
+bg.alpha = 0.5;
+UIWindow* window = [[UIApplication sharedApplication]keyWindow];
+[window addSubview:bg];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729750807474.html">UIView</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:44:40+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">masonry 添加约束，并修改约束添加View动画</h2>
+
+<pre><code>
+//添加约束
+masView = [UIView new];
+masView.backgroundColor = [UIColor redColor];
+[self.view addSubview:masView];
+[masView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    make.leading.equalTo(self.view).offset(20);//距离self.view左侧20
+    make.top.equalTo(self.view).offset(200);//距离self.view顶部200
+    make.width.offset(80);//宽度80
+    make.height.offset(80);//高度80
+}];
+
+//更新约束并添加动画,如果更新不成功可尝试 mas_remakeConstraints
+[masView mas_updateConstraints:^(MASConstraintMaker *make) {
+    make.width.and.height.offset(100);
+    make.leading.equalTo(self.view).offset(100);
+}];
+
+[UIView animateWithDuration:3 animations:^{
+    [self.view layoutIfNeeded];
+}];
+
+</code></pre>
+
+<h2 id="toc_1">uiview 圆角设置</h2>
+
+<pre><code>m_mainImgView.layer.cornerRadius = 6;
+m_mainImgView.layer.masksToBounds = YES; 
+
+</code></pre>
+
+<h2 id="toc_2">UIView缩放动画</h2>
+
+<pre><code>-(void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    /* 为新添的annotationView添加弹出动画. */
+    for (UIView *view in views)
+    {
+        [self addBounceAnnimationToView:view];
+    }
+
+}
+/* annotation弹出的动画. */
+- (void)addBounceAnnimationToView:(UIView *)view
+{
+    CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
+
+    bounceAnimation.values = @[@(0.05), @(1.1), @(0.9), @(1)];
+    bounceAnimation.duration = 0.6;
+
+    NSMutableArray *timingFunctions = [[NSMutableArray alloc] initWithCapacity:bounceAnimation.values.count];
+    for (NSUInteger i = 0; i &lt; bounceAnimation.values.count; i++)
+    {
+        [timingFunctions addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    }
+    [bounceAnimation setTimingFunctions:timingFunctions.copy];
+
+    bounceAnimation.removedOnCompletion = NO;
+
+    [view.layer addAnimation:bounceAnimation forKey:@&quot;bounce&quot;];
+}
+
+</code></pre>
+
+<h4 id="toc_3">边框阴影</h4>
+
+<pre><code>- (void)viewDidLoad  
+{  
+    [self.view setBackgroundColor:[UIColor whiteColor]];  
+    UIView *shadowView=[[UIView alloc] initWithFrame:CGRectMake(100, 100, 120, 120)];  
+    [shadowView setBackgroundColor:[UIColor grayColor]];  
+    [shadowView.layer setCornerRadius:4.0f];//设置View圆角  
+    [shadowView.layer setShadowColor:[UIColor blackColor].CGColor];//设置View的阴影颜色  
+    [shadowView.layer setShadowOpacity:0.8f];//设置阴影的透明度  
+    [shadowView.layer setOpacity:0.5f];//设置View的透明度  
+    [shadowView.layer setShadowOffset:CGSizeMake(4.0, 3.0)];//设置View Shadow的偏移量  
+    [self.view addSubview:shadowView];  
+    [super viewDidLoad];  
+    // Do any additional setup after loading the view, typically from a nib.  
+}  
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729750523588.html">TextView</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:44:12+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">输入单行文本</h2>
+
+<p>使用UITextField</p>
+
+<h2 id="toc_1">输入文本显示密码样式</h2>
+
+<pre><code>et_newPwd.secureTextEntry = YES;
+
+</code></pre>
+
+<h2 id="toc_2">uitextview 小键盘完成回调</h2>
+
+<pre><code>- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
+ replacementText:(NSString *)text {
+    if ([text isEqualToString:@&quot;\n&quot;]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+</code></pre>
+
+<h2 id="toc_3">uitextview 计算动态高度</h2>
+
+<p>textview需要将<code>scrollenabled</code>设置为no</p>
+
+<pre><code> _textView.scrollEnabled = NO;
+ _textView.showsVerticalScrollIndicator = NO;
+ _textView.showsHorizontalScrollIndicator = NO;
+
+</code></pre>
+
+<pre><code>
+//方式一
+#pragma mark -  uitextview 代理
+- (void)textViewDidChange:(UITextView *)theTextView
+{
+
+     float oldheight = theTextView.frame.size.height;
+     float height = [self.tv_layer_title sizeThatFits:CGSizeMake(self.tv_layer_title.frame.size.width, FLT_MAX)].height ;
+
+    if (fabs(height - oldheight) &gt; 0.01) {
+        [self.bg_title mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height+20);
+        }];
+
+        [self.tv_layer_title mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height);
+        }];
+
+    }
+
+}
+
+//方式二  计算放入文字放入控件后应有的高度
+
+//这里的20 是放置控件时与父视图左右边距空留出来的20
+//self.caluteCell.textView 即是要放入文字的控件
+CGSize infoSize = [self.caluteCell.textView sizeThatFits:CGSizeMake(SCREEN_WIDTH-20, FLT_MAX)];
+
+</code></pre>
+
+<h2 id="toc_4">调整uitextview 默认内边距</h2>
+
+<pre><code>_textView.contentInset = UIEdgeInsetsMake(0, -5, 0, 0);
+
+</code></pre>
+
+<h3 id="toc_5">uitextView 调整视图中心点位置</h3>
+
+<pre><code>//注册监听
+ [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(changeContentViewPoint:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(changeContentViewPoint:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+
+// 根据键盘状态，调整_mainView的位置
+- (void) changeContentViewPoint:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGFloat keyBoardEndY = value.CGRectValue.origin.y;  // 得到键盘弹出后的键盘视图所在y坐标
+
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+
+    // 添加移动动画，使视图跟随键盘移动
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+//        [UIView setAnimationCurve:curve];
+
+        self.center = CGPointMake(self.center.x, keyBoardEndY -64- self.bounds.size.height/2.0);   // keyBoardEndY的坐标包括了状态栏的高度，要减去
+
+    }];
+}
+
+</code></pre>
+
+<h3 id="toc_6">获取view所在的controller</h3>
+
+<pre><code> UIResponder *responder = self;
+                    while ((responder = [responder nextResponder])){
+                        if ([responder isKindOfClass: [EditMarker2ViewController class]])
+                        {
+                            EditMarker2ViewController* controller =(EditMarker2ViewController *)responder;
+                            [controller.navigationController popViewControllerAnimated:YES];
+
+                        }
+
+                    }
+
+</code></pre>
+
+<h3 id="toc_7">UITextView的包涵inset高度</h3>
+
+<p>设置<code>_textView.contentInset = UIEdgeInsetsMake(10,0,-10,0);</code>即上边距和底边距各10像素<br/>
+但是使用<code>fdcell</code>利用约束动态计算cell高度时测量的是不包含inset的uitextview高度所以需要额外+20个单位像素<br/>
+```objc<br/>
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath<br/>
+{</p>
+
+<pre><code>if (indexPath.section==1) {
+    return 108;
+}else
+{
+    float height =  [tableView fd_heightForCellWithIdentifier:@&quot;cell&quot; configuration:^(EditMarkerExpandableTextCellTableViewCell* cell) {
+        MarkerAttr* attr = [self.attrArray objectAtIndex:indexPath.row];
+
+        cell.textView.text = [self.dataDic objectForKey:attr.key];
+
+    }];
+    //额外添加10+10 上边距+下边距 inset
+    return height+20.0f;
+}
+return 100;
+
+</code></pre>
+
+<p>}</p>
+
+<pre><code>
+### 失去焦点  使键盘消失
+```objc
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+   [textField resignFirstResponder];
+    return YES;
+}
+
+</code></pre>
+
+<h3 id="toc_8">点击空白处隐藏键盘</h3>
+
+<pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+</code></pre>
+
+<pre><code>
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+  
+	<div class="pagination">
+	 <a class="prev" href="all_4.html">&larr; Older</a> 
+<a href="archives.html">Blog Archives</a>
+	 <a class="next" href="all_2.html">Newer &rarr;</a>  
+	    
+	</div>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944963010893.html">webGL浏览器支持</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a9e7585c72e6c3ff233103ec49aecd2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>

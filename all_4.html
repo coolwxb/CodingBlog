@@ -1,0 +1,1470 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  小小程序猿
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div class="blog-index">
+
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729750129157.html">UITextField</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:43:32+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">UITextField 快速添加左侧内边距padding</h2>
+
+<p>思路1：可向UITextField左侧添加一个空白的view，来调整内边距</p>
+
+<pre><code>UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+_et_groupName.leftView = paddingView;
+_et_groupName.leftViewMode = UITextFieldViewModeAlways;
+</code></pre>
+
+<p>思路2：移动sublayer的位置</p>
+
+<pre><code class="language-objc">textField.layer.sublayerTransform = CATransform3DMakeTranslation(8, 0, 0);
+</code></pre>
+
+<p>PS:思路2会有小的缺陷，如果显示clearbutton的画会显示不全</p>
+
+<p><strong>from:</strong><a href="http://stackoverflow.com/questions/2694411/text-inset-for-uitextfield">Text inset for UITextField</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729749889650.html">UITabelView</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:43:08+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">使用开源组件FDTemplateLayoutCell 动态计算Cell高度相关问题</h2>
+
+<ol>
+<li>自定义Cell</li>
+</ol>
+
+<p>需要注意tableview注册自定义的cell，否侧程序崩溃报错</p>
+
+<pre><code>[self.tbl_marker registerClass:[DataListOverLayerTableViewCell class] forCellReuseIdentifier:@&quot;LINE&quot;];
+
+</code></pre>
+
+<ol>
+<li>自定义Cell 约束条件</li>
+</ol>
+
+<p>如果自定义Cell约束条件错误会导致测量的高度为0，需逐步修改约束条件直至能计算出高度</p>
+
+<p><strong>注意：约束条件最好包括 top\bottom\left\right 和 width、height</strong>这样能最大程度保证能测量出来高度</p>
+
+<pre><code>[self.btn_title mas_makeConstraints:^(MASConstraintMaker *make) {
+
+make.left.equalTo(self.contentView.mas_left).offset(10);
+
+make.top.equalTo(self.contentView.mas_top).offset(10);
+
+make.bottom.equalTo(hline.mas_top).offset(-10);
+
+make.right.equalTo(self.contentView.mas_right).offset(-10);
+
+make.width.mas_equalTo(self.contentView.frame.size.width-20);
+
+make.height.greaterThanOrEqualTo(@60);
+
+}];       
+
+</code></pre>
+
+<h2 id="toc_1">设置cell点击选中状态去掉背景</h2>
+
+<p>由于使用FDTemplateLayoutCell 作为预加载cell高度计算，这时会先调用<code>**heightForRowAtIndexPath**</code>方法计算高度，在<code>tableView fd_heightForCellWithIdentifier:@&quot;MARKER&quot; configuration:^(DataListTableViewCell* cell)</code>中会生成cell，所以在执行方法<code>cellForRowAtIndexPath</code>的时候就会取得缓存cell<code>[tableView dequeueReusableCellWithIdentifier:@&quot;MARKER&quot;]</code>不会执行cell的初始化方法,所以在初始化里执行<code>cell.selectionStyle = UITableViewCellSelectionStyleNone;</code>不会有任何效果，需要移除到初始化方法外</p>
+
+<pre><code>-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//取消选中效果
+[self.tbl_marker deselectRowAtIndexPath:[self.tbl_marker indexPathForSelectedRow] animated:YES];
+}
+
+</code></pre>
+
+<h2 id="toc_2">就尼玛0.5进位问题导致cell高度不对，uitextview不显示文字</h2>
+
+<pre><code>//这里返回的height 是float 不能随意改成int
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+if (indexPath.section==1) {
+   return 108;
+}else
+{
+//这里返回的height 是float 不能随意改成int
+//如果返回int 会导致舍去0.5个单位 导致uitextview 高度被舍去1px 导致不显示文字
+   float height =  [tableView fd_heightForCellWithIdentifier:@&quot;cell&quot; configuration:^(EditMarkerExpandableTextCellTableViewCell* cell) {
+       MarkerAttr* attr = [self.attrArray objectAtIndex:indexPath.row];
+
+       cell.textView.text = [self.dataDic objectForKey:attr.key];
+
+   }];
+
+   return height;
+}
+return 100;
+
+}
+
+</code></pre>
+
+<h2 id="toc_3">获取被点击view所在的UITableViewCell</h2>
+
+<p><strong><em>原因</em></strong>：由于IOS系统不同，不能使用<code>LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[[view superview ] superview]</code>来获取cell，因为contentview和cell之间在不同版本里相隔了一个其他view</p>
+
+<p>使用如下代码解决问题：</p>
+
+<pre><code>CGPoint buttonPosition = [view convertPoint:CGPointZero toView:self.tbv_layers];
+NSIndexPath *indexPath = [self.tbv_layers indexPathForRowAtPoint:buttonPosition];
+LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[self.tbv_layers cellForRowAtIndexPath:indexPath];
+
+</code></pre>
+
+<h2 id="toc_4">利用UITable的group特性来设置cell之间的间距并取消header的悬浮效果</h2>
+
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = 10; //这里是我的headerView和footerView的高度
+    if (_tableView.contentOffset.y&lt;=sectionHeaderHeight&amp;&amp;_tableView.contentOffset.y&gt;=0) {
+        _tableView.contentInset = UIEdgeInsetsMake(-_tableView.contentOffset.y, 0, 0, 0);
+    } else if (_tableView.contentOffset.y&gt;=sectionHeaderHeight) {
+        _tableView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_5">刷新单个cell或者section</h2>
+
+<pre><code>//一个section刷新      
+NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];      
+[tableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];      
+//一个cell刷新      
+NSIndexPath *indexPath=[NSIndexPath indexPathForRow:3 inSection:0];      
+[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone]; 
+
+</code></pre>
+
+<h2 id="toc_6">UITableView 去掉底部多余分割线</h2>
+
+<pre><code>self.tableView.tableFooterView=[[UIView alloc]init];//关键语句     
+
+</code></pre>
+
+<h2 id="toc_7">UITableViewCell 选中时背景颜色改变</h2>
+
+<pre><code>tempCell.selectedBackgroundView = [[UIView alloc] initWithFrame:tempCell.frame] ;
+tempCell.selectedBackgroundView.backgroundColor = [ColorChangeUtil getColor:@&quot;#f1f1f1&quot;];
+
+</code></pre>
+
+<h2 id="toc_8">避免出现uitableview左移</h2>
+
+<pre><code>-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
+    {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_9">避免cell重用</h2>
+
+<p>通过为每个cell指定不同的重用标识符(reuseIdentifier)来解决。<br/>
+重用机制是根据相同的标识符来重用cell的，标识符不同的cell不能彼此重用。于是我们将每个cell的标识符都设置为不同，就可以避免不同cell重用的问题了。</p>
+
+<pre><code> NSString *ID = [NSString stringWithFormat:@&quot;Cell%ld%ld&quot;, [indexPath section], [indexPath row]];//以indexPath来唯一确定cell
+AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[AddGroupMemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+
+</code></pre>
+
+<h2 id="toc_10">使用FDCELL和xib配合加载自定义cell 约束警告的错误</h2>
+
+<p><code>self.tableView.estimatedRowHeight = 200;//预算行高</code>如果不加这句话控制台会报警告错误<br/>
+<code>objc<br/>
+&lt;NSLayoutConstraint:0x154f256f0 UILabel:0x159460f80.leading == UITableViewCellContentView:0x159460e00.leading + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x154f285e0 SZTextView:0x1557b1200.leading == UILabel:0x159460f80.leading&gt;,<br/>
+&lt;NSLayoutConstraint:0x159470c20 UITableViewCellContentView:0x159460e00.trailing == SZTextView:0x1557b1200.trailing + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x1561857d0 UITableViewCellContentView:0x159460e00.width == 0&gt;,<br/>
+</code></p>
+
+<p>总是提示<code>contentview.width</code>的宽度为0</p>
+
+<h2 id="toc_11">FDCELL 打印log</h2>
+
+<pre><code>self.tableView.fd_debugLogEnabled = YES;//开启log打印高度
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729749117844.html">UIScreen</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:41:51+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">Controller中非成员变量window添加到窗口不显示</h2>
+
+<p><strong>不显示：</strong></p>
+
+<pre><code>-(void)gotoSetting
+{
+    UIWindow* window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]    bounds]];
+    window.windowLevel = UIWindowLevelStatusBar+1;
+    window.backgroundColor =[UIColor redColor];
+    window.hidden = NO;
+    [window makeKeyAndVisible];
+}
+
+</code></pre>
+
+<p><strong>显示</strong></p>
+
+<pre><code>@property (nonatomic, strong) UIWindow* window;
+-(void)gotoSetting
+{
+    _window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    _window.windowLevel = UIWindowLevelStatusBar+1;
+    _window.backgroundColor =[UIColor redColor];
+    _window.hidden = NO;
+    [_window makeKeyAndVisible];
+}
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729748694506.html">UINavigationController</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:41:09+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">UINavigationController 调整controller的顺序</h2>
+
+<p><strong>业务场景：</strong></p>
+
+<p>有时候我们需要调整UINavigationController中controller的顺序，但是单独靠</p>
+
+<pre><code>- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated
+
+</code></pre>
+
+<p>并不能满足我们的需要。</p>
+
+<p>比如：在一个列表界面，创建新信息进入编辑界面，成功后在进入展示界面，这时如果我们通过<strong><code>popController</code></strong>方法返回的到<strong>列表界面</strong>，就会一级一级弹出，会在弹出编辑界面之后才返回到<strong>列表界面</strong>，影响用户体验。</p>
+
+<p><strong>解决方案：</strong></p>
+
+<p>使用<code>NavigationController</code>的<code>setViewControllers</code>方法来调整controller的顺序</p>
+
+<pre><code>NSMutableArray * viewControllers = [self.navigationController.viewControllers mutableCopy];
+                    [viewControllers removeLastObject];
+                    [viewControllers addObject:controller];
+                    [self.navigationController setViewControllers:viewControllers animated:YES];
+
+</code></pre>
+
+<h2 id="toc_1">调整navagationbar的背景颜色</h2>
+
+<pre><code> UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:controller];
+ [nav.navigationBar setBarTintColor:[ColorChangeUtil getColor:LIGHT_BLUE]];
+
+</code></pre>
+
+<h2 id="toc_2">显示的模态视图带有navagationbar</h2>
+
+<p>默认模态视图不带navagationbar，需要自己添加navagationController来为维持controller栈的关系</p>
+
+<pre><code>    CreateNewViewController* controller = [[CreateNewViewController alloc]init];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:controller];
+    [nav.navigationBar setBarTintColor:[ColorChangeUtil getColor:LIGHT_BLUE]];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+
+</code></pre>
+
+<h2 id="toc_3">调整UIBarButtonItem的字体大小</h2>
+
+<pre><code>// You may specify the font, text color, and shadow properties for the title in the text attributes dictionary, using the keys found in NSAttributedString.h.
+[mUIBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : FONT(15)} forState:UIControlStateNormal];
+</code></pre>
+
+<h2 id="toc_4">UiViewController pushController切换出现卡顿</h2>
+
+<blockquote>
+<p>导致卡顿的的罪魁祸首就是UIViewController的View的默认color为空，背景色是透明的。这其实不是卡顿，而是由于透明颜色重叠后视觉上的问题，设置一个背景色就可以了。</p>
+</blockquote>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729748445236.html">UILabel</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:40:44+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h4 id="toc_0">UILabel 添加富文本</h4>
+
+<pre><code> // 创建一个富文本
+            NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:[cell.btn_title.text stringByAppendingString:@&quot; &quot;]];
+
+            // 添加表情
+            NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+            // 表情图片
+            attch.image = [UIImage imageNamed:@&quot;ic_photo&quot;];
+            // 设置图片大小
+            attch.bounds = CGRectMake(0, -2, attch.image.size.width,attch.image.size.height);
+
+            // 创建带有图片的富文本
+            NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+            [attri appendAttributedString:string];
+
+            // 用label的attributedText属性来使用富文本
+            cell.btn_title.attributedText = attri;
+
+</code></pre>
+
+<h4 id="toc_1">富文本使用</h4>
+
+<pre><code>NSString *str = @&quot;人生若只如初见，何事秋风悲画扇。\n等闲变却故人心，却道故人心易变。\n骊山语罢清宵半，泪雨霖铃终不怨。\n何如薄幸锦衣郎，比翼连枝当日愿。&quot;;
+NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
+
+</code></pre>
+
+<p><strong>attrStr</strong>添加字体和设置字体的范围</p>
+
+<pre><code>[attrStr addAttribute:NSFontAttributeName
+                value:[UIFont systemFontOfSize:30.0f]
+                range:NSMakeRange(0, 3)];
+
+</code></pre>
+
+<p><strong>attStr</strong>添加文字颜色</p>
+
+<pre><code>[attrStr addAttribute:NSForegroundColorAttributeName
+                value:[UIColor redColor]
+                range:NSMakeRange(17, 7)];
+
+</code></pre>
+
+<p><strong>attStr</strong>添加下划线</p>
+
+<pre><code>[attrStr addAttribute:NSUnderlineStyleAttributeName
+                value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
+                range:NSMakeRange(8, 7)];
+
+</code></pre>
+
+<p><strong>段落样式</strong></p>
+
+<pre><code>NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+//行间距
+paragraph.lineSpacing = 10;
+//段落间距
+paragraph.paragraphSpacing = 20;
+//对齐方式
+paragraph.alignment = NSTextAlignmentLeft;
+//指定段落开始的缩进像素
+paragraph.firstLineHeadIndent = 30;
+//调整全部文字的缩进像素
+paragraph.headIndent = 10;
+
+</code></pre>
+
+<p><strong>attrStr</strong>添加段落设置</p>
+
+<pre><code>[attrStr addAttribute:NSParagraphStyleAttributeName
+                value:paragraph
+                range:NSMakeRange(0, [str length])];
+
+NSString *urlStr = @&quot;www.南瓜瓜.com&quot;;
+NSURL *url = [NSURL URLWithString:urlStr];
+
+</code></pre>
+
+<p><strong>创建label</strong></p>
+
+<pre><code>UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60, 100, 200, 0)];
+label.backgroundColor = [UIColor lightGrayColor];
+//自动换行
+label.numberOfLines = 0;
+//设置label的富文本
+label.attributedText = attrStr;
+//label高度自适应
+[label sizeToFit];
+[self.view addSubview:label];
+
+</code></pre>
+
+<p>设置sizeToFit之后是可以取出label的高度的，这样做label高度自适应。</p>
+
+<pre><code>CGFloat height = label.frame.size.height;
+NSLog(@&quot;height = %f&quot;,height);
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729747772832.html">UIAlert</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:39:37+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h4 id="toc_0">UIAlertView 添加参数</h4>
+
+<p>使用<code>运行时</code>来添加附带的参数</p>
+
+<pre><code>//1、void* 指针变量
+static char alertKey;
+
+UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@&quot;&quot; message:[NSString stringWithFormat:@&quot;确定%@么?&quot;,label.text] delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
+        NSDictionary* paramDic  =@{
+                                    @&quot;index&quot;:[NSNumber numberWithInteger:index],
+                                    @&quot;oper&quot;:label.text
+
+                                   };
+//2、赋参数
+objc_setAssociatedObject(alert, &amp;alertKey, paramDic, OBJC_ASSOCIATION_RETAIN);
+
+[alert show];
+
+</code></pre>
+
+<pre><code>-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            break;
+        case 1:
+        {
+           //3、取参数
+           NSDictionary* param =  objc_getAssociatedObject(alertView, &amp;alertKey);
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729747441498.html">GCD</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:39:04+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">计时</h2>
+
+<h3 id="toc_1">GCD计时器</h3>
+
+<pre><code>__block int timeout=10; //倒计时时间
+    __weak typeof(self) weakself = self;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL,0), 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        if(timeout&lt;=0){ //倒计时结束，关闭
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+               [weakself.btn_authCode setBackgroundColor:CUSCOLOR(LIGHT_BLUE) ];
+               [weakself.btn_authCode setTitle:[NSString stringWithFormat:@&quot;重新获取验证码&quot;] forState:UIControlStateNormal];
+                weakself.btn_authCode.enabled = YES;
+
+            });
+        }else{
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                 [weakself.btn_authCode setTitle:[NSString stringWithFormat:@&quot;%ds后重新获取&quot;,timeout] forState:UIControlStateNormal];
+            });
+            timeout--;
+
+        }
+    });
+    dispatch_resume(timer);
+</code></pre>
+
+<h3 id="toc_2">NSTimer计时</h3>
+
+<pre><code>当使用NSTimer的scheduledTimerWithTimeInterval方法时。事实上此时Timer会被加入到当前线程的Run Loop中，且模式是默认的NSDefaultRunLoopMode。而如果当前线程就是主线程，也就是UI线程时，某些UI事件，比如UIScrollView的拖动操作，会将Run Loop切换成NSEventTrackingRunLoopMode模式，在这个过程中，默认的NSDefaultRunLoopMode模式中注册的事件是不会被执行的。也就是说，此时使用scheduledTimerWithTimeInterval添加到Run Loop中的Timer就不会执行。
+
+所以为了设置一个不被UI干扰的Timer，我们需要手动创建一个Timer，然后使用NSRunLoop的addTimer:forMode:方法来把Timer按照指定模式加入到Run Loop中。这里使用的模式是：NSRunLoopCommonModes，这个模式等效于NSDefaultRunLoopMode和NSEventTrackingRunLoopMode的结合。
+</code></pre>
+
+<pre><code class="language-objc">// 新建NSTimer对象
+NSTimer *timer = [NSTimer timerWithTimeInterval:5.0 target:self selector:@selector(show) userInfo:nil repeats:YES];
+// 将NSTimer添加到RunLoop中,并且告诉系统,当前Tiemr只有在RunLoop的默认模式下才有效
+[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+// 所以在UITrackingRunLoopMode模式下，定时器的方法不会执行，但定时器仍计时
+</code></pre>
+
+<p>参考：<a href="https://www.mgenware.com/blog/?p=459">OS: NSTimer使用小记</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729747060001.html">UISearchBar</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:38:26+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">修改背景色</h2>
+
+<pre><code>mySearchBar.backgroundColor = RGBACOLOR(249,249,249,1);
+mySearchBar.backgroundImage = [self imageWithColor:[UIColor clearColor] size:mySearchBar.bounds.size];
+
+//取消searchbar背景色
+- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size/Users/coolwxb/Documents/博客/blog/source/_posts/Masonry 使用复习总结.markdown
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return image;
+}
+</code></pre>
+
+<h2 id="toc_1">UISearchBar 获取焦点并显示光标</h2>
+
+<pre><code> _oneSearchBar.tintColor = [UIColor blackColor];
+ [_oneSearchBar becomeFirstResponder];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729746812409.html">Navigation</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:38:01+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">屏蔽NavigationBar的title</h2>
+
+<pre><code>
+    //屏蔽显示navigationbar 的title
+    UILabel *label = [[UILabel alloc] init];
+    self.navigationItem.titleView = label;
+
+</code></pre>
+
+<h2 id="toc_1">修改Controller的标题title和颜色</h2>
+
+<pre><code>
+UIColor * color = [UIColor whiteColor];
+
+NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];
+
+self.navigationBar.titleTextAttributes = dict;
+
+</code></pre>
+
+<p>PS：相关属性在<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/"><code>NSAttributedString.h</code></a>这个头文件中</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729746247024.html">Popupwindow</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:37:04+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">点击空白消失</h2>
+
+<pre><code>myPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+myPopupWindow.setOutsideTouchable(true);
+myPopupWindow.setFocusable(true);
+
+</code></pre>
+
+<p><strong>需要设置popupwindow的backgroundDrawable才能使outsideTouchable生效</strong></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729745906849.html">Reveal</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:36:30+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">添加Reveal</h2>
+
+<ol>
+<li>将Reveal.framework 拖入到工程中</li>
+<li>选择Targets -》 BuildSetting,搜索<code>Other Linker Flags</code> 添加<code>-ObjC -lz -framework Reveal</code></li>
+<li>选择Targets -》 BuildPhases -》Link Binary With Libraries ，找到并移<code>Reveal.framework</code></li>
+</ol>
+
+<h2 id="toc_1">版本发布移除Reveal</h2>
+
+<p><strong><em>上架前要移除<code>Reveal.framework</code>否则上传的时候苹果会提示有错误</em></strong></p>
+
+<ol>
+<li>移除项目中的<code>Reveal.framework</code>的引用</li>
+<li>选择Targets -》 BuildSetting,搜索<code>Other Linker Flags</code> <strong>删除</strong><code>-ObjC -lz -framework Reveal</code></li>
+</ol>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729745479232.html">Masonry</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:35:47+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<blockquote>
+<p>为了解决ios 原生写约束太痛苦这个问题<br/>
+github：<a href="https://github.com/SnapKit/Masonry">Masonry<br/>
+</a></p>
+</blockquote>
+
+<h2 id="toc_0">安装</h2>
+
+<p>使用Pod组织安装masonry<br/>
+<code><br/>
+platform :ios, &#39;6.0&#39;<br/>
+pod &#39;Masonry&#39;<br/>
+</code><br/>
+<strong>注意</strong></p>
+
+<ul>
+<li><em>如果配合xib使用需要将“Use Auto Layout”和“Use Size Classes”这两个选项去掉，要不然控制台会报错</em></li>
+<li><em>要先添加view，在添加约束</em></li>
+<li><em>最好在约束中设置控件大小</em></li>
+</ul>
+
+<h3 id="toc_1">经常用到的约束</h3>
+
+<p>设置控件宽高</p>
+
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+//要先添加view 之后才能添加约束
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+//make.size.mas_equalTo(CGSizeMake(100, 100));
+//如果使用eqaulto时，设置数值前需要加@
+//mas_equalTo则不用
+make.height.equalTo(@100);
+make.width.mas_equalTo(100);
+}];
+
+</code></pre>
+
+<p>运行结果：<br/>
+<img src="media/14729745479232/QQ20150629-1@2x.png" alt="运行结果"/></p>
+
+<p>等同于其他控件宽高</p>
+
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    //make.size.mas_equalTo(CGSizeMake(100, 100));
+    //如果使用eqaulto时，设置数值前需要加@
+    //mas_equalTo则不用
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+}];
+
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    //make.size.equalTo(red);
+    //等价于
+    make.width.equalTo(red);
+    make.height.equalTo(red);
+    //这个用来设置距离红方块的距离
+    make.left.equalTo(red.mas_right).offset(10);
+}];
+
+</code></pre>
+
+<p>结果：<br/>
+<img src="media/14729745479232/QQ20150629-2@2x.png" alt="enter image description here"/></p>
+
+<h3 id="toc_2">设置边距margin</h3>
+
+<p>top和left的边距设置</p>
+
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+}];
+
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.width.equalTo(red);
+    make.height.equalTo(red);
+    make.left.equalTo(red.mas_right).offset(100);
+    make.top.equalTo(red.mas_bottom).offset(100);
+}];
+
+</code></pre>
+
+<p>运行结果：<br/>
+<img src="media/14729745479232/48420037.jpg" alt=""/><br/>
+右方和下方的边距设置</p>
+
+<pre><code>UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+    make.right.equalTo(self.view.mas_right).offset(-50);
+    make.bottom.equalTo(self.view.mas_bottom).offset(-20);
+}];
+
+</code></pre>
+
+<p>运行结果：<br/>
+<img src="media/14729745479232/30251805.jpg" alt=""/></p>
+
+<p><strong>注意：在设置边距的时候上、左边距的值是正数，右、下的边距值是负数</strong></p>
+
+<h3 id="toc_3">设置左右对齐</h3>
+
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(200);
+    make.left.equalTo(self.view.mas_left).offset(30);
+}];
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+    //让蓝方块在红方块下方
+    make.top.equalTo(red.mas_bottom).offset(10);
+    //设置左对齐
+    make.left.equalTo(red.mas_left);
+}];
+
+</code></pre>
+
+<p>运行结果：<br/>
+<img src="media/14729745479232/39647700.jpg" alt=""/></p>
+
+<p><img src="media/14729745479232/60579122.jpg" alt=""/></p>
+
+<h3 id="toc_4">撑满剩余空间</h3>
+
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@50);
+    make.width.mas_equalTo(50);
+    make.left.equalTo(self.view.mas_left).offset(10);
+    make.top.equalTo(self.view.mas_top).offset(20);
+}];
+
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(red);
+    make.centerY.equalTo(red.mas_centerY);
+    make.left.equalTo(red.mas_right).offset(10);
+    make.right.equalTo(self.view.mas_right).offset(-10);
+}];
+
+</code></pre>
+
+<p>结果：<br/>
+<img src="media/14729745479232/67504229.jpg" alt="运行结果"/></p>
+
+<h3 id="toc_5">Masonary 位移动画</h3>
+
+<p>在研究自定义类似<code>Alert</code>弹窗的视图的时候，想实现动画从屏幕底部（屏幕外）移动到屏幕靠底部（屏幕中）,如果不靠点击事件触发动画，而是在显示的时候就触发动画，动画执行的效果和预想不同：会从屏幕左上角开始展开到指定位置，而当执行延迟函数有停顿间隔后在执行动画会得到预想效果，代码：</p>
+
+<pre><code>//
+//  ChoosePicActiont.m
+//  dituwuyou
+//
+//  Created by coolwxb on 16/3/23.
+//  Copyright © 2016年 dituwuyou. All rights reserved.
+//
+
+#import &quot;PicActiontSheet.h&quot;
+#import &quot;ColorChangeUtil.h&quot;
+
+@implementation PicActiontSheet
+
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+
+        self.windowLevel = UIWindowLevelStatusBar+1;
+        self.backgroundColor =[UIColor clearColor];
+
+        UIView* bg = [[UIView alloc]initWithFrame:frame];
+        bg.backgroundColor = [UIColor blackColor];
+        bg.alpha = 0.5f;
+        [self addSubview:bg];
+
+        _bg_actionSheet = [[UIView alloc]init];
+        _bg_actionSheet.backgroundColor = [UIColor whiteColor];
+        _bg_actionSheet.layer.cornerRadius = 4.0f;
+        _bg_actionSheet.layer.masksToBounds = YES;
+        [self addSubview:_bg_actionSheet];
+
+        UILabel* lb_info = [[UILabel alloc]init];
+        lb_info.text = @&quot;选择照片&quot;;
+        lb_info.textColor = [ColorChangeUtil getColor:@&quot;#d4d4d4&quot;];
+        lb_info.font =[UIFont systemFontOfSize:12];
+        [_bg_actionSheet addSubview:lb_info];
+        [lb_info mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_bg_actionSheet.mas_centerX);
+            make.top.equalTo(_bg_actionSheet.mas_top).offset(9);
+        }];
+
+        UITapGestureRecognizer* tap_camera = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeFromCamera)];
+        UITapGestureRecognizer* tap_photo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeFromPhoto)];
+        UITapGestureRecognizer* tap_cancle = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismiss)];
+
+        UIView* item_camera = [self makeItemView:@&quot;拍照&quot; andAction:tap_camera andShotTopLine:YES andShowBottomLine:YES];
+        [_bg_actionSheet addSubview:item_camera];
+
+        UIView* item_photo = [self makeItemView:@&quot;从相册中选取&quot; andAction:tap_photo andShotTopLine:NO andShowBottomLine:YES];
+        [_bg_actionSheet addSubview:item_photo];
+
+        UIView* item_cancle = [self makeItemView:@&quot;取消&quot; andAction:tap_cancle andShotTopLine:YES andShowBottomLine:YES];
+        [_bg_actionSheet addSubview:item_cancle];
+        [item_camera mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_bg_actionSheet.mas_top).offset(30);
+            make.height.equalTo(@44);
+            make.left.right.equalTo(_bg_actionSheet);
+        }];
+        [item_photo mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(item_camera.mas_bottom);
+            make.height.equalTo(@44);
+            make.left.right.equalTo(_bg_actionSheet);
+        }];
+        [item_cancle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(item_photo.mas_bottom).offset(10);
+            make.height.equalTo(@44);
+            make.left.right.equalTo(_bg_actionSheet);
+            make.bottom.equalTo(_bg_actionSheet.mas_bottom).offset(-10);
+        }];
+
+        //放到屏幕底部不显示 稍后移动到屏幕中
+        [_bg_actionSheet mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.top.equalTo(self.mas_bottom).offset(0);
+            make.size.mas_equalTo(CGSizeMake(300, 182));
+            make.centerX.equalTo(self.mas_centerX);
+
+        }];
+
+    }
+    return self;
+}
+
+-(UIView*)makeItemView:(NSString*)info andAction:(UITapGestureRecognizer*)tap andShotTopLine:(BOOL)showTopLine andShowBottomLine:(BOOL)showBottomLine
+{
+    UIView* item = [[UIView alloc]init];
+    item.backgroundColor = [UIColor whiteColor];
+    item.userInteractionEnabled = YES;
+    [item addGestureRecognizer:tap];
+    UILabel* lb_info = [[UILabel alloc]init];
+    lb_info.text = info;
+    lb_info.textColor = [ColorChangeUtil getColor:@&quot;#206ee3&quot;];
+    lb_info.font = [UIFont systemFontOfSize:14];
+    [item addSubview:lb_info];
+
+    UIView* topline =[[UIView alloc]init];
+    topline.backgroundColor = [ColorChangeUtil getColor:@&quot;#e1e1e1&quot;];
+    [item addSubview:topline];
+    topline.hidden = !showTopLine;
+
+    UIView* bottomline =[[UIView alloc]init];
+    bottomline.backgroundColor = [ColorChangeUtil getColor:@&quot;#e1e1e1&quot;];
+    [item addSubview:bottomline];
+    bottomline.hidden = !showBottomLine;
+
+    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(item);
+        make.top.equalTo(item.mas_top);
+        make.height.mas_equalTo(0.5);
+    }];
+
+    [bottomline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(item);
+        make.bottom.equalTo(item.mas_bottom);
+        make.height.mas_equalTo(0.5);
+    }];
+
+    [lb_info mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(item.mas_centerY);
+        make.centerX.equalTo(item.mas_centerX);
+    }];
+    return item;
+}
+
+-(void)takeFromCamera
+{
+    [_delegate takeFromCamera];
+    [self dismiss];
+}
+
+-(void)takeFromPhoto
+{
+
+    [_delegate takeFromPhoto];
+    [self dismiss];
+}
+
+- (void)show{
+    [self makeKeyAndVisible];
+
+    //这里不延迟执行 会出现从屏幕左上角开始执行动画
+    //加上延迟会执行预想的动画，从下向上移动
+    //如果是通过点击事件来执行位移动画则不需要延迟执行
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_bg_actionSheet mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.size.mas_equalTo(CGSizeMake(300, 182));
+            make.centerX.equalTo(self.mas_centerX);
+        }];
+        //这里不添加也能照常执行动画
+//        [self setNeedsUpdateConstraints]; //必须调用
+//        [self updateConstraintsIfNeeded]; //更新
+
+        [UIView animateWithDuration:0.1 animations:^{
+            [self layoutIfNeeded];
+        }];
+    });
+
+}
+
+- (void)dismiss{
+    [_delegate dismissActionSheet];
+}
+
+@end
+
+</code></pre>
+
+<h4 id="toc_6">UITableViewCell的contentView宽度为0的约束警告</h4>
+
+<pre><code>[bg mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.top.equalTo(self.contentView).offset(HOffsetScale(10));
+make.width.mas_equalTo(SCREEN_WIDTH-WOffsetScale(30));//必须加宽度 如果不加，会报   contentview.width==0 的约束警报
+    make.centerX.equalTo(bg.superview);
+    make.bottom.equalTo(self.contentView).offset(HOffsetScale(0));
+    make.height.mas_greaterThanOrEqualTo(HOffsetScale(44));
+}];
+
+</code></pre>
+
+<h3 id="toc_7">Masonry调试</h3>
+
+<pre><code>    //you can attach debug keys to views like so:
+//    greenView.mas_key = @&quot;greenView&quot;;
+//    redView.mas_key = @&quot;redView&quot;;
+//    blueView.mas_key = @&quot;blueView&quot;;
+//    superview.mas_key = @&quot;superview&quot;;
+
+    //OR you can attach keys automagically like so:
+    MASAttachKeys(greenView, redView, blueView, superview);
+
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729744657413.html">guava</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:34:25+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><img src="media/14729744657413/14729744944600.jpg" alt=""/></p>
+
+<p><img src="media/14729744657413/14729745133828.jpg" alt=""/></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729744230294.html">FMDB</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:33:43+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">fmdb保存blob类型数据</h2>
+
+<pre><code>NSData* data = [NSKeyedArchiver archivedDataWithRootObject:task.img_ids];
+
+</code></pre>
+
+<h2 id="toc_1">fmdb 外键报错</h2>
+
+<p><strong>可能的原因：</strong></p>
+
+<p>1.建表语句错误</p>
+
+<pre><code>NSString* tb_marker_attr = @&quot;CREATE TABLE  IF NOT EXISTS 
+tb_marker_attr (id text PRIMARY KEY NOT NULL DEFAULT(&#39;&#39;)
+,key text  
+,value text  
+,marker_id text 
+,FOREIGN KEY (marker_id) REFERENCES tb_marker (id) on delete cascade);&quot;;
+
+</code></pre>
+
+<p>如果没有<code>id text PRIMARY KEY NOT NULL DEFAULT(&#39;&#39;)</code>控制台汇报外键错误</p>
+
+<ol>
+<li>如果两表建立外键关系</li>
+</ol>
+
+<p>表tb_marker_attr:</p>
+
+<blockquote>
+<p>FOREIGN KEY (marker_id) REFERENCES tb_marker (id) on delete cascade)</p>
+</blockquote>
+
+<p>当向表<code>tb_marker_attr</code>插入数据的时候要确保<code>tb_marker</code>表中已经存在该<code>id</code>的marker，否则会报外键错误并且不能插入</p>
+
+<h2 id="toc_2">FMDB 批量插入数据</h2>
+
+<p>使用<code>事务批量插入</code>数据插入，注意要将执行的sql语句<strong>放在一起，使用同一个db进行操作，并且使用 <code>replace into</code>来进行<code>插入更新操作</code></strong></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729743869940.html">FastJson</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:33:06+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>junit 测试解析json数据报错</p>
+
+<pre><code>com.alibaba.fastjson.JSONException: create asm deserializer error, com.dituwuyou.bean.User
+    at com.alibaba.fastjson.parser.ParserConfig.createJavaBeanDeserializer(ParserConfig.java:529)
+    at com.alibaba.fastjson.parser.ParserConfig.getDeserializer(ParserConfig.java:430)
+    at com.alibaba.fastjson.parser.ParserConfig.getDeserializer(ParserConfig.java:351)
+    at com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(DefaultJSONParser.java:548)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:251)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:227)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:186)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:304)
+    at com.dituwuyou.service.impl.UserService.getUserInfo(UserService.java:108)
+    at com.dituwuyou.service.impl.UserService.bindUmengNotifacation(UserService.java:80)
+    at com.dituwuyou.service.impl.UserService_.access$001(UserService_.java:11)
+    at com.dituwuyou.service.impl.UserService_$1.execute(UserService_.java:44)
+    at org.androidannotations.api.BackgroundExecutor$Task.run(BackgroundExecutor.java:393)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+    at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.reflect.InvocationTargetException
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+    at com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory.createJavaBeanDeserializer(ASMDeserializerFactory.java:110)
+    at com.alibaba.fastjson.parser.ParserConfig.createJavaBeanDeserializer(ParserConfig.java:520)
+    ... 19 more
+Caused by: java.lang.LinkageError: com/alibaba/fastjson/parser/ParserConfig
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer.createFieldDeserializer(ASMJavaBeanDeserializer.java:41)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer$InnerJavaBeanDeserializer.createFieldDeserializer(ASMJavaBeanDeserializer.java:90)
+    at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.addFieldDeserializer(JavaBeanDeserializer.java:82)
+    at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.&lt;init&gt;(JavaBeanDeserializer.java:47)
+    at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.&lt;init&gt;(JavaBeanDeserializer.java:38)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer$InnerJavaBeanDeserializer.&lt;init&gt;(ASMJavaBeanDeserializer.java:81)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer$InnerJavaBeanDeserializer.&lt;init&gt;(ASMJavaBeanDeserializer.java:78)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer.&lt;init&gt;(ASMJavaBeanDeserializer.java:16)
+    at Fastjson_ASM_User_2.&lt;init&gt;(Unknown Source)
+    ... 25 more
+
+</code></pre>
+
+<p><strong><em>解决方案</em></strong><br/>
+设置<code>ParserConfig.getGlobalInstance().setAsmEnable(false);</code></p>
+
+<p><em>参考</em><br/>
+<a href="https://github.com/alibaba/fastjson/issues/383">FastJson 官方github issue</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+  
+	<div class="pagination">
+	 <a class="prev" href="all_5.html">&larr; Older</a> 
+<a href="archives.html">Blog Archives</a>
+	 <a class="next" href="all_3.html">Newer &rarr;</a>  
+	    
+	</div>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944963010893.html">webGL浏览器支持</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a9e7585c72e6c3ff233103ec49aecd2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>
