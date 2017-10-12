@@ -82,6 +82,268 @@ $(document).ready(function(event) {
 
 	<article>
 		 <header>
+		  	<h1 class="entry-title"><a href="14729755895496.html">BOOL / bool / Boolean / NSCFBoolean 区别</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:53:09+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<table>
+<thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Typedef</th>
+<th style="text-align: left">Header</th>
+<th style="text-align: left">True Value</th>
+<th style="text-align: left">False Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">BOOL</td>
+<td style="text-align: left">signed char</td>
+<td style="text-align: left">objc.h</td>
+<td style="text-align: left">YES</td>
+<td style="text-align: left">NO</td>
+</tr>
+<tr>
+<td style="text-align: left">bool</td>
+<td style="text-align: left">_Bool (int)</td>
+<td style="text-align: left">stdbool.h</td>
+<td style="text-align: left">true</td>
+<td style="text-align: left">false</td>
+</tr>
+<tr>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">unsigned char</td>
+<td style="text-align: left">MacTypes.h</td>
+<td style="text-align: left">True</td>
+<td style="text-align: left">False</td>
+</tr>
+<tr>
+<td style="text-align: left">NSNumber</td>
+<td style="text-align: left">__NSCFBoolean</td>
+<td style="text-align: left">Foundation.h</td>
+<td style="text-align: left">@(YES)</td>
+<td style="text-align: left">@(NO)</td>
+</tr>
+<tr>
+<td style="text-align: left">CFBooleanRef</td>
+<td style="text-align: left">struct</td>
+<td style="text-align: left">CoreFoundation.h</td>
+<td style="text-align: left">kCFBooleanTrue</td>
+<td style="text-align: left">kCFBooleanFalse</td>
+</tr>
+</tbody>
+</table>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755573166.html">解决xcode升级之后安装的插件失效</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:52:37+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>code升级之后uuid会发生变化，致使原来的plugin失效</p>
+
+<p><strong><em>解决方案</em></strong></p>
+
+<ul>
+<li><p>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add <code>defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID</code></p></li>
+<li><p>find every plugin&#39;s Info.plist</p></li>
+<li><p>default read current UUID of XCode</p></li>
+<li><p>default write current UUID of XCode into plugin&#39;s DVTPlugInCompatibilityUUIDs</p></li>
+</ul>
+
+<p><em>from:</em><a href="http://stackoverflow.com/questions/22324303/the-plugin-didnt-work-on-xcode-5-1">stackoverflow</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755264473.html">四叉树算法</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:52:06+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong><em>转载：<a href="http://blog.csdn.net/zhanxinhang/article/details/6706217">http://blog.csdn.net/zhanxinhang/article/details/6706217</a></em></strong></p>
+
+<p><a href="http://git.oschina.net/lbs/iOS_3D_ClusterAnnotation">高德iOS聚合实例</a></p>
+
+<p><a href="http://git.oschina.net/lbs/Android_CustomMarker">高德Android聚合实例</a></p>
+
+<p>四叉树或四元树也被称为Q树（Q-Tree）。四叉树广泛应用于图像处理、空间数据索引、2D中的快速碰撞检测、存储稀疏数据等，而八叉树（Octree）主要应用于3D图形处理。对游戏编程，这会很有用。本文着重于对四叉树与八叉树的原理与结构的介绍，帮助您在脑海中建立四叉树与八叉树的基本思想。本文并不对这两种数据结构同时进行详解，而只对四叉树进行详解，因为八叉树的建立可由四叉树的建立推得。</p>
+
+<p>四叉树与八叉树的结构与原理<br/>
+四叉树（Q-Tree）是一种树形数据结构。四叉树的定义是：它的每个节点下至多可以有四个子节点，通常把一部分二维空间细分为四个象限或区域并把该区域里的相关信息存入到四叉树节点中。这个区域可以是正方形、矩形或是任意形状。以下为四叉树的二维空间结构(左)和存储结构(右)示意图（注意节点颜色与网格边框颜色）：</p>
+
+<p><img src="media/14729755264473/69130165.jpg" alt=""/></p>
+
+<p>四叉树的每一个节点代表一个矩形区域（如上图黑色的根节点代表最外围黑色边框的矩形区域），每一个矩形区域又可划分为四个小矩形区域，这四个小矩形区域作为四个子节点所代表的矩形区域。<br/>
+较之四叉树，八叉树将场景从二维空间延伸到了三维空间。八叉树（Octree）的定义是：若不为空树的话，树中任一节点的子节点恰好只会有八个，或零个，也就是子节点不会有0与8以外的数目。那么，这要用来做什么？想象一个立方体，我们最少可以切成多少个相同等分的小立方体？答案就是8个。如下八叉树的结构示意图所示：</p>
+
+<p><img src="media/14729755264473/8882925.jpg" alt=""/></p>
+
+<pre><code>/* 一个矩形区域的象限划分：:
+
+       UL(1)   |    UR(0)
+     ----------|-----------
+       LL(2)   |    LR(3)
+以下对该象限类型的枚举
+*/
+typedef enum
+{
+    UR = 0,
+    UL = 1,
+    LL = 2,
+    LR = 3
+}QuadrantEnum;
+
+/* 矩形结构 */
+typedef struct quadrect_t
+{    
+    double  left, 
+            top, 
+            right, 
+            bottom;
+}quadrect_t;
+
+/* 四叉树节点类型结构 */
+typedef struct quadnode_t
+{
+    quadrect_t    rect;          //节点所代表的矩形区域
+    list_t        *lst_object;   //节点数据, 节点类型一般为链表，可存储多个对象
+    struct  quadnode_t  *sub[4]; //指向节点的四个孩子 
+}quadnode_t;
+
+/* 四叉树类型结构 */
+typedef struct quadtree_t
+{
+    quadnode_t  *root;
+    int         depth;           // 四叉树的深度                    
+}quadtree_t;
+
+</code></pre>
+
+<h4 id="toc_0">四叉树的建立</h4>
+
+<p>利用四叉树分网格，如本文的第一张图，根据左图的网格图形建立如右图所示的完全四叉树。</p>
+
+<p><strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadTreeBuild ( depth, rect )
+   {
+QuadTree-&gt;depth = depth;
+
+/*创建分支，root树的根，depth深度，rect根节点代表的矩形区域*/
+QuadCreateBranch (  root, depth, rect );
+   }
+
+Funtion QuadCreateBranch ( n, depth,rect )
+   {
+if ( depth!=0 )
+   {
+n = new node;    //开辟新节点
+n -&gt;rect = rect; //将该节点所代表的矩形区域存储到该节点中
+将rect划成四份 rect[UR], rect[UL], rect[LL], rect[LR];
+
+/*创建各孩子分支*/
+QuadCreateBranch ( n-&gt;sub[UR], depth-1, rect [UR] );
+QuadCreateBranch ( n-&gt;sub[UL], depth-1, rect [UL] );
+QuadCreateBranch ( n-&gt;sub[LL], depth-1, rect [LL] );
+QuadCreateBranch ( n-&gt;sub[LR], depth-1, rect [LR] );
+   }
+   }
+
+</code></pre>
+
+<p>假设在一个矩形区域里有N个对象，如下左图一个黑点代表一个对象，每个对象的坐标位置都是已知的，用四叉树的一个节点存储一个对象，构建成如下右图所示的四叉树。</p>
+
+<p><img src="media/14729755264473/23531676.jpg" alt=""/></p>
+
+<p>方法也是采用递归的方法对该矩形进行划分分区块，分完后再往里分，直到每一个子矩形区域里只包含一个对象为止。<br/>
+<strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadtreeBuild()
+  {
+     Quadtree = {empty}；
+     For (i = 1;i&lt;n;i++)      //遍历所有对象
+{
+   QuadInsert(i, root)；//将i对象插入四叉树
+}          
+         剔除多余的节点；       //执行完上面循环后，四叉树中可能有数据为空的叶子节点需要剔除
+  }    
+
+Funtion QuadInsert(i,n)      //该函数插入后四叉树中的每个节点所存储的对象数量不是1就是0
+  {  
+     if（节点n有孩子）
+ {      
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；       
+    QuadInsert(i,c)；
+ }
+     else if（节点n存储了一个对象）
+ {
+    为n节点创建四个孩子；
+    将n节点中的对象移到它应该放置的孩子节点中；
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；
+    QuadInsert(i,c)；
+ }
+     else if（n节点数据为空）    
+ {
+    将i存储到节点n中；
+ }
+  } 
+
+</code></pre>
+
+<h4 id="toc_1">用四叉树查找某一对象</h4>
+
+<p>1、采用盲目搜索，与二叉树的递归遍历类似，可采用后序遍历或前序遍历或中序遍历对其进行搜索某一对象，时间复杂度为O（n）。</p>
+
+<p>2、根据对象在区域里的位置来搜索，采用分而治之思想，时间复杂度只与四叉树的深度有关。比起盲目搜索，这种搜索在区域里的对象越多时效果越明显</p>
+
+<p><img src="media/14729755264473/88618967.jpg" alt=""/></p>
+
+<pre><code>Funtion find ( n, pos, )
+  {
+      If (n节点所存的对象位置为 pos所指的位置 )
+          Return n;
+      If ( pos位于第一象限 )
+          temp = find ( n-&gt;sub[UR], pos );
+      else if ( pos位于第二象限)
+          temp = find ( n-&gt;sub[UL], pos );
+      else if ( pos位于第三象限 )
+          temp = find ( n-&gt;sub[LL], pos );
+      else  //pos 位于第四象限
+          temp = find ( n-&gt;sub[LR], pos );
+      return temp;   
+  } 
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
 		  	<h1 class="entry-title"><a href="14729754866475.html">点在面内（2）</a></h1>
 			<p class="meta"><time datetime="2016-09-04T15:51:26+08:00" 
 			pubdate data-updated="true">2016/9/4</time></p>
@@ -1196,273 +1458,6 @@ return 100;
 		
 
 	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729750129157.html">UITextField</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:43:32+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0">UITextField 快速添加左侧内边距padding</h2>
-
-<p>思路1：可向UITextField左侧添加一个空白的view，来调整内边距</p>
-
-<pre><code>UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-_et_groupName.leftView = paddingView;
-_et_groupName.leftViewMode = UITextFieldViewModeAlways;
-</code></pre>
-
-<p>思路2：移动sublayer的位置</p>
-
-<pre><code class="language-objc">textField.layer.sublayerTransform = CATransform3DMakeTranslation(8, 0, 0);
-</code></pre>
-
-<p>PS:思路2会有小的缺陷，如果显示clearbutton的画会显示不全</p>
-
-<p><strong>from:</strong><a href="http://stackoverflow.com/questions/2694411/text-inset-for-uitextfield">Text inset for UITextField</a></p>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729749889650.html">UITabelView</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:43:08+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0">使用开源组件FDTemplateLayoutCell 动态计算Cell高度相关问题</h2>
-
-<ol>
-<li>自定义Cell</li>
-</ol>
-
-<p>需要注意tableview注册自定义的cell，否侧程序崩溃报错</p>
-
-<pre><code>[self.tbl_marker registerClass:[DataListOverLayerTableViewCell class] forCellReuseIdentifier:@&quot;LINE&quot;];
-
-</code></pre>
-
-<ol>
-<li>自定义Cell 约束条件</li>
-</ol>
-
-<p>如果自定义Cell约束条件错误会导致测量的高度为0，需逐步修改约束条件直至能计算出高度</p>
-
-<p><strong>注意：约束条件最好包括 top\bottom\left\right 和 width、height</strong>这样能最大程度保证能测量出来高度</p>
-
-<pre><code>[self.btn_title mas_makeConstraints:^(MASConstraintMaker *make) {
-
-make.left.equalTo(self.contentView.mas_left).offset(10);
-
-make.top.equalTo(self.contentView.mas_top).offset(10);
-
-make.bottom.equalTo(hline.mas_top).offset(-10);
-
-make.right.equalTo(self.contentView.mas_right).offset(-10);
-
-make.width.mas_equalTo(self.contentView.frame.size.width-20);
-
-make.height.greaterThanOrEqualTo(@60);
-
-}];       
-
-</code></pre>
-
-<h2 id="toc_1">设置cell点击选中状态去掉背景</h2>
-
-<p>由于使用FDTemplateLayoutCell 作为预加载cell高度计算，这时会先调用<code>**heightForRowAtIndexPath**</code>方法计算高度，在<code>tableView fd_heightForCellWithIdentifier:@&quot;MARKER&quot; configuration:^(DataListTableViewCell* cell)</code>中会生成cell，所以在执行方法<code>cellForRowAtIndexPath</code>的时候就会取得缓存cell<code>[tableView dequeueReusableCellWithIdentifier:@&quot;MARKER&quot;]</code>不会执行cell的初始化方法,所以在初始化里执行<code>cell.selectionStyle = UITableViewCellSelectionStyleNone;</code>不会有任何效果，需要移除到初始化方法外</p>
-
-<pre><code>-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//取消选中效果
-[self.tbl_marker deselectRowAtIndexPath:[self.tbl_marker indexPathForSelectedRow] animated:YES];
-}
-
-</code></pre>
-
-<h2 id="toc_2">就尼玛0.5进位问题导致cell高度不对，uitextview不显示文字</h2>
-
-<pre><code>//这里返回的height 是float 不能随意改成int
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-if (indexPath.section==1) {
-   return 108;
-}else
-{
-//这里返回的height 是float 不能随意改成int
-//如果返回int 会导致舍去0.5个单位 导致uitextview 高度被舍去1px 导致不显示文字
-   float height =  [tableView fd_heightForCellWithIdentifier:@&quot;cell&quot; configuration:^(EditMarkerExpandableTextCellTableViewCell* cell) {
-       MarkerAttr* attr = [self.attrArray objectAtIndex:indexPath.row];
-
-       cell.textView.text = [self.dataDic objectForKey:attr.key];
-
-   }];
-
-   return height;
-}
-return 100;
-
-}
-
-</code></pre>
-
-<h2 id="toc_3">获取被点击view所在的UITableViewCell</h2>
-
-<p><strong><em>原因</em></strong>：由于IOS系统不同，不能使用<code>LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[[view superview ] superview]</code>来获取cell，因为contentview和cell之间在不同版本里相隔了一个其他view</p>
-
-<p>使用如下代码解决问题：</p>
-
-<pre><code>CGPoint buttonPosition = [view convertPoint:CGPointZero toView:self.tbv_layers];
-NSIndexPath *indexPath = [self.tbv_layers indexPathForRowAtPoint:buttonPosition];
-LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[self.tbv_layers cellForRowAtIndexPath:indexPath];
-
-</code></pre>
-
-<h2 id="toc_4">利用UITable的group特性来设置cell之间的间距并取消header的悬浮效果</h2>
-
-<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat sectionHeaderHeight = 10; //这里是我的headerView和footerView的高度
-    if (_tableView.contentOffset.y&lt;=sectionHeaderHeight&amp;&amp;_tableView.contentOffset.y&gt;=0) {
-        _tableView.contentInset = UIEdgeInsetsMake(-_tableView.contentOffset.y, 0, 0, 0);
-    } else if (_tableView.contentOffset.y&gt;=sectionHeaderHeight) {
-        _tableView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-    }
-}
-
-</code></pre>
-
-<h2 id="toc_5">刷新单个cell或者section</h2>
-
-<pre><code>//一个section刷新      
-NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];      
-[tableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];      
-//一个cell刷新      
-NSIndexPath *indexPath=[NSIndexPath indexPathForRow:3 inSection:0];      
-[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone]; 
-
-</code></pre>
-
-<h2 id="toc_6">UITableView 去掉底部多余分割线</h2>
-
-<pre><code>self.tableView.tableFooterView=[[UIView alloc]init];//关键语句     
-
-</code></pre>
-
-<h2 id="toc_7">UITableViewCell 选中时背景颜色改变</h2>
-
-<pre><code>tempCell.selectedBackgroundView = [[UIView alloc] initWithFrame:tempCell.frame] ;
-tempCell.selectedBackgroundView.backgroundColor = [ColorChangeUtil getColor:@&quot;#f1f1f1&quot;];
-
-</code></pre>
-
-<h2 id="toc_8">避免出现uitableview左移</h2>
-
-<pre><code>-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
-    {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
-    {
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
-    {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
-
-</code></pre>
-
-<h2 id="toc_9">避免cell重用</h2>
-
-<p>通过为每个cell指定不同的重用标识符(reuseIdentifier)来解决。<br/>
-重用机制是根据相同的标识符来重用cell的，标识符不同的cell不能彼此重用。于是我们将每个cell的标识符都设置为不同，就可以避免不同cell重用的问题了。</p>
-
-<pre><code> NSString *ID = [NSString stringWithFormat:@&quot;Cell%ld%ld&quot;, [indexPath section], [indexPath row]];//以indexPath来唯一确定cell
-AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[AddGroupMemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
-
-</code></pre>
-
-<h2 id="toc_10">使用FDCELL和xib配合加载自定义cell 约束警告的错误</h2>
-
-<p><code>self.tableView.estimatedRowHeight = 200;//预算行高</code>如果不加这句话控制台会报警告错误<br/>
-<code>objc<br/>
-&lt;NSLayoutConstraint:0x154f256f0 UILabel:0x159460f80.leading == UITableViewCellContentView:0x159460e00.leading + 10&gt;,<br/>
-&lt;NSLayoutConstraint:0x154f285e0 SZTextView:0x1557b1200.leading == UILabel:0x159460f80.leading&gt;,<br/>
-&lt;NSLayoutConstraint:0x159470c20 UITableViewCellContentView:0x159460e00.trailing == SZTextView:0x1557b1200.trailing + 10&gt;,<br/>
-&lt;NSLayoutConstraint:0x1561857d0 UITableViewCellContentView:0x159460e00.width == 0&gt;,<br/>
-</code></p>
-
-<p>总是提示<code>contentview.width</code>的宽度为0</p>
-
-<h2 id="toc_11">FDCELL 打印log</h2>
-
-<pre><code>self.tableView.fd_debugLogEnabled = YES;//开启log打印高度
-</code></pre>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729749117844.html">UIScreen</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:41:51+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0">Controller中非成员变量window添加到窗口不显示</h2>
-
-<p><strong>不显示：</strong></p>
-
-<pre><code>-(void)gotoSetting
-{
-    UIWindow* window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]    bounds]];
-    window.windowLevel = UIWindowLevelStatusBar+1;
-    window.backgroundColor =[UIColor redColor];
-    window.hidden = NO;
-    [window makeKeyAndVisible];
-}
-
-</code></pre>
-
-<p><strong>显示</strong></p>
-
-<pre><code>@property (nonatomic, strong) UIWindow* window;
--(void)gotoSetting
-{
-    _window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    _window.windowLevel = UIWindowLevelStatusBar+1;
-    _window.backgroundColor =[UIColor redColor];
-    _window.hidden = NO;
-    [_window makeKeyAndVisible];
-}
-</code></pre>
-
-
-		</div>
-
-		
-
-	</article>
   
 	<div class="pagination">
 	 <a class="prev" href="all_4.html">&larr; Older</a> 
@@ -1514,12 +1509,44 @@ AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
 	        
 	        
 	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
 	   
 	  </ul>
 	</section>
 	<section>
 	  <h1>Recent Posts</h1>
 	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
 	  
 	      
 		      <li class="post">
@@ -1530,24 +1557,6 @@ AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
 	      
 		      <li class="post">
 		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14924298431586.html">VSCode 智能感知配置</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14917937079752.html">销售易Pass</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14914632553537.html">PM2日志分割</a>
 		      </li>
 	     
 	  

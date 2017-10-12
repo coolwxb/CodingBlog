@@ -2,7 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
   <loc>http://daycoding.com/</loc>
-  <lastmod>2017-09-19T20:46:38+08:00</lastmod>
+  <lastmod>2017-10-12T14:45:40+08:00</lastmod>
+</url>
+
+<url>
+  <loc>http://daycoding.com/node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html</loc>
+  <lastmod>2017-10-12T14:30:04+08:00</lastmod>
+</url>
+
+<url>
+  <loc>http://daycoding.com/15064062122465.html</loc>
+  <lastmod>2017-09-26T14:10:12+08:00</lastmod>
+</url>
+
+<url>
+  <loc>http://daycoding.com/15058259666834.html</loc>
+  <lastmod>2017-09-19T20:59:26+08:00</lastmod>
 </url>
 
 <url>
@@ -426,6 +441,14 @@
 
 <url>
   <loc>http://daycoding.com/express.html</loc>
+</url>
+
+<url>
+  <loc>http://daycoding.com/node.html</loc>
+</url>
+
+<url>
+  <loc>http://daycoding.com/Vue.html</loc>
 </url>
 
 

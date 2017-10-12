@@ -4,7 +4,7 @@
   <title><![CDATA[小小程序猿]]></title>
   <link href="http://daycoding.com/atom.xml" rel="self"/>
   <link href="http://daycoding.com/"/>
-  <updated>2017-09-19T20:45:25+08:00</updated>
+  <updated>2017-10-12T14:42:12+08:00</updated>
   <id>http://daycoding.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -12,6 +12,173 @@
   </author>
   <generator uri="http://www.coderforart.com/">CoderForArt</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Node 发送邮件]]></title>
+    <link href="http://daycoding.com/node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html"/>
+    <updated>2017-10-12T14:30:04+08:00</updated>
+    <id>http://daycoding.com/node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html</id>
+    <content type="html"><![CDATA[
+<p><strong>参考转载：<a href="http://www.jianshu.com/p/ee200a67853c">Node.js使用NodeMailer发送邮件</a></strong></p>
+
+<h2 id="toc_0">依赖</h2>
+
+<p><code>nodemailer</code></p>
+
+<pre><code>npm install nodemailer
+</code></pre>
+
+<h2 id="toc_1">使用</h2>
+
+<h3 id="toc_2">创建实例</h3>
+
+<pre><code>const mailTransport = nodemailer.createTransport({
+    host : &#39;smtp.sina.com&#39;,
+    secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
+    auth : {
+        user : &#39;你的邮箱地址&#39;,
+        pass : &#39;你的邮箱密码&#39;
+    },
+});
+
+</code></pre>
+
+<h3 id="toc_3">配置内容</h3>
+
+<pre><code>var options = {
+        from           : &#39;&quot;你的名字&quot; &lt;你的邮箱地址&gt;&#39;,
+        to             : &#39;&quot;用户1&quot; &lt;邮箱地址1&gt;, &quot;用户2&quot; &lt;邮箱地址2&gt;&#39;,
+        // cc          : &#39;&#39;    //抄送
+        // bcc         : &#39;&#39;    //密送
+        subject        : &#39;一封来自Node Mailer的邮件&#39;,
+        text           : &#39;一封来自Node Mailer的邮件&#39;,
+        html           : &#39;&lt;h1&gt;你好，这是一封来自NodeMailer的邮件！&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;cid:00000001&quot;/&gt;&lt;/p&gt;&#39;,
+        attachments    : 
+                    [
+                        {
+                            filename: &#39;img1.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img1.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000001&#39;                 // cid可被邮件使用
+                        },
+                        {
+                            filename: &#39;img2.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img2.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000002&#39;                 // cid可被邮件使用
+                        },
+                    ]
+    };
+    
+</code></pre>
+
+<h3 id="toc_4">发送</h3>
+
+<pre><code>mailTransport.sendMail(options, function(err, msg){
+        if(err){
+            console.log(err);
+            res.render(&#39;index&#39;, { title: err });
+        }
+        else {
+            console.log(msg);
+            res.render(&#39;index&#39;, { title: &quot;已接收：&quot;+msg.accepted});
+        }
+    });
+
+</code></pre>
+
+<h2 id="toc_5">完整代码</h2>
+
+<pre><code>const nodemailer  = require(&#39;nodemailer&#39;);
+
+const mailTransport = nodemailer.createTransport({
+    host : &#39;smtp.sina.com&#39;,
+    secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
+    auth : {
+        user : &#39;你的邮箱地址&#39;,
+        pass : &#39;你的邮箱密码&#39;
+    },
+});
+
+const options = {
+        from           : &#39;&quot;你的名字&quot; &lt;你的邮箱地址&gt;&#39;,
+        to             : &#39;&quot;用户1&quot; &lt;邮箱地址1&gt;, &quot;用户2&quot; &lt;邮箱地址2&gt;&#39;,
+        // cc          : &#39;&#39;    //抄送
+        // bcc         : &#39;&#39;    //密送
+        subject        : &#39;一封来自Node Mailer的邮件&#39;,
+        text           : &#39;一封来自Node Mailer的邮件&#39;,
+        html           : &#39;&lt;h1&gt;你好，这是一封来自NodeMailer的邮件！&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;cid:00000001&quot;/&gt;&lt;/p&gt;&#39;,
+        attachments    : 
+                    [
+                        {
+                            filename: &#39;img1.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img1.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000001&#39;                 // cid可被邮件使用
+                        },
+                        {
+                            filename: &#39;img2.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img2.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000002&#39;                 // cid可被邮件使用
+                        },
+                    ]
+    };
+
+    mailTransport.sendMail(options, function(err, msg){
+        if(err){
+            console.log(err);
+            res.render(&#39;index&#39;, { title: err });
+        }
+        else {
+            console.log(msg);
+            res.render(&#39;index&#39;, { title: &quot;已接收：&quot;+msg.accepted});
+        }
+    });
+
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vue学习]]></title>
+    <link href="http://daycoding.com/15064062122465.html"/>
+    <updated>2017-09-26T14:10:12+08:00</updated>
+    <id>http://daycoding.com/15064062122465.html</id>
+    <content type="html"><![CDATA[
+<p>模板<code>methods</code>中不能使用箭头函数，要使用<code>function</code><br/>
+如</p>
+
+<pre><code>export default {
+    name: &#39;layerList&#39;,
+
+    data() {
+      return {
+        &#39;sssss&#39;: &#39;ddd&#39;,
+      };
+    },
+    methods: {
+      addClient: function()//这里要使用function不能使用=》,因为函数里的this和vue中this代指不同 
+      {
+        this.sssss = &#39;ddddaaaaa&#39;;
+
+      },
+      onResultChange: (val) =&gt; {
+        this.sssss = val;
+      },
+    },
+  };
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://daycoding.com/15058259666834.html"/>
+    <updated>2017-09-19T20:59:26+08:00</updated>
+    <id>http://daycoding.com/15058259666834.html</id>
+    <content type="html"><![CDATA[
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[webGL浏览器支持]]></title>
@@ -1674,204 +1841,6 @@ sudo /usr/local/mysql/support-files/mysql.server start</p>
 
 <p><strong>告诫自己的话：</strong><br/>
 机遇总是有的，如果把握不住，不要怨天忧人，只因自己不够优秀；不要把时间当垃圾处理，唯有珍惜光阴，才能提升生命的质量；两点之间未必直线最短，有时迂回曲折能够更快地抵达终点；如果错了，那就停止，如果得不到，那就放弃；赶路并非越快越好，把握正确的方向最重要。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[拦截UIViewController的popViewController事件]]></title>
-    <link href="http://daycoding.com/%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html"/>
-    <updated>2016-12-26T15:33:14+08:00</updated>
-    <id>http://daycoding.com/%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html</id>
-    <content type="html"><![CDATA[
-<p>实现拦截<code>UIViewController</code>的<code>pop</code>操作有两种方式：</p>
-
-<ul>
-<li>自定义实现返回按钮，即设置<code>UIBarButtonItem</code>来实现自定义的返回操作。</li>
-<li>创建<code>UINavigatonController</code>的<code>Category</code>，来定制<code>navigationBar: shouldPopItem:</code>的逻辑。</li>
-</ul>
-
-<p><strong>UIViewController+BackButtonHandler.h：</strong></p>
-
-<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
-
-@protocol BackButtonHandlerProtocol &lt;NSObject&gt;
-@optional
-// Override this method in UIViewController derived class to handle &#39;Back&#39; button click
--(BOOL)navigationShouldPopOnBackButton;
-@end
-
-@interface UIViewController (BackButtonHandler) &lt;BackButtonHandlerProtocol&gt;
-
-@end
-</code></pre>
-
-<p><strong>UIViewController+BackButtonHandler.m：</strong></p>
-
-<pre><code class="language-objc">#import &quot;UIViewController+BackButtonHandler.h&quot;
-
-@implementation UIViewController (BackButtonHandler)
-
-@end
-
-@implementation UINavigationController (ShouldPopOnBackButton)
-
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
-
-    if([self.viewControllers count] &lt; [navigationBar.items count]) {
-        return YES;
-    }
-
-    BOOL shouldPop = YES;
-    UIViewController* vc = [self topViewController];
-    if([vc respondsToSelector:@selector(navigationShouldPopOnBackButton)]) {
-        shouldPop = [vc navigationShouldPopOnBackButton];
-    }
-
-    if(shouldPop) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self popViewControllerAnimated:YES];
-        });
-    } else {
-        // Workaround for iOS7.1. Thanks to @boliva - http://stackoverflow.com/posts/comments/34452906
-        for(UIView *subview in [navigationBar subviews]) {
-            if(0. &lt; subview.alpha &amp;&amp; subview.alpha &lt; 1.) {
-                [UIView animateWithDuration:.25 animations:^{
-                    subview.alpha = 1.;
-                }];
-            }
-        }
-    }
-
-    return NO;
-}
-
-</code></pre>
-
-<p><strong>使用：</strong></p>
-
-<ul>
-<li>在<code>UIViewController</code>当中引入头文件</li>
-</ul>
-
-<pre><code>#import &quot;UIViewController+BackButtonHandler.h&quot;
-</code></pre>
-
-<ul>
-<li>在<code>UIViewController</code>中实现<code>navigationShouldPopOnBackButton</code>方法。</li>
-</ul>
-
-<pre><code class="language-objc">- (BOOL)navigationShouldPopOnBackButton{
-    [[[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;确定返回上一界面?&quot;
-                               delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil] show];
-    //renturn no 拦截pop事件
-    return NO;
-}
-</code></pre>
-
-<p><strong>参考：</strong></p>
-
-<ul>
-<li><p><a href="http://www.jianshu.com/p/25fd027916fa">iOS拦截导航栏返回按钮事件的正确方式</a></p></li>
-<li><p><a href="https://github.com/onegray/UIViewController-BackButtonHandler">UIViewController-BackButtonHandler</a></p></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[沙盒SandBox]]></title>
-    <link href="http://daycoding.com/iOS%E6%B2%99%E7%9B%92.html"/>
-    <updated>2016-12-22T11:06:07+08:00</updated>
-    <id>http://daycoding.com/iOS%E6%B2%99%E7%9B%92.html</id>
-    <content type="html"><![CDATA[
-<p>每个App都有自己的沙盒，也就是一个存储空间。App之间没有权限访问对方的沙盒资源。沙盒的目录下有三个文件夹：<code>Documents</code>、<code>Library</code>、<code>temp</code></p>
-
-<p><img src="media/14823759670877/14823785020292.png" alt="" style="width:383px;"/></p>
-
-<h2 id="toc_0">目录结构</h2>
-
-<p><img src="media/14823759670877/14823792632365.jpg" alt=""/><br/>
-* <code>Documents</code>：用于存储用户数据，<code>iTunes</code>备份和恢复的时候会包括此目录，所以，苹果建议将程序中建立的或在程序中浏览到的文件数据保存在该目录下。<br/>
-* <code>Documents/Inbox</code>:主要用来存放其他程序请求当前程序打开的文件。当前App只能读取和删除该目录下的文件，不能新建新文件和修改已存在的文件，如果想修改该目录下已存在的文件，需要将它先移动到别的文件夹下。<br/>
-* <code>Library</code>：包含两个子目录：<code>Caches</code> 和 <code>Preferences</code>。<code>Caches</code>用来存放用户存放的文件。<code>Preferences</code>是APP的偏好设置，可以通过<code>NSUserDefaults</code>来读取和设置。<code>itunes</code>会备份此目录。<br/>
-* <code>tmp</code>： 用于存放临时文件，这个可以放一些当APP退出后不再需要的文件。app不运行的时候，系统也可能会销毁此目录保存的临时文件。<code>itunes</code>不备份此目录</p>
-
-<h2 id="toc_1">目录路径获取</h2>
-
-<h4 id="toc_2">沙盒目录</h4>
-
-<pre><code> NSHomeDirectory()
-</code></pre>
-
-<h4 id="toc_3">.app</h4>
-
-<pre><code>[NSBundle mainBundle].bundlePath
- .app 中的资源文件：[[NSBundle mainBundle] pathForResource:@&quot;audio&quot; ofType:@&quot;wav&quot;]
-</code></pre>
-
-<h4 id="toc_4">Documents</h4>
-
-<pre><code>// 在某个范围内容搜索文件夹的路径     // directory:获取哪个文件夹.这里:NSUserDomainMask 代表从用户文件夹下找
-// domainMask:在哪个范围下获取 NSUserDomainMask:在用户的范围内搜索
-// expandTilde是否展开全路径, NO:~(选NO存commond+G不进去) YES:显示全路径
-NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); // 在iOS中,只有一个目录跟传入的参数匹配,所以这个集合里面只有一个元素:
-NSString *documentsPath = [array objectAtIndex:0];
-</code></pre>
-
-<h4 id="toc_5">Preferences</h4>
-
-<pre><code>NSString *preferenceParh = NSSearchPathForDirectoriesInDomains(NSPreferencePanesDirectory, NSUserDomainMask, YES)[0];
-</code></pre>
-
-<h4 id="toc_6">Caches</h4>
-
-<pre><code>NSString *cachePath =           NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-</code></pre>
-
-<h4 id="toc_7">Tmp</h4>
-
-<pre><code> NSTemporaryDirectory()
-</code></pre>
-
-<p>参考：</p>
-
-<ul>
-<li><a href="http://www.lilongcnc.cc/2016/05/16/17-ios%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%B2%99%E7%9B%92sandbox%E8%B7%AF%E5%BE%84%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/"> iOS获取应用沙盒Sandbox路径和基础保存数据方式</a></li>
-<li><a href="http://www.superqq.com/blog/2015/07/20/ioskai-fa-zhi-sha-he-ji-zhi-(sandbox/)">iOS开发之沙盒机制</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[URL Loading System]]></title>
-    <link href="http://daycoding.com/14817135429113.html"/>
-    <updated>2016-12-14T19:05:42+08:00</updated>
-    <id>http://daycoding.com/14817135429113.html</id>
-    <content type="html"><![CDATA[
-<p><img src="media/14817135429113/14817135654190.png" alt=""/></p>
-
-<h1 id="toc_0">URL 资源访问</h1>
-
-<p>有两种方式：<br/>
-* 使用<code>URLSession</code>通过<code>NSURL</code>直接访问，获得<code>NSData</code>类型或文件<br/>
-* 向<code>URLSession</code>提供<code>NSURLRquest</code>获得资源<br/>
-无论怎样都有两种方法提供处理结果的方法<br/>
-* 提供一个完成回调block（completion handler block）<br/>
-* 提供一个自定义委托</p>
-
-<h1 id="toc_1">Sessions Type</h1>
-
-<ul>
-<li>Default sessions   常用来做下载回话，保存数据证书至用户磁盘目录</li>
-<li>Ephemeral sessions  短暂会话，一切结果保存到ram中</li>
-<li>Background sessions  上传任务会话，支持app在后台任务上传</li>
-</ul>
-
-<h1 id="toc_2">后台传输注意事项</h1>
-
-<p>要想在app挂起时继续执行后台传输数据任务，只有配置了<code>background session config</code>的<code>session</code>会话才能在app挂起时执行任务。</p>
 
 ]]></content>
   </entry>

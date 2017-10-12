@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>
     
-  点在面内（2） - 小小程序猿
+  node - 小小程序猿
   
 
   </title>
@@ -78,126 +78,144 @@ $(document).ready(function(event) {
 </nav>
   <div id="main">
     <div id="content"> 
-<div>
-	<article class="hentry" role="article">
-	<header>
-			  	<h1 class="entry-title">点在面内（2）</h1>
-				<p class="meta"><time datetime="2016-09-04T15:51:26+08:00" pubdate data-updated="true">2016/9/4</time></p>
-			 </header>
-		  	<div class="entry-content">
-			  	<h2 id="toc_0">导入</h2>
+<div class="blog-index">
 
-<p>判断触摸点是否在一个多边形的内部<br/>
-方法</p>
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a></h1>
+			<p class="meta"><time datetime="2017-10-12T14:30:04+08:00" 
+			pubdate data-updated="true">2017/10/12</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>参考转载：<a href="http://www.jianshu.com/p/ee200a67853c">Node.js使用NodeMailer发送邮件</a></strong></p>
 
-<h2 id="toc_1">数学方法</h2>
+<h2 id="toc_0">依赖</h2>
 
-<p>这个方法的好处是任意平台都可以使用，不仅现于Android<br/>
-算法：<br/>
-求解通过该点的水平线与多边形各边的交点，单边交点为奇数，则成立<br/>
-ok我们其实就是需要看这个点的单边射线与多边形的交点，代码实现如下：</p>
+<p><code>nodemailer</code></p>
 
-<pre><code>public boolean isInPolygon(Point point, Point[] points, int n) {  
-        int nCross = 0;  
-        for (int i = 0; i &lt; n; i++) {  
-            Point p1 = points[i];  
-            Point p2 = points[(i + 1) % n];  
-            // 求解 y=p.y 与 p1 p2 的交点  
-            // p1p2 与 y=p0.y平行  
-            if (p1.y == p2.y)  
-                continue;  
-            // 交点在p1p2延长线上  
-            if (point.y &lt; Math.min(p1.y, p2.y))  
-                continue;  
-            // 交点在p1p2延长线上  
-            if (point.y &gt;= Math.max(p1.y, p2.y))  
-                continue;  
-            // 求交点的 X 坐标  
-            double x = (double) (point.y - p1.y) * (double) (p2.x - p1.x)  
-                    / (double) (p2.y - p1.y) + p1.x;  
-            // 只统计单边交点  
-            if (x &gt; point.x)  
-                nCross++;  
-        }  
-        return (nCross % 2 == 1);  
-    }  
+<pre><code>npm install nodemailer
+</code></pre>
+
+<h2 id="toc_1">使用</h2>
+
+<h3 id="toc_2">创建实例</h3>
+
+<pre><code>const mailTransport = nodemailer.createTransport({
+    host : &#39;smtp.sina.com&#39;,
+    secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
+    auth : {
+        user : &#39;你的邮箱地址&#39;,
+        pass : &#39;你的邮箱密码&#39;
+    },
+});
 
 </code></pre>
 
-<p>经典算法，通用实现</p>
+<h3 id="toc_3">配置内容</h3>
 
-<h2 id="toc_2">Android</h2>
+<pre><code>var options = {
+        from           : &#39;&quot;你的名字&quot; &lt;你的邮箱地址&gt;&#39;,
+        to             : &#39;&quot;用户1&quot; &lt;邮箱地址1&gt;, &quot;用户2&quot; &lt;邮箱地址2&gt;&#39;,
+        // cc          : &#39;&#39;    //抄送
+        // bcc         : &#39;&#39;    //密送
+        subject        : &#39;一封来自Node Mailer的邮件&#39;,
+        text           : &#39;一封来自Node Mailer的邮件&#39;,
+        html           : &#39;&lt;h1&gt;你好，这是一封来自NodeMailer的邮件！&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;cid:00000001&quot;/&gt;&lt;/p&gt;&#39;,
+        attachments    : 
+                    [
+                        {
+                            filename: &#39;img1.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img1.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000001&#39;                 // cid可被邮件使用
+                        },
+                        {
+                            filename: &#39;img2.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img2.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000002&#39;                 // cid可被邮件使用
+                        },
+                    ]
+    };
+    
+</code></pre>
 
-<p>借用Android开发中的碰撞检测的思想，我们使用Region来判断，Region的详细资料稍后会有总结：<br/>
-充分借助Android的api来实现：</p>
+<h3 id="toc_4">发送</h3>
 
-<pre><code>RectF rectF = new RectF();  
-        path.computeBounds(rectF, true);  
-        Region region = new Region();  
-        region.setPath(path, new Region((int) rectF.left,  
-                        (int) rectF.top, (int) rectF.right,  
-                        (int) rectF.bottom));  
-        if (region.contains(point.x, point.y)) {  
-
-        }  
+<pre><code>mailTransport.sendMail(options, function(err, msg){
+        if(err){
+            console.log(err);
+            res.render(&#39;index&#39;, { title: err });
+        }
+        else {
+            console.log(msg);
+            res.render(&#39;index&#39;, { title: &quot;已接收：&quot;+msg.accepted});
+        }
+    });
 
 </code></pre>
 
-<p>以上。</p>
+<h2 id="toc_5">完整代码</h2>
 
-			</div>
+<pre><code>const nodemailer  = require(&#39;nodemailer&#39;);
 
-		
-	  
-		<footer>
-		 <p class="meta">
+const mailTransport = nodemailer.createTransport({
+    host : &#39;smtp.sina.com&#39;,
+    secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
+    auth : {
+        user : &#39;你的邮箱地址&#39;,
+        pass : &#39;你的邮箱密码&#39;
+    },
+});
 
-			<strong>Categories:</strong>&nbsp; 
-			<span class="categories">
-			
-			    <a class='category' href='Android.html'>Android</a>&nbsp;
-			 
-			</span>
-		    </p>
-		    <p class="meta">
-		      
-		 </p>
-	    
-		<div class="sharing">
-		  <!-- 多说评论框 start -->
-    <div class="ds-thread" ></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"mweb-zh"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-<!-- 多说公共JS代码 end -->
-          
+const options = {
+        from           : &#39;&quot;你的名字&quot; &lt;你的邮箱地址&gt;&#39;,
+        to             : &#39;&quot;用户1&quot; &lt;邮箱地址1&gt;, &quot;用户2&quot; &lt;邮箱地址2&gt;&#39;,
+        // cc          : &#39;&#39;    //抄送
+        // bcc         : &#39;&#39;    //密送
+        subject        : &#39;一封来自Node Mailer的邮件&#39;,
+        text           : &#39;一封来自Node Mailer的邮件&#39;,
+        html           : &#39;&lt;h1&gt;你好，这是一封来自NodeMailer的邮件！&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;cid:00000001&quot;/&gt;&lt;/p&gt;&#39;,
+        attachments    : 
+                    [
+                        {
+                            filename: &#39;img1.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img1.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000001&#39;                 // cid可被邮件使用
+                        },
+                        {
+                            filename: &#39;img2.png&#39;,            // 改成你的附件名
+                            path: &#39;public/images/img2.png&#39;,  // 改成你的附件路径
+                            cid : &#39;00000002&#39;                 // cid可被邮件使用
+                        },
+                    ]
+    };
 
-          
+    mailTransport.sendMail(options, function(err, msg){
+        if(err){
+            console.log(err);
+            res.render(&#39;index&#39;, { title: err });
+        }
+        else {
+            console.log(msg);
+            res.render(&#39;index&#39;, { title: &quot;已接收：&quot;+msg.accepted});
+        }
+    });
+
+</code></pre>
+
 
 		</div>
 
-	    <p class="meta">
-	    
-	        <a class="basic-alignment left" href="14729755264473.html" 
-	        title="Previous Post: 四叉树算法">&laquo; 四叉树算法</a>
-	    
-	    
-	        <a class="basic-alignment right" href="14729754588363.html" 
-	        title="Next Post: 点在面内（1）">点在面内（1） &raquo;</a>
-	    
-	    </p>
-	  </footer>
+		
+
 	</article>
+  
+	<div class="pagination">
+	
+<a href="archives.html">Blog Archives</a>
+	 
+	    
+	</div>
 </div>
  <aside class="sidebar"> 
 

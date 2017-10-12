@@ -82,6 +82,279 @@ $(document).ready(function(event) {
 
 	<article>
 		 <header>
+		  	<h1 class="entry-title"><a href="14729740974801.html">AFNetworking</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:28:17+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0"><code>AFNetWoring</code> 同步方法的使用：</h2>
+
+<pre><code>NSURL* url = [[NSURL alloc] initWithString:[HOST stringByAppendingString:marker.icon.url]];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+[request setValue:@&quot;http://www.dituwuyou.com&quot; forHTTPHeaderField:@&quot;Referer&quot;];
+
+AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+operation.responseSerializer = [AFImageResponseSerializer serializer];
+
+/* 最终继承自 NSOperation，看到这个，大家可能就知道了怎么实现同步的了，也就是利用 NSOperation 来做的同步请求 */
+
+[operation start];
+//同步实现
+[operation waitUntilFinished];
+
+UIImage* image = (UIImage*)[operation responseObject];
+if(image!=nil)
+{
+  //做处理
+}
+return nil;
+
+</code></pre>
+
+<p>同步上传图片</p>
+
+<pre><code>AFHTTPRequestOperationManager *manager = [self getInitAFManager];
+
+[manager.requestSerializer setValue:[self getUserToken] forHTTPHeaderField:TOKEN];
+NSMutableURLRequest* request =  [manager.requestSerializer multipartFormRequestWithMethod:@&quot;POST&quot; URLString:[HOST stringByAppendingString:@&quot;/api/imgs/upload&quot;] parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt;  _Nonnull formData) {
+        [formData appendPartWithFileData:imgData name:@&quot;Filedata&quot; fileName:@&quot;pic&quot; mimeType:@&quot;image/jpg&quot;];
+    } error:nil];
+
+AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    //返回结果json格式化
+requestOperation.responseSerializer = manager.responseSerializer;
+[requestOperation start];
+[requestOperation waitUntilFinished];
+
+/* 请求结果 */
+NSDictionary *result = (NSDictionary *)[requestOperation responseObject];
+block(YES,result);
+
+</code></pre>
+
+<h2 id="toc_1">AFNetWorking 传递数组参数</h2>
+
+<p>要求发送的格式</p>
+
+<pre><code>POST /api/maps/KAyzFxCAsYV9YfwII1KiTA/invite HTTP/1.1
+Host: xxxxxxx
+Token: DCA6smjmEU_Qcc8zT_E7
+authenticity_token: m4XIJxCDw7mxNk/Eu7FbvS/H+jb09gi7cPBB5CUceVVC+fNdV0QAvXhtxrZDrl+uzqKmgBoUyghIU+FvkgkLVg==
+Cache-Control: no-cache
+Postman-Token: 71c7694b-0219-0579-1c0f-370e9eb9623a
+Content-Type: application/x-www-form-urlencoded
+
+phones[]=18610187749&amp;phones[]=18518700870
+
+</code></pre>
+
+<pre><code>AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//manager 要使用默认的requestSerialize
+//即要设置Content-Type: application/x-www-form-urlencoded
+manager.responseSerializer = [AFJSONResponseSerializer new];
+[manager.requestSerializer setValue:@&quot;iOS&quot; forHTTPHeaderField:@&quot;Source&quot;];
+[manager.requestSerializer setValue:[self getUserToken] forHTTPHeaderField:TOKEN];
+
+NSArray* array= @[phone];
+NSDictionary *parameters = @{@&quot;phones&quot;: array};
+[manager.requestSerializer setValue:self.getUserToken forHTTPHeaderField:TOKEN];
+NSString* url = [HOST stringByAppendingString:[NSString stringWithFormat:@&quot;/api/maps/%@/invite&quot;,mid]];
+[manager POST:url parameters:parameters success:success_block failure:fail_block];
+
+</code></pre>
+
+<h2 id="toc_2">AFNetWorking下载图片</h2>
+
+<p>使用<code>AFNetworking</code>下载图片得到的<code>image</code>默认被压缩，设置<code>AFImageResponseSerializer</code>的<code>ImageScale</code>属性可以决定是否压缩</p>
+
+<pre><code>NSURL *url = [[NSURL alloc] initWithString:[OSS_HOST stringByAppendingString:icon.url == nil ? @&quot;&quot; : icon.url]];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+
+AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+AFImageResponseSerializer *imageResponseSerializer = [AFImageResponseSerializer serializer];
+
+  //af 下载图片 会被压缩屏幕尺寸倍  设置有不会压缩
+ //[imageResponseSerializer setImageScale:1.0];  
+
+operation.responseSerializer = imageResponseSerializer;
+
+[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+    UIImage *image = (UIImage *) [operation responseObject];
+
+ } failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+}];
+[operation start];
+
+</code></pre>
+
+<p>如果不设置<code>[imageResponseSerializer setImageScale:1.0]</code>，<code>responseSerializer</code>的参数如下图：</p>
+
+<p><img src="media/14729740974801/QQ20160814-0.png" alt="QQ20160814-0"/></p>
+
+<h2 id="toc_3">Domain=NSURLErrorDomain Code=-1012 和 In order to validate a domain name for self signed certificates, you MUST use pinning错误</h2>
+
+<pre><code class="language-objc">AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+//解决“Error Domain=NSURLErrorDomain Code=-1012 &quot;The operation couldn’t be completed.”的问题，AFNetworking 2.0默认在检查SSL证书的时候比较严格
+manager.securityPolicy.allowInvalidCertificates = YES;
+manager.securityPolicy.validatesDomainName = NO;
+</code></pre>
+
+<h2 id="toc_4">Error Domain=NSCocoaErrorDomain Code=3840 &quot;The operation couldn’t be completed. (Cocoa error 3840.)&quot; (JSON text did not start with array or object and option to allow fragments not set.) UserInfo=0x9152780 {NSDebugDescription=JSON text did not start with array or object and option to allow fragments not set.}</h2>
+
+<p>这个问题需要对<code>AFHTTPRequestOperationManager</code>添加<code>requestSerializer</code>和<code>responseSerializer</code></p>
+
+<pre><code class="language-objc">manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729740054667.html">Sqlite</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:26:45+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">SQLITE 数据类型</h2>
+
+<p>一般数据采用的固定的静态数据类型，而SQLite采用的是动态数据类型，会根据存入值自动判断。</p>
+
+<p>SQLite具有以下五种数据类型：</p>
+
+<blockquote>
+<ol>
+<li>NULL：空值。</li>
+<li>INTEGER：带符号的整型，具体取决有存入数字的范围大小。</li>
+<li>REAL：浮点数字，存储为8-byte IEEE浮点数。</li>
+<li>TEXT：字符串文本。</li>
+<li>BLOB：二进制对象。</li>
+<li>INTEGER : 代替bool类型</li>
+</ol>
+</blockquote>
+
+<p>但实际上，sqlite3也接受如下的数据类型：</p>
+
+<blockquote>
+<p>smallint: 16 位元的整数。</p>
+
+<p>interger: 32 位元的整数。</p>
+
+<p>decimal(p,s) :p 精确值和 s 大小的十进位整数，精确值p是指全部有几个数(digits)大小值，s是指小数点後有几位数。如果没有特别指定，则系统会设为 p=5; s=0 。</p>
+
+<p>float : 32位元的实数。</p>
+
+<p>double : 64位元的实数。</p>
+
+<p>char(n) : n 长度的字串，n不能超过 254。</p>
+
+<p>varchar(n) :长度不固定且其最大长度为 n 的字串，n不能超过 4000。</p>
+
+<p>graphic(n) 和 char(n) 一样，不过其单位是两个字元 double-bytes， n不能超过127。这个形态是为了支援两个字元长度的字体，例如中文字。</p>
+
+<p>vargraphic(n): 可变长度且其最大长度为 n 的双字元字串，n不能超过 2000</p>
+
+<p>date : 包含了 年份、月份、日期。</p>
+
+<p>time : 包含了 小时、分钟、秒。</p>
+
+<p>timestamp :包含了 年、月、日、时、分、秒、千分之一秒。</p>
+
+<p>datetime 包含日期时间格式，必须写成&#39;2010-08-05&#39;不能写为&#39;2010-8-5&#39;，否则在读取时会产生错误！</p>
+</blockquote>
+
+<p><strong><code>Sqlite常用数据类型</code></strong></p>
+
+<p>这句话本身就有问题，因为：SQLite是<strong><code>无类型</code></strong>的. 这意味着你可以保存任何类型的数据到你所想要保存的任何表的任何列中, 无论这列声明的数据类型是什么(只有自动递增Integer Primary Key才有用). 对于SQLite来说对字段不指定类型是完全有效的. 如:</p>
+
+<blockquote>
+<p>Create Table ex3(a, b, c);</p>
+</blockquote>
+
+<p>即使SQLite允许忽略数据类型, 但是仍然建议在你的Create Table语句中指定数据类型. 因为数据类型对于你和其他的程序员交流, 或者你准备换掉你的数据库引擎是非常有用的. SQLite支持常见的数据类型, 如:<br/>
+<code>sql<br/>
+CREATE TABLE ex2(<br/>
+a VARCHAR(10),<br/>
+b NVARCHAR(15),<br/>
+c TEXT,<br/>
+d INTEGER,<br/>
+e FLOAT,<br/>
+f BOOLEAN,<br/>
+g CLOB,<br/>
+h BLOB,<br/>
+i TIMESTAMP,<br/>
+j NUMERIC(10,5),<br/>
+k VARYING CHARACTER (24),<br/>
+l NATIONAL VARYING CHARACTER(16)<br/>
+);<br/>
+</code></p>
+
+<h2 id="toc_1"><code>char</code>、<code>varchar</code>、<code>text</code>和<code>nchar</code>、<code>nvarchar</code>、<code>ntext</code>的区别</h2>
+
+<ol>
+<li><p><code>CHAR</code>。CHAR存储定长数据很方便，CHAR字段上的索引效率级高，比如定义char(10)，那么不论你存储的数据是否达到了10个字节，都要占去10个字节的空间,不足的自动用空格填充。</p></li>
+<li><p><code>VARCHAR</code>。存储变长数据，但存储效率没有CHAR高。如果一个字段可能的值是不固定长度的，我们只知道它不可能超过10个字符，把它定义为 VARCHAR(10)是最合算的。VARCHAR类型的实际长度是它的值的实际长度+1。为什么“+1”呢？这一个字节用于保存实际使用了多大的长度。从空间上考虑，用varchar合适；从效率上考虑，用char合适，关键是根据实际情况找到权衡点。</p></li>
+<li><p><code>TEXT</code>。text存储可变长度的非Unicode数据，最大长度为231-1(2,147,483,647)个字符。</p></li>
+<li><p><code>NCHAR、NVARCHAR、NTEXT</code>。这三种从名字上看比前面三种多了个“N”。它表示存储的是Unicode数据类型的字符。我们知道字符中，英文字符只需要一个字节存储就足够了，但汉字众多，需要两个字节存储，英文与汉字同时存在时容易造成混乱，Unicode字符集就是为了解决字符集这种不兼容的问题而产生的，它所有的字符都用两个字节表示，即英文字符也是用两个字节表示。nchar、nvarchar的长度是在1到4000之间。和char、varchar比较起来，nchar、nvarchar则最多存储4000个字符，不论是英文还是汉字；而char、varchar最多能存储8000个英文，4000个汉字。可以看出使用nchar、nvarchar数据类型时不用担心输入的字符是英文还是汉字，较为方便，但在存储英文时数量上有些损失。</p></li>
+</ol>
+
+<p><strong>所以一般来说，如果含有中文字符，用nchar/nvarchar，如果纯英文和数字，用char/varchar。</strong></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729739074110.html">位移计算</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:25:07+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<pre><code>&lt;&lt;带符号左移 (n&lt;&lt;2 将整型值带符号左移2位 ） 
+&gt;&gt;带符号右移 (n&gt;&gt;2 将整型值带符号右移2位 ） 
+&gt;&gt;&gt;无符号右移 (n&gt;&gt;&gt;2 将整型值无符号右移2位 ）
+
+&lt;&lt;(左移) 
+    将一个运算符对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0） 
+     操作数每左移一位，相当于该数乘以2 
+例如：3&lt;&lt;2 后，结果为12
+此运算符的意思就是把3的二进制位全部左移两位，右边补2个0。3的二进制位11，左移两位后，右边补2个0就是1100。1100转为10进制为12。 
+     说到底左移操作就相当于2的2次方×3。 每左移1位次方就增1 
+&gt;&gt;(右移) 
+将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。 
+操作数每右移一位，相当于该数除以2 
+例如：9&gt;&gt;1 后，结果为4 
+9的二进制为1001，右移1位后，左正数补0，右边丢弃。结果为 0100。转为10进制后为4。
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
 		  	<h1 class="entry-title"><a href="14726959092290.html">UIWindow相关知识</a></h1>
 			<p class="meta"><time datetime="2016-09-01T10:11:49+08:00" 
 			pubdate data-updated="true">2016/9/1</time></p>
@@ -264,12 +537,44 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 	        
 	        
 	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
 	   
 	  </ul>
 	</section>
 	<section>
 	  <h1>Recent Posts</h1>
 	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
 	  
 	      
 		      <li class="post">
@@ -280,24 +585,6 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 	      
 		      <li class="post">
 		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14924298431586.html">VSCode 智能感知配置</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14917937079752.html">销售易Pass</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14914632553537.html">PM2日志分割</a>
 		      </li>
 	     
 	  

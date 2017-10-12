@@ -82,6 +82,89 @@ $(document).ready(function(event) {
 
 	<article>
 		 <header>
+		  	<h1 class="entry-title"><a href="14751293086902.html">Objection 注册ViewController（xib名称与controller不一致）导致controller不释放</a></h1>
+			<p class="meta"><time datetime="2016-09-29T14:08:28+08:00" 
+			pubdate data-updated="true">2016/9/29</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>1、在<code>module</code>中注册controller</p>
+
+<p>2、使用<code>protocol</code>获取controller跳转在退出，controller不能释放</p>
+
+<p>3、修改xib与controller名称一致，module中使用bindclass方法绑定</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14746843595369.html">dismissViewControllerAnimated:YES 失效</a></h1>
+			<p class="meta"><time datetime="2016-09-24T10:32:39+08:00" 
+			pubdate data-updated="true">2016/9/24</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>因次，在该VC内部调用方法消失自己的时候应该对应该VC出现的方法。</p>
+
+<p>self dismissModalViewControllerAnimated  对应 presentModalViewController方式显示</p>
+
+<p>self.navigationController popViewControllerAnimate 对应 pushViewController 方式显示</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14741645219525.html">截取指定区域图片</a></h1>
+			<p class="meta"><time datetime="2016-09-18T10:08:41+08:00" 
+			pubdate data-updated="true">2016/9/18</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<pre><code class="language-objc">-(UIImage *)imageFromViewAtFrame:(CGRect)rect{
+    UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
+
+    UIGraphicsBeginImageContext(screenWindow.frame.size);//全屏截图，包括window
+
+    [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    //截取指定区域生成图片
+    CGImageRef imageRef = viewImage.CGImage;
+    //myInmageRect想要截取的区域
+    CGRect myImageRect=rect ;
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(imageRef, myImageRect);
+
+    //获取上下文
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, myImageRect, subImageRef);
+    //转换img
+    UIImage* image = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+
+    return image;
+}
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
 		  	<h1 class="entry-title"><a href="14737664411987.html">UILongPressGestureRecognizer 回调方法执行两次的问题</a></h1>
 			<p class="meta"><time datetime="2016-09-13T19:34:01+08:00" 
 			pubdate data-updated="true">2016/9/13</time></p>
@@ -761,268 +844,6 @@ CGFloat BNRTimeBlock (void (^block)(void)) {
 		
 
 	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729755895496.html">BOOL / bool / Boolean / NSCFBoolean 区别</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:53:09+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<table>
-<thead>
-<tr>
-<th style="text-align: left">Name</th>
-<th style="text-align: left">Typedef</th>
-<th style="text-align: left">Header</th>
-<th style="text-align: left">True Value</th>
-<th style="text-align: left">False Value</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">BOOL</td>
-<td style="text-align: left">signed char</td>
-<td style="text-align: left">objc.h</td>
-<td style="text-align: left">YES</td>
-<td style="text-align: left">NO</td>
-</tr>
-<tr>
-<td style="text-align: left">bool</td>
-<td style="text-align: left">_Bool (int)</td>
-<td style="text-align: left">stdbool.h</td>
-<td style="text-align: left">true</td>
-<td style="text-align: left">false</td>
-</tr>
-<tr>
-<td style="text-align: left">Boolean</td>
-<td style="text-align: left">unsigned char</td>
-<td style="text-align: left">MacTypes.h</td>
-<td style="text-align: left">True</td>
-<td style="text-align: left">False</td>
-</tr>
-<tr>
-<td style="text-align: left">NSNumber</td>
-<td style="text-align: left">__NSCFBoolean</td>
-<td style="text-align: left">Foundation.h</td>
-<td style="text-align: left">@(YES)</td>
-<td style="text-align: left">@(NO)</td>
-</tr>
-<tr>
-<td style="text-align: left">CFBooleanRef</td>
-<td style="text-align: left">struct</td>
-<td style="text-align: left">CoreFoundation.h</td>
-<td style="text-align: left">kCFBooleanTrue</td>
-<td style="text-align: left">kCFBooleanFalse</td>
-</tr>
-</tbody>
-</table>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729755573166.html">解决xcode升级之后安装的插件失效</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:52:37+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<p>code升级之后uuid会发生变化，致使原来的plugin失效</p>
-
-<p><strong><em>解决方案</em></strong></p>
-
-<ul>
-<li><p>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add <code>defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID</code></p></li>
-<li><p>find every plugin&#39;s Info.plist</p></li>
-<li><p>default read current UUID of XCode</p></li>
-<li><p>default write current UUID of XCode into plugin&#39;s DVTPlugInCompatibilityUUIDs</p></li>
-</ul>
-
-<p><em>from:</em><a href="http://stackoverflow.com/questions/22324303/the-plugin-didnt-work-on-xcode-5-1">stackoverflow</a></p>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729755264473.html">四叉树算法</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:52:06+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<p><strong><em>转载：<a href="http://blog.csdn.net/zhanxinhang/article/details/6706217">http://blog.csdn.net/zhanxinhang/article/details/6706217</a></em></strong></p>
-
-<p><a href="http://git.oschina.net/lbs/iOS_3D_ClusterAnnotation">高德iOS聚合实例</a></p>
-
-<p><a href="http://git.oschina.net/lbs/Android_CustomMarker">高德Android聚合实例</a></p>
-
-<p>四叉树或四元树也被称为Q树（Q-Tree）。四叉树广泛应用于图像处理、空间数据索引、2D中的快速碰撞检测、存储稀疏数据等，而八叉树（Octree）主要应用于3D图形处理。对游戏编程，这会很有用。本文着重于对四叉树与八叉树的原理与结构的介绍，帮助您在脑海中建立四叉树与八叉树的基本思想。本文并不对这两种数据结构同时进行详解，而只对四叉树进行详解，因为八叉树的建立可由四叉树的建立推得。</p>
-
-<p>四叉树与八叉树的结构与原理<br/>
-四叉树（Q-Tree）是一种树形数据结构。四叉树的定义是：它的每个节点下至多可以有四个子节点，通常把一部分二维空间细分为四个象限或区域并把该区域里的相关信息存入到四叉树节点中。这个区域可以是正方形、矩形或是任意形状。以下为四叉树的二维空间结构(左)和存储结构(右)示意图（注意节点颜色与网格边框颜色）：</p>
-
-<p><img src="media/14729755264473/69130165.jpg" alt=""/></p>
-
-<p>四叉树的每一个节点代表一个矩形区域（如上图黑色的根节点代表最外围黑色边框的矩形区域），每一个矩形区域又可划分为四个小矩形区域，这四个小矩形区域作为四个子节点所代表的矩形区域。<br/>
-较之四叉树，八叉树将场景从二维空间延伸到了三维空间。八叉树（Octree）的定义是：若不为空树的话，树中任一节点的子节点恰好只会有八个，或零个，也就是子节点不会有0与8以外的数目。那么，这要用来做什么？想象一个立方体，我们最少可以切成多少个相同等分的小立方体？答案就是8个。如下八叉树的结构示意图所示：</p>
-
-<p><img src="media/14729755264473/8882925.jpg" alt=""/></p>
-
-<pre><code>/* 一个矩形区域的象限划分：:
-
-       UL(1)   |    UR(0)
-     ----------|-----------
-       LL(2)   |    LR(3)
-以下对该象限类型的枚举
-*/
-typedef enum
-{
-    UR = 0,
-    UL = 1,
-    LL = 2,
-    LR = 3
-}QuadrantEnum;
-
-/* 矩形结构 */
-typedef struct quadrect_t
-{    
-    double  left, 
-            top, 
-            right, 
-            bottom;
-}quadrect_t;
-
-/* 四叉树节点类型结构 */
-typedef struct quadnode_t
-{
-    quadrect_t    rect;          //节点所代表的矩形区域
-    list_t        *lst_object;   //节点数据, 节点类型一般为链表，可存储多个对象
-    struct  quadnode_t  *sub[4]; //指向节点的四个孩子 
-}quadnode_t;
-
-/* 四叉树类型结构 */
-typedef struct quadtree_t
-{
-    quadnode_t  *root;
-    int         depth;           // 四叉树的深度                    
-}quadtree_t;
-
-</code></pre>
-
-<h4 id="toc_0">四叉树的建立</h4>
-
-<p>利用四叉树分网格，如本文的第一张图，根据左图的网格图形建立如右图所示的完全四叉树。</p>
-
-<p><strong>伪码：</strong></p>
-
-<pre><code>Funtion QuadTreeBuild ( depth, rect )
-   {
-QuadTree-&gt;depth = depth;
-
-/*创建分支，root树的根，depth深度，rect根节点代表的矩形区域*/
-QuadCreateBranch (  root, depth, rect );
-   }
-
-Funtion QuadCreateBranch ( n, depth,rect )
-   {
-if ( depth!=0 )
-   {
-n = new node;    //开辟新节点
-n -&gt;rect = rect; //将该节点所代表的矩形区域存储到该节点中
-将rect划成四份 rect[UR], rect[UL], rect[LL], rect[LR];
-
-/*创建各孩子分支*/
-QuadCreateBranch ( n-&gt;sub[UR], depth-1, rect [UR] );
-QuadCreateBranch ( n-&gt;sub[UL], depth-1, rect [UL] );
-QuadCreateBranch ( n-&gt;sub[LL], depth-1, rect [LL] );
-QuadCreateBranch ( n-&gt;sub[LR], depth-1, rect [LR] );
-   }
-   }
-
-</code></pre>
-
-<p>假设在一个矩形区域里有N个对象，如下左图一个黑点代表一个对象，每个对象的坐标位置都是已知的，用四叉树的一个节点存储一个对象，构建成如下右图所示的四叉树。</p>
-
-<p><img src="media/14729755264473/23531676.jpg" alt=""/></p>
-
-<p>方法也是采用递归的方法对该矩形进行划分分区块，分完后再往里分，直到每一个子矩形区域里只包含一个对象为止。<br/>
-<strong>伪码：</strong></p>
-
-<pre><code>Funtion QuadtreeBuild()
-  {
-     Quadtree = {empty}；
-     For (i = 1;i&lt;n;i++)      //遍历所有对象
-{
-   QuadInsert(i, root)；//将i对象插入四叉树
-}          
-         剔除多余的节点；       //执行完上面循环后，四叉树中可能有数据为空的叶子节点需要剔除
-  }    
-
-Funtion QuadInsert(i,n)      //该函数插入后四叉树中的每个节点所存储的对象数量不是1就是0
-  {  
-     if（节点n有孩子）
- {      
-    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；       
-    QuadInsert(i,c)；
- }
-     else if（节点n存储了一个对象）
- {
-    为n节点创建四个孩子；
-    将n节点中的对象移到它应该放置的孩子节点中；
-    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；
-    QuadInsert(i,c)；
- }
-     else if（n节点数据为空）    
- {
-    将i存储到节点n中；
- }
-  } 
-
-</code></pre>
-
-<h4 id="toc_1">用四叉树查找某一对象</h4>
-
-<p>1、采用盲目搜索，与二叉树的递归遍历类似，可采用后序遍历或前序遍历或中序遍历对其进行搜索某一对象，时间复杂度为O（n）。</p>
-
-<p>2、根据对象在区域里的位置来搜索，采用分而治之思想，时间复杂度只与四叉树的深度有关。比起盲目搜索，这种搜索在区域里的对象越多时效果越明显</p>
-
-<p><img src="media/14729755264473/88618967.jpg" alt=""/></p>
-
-<pre><code>Funtion find ( n, pos, )
-  {
-      If (n节点所存的对象位置为 pos所指的位置 )
-          Return n;
-      If ( pos位于第一象限 )
-          temp = find ( n-&gt;sub[UR], pos );
-      else if ( pos位于第二象限)
-          temp = find ( n-&gt;sub[UL], pos );
-      else if ( pos位于第三象限 )
-          temp = find ( n-&gt;sub[LL], pos );
-      else  //pos 位于第四象限
-          temp = find ( n-&gt;sub[LR], pos );
-      return temp;   
-  } 
-</code></pre>
-
-
-		</div>
-
-		
-
-	</article>
   
 	<div class="pagination">
 	 <a class="prev" href="all_3.html">&larr; Older</a> 
@@ -1074,12 +895,44 @@ Funtion QuadInsert(i,n)      //该函数插入后四叉树中的每个节点所�
 	        
 	        
 	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
 	   
 	  </ul>
 	</section>
 	<section>
 	  <h1>Recent Posts</h1>
 	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
 	  
 	      
 		      <li class="post">
@@ -1090,24 +943,6 @@ Funtion QuadInsert(i,n)      //该函数插入后四叉树中的每个节点所�
 	      
 		      <li class="post">
 		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14924298431586.html">VSCode 智能感知配置</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14917937079752.html">销售易Pass</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14914632553537.html">PM2日志分割</a>
 		      </li>
 	     
 	  

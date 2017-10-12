@@ -82,6 +82,273 @@ $(document).ready(function(event) {
 
 	<article>
 		 <header>
+		  	<h1 class="entry-title"><a href="14729750129157.html">UITextField</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:43:32+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">UITextField 快速添加左侧内边距padding</h2>
+
+<p>思路1：可向UITextField左侧添加一个空白的view，来调整内边距</p>
+
+<pre><code>UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+_et_groupName.leftView = paddingView;
+_et_groupName.leftViewMode = UITextFieldViewModeAlways;
+</code></pre>
+
+<p>思路2：移动sublayer的位置</p>
+
+<pre><code class="language-objc">textField.layer.sublayerTransform = CATransform3DMakeTranslation(8, 0, 0);
+</code></pre>
+
+<p>PS:思路2会有小的缺陷，如果显示clearbutton的画会显示不全</p>
+
+<p><strong>from:</strong><a href="http://stackoverflow.com/questions/2694411/text-inset-for-uitextfield">Text inset for UITextField</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729749889650.html">UITabelView</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:43:08+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">使用开源组件FDTemplateLayoutCell 动态计算Cell高度相关问题</h2>
+
+<ol>
+<li>自定义Cell</li>
+</ol>
+
+<p>需要注意tableview注册自定义的cell，否侧程序崩溃报错</p>
+
+<pre><code>[self.tbl_marker registerClass:[DataListOverLayerTableViewCell class] forCellReuseIdentifier:@&quot;LINE&quot;];
+
+</code></pre>
+
+<ol>
+<li>自定义Cell 约束条件</li>
+</ol>
+
+<p>如果自定义Cell约束条件错误会导致测量的高度为0，需逐步修改约束条件直至能计算出高度</p>
+
+<p><strong>注意：约束条件最好包括 top\bottom\left\right 和 width、height</strong>这样能最大程度保证能测量出来高度</p>
+
+<pre><code>[self.btn_title mas_makeConstraints:^(MASConstraintMaker *make) {
+
+make.left.equalTo(self.contentView.mas_left).offset(10);
+
+make.top.equalTo(self.contentView.mas_top).offset(10);
+
+make.bottom.equalTo(hline.mas_top).offset(-10);
+
+make.right.equalTo(self.contentView.mas_right).offset(-10);
+
+make.width.mas_equalTo(self.contentView.frame.size.width-20);
+
+make.height.greaterThanOrEqualTo(@60);
+
+}];       
+
+</code></pre>
+
+<h2 id="toc_1">设置cell点击选中状态去掉背景</h2>
+
+<p>由于使用FDTemplateLayoutCell 作为预加载cell高度计算，这时会先调用<code>**heightForRowAtIndexPath**</code>方法计算高度，在<code>tableView fd_heightForCellWithIdentifier:@&quot;MARKER&quot; configuration:^(DataListTableViewCell* cell)</code>中会生成cell，所以在执行方法<code>cellForRowAtIndexPath</code>的时候就会取得缓存cell<code>[tableView dequeueReusableCellWithIdentifier:@&quot;MARKER&quot;]</code>不会执行cell的初始化方法,所以在初始化里执行<code>cell.selectionStyle = UITableViewCellSelectionStyleNone;</code>不会有任何效果，需要移除到初始化方法外</p>
+
+<pre><code>-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//取消选中效果
+[self.tbl_marker deselectRowAtIndexPath:[self.tbl_marker indexPathForSelectedRow] animated:YES];
+}
+
+</code></pre>
+
+<h2 id="toc_2">就尼玛0.5进位问题导致cell高度不对，uitextview不显示文字</h2>
+
+<pre><code>//这里返回的height 是float 不能随意改成int
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+if (indexPath.section==1) {
+   return 108;
+}else
+{
+//这里返回的height 是float 不能随意改成int
+//如果返回int 会导致舍去0.5个单位 导致uitextview 高度被舍去1px 导致不显示文字
+   float height =  [tableView fd_heightForCellWithIdentifier:@&quot;cell&quot; configuration:^(EditMarkerExpandableTextCellTableViewCell* cell) {
+       MarkerAttr* attr = [self.attrArray objectAtIndex:indexPath.row];
+
+       cell.textView.text = [self.dataDic objectForKey:attr.key];
+
+   }];
+
+   return height;
+}
+return 100;
+
+}
+
+</code></pre>
+
+<h2 id="toc_3">获取被点击view所在的UITableViewCell</h2>
+
+<p><strong><em>原因</em></strong>：由于IOS系统不同，不能使用<code>LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[[view superview ] superview]</code>来获取cell，因为contentview和cell之间在不同版本里相隔了一个其他view</p>
+
+<p>使用如下代码解决问题：</p>
+
+<pre><code>CGPoint buttonPosition = [view convertPoint:CGPointZero toView:self.tbv_layers];
+NSIndexPath *indexPath = [self.tbv_layers indexPathForRowAtPoint:buttonPosition];
+LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[self.tbv_layers cellForRowAtIndexPath:indexPath];
+
+</code></pre>
+
+<h2 id="toc_4">利用UITable的group特性来设置cell之间的间距并取消header的悬浮效果</h2>
+
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = 10; //这里是我的headerView和footerView的高度
+    if (_tableView.contentOffset.y&lt;=sectionHeaderHeight&amp;&amp;_tableView.contentOffset.y&gt;=0) {
+        _tableView.contentInset = UIEdgeInsetsMake(-_tableView.contentOffset.y, 0, 0, 0);
+    } else if (_tableView.contentOffset.y&gt;=sectionHeaderHeight) {
+        _tableView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_5">刷新单个cell或者section</h2>
+
+<pre><code>//一个section刷新      
+NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];      
+[tableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];      
+//一个cell刷新      
+NSIndexPath *indexPath=[NSIndexPath indexPathForRow:3 inSection:0];      
+[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone]; 
+
+</code></pre>
+
+<h2 id="toc_6">UITableView 去掉底部多余分割线</h2>
+
+<pre><code>self.tableView.tableFooterView=[[UIView alloc]init];//关键语句     
+
+</code></pre>
+
+<h2 id="toc_7">UITableViewCell 选中时背景颜色改变</h2>
+
+<pre><code>tempCell.selectedBackgroundView = [[UIView alloc] initWithFrame:tempCell.frame] ;
+tempCell.selectedBackgroundView.backgroundColor = [ColorChangeUtil getColor:@&quot;#f1f1f1&quot;];
+
+</code></pre>
+
+<h2 id="toc_8">避免出现uitableview左移</h2>
+
+<pre><code>-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
+    {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_9">避免cell重用</h2>
+
+<p>通过为每个cell指定不同的重用标识符(reuseIdentifier)来解决。<br/>
+重用机制是根据相同的标识符来重用cell的，标识符不同的cell不能彼此重用。于是我们将每个cell的标识符都设置为不同，就可以避免不同cell重用的问题了。</p>
+
+<pre><code> NSString *ID = [NSString stringWithFormat:@&quot;Cell%ld%ld&quot;, [indexPath section], [indexPath row]];//以indexPath来唯一确定cell
+AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[AddGroupMemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+
+</code></pre>
+
+<h2 id="toc_10">使用FDCELL和xib配合加载自定义cell 约束警告的错误</h2>
+
+<p><code>self.tableView.estimatedRowHeight = 200;//预算行高</code>如果不加这句话控制台会报警告错误<br/>
+<code>objc<br/>
+&lt;NSLayoutConstraint:0x154f256f0 UILabel:0x159460f80.leading == UITableViewCellContentView:0x159460e00.leading + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x154f285e0 SZTextView:0x1557b1200.leading == UILabel:0x159460f80.leading&gt;,<br/>
+&lt;NSLayoutConstraint:0x159470c20 UITableViewCellContentView:0x159460e00.trailing == SZTextView:0x1557b1200.trailing + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x1561857d0 UITableViewCellContentView:0x159460e00.width == 0&gt;,<br/>
+</code></p>
+
+<p>总是提示<code>contentview.width</code>的宽度为0</p>
+
+<h2 id="toc_11">FDCELL 打印log</h2>
+
+<pre><code>self.tableView.fd_debugLogEnabled = YES;//开启log打印高度
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729749117844.html">UIScreen</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:41:51+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">Controller中非成员变量window添加到窗口不显示</h2>
+
+<p><strong>不显示：</strong></p>
+
+<pre><code>-(void)gotoSetting
+{
+    UIWindow* window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]    bounds]];
+    window.windowLevel = UIWindowLevelStatusBar+1;
+    window.backgroundColor =[UIColor redColor];
+    window.hidden = NO;
+    [window makeKeyAndVisible];
+}
+
+</code></pre>
+
+<p><strong>显示</strong></p>
+
+<pre><code>@property (nonatomic, strong) UIWindow* window;
+-(void)gotoSetting
+{
+    _window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    _window.windowLevel = UIWindowLevelStatusBar+1;
+    _window.backgroundColor =[UIColor redColor];
+    _window.hidden = NO;
+    [_window makeKeyAndVisible];
+}
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
 		  	<h1 class="entry-title"><a href="14729748694506.html">UINavigationController</a></h1>
 			<p class="meta"><time datetime="2016-09-04T15:41:09+08:00" 
 			pubdate data-updated="true">2016/9/4</time></p>
@@ -1041,279 +1308,6 @@ Caused by: java.lang.LinkageError: com/alibaba/fastjson/parser/ParserConfig
 		
 
 	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729740974801.html">AFNetworking</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:28:17+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0"><code>AFNetWoring</code> 同步方法的使用：</h2>
-
-<pre><code>NSURL* url = [[NSURL alloc] initWithString:[HOST stringByAppendingString:marker.icon.url]];
-
-NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-[request setValue:@&quot;http://www.dituwuyou.com&quot; forHTTPHeaderField:@&quot;Referer&quot;];
-
-AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-operation.responseSerializer = [AFImageResponseSerializer serializer];
-
-/* 最终继承自 NSOperation，看到这个，大家可能就知道了怎么实现同步的了，也就是利用 NSOperation 来做的同步请求 */
-
-[operation start];
-//同步实现
-[operation waitUntilFinished];
-
-UIImage* image = (UIImage*)[operation responseObject];
-if(image!=nil)
-{
-  //做处理
-}
-return nil;
-
-</code></pre>
-
-<p>同步上传图片</p>
-
-<pre><code>AFHTTPRequestOperationManager *manager = [self getInitAFManager];
-
-[manager.requestSerializer setValue:[self getUserToken] forHTTPHeaderField:TOKEN];
-NSMutableURLRequest* request =  [manager.requestSerializer multipartFormRequestWithMethod:@&quot;POST&quot; URLString:[HOST stringByAppendingString:@&quot;/api/imgs/upload&quot;] parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt;  _Nonnull formData) {
-        [formData appendPartWithFileData:imgData name:@&quot;Filedata&quot; fileName:@&quot;pic&quot; mimeType:@&quot;image/jpg&quot;];
-    } error:nil];
-
-AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    //返回结果json格式化
-requestOperation.responseSerializer = manager.responseSerializer;
-[requestOperation start];
-[requestOperation waitUntilFinished];
-
-/* 请求结果 */
-NSDictionary *result = (NSDictionary *)[requestOperation responseObject];
-block(YES,result);
-
-</code></pre>
-
-<h2 id="toc_1">AFNetWorking 传递数组参数</h2>
-
-<p>要求发送的格式</p>
-
-<pre><code>POST /api/maps/KAyzFxCAsYV9YfwII1KiTA/invite HTTP/1.1
-Host: xxxxxxx
-Token: DCA6smjmEU_Qcc8zT_E7
-authenticity_token: m4XIJxCDw7mxNk/Eu7FbvS/H+jb09gi7cPBB5CUceVVC+fNdV0QAvXhtxrZDrl+uzqKmgBoUyghIU+FvkgkLVg==
-Cache-Control: no-cache
-Postman-Token: 71c7694b-0219-0579-1c0f-370e9eb9623a
-Content-Type: application/x-www-form-urlencoded
-
-phones[]=18610187749&amp;phones[]=18518700870
-
-</code></pre>
-
-<pre><code>AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//manager 要使用默认的requestSerialize
-//即要设置Content-Type: application/x-www-form-urlencoded
-manager.responseSerializer = [AFJSONResponseSerializer new];
-[manager.requestSerializer setValue:@&quot;iOS&quot; forHTTPHeaderField:@&quot;Source&quot;];
-[manager.requestSerializer setValue:[self getUserToken] forHTTPHeaderField:TOKEN];
-
-NSArray* array= @[phone];
-NSDictionary *parameters = @{@&quot;phones&quot;: array};
-[manager.requestSerializer setValue:self.getUserToken forHTTPHeaderField:TOKEN];
-NSString* url = [HOST stringByAppendingString:[NSString stringWithFormat:@&quot;/api/maps/%@/invite&quot;,mid]];
-[manager POST:url parameters:parameters success:success_block failure:fail_block];
-
-</code></pre>
-
-<h2 id="toc_2">AFNetWorking下载图片</h2>
-
-<p>使用<code>AFNetworking</code>下载图片得到的<code>image</code>默认被压缩，设置<code>AFImageResponseSerializer</code>的<code>ImageScale</code>属性可以决定是否压缩</p>
-
-<pre><code>NSURL *url = [[NSURL alloc] initWithString:[OSS_HOST stringByAppendingString:icon.url == nil ? @&quot;&quot; : icon.url]];
-
-NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
-AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-AFImageResponseSerializer *imageResponseSerializer = [AFImageResponseSerializer serializer];
-
-  //af 下载图片 会被压缩屏幕尺寸倍  设置有不会压缩
- //[imageResponseSerializer setImageScale:1.0];  
-
-operation.responseSerializer = imageResponseSerializer;
-
-[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-
-    UIImage *image = (UIImage *) [operation responseObject];
-
- } failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-
-}];
-[operation start];
-
-</code></pre>
-
-<p>如果不设置<code>[imageResponseSerializer setImageScale:1.0]</code>，<code>responseSerializer</code>的参数如下图：</p>
-
-<p><img src="media/14729740974801/QQ20160814-0.png" alt="QQ20160814-0"/></p>
-
-<h2 id="toc_3">Domain=NSURLErrorDomain Code=-1012 和 In order to validate a domain name for self signed certificates, you MUST use pinning错误</h2>
-
-<pre><code class="language-objc">AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-//解决“Error Domain=NSURLErrorDomain Code=-1012 &quot;The operation couldn’t be completed.”的问题，AFNetworking 2.0默认在检查SSL证书的时候比较严格
-manager.securityPolicy.allowInvalidCertificates = YES;
-manager.securityPolicy.validatesDomainName = NO;
-</code></pre>
-
-<h2 id="toc_4">Error Domain=NSCocoaErrorDomain Code=3840 &quot;The operation couldn’t be completed. (Cocoa error 3840.)&quot; (JSON text did not start with array or object and option to allow fragments not set.) UserInfo=0x9152780 {NSDebugDescription=JSON text did not start with array or object and option to allow fragments not set.}</h2>
-
-<p>这个问题需要对<code>AFHTTPRequestOperationManager</code>添加<code>requestSerializer</code>和<code>responseSerializer</code></p>
-
-<pre><code class="language-objc">manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-</code></pre>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729740054667.html">Sqlite</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:26:45+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0">SQLITE 数据类型</h2>
-
-<p>一般数据采用的固定的静态数据类型，而SQLite采用的是动态数据类型，会根据存入值自动判断。</p>
-
-<p>SQLite具有以下五种数据类型：</p>
-
-<blockquote>
-<ol>
-<li>NULL：空值。</li>
-<li>INTEGER：带符号的整型，具体取决有存入数字的范围大小。</li>
-<li>REAL：浮点数字，存储为8-byte IEEE浮点数。</li>
-<li>TEXT：字符串文本。</li>
-<li>BLOB：二进制对象。</li>
-<li>INTEGER : 代替bool类型</li>
-</ol>
-</blockquote>
-
-<p>但实际上，sqlite3也接受如下的数据类型：</p>
-
-<blockquote>
-<p>smallint: 16 位元的整数。</p>
-
-<p>interger: 32 位元的整数。</p>
-
-<p>decimal(p,s) :p 精确值和 s 大小的十进位整数，精确值p是指全部有几个数(digits)大小值，s是指小数点後有几位数。如果没有特别指定，则系统会设为 p=5; s=0 。</p>
-
-<p>float : 32位元的实数。</p>
-
-<p>double : 64位元的实数。</p>
-
-<p>char(n) : n 长度的字串，n不能超过 254。</p>
-
-<p>varchar(n) :长度不固定且其最大长度为 n 的字串，n不能超过 4000。</p>
-
-<p>graphic(n) 和 char(n) 一样，不过其单位是两个字元 double-bytes， n不能超过127。这个形态是为了支援两个字元长度的字体，例如中文字。</p>
-
-<p>vargraphic(n): 可变长度且其最大长度为 n 的双字元字串，n不能超过 2000</p>
-
-<p>date : 包含了 年份、月份、日期。</p>
-
-<p>time : 包含了 小时、分钟、秒。</p>
-
-<p>timestamp :包含了 年、月、日、时、分、秒、千分之一秒。</p>
-
-<p>datetime 包含日期时间格式，必须写成&#39;2010-08-05&#39;不能写为&#39;2010-8-5&#39;，否则在读取时会产生错误！</p>
-</blockquote>
-
-<p><strong><code>Sqlite常用数据类型</code></strong></p>
-
-<p>这句话本身就有问题，因为：SQLite是<strong><code>无类型</code></strong>的. 这意味着你可以保存任何类型的数据到你所想要保存的任何表的任何列中, 无论这列声明的数据类型是什么(只有自动递增Integer Primary Key才有用). 对于SQLite来说对字段不指定类型是完全有效的. 如:</p>
-
-<blockquote>
-<p>Create Table ex3(a, b, c);</p>
-</blockquote>
-
-<p>即使SQLite允许忽略数据类型, 但是仍然建议在你的Create Table语句中指定数据类型. 因为数据类型对于你和其他的程序员交流, 或者你准备换掉你的数据库引擎是非常有用的. SQLite支持常见的数据类型, 如:<br/>
-<code>sql<br/>
-CREATE TABLE ex2(<br/>
-a VARCHAR(10),<br/>
-b NVARCHAR(15),<br/>
-c TEXT,<br/>
-d INTEGER,<br/>
-e FLOAT,<br/>
-f BOOLEAN,<br/>
-g CLOB,<br/>
-h BLOB,<br/>
-i TIMESTAMP,<br/>
-j NUMERIC(10,5),<br/>
-k VARYING CHARACTER (24),<br/>
-l NATIONAL VARYING CHARACTER(16)<br/>
-);<br/>
-</code></p>
-
-<h2 id="toc_1"><code>char</code>、<code>varchar</code>、<code>text</code>和<code>nchar</code>、<code>nvarchar</code>、<code>ntext</code>的区别</h2>
-
-<ol>
-<li><p><code>CHAR</code>。CHAR存储定长数据很方便，CHAR字段上的索引效率级高，比如定义char(10)，那么不论你存储的数据是否达到了10个字节，都要占去10个字节的空间,不足的自动用空格填充。</p></li>
-<li><p><code>VARCHAR</code>。存储变长数据，但存储效率没有CHAR高。如果一个字段可能的值是不固定长度的，我们只知道它不可能超过10个字符，把它定义为 VARCHAR(10)是最合算的。VARCHAR类型的实际长度是它的值的实际长度+1。为什么“+1”呢？这一个字节用于保存实际使用了多大的长度。从空间上考虑，用varchar合适；从效率上考虑，用char合适，关键是根据实际情况找到权衡点。</p></li>
-<li><p><code>TEXT</code>。text存储可变长度的非Unicode数据，最大长度为231-1(2,147,483,647)个字符。</p></li>
-<li><p><code>NCHAR、NVARCHAR、NTEXT</code>。这三种从名字上看比前面三种多了个“N”。它表示存储的是Unicode数据类型的字符。我们知道字符中，英文字符只需要一个字节存储就足够了，但汉字众多，需要两个字节存储，英文与汉字同时存在时容易造成混乱，Unicode字符集就是为了解决字符集这种不兼容的问题而产生的，它所有的字符都用两个字节表示，即英文字符也是用两个字节表示。nchar、nvarchar的长度是在1到4000之间。和char、varchar比较起来，nchar、nvarchar则最多存储4000个字符，不论是英文还是汉字；而char、varchar最多能存储8000个英文，4000个汉字。可以看出使用nchar、nvarchar数据类型时不用担心输入的字符是英文还是汉字，较为方便，但在存储英文时数量上有些损失。</p></li>
-</ol>
-
-<p><strong>所以一般来说，如果含有中文字符，用nchar/nvarchar，如果纯英文和数字，用char/varchar。</strong></p>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14729739074110.html">位移计算</a></h1>
-			<p class="meta"><time datetime="2016-09-04T15:25:07+08:00" 
-			pubdate data-updated="true">2016/9/4</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<pre><code>&lt;&lt;带符号左移 (n&lt;&lt;2 将整型值带符号左移2位 ） 
-&gt;&gt;带符号右移 (n&gt;&gt;2 将整型值带符号右移2位 ） 
-&gt;&gt;&gt;无符号右移 (n&gt;&gt;&gt;2 将整型值无符号右移2位 ）
-
-&lt;&lt;(左移) 
-    将一个运算符对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0） 
-     操作数每左移一位，相当于该数乘以2 
-例如：3&lt;&lt;2 后，结果为12
-此运算符的意思就是把3的二进制位全部左移两位，右边补2个0。3的二进制位11，左移两位后，右边补2个0就是1100。1100转为10进制为12。 
-     说到底左移操作就相当于2的2次方×3。 每左移1位次方就增1 
-&gt;&gt;(右移) 
-将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。 
-操作数每右移一位，相当于该数除以2 
-例如：9&gt;&gt;1 后，结果为4 
-9的二进制为1001，右移1位后，左正数补0，右边丢弃。结果为 0100。转为10进制后为4。
-</code></pre>
-
-
-		</div>
-
-		
-
-	</article>
   
 	<div class="pagination">
 	 <a class="prev" href="all_5.html">&larr; Older</a> 
@@ -1365,12 +1359,44 @@ l NATIONAL VARYING CHARACTER(16)<br/>
 	        
 	        
 	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
 	   
 	  </ul>
 	</section>
 	<section>
 	  <h1>Recent Posts</h1>
 	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
 	  
 	      
 		      <li class="post">
@@ -1381,24 +1407,6 @@ l NATIONAL VARYING CHARACTER(16)<br/>
 	      
 		      <li class="post">
 		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14924298431586.html">VSCode 智能感知配置</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14917937079752.html">销售易Pass</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="14914632553537.html">PM2日志分割</a>
 		      </li>
 	     
 	  
