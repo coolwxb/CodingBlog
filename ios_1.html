@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  ios - 小小程序猿
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div class="blog-index">
+
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729761281587.html">模态视图跳转到navigationcontroller的其他视图</a></h1>
+			<p class="meta"><time datetime="2016-09-04T16:02:08+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<pre><code>UIViewController *rootVC = self.presentingViewController;
+    while (rootVC.presentingViewController) {
+        rootVC = rootVC.presentingViewController;
+    }
+    [rootVC dismissViewControllerAnimated:YES completion:nil];
+    if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        for (UIViewController* controller in rootVC.childViewControllers) {
+            if ([controller isKindOfClass:[MapViewController class]]) {
+                [(UINavigationController *)rootVC popToViewController:controller animated:YES];
+            }
+        }
+    }
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729760930473.html">Sqlite 存储自定义对象</a></h1>
+			<p class="meta"><time datetime="2016-09-04T16:01:33+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>在iOS中如果想保存<code>自定义</code>对象，要让自定义对象实现<code>NSCoding</code>接口并实现方法<code>-(id)initWithCoder:(NSCoder *)coder</code>和<code>-(void)encodeWithCoder:(NSCoder *)coder;</code></p>
+
+<pre><code>@interface RegUserInfo : NSObject &lt;NSCoding&gt;   
+@property (nonatomic, strong) NSString *siteName；
+@end  
+@@implementation RegUserInfo
+-(void) encodeWithCoder:(NSCoder *)encoder  {  
+    [encoder encodeObject:siteName forKey:@&quot;siteName&quot;];  
+} 
+-(id) initWithCoder:(NSCoder *)decoder {  
+    siteName = [decoder decodeObjectForKey:@&quot;siteName&quot;];    
+    return self;  
+}  
+//两个方法中的key必须一致
+@end
+
+</code></pre>
+
+<p>如果项目中使用了<code>mjextention</code>，可以直接在<code>.m</code>文件中调用<code>MJCodingImplementation</code></p>
+
+<pre><code>
+@interface MarkerUniformConfig : NSObject&lt;NSCoding&gt;//需要继承NSCoding
+@property(nonatomic,strong)NSString* icon_id;
+@end
+
+@implementation MarkerUniformConfig
+MJCodingImplementation//这里会自动完成属性序列化过程
+@end
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729760204542.html">iOS角度与弧度转换</a></h1>
+			<p class="meta"><time datetime="2016-09-04T16:00:20+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>在iOS中图片的旋转单位为<strong>弧度</strong>而不是<del>角度</del>，所以经常会在两者之间进行转换</p>
+
+<ol>
+<li>弧度转角度</li>
+</ol>
+
+<pre><code>#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
+
+</code></pre>
+
+<ol>
+<li>角度转弧度</li>
+</ol>
+
+<pre><code>#define DEGREES_TO_RADIANS(angle) ((angle) / 180.20 * M_PI)
+
+</code></pre>
+
+<p>摘自：<a href="http://www.cnblogs.com/pengyingh/articles/2347765.html">角度与弧度的转换</a></p>
+
+<h2 id="toc_0">角度弧度定义</h2>
+
+<p>“ 弧度”和“度”是度量角大小的两种不同的单位。</p>
+
+<h3 id="toc_1">度</h3>
+
+<p>两条射线从圆心向圆周射出，形成一个夹角和夹角正对的一段弧。当这段弧长正好等于圆周长的360分之一时，两条射线的夹角的大小为1度。</p>
+
+<h3 id="toc_2">弧度</h3>
+
+<p>两条射线从圆心向圆周射出，形成一个夹角和夹角正对的一段弧。当这段弧长正好等于圆的半径时，两条射线的夹角大小为1弧度。</p>
+
+<p><img src="media/14729760204542/14691771033633.jpg" alt="14691771033633"/></p>
+
+<p><strong>口诀：</strong>:π是π弧度，180是180度。我要化成什么单位，就要把有这个单位的放在分子上。也就是说我要化成弧度，就要把π弧度放在分子上－－乘以π/180</p>
+
+<p>转自：<a href="http://blog.csdn.net/diyagoanyhacker/article/details/6606147">弧度与角度的关系</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729759839665.html">JokeClient-Swift 仿写学习</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:59:43+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">required init?(coder aDecoder: NSCoder) <strong>可失败构造器</strong></h2>
+
+<blockquote>
+<p>在init关键字后面添加问号(init?)。<br/>
+可失败构造器会创建一个类型为自身类型的可选类型的对象。你通过return nil语句来表明可失败构造器在何种情况下应该“失败”。</p>
+</blockquote>
+
+<pre><code>struct Animal {
+    let species: String
+    init?(species: String) {
+        if species.isEmpty { return nil }
+        self.species = species
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_1">2、 as、as!、as?三种类型转换操作符使用详解</h2>
+
+<h3 id="toc_2"><strong>as使用场合</strong></h3>
+
+<h4 id="toc_3">1、从派生类转换为基类，向上转型（upcasts）</h4>
+
+<pre><code>    class Animal {}
+    class Cat: Animal {}
+    let cat = Cat()
+    let animal = cat as Animal
+
+</code></pre>
+
+<h4 id="toc_4">2.消除二义性，数值类型转换</h4>
+
+<pre><code>let num1 = 42 as CGFloat
+let num2 = 42 as Int
+let num3 = 42.5 as Int
+let num4 = (42 / 2) as Double
+
+</code></pre>
+
+<h4 id="toc_5">3. switch 语句中进行模式匹配</h4>
+
+<p>如果不知道一个对象是什么类型，你可以通过switch语法检测它的类型，并且尝试在不同的情况下使用对应的类型进行相应的处理</p>
+
+<pre><code>switch animal {
+case let cat as Cat:
+    print(&quot;如果是Cat类型对象，则做相应处理&quot;)
+case let dog as Dog:
+    print(&quot;如果是Dog类型对象，则做相应处理&quot;)
+default: break
+}
+
+</code></pre>
+
+<h3 id="toc_6">as!使用场合</h3>
+
+<p>as? 和 as! 操作符的转换规则完全一样。但 as? 如果转换不成功的时候便会返回一个 nil 对象。成功的话返回可选类型值（optional），需要我们拆包使用。<br/>
+由于 as? 在转换失败的时候也不会出现错误，所以对于如果能确保100%会成功的转换则可使用 as!，否则使用 as?</p>
+
+<pre><code>
+let animal:Animal = Cat()
+
+if let cat = animal as? Cat{
+    print(&quot;cat is not nil&quot;)
+} else {
+    print(&quot;cat is nil&quot;)
+}
+
+</code></pre>
+
+<p><strong>转自：</strong><a href="http://www.hangge.com/blog/cache/detail_1089.html">Swift - as、as!、as?三种类型转换操作符使用详解（附样例）</a></p>
+
+<h2 id="toc_7">方法的局部参数名称和外部参数名称</h2>
+
+<p>函数参数可以同时有一个局部名称（在函数体内部使用）和一个外部名称（在调用函数时使用），详情参见函数的外部参数名。方法参数也一样（因为方法就是函数，只是这个函数与某个类型相关联了）。但是，方法和函数的局部名称和外部名称的默认行为是不一样的。</p>
+
+<h2 id="toc_8">STATIC 和 CLASS</h2>
+
+<p>Swift 中表示 “类型范围作用域” 这一概念有两个不同的关键字，它们分别是 static 和 class。</p>
+
+<p>有一个比较特殊的是 protocol。在 Swift 中 class，struct 和 enum 都是可以实现某个 protocol 的。那么如果我们想在 protocol 里定义一个类型域上的方法或者计算属性的话，应该用哪个关键字呢？答案是使用 static 进行定义。在使用的时候，struct 或 enum 中仍然使用 static，而在 class 里我们既可以使用 class 关键字，也可以用 static，它们的结果是相同的</p>
+
+<p>现在只需要记住结论，在任何时候使用 static 应该都是没有问题的。</p>
+
+<p>摘自：<a href="http://swifter.tips/static-class/">STATIC 和 CLASS</a></p>
+
+<h2 id="toc_9">ANY 和 ANYOBJECT</h2>
+
+<p>Any 和 AnyObject 是 Swift 中两个妥协的产物，也是很让人迷惑的概念。</p>
+
+<blockquote>
+<p>AnyObject 可以代表任何 class 类型的实例<br/>
+Any 可以表示任意类型，甚至包括方法 (func) 类型</p>
+</blockquote>
+
+<p>Swift 最主要的用途依然是使用 Cocoa 框架进行 app 开发，因此为了与 Cocoa 架构协作，将原来 id 的概念使用了一个类似的，可以代表任意 class 类型的 AnyObject 来进行替代。</p>
+
+<p>在 Swift 中编译器不仅不会对 AnyObject 实例的方法调用做出检查，甚至对于 AnyObject 的所有方法调用都会返回 Optional 的结果。</p>
+
+<p>Swift 中所有的基本类型，包括 Array 和 Dictionary 这些传统意义上会是 class 的东西，统统都是 struct 类型，并不能由 AnyObject 来表示，于是 Apple 提出了一个更为特殊的 Any，除了 class 以外，它还可以表示包括 struct 和 enum 在内的所有类型。</p>
+
+<p>摘自：<a href="http://swifter.tips/any-anyobject/">ANY 和 ANYOBJECT</a></p>
+
+<h2 id="toc_10">SELECTOR</h2>
+
+<p>在 Swift 中没有 @selector 了，取而代之，从 Swift 2.2 开始我们使用 #selector 来从暴露给 Objective-C 的代码中获取一个 selector。</p>
+
+<pre><code>
+func callMe() {
+    //...
+}
+
+func callMeWithParam(obj: AnyObject!) {
+    //...
+}
+func turnByAngle(theAngle: Int, speed: Float) {
+    //...
+}
+
+let someMethod = #selector(callMe)
+let anotherMethod = #selector(callMeWithParam(_:))
+let method = #selector(turnByAngle(_:speed:))
+
+</code></pre>
+
+<p>最后需要注意的是，selector 其实是 Objective-C runtime 的概念，如果你的 selector 对应的方法只在 Swift 中可见的话 (也就是说它是一个 Swift 中的 private 方法)，在调用这个 selector 时你会遇到一个 unrecognized selector 错误：</p>
+
+<pre><code>//错误：
+private func callMe() {
+     //...
+}
+
+NSTimer.scheduledTimerWithTimeInterval(1, target: self,
+            selector:#selector(callMe), userInfo: nil, repeats: true)
+
+//正确          
+@objc private func callMe() {
+    //...
+}
+
+NSTimer.scheduledTimerWithTimeInterval(1, target: self,
+             selector:#selector(callMe), userInfo: nil, repeats: true)
+
+</code></pre>
+
+<p>最后，值得一提的是，如果方法名字在方法所在域内是唯一的话，我们可以简单地只是用方法的名字来作为 #selector 的内容。相比于前面带有冒号的完整的形式来说，这么写起来会方便一些：</p>
+
+<pre><code>
+let someMethod = #selector(callMe)
+let anotherMethod = #selector(callMeWithParam)
+let method = #selector(turnByAngle)
+
+</code></pre>
+
+<p>但是，如果在同一个作用域中存在同样名字的两个方法，即使它们的函数签名不相同，Swift 编译器也不允许编译通过：</p>
+
+<pre><code>
+func commonFunc() {
+
+}
+
+func commonFunc(input: Int) -&gt; Int {
+    return input
+}
+
+let method = #selector(commonFunc)
+// 编译错误，`commonFunc` 有歧义
+
+</code></pre>
+
+<p>对于这种问题，我们可以通过将方法进行强制转换来使用：</p>
+
+<pre><code>
+let method1 = #selector(commonFunc as ()-&gt;())
+let method2 = #selector(commonFunc as Int-&gt;Int)
+
+</code></pre>
+
+<p><strong>转自：<a href="http://swifter.tips/selector/">SELECTOR</a></strong></p>
+
+<h2 id="toc_11">guard</h2>
+
+<p>swift 2.0 带来了 <code>guard</code> 语句，这里主要用来与 <code>if</code> 来做比较</p>
+
+<pre><code>
+//好的写法
+func createPerson() throws -&gt; Person {
+        guard let age = age, let name = name
+            where name.characters.count &gt; 0 &amp;&amp; age.characters.count &gt; 0 else {
+                throw InputError.InputMissing
+        }
+
+        guard let ageFormatted = Int(age) else {
+            throw InputError.AgeIncorrect
+        }
+
+        return Person(name: name, age: ageFormatted)
+    }
+
+//差的写法
+func createPersonNoGuard() -&gt; Person? {
+    if let age = age, let name = name
+        where name.characters.count &gt; 0 &amp;&amp; age.characters.count &gt; 0
+    {
+        if let ageFormatted = Int(age) {
+            return Person(name: name, age: ageFormatted)
+        } else {
+            return nil
+        }
+    } else {
+        return nil
+    }
+}    
+
+</code></pre>
+
+<p>使用 guard 可以很容易地看到 Person 实例的返回值，这样就能明白这个方法的主要目的是什么</p>
+
+<p><strong>转自：<a href="http://swift.gg/2015/08/06/swift-guard-better-than-if/">为什么 guard 比 if 好</a></strong></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729759515568.html">App应考虑到的一些东西</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:59:11+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>摘自：<a href="http://casatwy.com/iosying-yong-jia-gou-tan-kai-pian.html">iOS应用架构谈<br/>
+</a></p>
+
+<pre><code>•   如何让业务开发工程师方便安全地调用网络API？然后尽可能保证用户在各种网络环境下都能有良好的体验？
+•   页面如何组织，才能尽可能降低业务方代码的耦合度？尽可能降低业务方开发界面的复杂度，提高他们的效率？
+•   当数据有在本地存取的需求的时候，如何能够保证数据在本地的合理安排？如何尽可能地减小性能消耗？
+•   iOS应用有审核周期，如何能够通过不发版本的方式展示新的内容给用户？如何修复紧急bug？
+
+</code></pre>
+
+<p>针对团队：<br/>
+• 收集用户数据，给产品和运营提供参考<br/>
+• 合理地组织各业务方开发的业务模块，以及相关基础模块<br/>
+• 每日app的自动打包，提供给QA工程师的测试工具</p>
+
+<p>第一步：搞清楚要解决哪些问题，并找到解决这些问题的充要条件<br/>
+第二步：问题分类，分模块<br/>
+第三步：搞清楚各问题之间的依赖关系，建立好模块交流规范并设计模块<br/>
+第四步：推演预测一下未来可能的走向，必要时添加新的模块，记录更多的基础数据以备未来之需<br/>
+第五步：先解决依赖关系中最基础的问题，实现基础模块，然后再用基础模块堆叠出整个架构<br/>
+第六步：打点，跑单元测试，跑性能测试，根据数据去优化对应的地方</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729757522229.html">OC 调用 Swift 代码</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:55:52+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>1、 创建新的OC项目工程，命名为<code>OCCallSwift</code></p>
+
+<p><img src="media/14729757522229/14671175998790.jpg" alt="14671175998790"/></p>
+
+<p>2、 新建Swift文件，如果项目中没有<code>Bridging header</code>文件的话会提示你创建</p>
+
+<p><img src="media/14729757522229/14671176603786.jpg" alt="14671176603786"/><br/>
+<img src="media/14729757522229/14671187492915.png" alt="14671187492915"/></p>
+
+<p><code>OCCallSwift-Swift.h</code>头文件</p>
+
+<p><img src="media/14729757522229/14671188837357.jpg" alt="14671188837357"/></p>
+
+<p>3、编写Swift文件代码方法</p>
+
+<pre><code>
+import Foundation
+
+class SwiftUtil: NSObject {
+    func calledByOC(info:String) -&gt; Void {
+        print(&quot;\(info) ,swift 方法被调用了&quot;)
+    }
+}
+
+</code></pre>
+
+<p>4、编写Controller文件</p>
+
+<p>导入头文件<code>#import &quot;OCCallSwift-swift.h&quot;</code>，<strong>头文件格式为 <code>项目名称-swift.h</code></strong>，之后重新编译一下工程，之后就可以像调用普通类一样调用Swift方法了。</p>
+
+<pre><code>
+#import &quot;ViewController.h&quot;
+#import &quot;OCCallSwift-swift.h&quot;
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    SwiftUtil*  util = [[SwiftUtil alloc] init];
+    [util calledByOC:@&quot;从OC 调用&quot;];
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+
+}
+
+@end
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729757201535.html">IOS常用转译字符</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:55:20+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<table>
+<thead>
+<tr>
+<th style="text-align: left">转移字符</th>
+<th style="text-align: left">含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">\b</td>
+<td style="text-align: left">退格</td>
+</tr>
+<tr>
+<td style="text-align: left">\n</td>
+<td style="text-align: left">换行</td>
+</tr>
+<tr>
+<td style="text-align: left">\r</td>
+<td style="text-align: left">回车</td>
+</tr>
+<tr>
+<td style="text-align: left">&quot;</td>
+<td style="text-align: left">双引号</td>
+</tr>
+<tr>
+<td style="text-align: left">\&#39;</td>
+<td style="text-align: left">单引号</td>
+</tr>
+<tr>
+<td style="text-align: left">&amp;&amp;</td>
+<td style="text-align: left">&amp;</td>
+</tr>
+</tbody>
+</table>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729756813818.html">xcode运行到真机报错 While reading xx/BackgroundHomeScreen_5.png pngcrush caught libpng error:</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:54:41+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>转载：<a href="http://blog.csdn.net/kafeidev/article/details/8976756">http://blog.csdn.net/kafeidev/article/details/8976756</a></p>
+
+<p>原因是提示的png并不是ps到处的png，而是手动修改jpeg后缀名为png，在模拟器上不会报错，但在真机，不识别这种所谓的“png”图片。</p>
+
+<p>解决方案：<br/>
+用ps重新导出png就ok了</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729756433762.html">时间差</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:54:03+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>转载：<a href="http://www.isaced.com/post-213.html">http://www.isaced.com/post-213.html</a></p>
+
+<pre><code>NSDate* tmpStartData = [NSDate date];
+//You code here...
+double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
+NSLog(@&quot;cost time = %f&quot;, deltaTime);
+
+</code></pre>
+
+<pre><code>NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+NSString *timeString = [NSString stringWithFormat:@&quot;%f&quot;, a];／／转为字符型
+
+</code></pre>
+
+<pre><code>#import &lt;mach/mach_time.h&gt;  // for mach_absolute_time() and friends  
+
+CGFloat BNRTimeBlock (void (^block)(void)) {  
+    mach_timebase_info_data_t info;  
+    if (mach_timebase_info(&amp;info) != KERN_SUCCESS) return -1.0;  
+
+    uint64_t start = mach_absolute_time ();  
+    block ();  
+    uint64_t end = mach_absolute_time ();  
+    uint64_t elapsed = end - start;  
+
+    uint64_t nanos = elapsed * info.numer / info.denom;  
+    return (CGFloat)nanos / NSEC_PER_SEC;  
+}
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755895496.html">BOOL / bool / Boolean / NSCFBoolean 区别</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:53:09+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<table>
+<thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Typedef</th>
+<th style="text-align: left">Header</th>
+<th style="text-align: left">True Value</th>
+<th style="text-align: left">False Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">BOOL</td>
+<td style="text-align: left">signed char</td>
+<td style="text-align: left">objc.h</td>
+<td style="text-align: left">YES</td>
+<td style="text-align: left">NO</td>
+</tr>
+<tr>
+<td style="text-align: left">bool</td>
+<td style="text-align: left">_Bool (int)</td>
+<td style="text-align: left">stdbool.h</td>
+<td style="text-align: left">true</td>
+<td style="text-align: left">false</td>
+</tr>
+<tr>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">unsigned char</td>
+<td style="text-align: left">MacTypes.h</td>
+<td style="text-align: left">True</td>
+<td style="text-align: left">False</td>
+</tr>
+<tr>
+<td style="text-align: left">NSNumber</td>
+<td style="text-align: left">__NSCFBoolean</td>
+<td style="text-align: left">Foundation.h</td>
+<td style="text-align: left">@(YES)</td>
+<td style="text-align: left">@(NO)</td>
+</tr>
+<tr>
+<td style="text-align: left">CFBooleanRef</td>
+<td style="text-align: left">struct</td>
+<td style="text-align: left">CoreFoundation.h</td>
+<td style="text-align: left">kCFBooleanTrue</td>
+<td style="text-align: left">kCFBooleanFalse</td>
+</tr>
+</tbody>
+</table>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755573166.html">解决xcode升级之后安装的插件失效</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:52:37+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>code升级之后uuid会发生变化，致使原来的plugin失效</p>
+
+<p><strong><em>解决方案</em></strong></p>
+
+<ul>
+<li><p>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add <code>defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID</code></p></li>
+<li><p>find every plugin&#39;s Info.plist</p></li>
+<li><p>default read current UUID of XCode</p></li>
+<li><p>default write current UUID of XCode into plugin&#39;s DVTPlugInCompatibilityUUIDs</p></li>
+</ul>
+
+<p><em>from:</em><a href="http://stackoverflow.com/questions/22324303/the-plugin-didnt-work-on-xcode-5-1">stackoverflow</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729755264473.html">四叉树算法</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:52:06+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong><em>转载：<a href="http://blog.csdn.net/zhanxinhang/article/details/6706217">http://blog.csdn.net/zhanxinhang/article/details/6706217</a></em></strong></p>
+
+<p><a href="http://git.oschina.net/lbs/iOS_3D_ClusterAnnotation">高德iOS聚合实例</a></p>
+
+<p><a href="http://git.oschina.net/lbs/Android_CustomMarker">高德Android聚合实例</a></p>
+
+<p>四叉树或四元树也被称为Q树（Q-Tree）。四叉树广泛应用于图像处理、空间数据索引、2D中的快速碰撞检测、存储稀疏数据等，而八叉树（Octree）主要应用于3D图形处理。对游戏编程，这会很有用。本文着重于对四叉树与八叉树的原理与结构的介绍，帮助您在脑海中建立四叉树与八叉树的基本思想。本文并不对这两种数据结构同时进行详解，而只对四叉树进行详解，因为八叉树的建立可由四叉树的建立推得。</p>
+
+<p>四叉树与八叉树的结构与原理<br/>
+四叉树（Q-Tree）是一种树形数据结构。四叉树的定义是：它的每个节点下至多可以有四个子节点，通常把一部分二维空间细分为四个象限或区域并把该区域里的相关信息存入到四叉树节点中。这个区域可以是正方形、矩形或是任意形状。以下为四叉树的二维空间结构(左)和存储结构(右)示意图（注意节点颜色与网格边框颜色）：</p>
+
+<p><img src="media/14729755264473/69130165.jpg" alt=""/></p>
+
+<p>四叉树的每一个节点代表一个矩形区域（如上图黑色的根节点代表最外围黑色边框的矩形区域），每一个矩形区域又可划分为四个小矩形区域，这四个小矩形区域作为四个子节点所代表的矩形区域。<br/>
+较之四叉树，八叉树将场景从二维空间延伸到了三维空间。八叉树（Octree）的定义是：若不为空树的话，树中任一节点的子节点恰好只会有八个，或零个，也就是子节点不会有0与8以外的数目。那么，这要用来做什么？想象一个立方体，我们最少可以切成多少个相同等分的小立方体？答案就是8个。如下八叉树的结构示意图所示：</p>
+
+<p><img src="media/14729755264473/8882925.jpg" alt=""/></p>
+
+<pre><code>/* 一个矩形区域的象限划分：:
+
+       UL(1)   |    UR(0)
+     ----------|-----------
+       LL(2)   |    LR(3)
+以下对该象限类型的枚举
+*/
+typedef enum
+{
+    UR = 0,
+    UL = 1,
+    LL = 2,
+    LR = 3
+}QuadrantEnum;
+
+/* 矩形结构 */
+typedef struct quadrect_t
+{    
+    double  left, 
+            top, 
+            right, 
+            bottom;
+}quadrect_t;
+
+/* 四叉树节点类型结构 */
+typedef struct quadnode_t
+{
+    quadrect_t    rect;          //节点所代表的矩形区域
+    list_t        *lst_object;   //节点数据, 节点类型一般为链表，可存储多个对象
+    struct  quadnode_t  *sub[4]; //指向节点的四个孩子 
+}quadnode_t;
+
+/* 四叉树类型结构 */
+typedef struct quadtree_t
+{
+    quadnode_t  *root;
+    int         depth;           // 四叉树的深度                    
+}quadtree_t;
+
+</code></pre>
+
+<h4 id="toc_0">四叉树的建立</h4>
+
+<p>利用四叉树分网格，如本文的第一张图，根据左图的网格图形建立如右图所示的完全四叉树。</p>
+
+<p><strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadTreeBuild ( depth, rect )
+   {
+QuadTree-&gt;depth = depth;
+
+/*创建分支，root树的根，depth深度，rect根节点代表的矩形区域*/
+QuadCreateBranch (  root, depth, rect );
+   }
+
+Funtion QuadCreateBranch ( n, depth,rect )
+   {
+if ( depth!=0 )
+   {
+n = new node;    //开辟新节点
+n -&gt;rect = rect; //将该节点所代表的矩形区域存储到该节点中
+将rect划成四份 rect[UR], rect[UL], rect[LL], rect[LR];
+
+/*创建各孩子分支*/
+QuadCreateBranch ( n-&gt;sub[UR], depth-1, rect [UR] );
+QuadCreateBranch ( n-&gt;sub[UL], depth-1, rect [UL] );
+QuadCreateBranch ( n-&gt;sub[LL], depth-1, rect [LL] );
+QuadCreateBranch ( n-&gt;sub[LR], depth-1, rect [LR] );
+   }
+   }
+
+</code></pre>
+
+<p>假设在一个矩形区域里有N个对象，如下左图一个黑点代表一个对象，每个对象的坐标位置都是已知的，用四叉树的一个节点存储一个对象，构建成如下右图所示的四叉树。</p>
+
+<p><img src="media/14729755264473/23531676.jpg" alt=""/></p>
+
+<p>方法也是采用递归的方法对该矩形进行划分分区块，分完后再往里分，直到每一个子矩形区域里只包含一个对象为止。<br/>
+<strong>伪码：</strong></p>
+
+<pre><code>Funtion QuadtreeBuild()
+  {
+     Quadtree = {empty}；
+     For (i = 1;i&lt;n;i++)      //遍历所有对象
+{
+   QuadInsert(i, root)；//将i对象插入四叉树
+}          
+         剔除多余的节点；       //执行完上面循环后，四叉树中可能有数据为空的叶子节点需要剔除
+  }    
+
+Funtion QuadInsert(i,n)      //该函数插入后四叉树中的每个节点所存储的对象数量不是1就是0
+  {  
+     if（节点n有孩子）
+ {      
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；       
+    QuadInsert(i,c)；
+ }
+     else if（节点n存储了一个对象）
+ {
+    为n节点创建四个孩子；
+    将n节点中的对象移到它应该放置的孩子节点中；
+    通过划分区域判断i应该放置于n节点的哪一个孩子节点c；
+    QuadInsert(i,c)；
+ }
+     else if（n节点数据为空）    
+ {
+    将i存储到节点n中；
+ }
+  } 
+
+</code></pre>
+
+<h4 id="toc_1">用四叉树查找某一对象</h4>
+
+<p>1、采用盲目搜索，与二叉树的递归遍历类似，可采用后序遍历或前序遍历或中序遍历对其进行搜索某一对象，时间复杂度为O（n）。</p>
+
+<p>2、根据对象在区域里的位置来搜索，采用分而治之思想，时间复杂度只与四叉树的深度有关。比起盲目搜索，这种搜索在区域里的对象越多时效果越明显</p>
+
+<p><img src="media/14729755264473/88618967.jpg" alt=""/></p>
+
+<pre><code>Funtion find ( n, pos, )
+  {
+      If (n节点所存的对象位置为 pos所指的位置 )
+          Return n;
+      If ( pos位于第一象限 )
+          temp = find ( n-&gt;sub[UR], pos );
+      else if ( pos位于第二象限)
+          temp = find ( n-&gt;sub[UL], pos );
+      else if ( pos位于第三象限 )
+          temp = find ( n-&gt;sub[LL], pos );
+      else  //pos 位于第四象限
+          temp = find ( n-&gt;sub[LR], pos );
+      return temp;   
+  } 
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729753596363.html">NSDictionary不能写入文件</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:49:19+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>问题：</strong><br/>
+调用字典<code>- (BOOL)writeToURL:(NSURL *)url atomically:(BOOL)atomically;</code>写入文件失败</p>
+
+<p><strong>分析原因：</strong><br/>
+字典中有<code>null</code>值，所以需要<code>NSKeyedArchiver</code>将之转化为<code>NSData</code>后再写入文件<br/>
+<code>NSDictionary</code>中的数据：</p>
+
+<pre><code>{
+    style = &lt;null&gt;,
+    status = 1,
+    title = &quot;new&quot;,
+    source = 1,
+    mid = &quot;1iJltVKJ14kLn3sZgo3wCg&quot;,
+    user_id = 10011,
+    updated_at = &quot;2016-05-27T20:10:50.000+08:00&quot;,
+    city_code = 131,
+    permission = &quot;grp&quot;,
+    city = &quot;北京市&quot;,
+    backup_time = &lt;null&gt;,
+    is_del = 0,
+    id = 94445,
+    level = 12,
+    org_id = 10011,
+    base_map = &quot;normal&quot;,
+    rqcode = &quot;/uploads/rqcode/1iJltVKJ14kLn3sZgo3wCg.png&quot;,
+    avatar = &quot;/uploads/avatars/2016/5/11/8ed403c6652f4d599f1e50daa89c427e.png&quot;,
+    center = &quot;116.403874,39.914889&quot;,
+    created_at = &quot;2016-05-11T15:08:43.000+08:00&quot;,
+    rating = 0,
+    description = &quot;&quot;,
+}
+
+</code></pre>
+
+<p><strong>解决方法：</strong></p>
+
+<pre><code>//写入
+NSString* path = [[FileUtil dirCache] stringByAppendingPathComponent:@&quot;EDITMAP&quot;];
+BOOL success = [[NSKeyedArchiver archivedDataWithRootObject:_mapArray[indexPath.row]] writeToFile:path atomically:YES];
+
+//读取
+NSData* data  = [[NSData alloc]initWithContentsOfFile:[[FileUtil dirCache] stringByAppendingPathComponent:@&quot;EDITMAP&quot;]];
+NSDictionary* dic = (NSDictionary*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729753083362.html">iOS版本更新</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:48:28+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<pre><code>#pragma mark - 检查版本更新
+
+#define APP_URL @&quot;http://itunes.apple.com/lookup?id=你的apple id&quot;
+-(void)onCheckVersion
+{
+    NSString* currentVersion =  [[NSBundle mainBundle] objectForInfoDictionaryKey:@&quot;CFBundleShortVersionString&quot;];
+    NSString *URL = APP_URL;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer new];
+    manager.responseSerializer = [AFJSONResponseSerializer new];
+     [manager POST:URL parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+         NSArray *infoArray = [responseObject objectForKey:@&quot;results&quot;];
+         if ([infoArray count]) {
+             NSDictionary *releaseInfo = [infoArray objectAtIndex:0];
+             NSString *lastVersion = [releaseInfo objectForKey:@&quot;version&quot;];
+
+             if (![lastVersion isEqualToString:currentVersion]) {
+                NSString* trackViewURL = [releaseInfo objectForKey:@&quot;trackViewUrl&quot;];
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;更新&quot; message:[releaseInfo objectForKey:@&quot;releaseNotes&quot;] delegate:self cancelButtonTitle:@&quot;关闭&quot; otherButtonTitles:@&quot;更新&quot;, nil] ;
+                 [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
+                     if (buttonIndex==1) {
+                         UIApplication *application = [UIApplication sharedApplication];
+                         [application openURL:[NSURL URLWithString:trackViewURL]];
+                     }
+                 }];
+             }
+         }
+     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+
+     }];
+}
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729752771490.html">App字体被放大</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:47:57+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>分析原因：</strong></p>
+
+<p>由于新版本上线更换了LaunchImage,没有注意美工给的图片尺寸，由于图片尺寸不符合标准导致程序在真机上运行所有字体被放大显示发虚</p>
+
+<p><strong>解决</strong>：</p>
+
+<p>将<code>LaunchImage</code>的所有尺寸按照要求从新剪裁设置即可。<br/>
+<img src="media/14729752771490/66055389.jpg" alt=""/></p>
+
+
+		</div>
+
+		
+
+	</article>
+  
+	<div class="pagination">
+	 <a class="prev" href="ios_2.html">&larr; Older</a> 
+<a href="archives.html">Blog Archives</a>
+	 <a class="next" href="ios.html">Newer &rarr;</a>  
+	    
+	</div>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15064062122465.html">Vue学习</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15058259666834.html"></a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944963010893.html">webGL浏览器支持</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a9e7585c72e6c3ff233103ec49aecd2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>
