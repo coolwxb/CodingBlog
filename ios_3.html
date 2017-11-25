@@ -82,6 +82,111 @@ $(document).ready(function(event) {
 
 	<article>
 		 <header>
+		  	<h1 class="entry-title"><a href="14729747060001.html">UISearchBar</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:38:26+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">修改背景色</h2>
+
+<pre><code>mySearchBar.backgroundColor = RGBACOLOR(249,249,249,1);
+mySearchBar.backgroundImage = [self imageWithColor:[UIColor clearColor] size:mySearchBar.bounds.size];
+
+//取消searchbar背景色
+- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size/Users/coolwxb/Documents/博客/blog/source/_posts/Masonry 使用复习总结.markdown
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return image;
+}
+</code></pre>
+
+<h2 id="toc_1">UISearchBar 获取焦点并显示光标</h2>
+
+<pre><code> _oneSearchBar.tintColor = [UIColor blackColor];
+ [_oneSearchBar becomeFirstResponder];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729746812409.html">Navigation</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:38:01+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">屏蔽NavigationBar的title</h2>
+
+<pre><code>
+    //屏蔽显示navigationbar 的title
+    UILabel *label = [[UILabel alloc] init];
+    self.navigationItem.titleView = label;
+
+</code></pre>
+
+<h2 id="toc_1">修改Controller的标题title和颜色</h2>
+
+<pre><code>
+UIColor * color = [UIColor whiteColor];
+
+NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];
+
+self.navigationBar.titleTextAttributes = dict;
+
+</code></pre>
+
+<p>PS：相关属性在<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/"><code>NSAttributedString.h</code></a>这个头文件中</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729746247024.html">Popupwindow</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:37:04+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">点击空白消失</h2>
+
+<pre><code>myPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+myPopupWindow.setOutsideTouchable(true);
+myPopupWindow.setFocusable(true);
+
+</code></pre>
+
+<p><strong>需要设置popupwindow的backgroundDrawable才能使outsideTouchable生效</strong></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
 		  	<h1 class="entry-title"><a href="14729745906849.html">Reveal</a></h1>
 			<p class="meta"><time datetime="2016-09-04T15:36:30+08:00" 
 			pubdate data-updated="true">2016/9/4</time></p>
@@ -972,7 +1077,7 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 	  <ul id="recent_posts">
 	  
 	      <li class="post">
-	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	        <a href="ios.html"><strong>ios&nbsp;(56)</strong></a>
 	         <p class="cat-children-p"> 
 	        
 	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
@@ -981,9 +1086,11 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 	        
 	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
 	        
-	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(11)</a>&nbsp;&nbsp;
 	        
 	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E4%B8%B4%E6%97%B6.html">临时&nbsp;(1)</a>&nbsp;&nbsp;
 	        
 	         </p> 
 	      </li>
@@ -1003,7 +1110,7 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 	      </li>
 	  
 	      <li class="post">
-	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        <a href="express.html"><strong>express&nbsp;(11)</strong></a>
 	        
 	        
 	        
@@ -1017,7 +1124,21 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 	      </li>
 	  
 	      <li class="post">
+	        <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
 	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="ReactiveCocoa.html"><strong>ReactiveCocoa&nbsp;(1)</strong></a>
 	        
 	        
 	        
@@ -1031,31 +1152,31 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 	  
 	      
 		      <li class="post">
-		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		        <a href="15114058607700.html">PostgresSQL</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="15064062122465.html">Vue学习</a>
+		        <a href="15099405809795.html">iOS11 NavigationBar 适配</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="15058259666834.html"></a>
+		        <a href="15096738267082.html">水波动画,类似咻咻咻</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="14944963010893.html">webGL浏览器支持</a>
+		        <a href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		        <a href="15084656776459.html"></a>
 		      </li>
 	     
 	  

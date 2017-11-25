@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>
     
-  截取指定区域图片 - 小小程序猿
+  数据库 - 小小程序猿
   
 
   </title>
@@ -78,92 +78,206 @@ $(document).ready(function(event) {
 </nav>
   <div id="main">
     <div id="content"> 
-<div>
-	<article class="hentry" role="article">
-	<header>
-			  	<h1 class="entry-title">截取指定区域图片</h1>
-				<p class="meta"><time datetime="2016-09-18T10:08:41+08:00" pubdate data-updated="true">2016/9/18</time></p>
-			 </header>
-		  	<div class="entry-content">
-			  	<pre><code class="language-objc">-(UIImage *)imageFromViewAtFrame:(CGRect)rect{
-    UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
+<div class="blog-index">
 
-    UIGraphicsBeginImageContext(screenWindow.frame.size);//全屏截图，包括window
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="15114058607700.html">PostgresSQL</a></h1>
+			<p class="meta"><time datetime="2017-11-23T10:57:40+08:00" 
+			pubdate data-updated="true">2017/11/23</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>转自整理：</strong><br/>
+<a href="http://www.ruanyifeng.com/blog/2013/12/getting_started_with_postgresql.html">PostgreSQL新手入门</a></p>
 
-    [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+<h2 id="toc_0">安装</h2>
 
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+<blockquote>
+<blockquote>
+<p>apt-get install postgresql-client</p>
 
-    //截取指定区域生成图片
-    CGImageRef imageRef = viewImage.CGImage;
-    //myInmageRect想要截取的区域
-    CGRect myImageRect=rect ;
-    CGImageRef subImageRef = CGImageCreateWithImageInRect(imageRef, myImageRect);
+<p>apt-get install postgresql</p>
+</blockquote>
+</blockquote>
 
-    //获取上下文
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(context, myImageRect, subImageRef);
-    //转换img
-    UIImage* image = [UIImage imageWithCGImage:subImageRef];
-    UIGraphicsEndImageContext();
+<p>正常情况下，安装完成后，PostgreSQL服务器会自动在本机的5432端口开启。</p>
 
-    return image;
-}
+<p>安装图形管理界面</p>
+
+<blockquote>
+<blockquote>
+<p>apt-get install pgadmin3</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_1">添加用户和数据库</h2>
+
+<p>初次安装后，默认生成一个名为<code>postgres</code>的数据库和一个名为<code>postgres</code>的数据库用户。这里需要注意的是，同时还生成了一个名为<code>postgres</code>的<code>Linux</code>系统用户。</p>
+
+<h3 id="toc_2">使用PostgreSQL控制台创建用户和数据库</h3>
+
+<p>1、新建一个Linux新用户，可以取你想要的名字，这里为dbuser。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo adduser dbuser</p>
+</blockquote>
+</blockquote>
+
+<p>2、切换到postgres用户。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo supostgres</p>
+</blockquote>
+</blockquote>
+
+<p>3、psql命令登录PostgreSQL控制台。</p>
+
+<blockquote>
+<blockquote>
+<p>psql</p>
+</blockquote>
+</blockquote>
+
+<p>这时相当于系统用户<code>postgres</code>以<strong>同名数据库用户的身份</strong>，登录数据库，这是不用输入密码的。如果一切正常，系统提示符会变为<code>postgres=#</code>，表示这时已经进入了数据库控制台。以下的命令都在控制台内完成。</p>
+
+<ul>
+<li><p>第一件事是使用<code>\password</code>命令，为<code>postgres</code>用户设置一个密码。</p>
+
+<blockquote>
+<blockquote>
+<p>\password postgres</p>
+</blockquote>
+</blockquote></li>
+<li><p>第二件事是创建数据库用户<strong>dbuser</strong>（刚才创建的是Linux系统用户），并设置密码。</p>
+
+<blockquote>
+<blockquote>
+<p>CREATE USER dbuser WITH PASSWORD &#39;password&#39;;</p>
+</blockquote>
+</blockquote></li>
+<li><p>第三件事是创建用户数据库，这里为<code>exampledb</code>，并指定所有者为<code>dbuser</code>。</p>
+
+<blockquote>
+<blockquote>
+<p>CREATE DATABASE exampledb OWNER dbuser;</p>
+</blockquote>
+</blockquote></li>
+<li><p>第四件事是将<code>exampledb</code>数据库的所有权限都赋予<code>dbuser</code>，否则<code>dbuser</code>只能登录控制台，没有任何数据库操作权限。</p>
+
+<blockquote>
+<blockquote>
+<p>GRANT ALL PRIVILEGES ON DATABASE exampledb to dbuser;</p>
+</blockquote>
+</blockquote></li>
+<li><p>最后，使用\q命令退出控制台（也可以直接按ctrl+D）。</p>
+
+<blockquote>
+<blockquote>
+<p>\q</p>
+</blockquote>
+</blockquote></li>
+</ul>
+
+<h3 id="toc_3">使用Shell命令行创建用户和数据库</h3>
+
+<ul>
+<li><p>首先，创建数据库用户<code>dbuser</code>，并指定其为超级用户。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres createuser --superuser dbuser</p>
+</blockquote>
+</blockquote></li>
+<li><p>然后，登录数据库控制台，设置<code>dbuser</code>用户的密码，完成后退出控制台。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres psql<br/>
+\password dbuser<br/>
+\q</p>
+</blockquote>
+</blockquote></li>
+<li><p>接着，在<code>shell</code>命令行下，创建数据库<code>exampledb</code>，并指定所有者为<code>dbuser</code>。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres createdb -O dbuser exampledb</p>
+</blockquote>
+</blockquote></li>
+</ul>
+
+<h2 id="toc_4">登录数据库</h2>
+
+<p>添加新用户和新数据库以后，就要以新用户的名义登录数据库，这时使用的是<code>psql</code>命令。</p>
+
+<blockquote>
+<blockquote>
+<p>psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432</p>
+</blockquote>
+</blockquote>
+
+<p>上面命令的参数含义如下：<br/>
+ -U指定用户<br/>
+ -d指定数据库<br/>
+ -h指定服务器<br/>
+ -p指定端口。</p>
+
+<p>输入上面命令以后，系统会提示输入<code>dbuser</code>用户的密码。输入正确，就可以登录控制台了。<br/>
+<code>psql</code>命令存在简写形式。如果当前<code>Linux</code>系统用户，同时也是<code>PostgreSQL</code>用户，则可以省略用户名（-U参数的部分）。举例来说，我的<code>Linux</code>系统用户名为<code>ruanyf</code>，且<code>PostgreSQL</code>数据库存在同名用户，则我以<code>ruanyf</code>身份登录Linux系统后，可以直接使用下面的命令登录数据库，且不需要密码。</p>
+
+<blockquote>
+<blockquote>
+<p>psql exampledb</p>
+</blockquote>
+</blockquote>
+
+<p>此时，如果<code>PostgreSQL</code>内部还存在与当前系统用户同名的数据库，则连数据库名都可以省略。比如，假定存在一个叫做<code>ruanyf</code>的数据库，则直接键入<code>psql</code>就可以登录该数据库。</p>
+
+<blockquote>
+<blockquote>
+<p>psql</p>
+</blockquote>
+</blockquote>
+
+<p>另外，如果要恢复外部数据，可以使用下面的命令。</p>
+
+<blockquote>
+<blockquote>
+<p>psql exampledb &lt; exampledb.sql</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_5">常用命令</h2>
+
+<p>除了前面已经用到的<code>\password</code>命令（设置密码）和<code>\q</code>命令（退出）以外，控制台还提供一系列其他命令。</p>
+
+<pre><code>\h：查看SQL命令的解释，比如\h select。
+\?：查看psql命令列表。
+\l：列出所有数据库。
+\c [database_name]：连接其他数据库。
+\d：列出当前数据库的所有表格。
+\d [table_name]：列出某一张表格的结构。
+\du：列出所有用户。
+\e：打开文本编辑器。
+\conninfo：列出当前数据库和连接的信息。
 </code></pre>
 
-			</div>
-
-		
-	  
-		<footer>
-		 <p class="meta">
-
-			<strong>Categories:</strong>&nbsp; 
-			<span class="categories">
-			
-			    <a class='category' href='%E6%80%BB%E7%BB%93.html'>总结</a>&nbsp;
-			 
-			</span>
-		    </p>
-		    <p class="meta">
-		      
-		 </p>
-	    
-		<div class="sharing">
-		  <!-- 多说评论框 start -->
-    <div class="ds-thread" ></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"mweb-zh"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-<!-- 多说公共JS代码 end -->
-          
-
-          
 
 		</div>
 
-	    <p class="meta">
-	    
-	        <a class="basic-alignment left" href="14746843595369.html" 
-	        title="Previous Post: dismissViewControllerAnimated:YES 失效">&laquo; dismissViewControllerAnimated:YES 失效</a>
-	    
-	    
-	        <a class="basic-alignment right" href="14737664411987.html" 
-	        title="Next Post: UILongPressGestureRecognizer 回调方法执行两次的问题">UILongPressGestureRecognizer 回调方法执行两次的问题 &raquo;</a>
-	    
-	    </p>
-	  </footer>
+		
+
 	</article>
+  
+	<div class="pagination">
+	
+<a href="archives.html">Blog Archives</a>
+	 
+	    
+	</div>
 </div>
  <aside class="sidebar"> 
 

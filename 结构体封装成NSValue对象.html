@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>
     
-  截取指定区域图片 - 小小程序猿
+  结构体封装成对象 - 小小程序猿
   
 
   </title>
@@ -81,34 +81,44 @@ $(document).ready(function(event) {
 <div>
 	<article class="hentry" role="article">
 	<header>
-			  	<h1 class="entry-title">截取指定区域图片</h1>
-				<p class="meta"><time datetime="2016-09-18T10:08:41+08:00" pubdate data-updated="true">2016/9/18</time></p>
+			  	<h1 class="entry-title">结构体封装成对象</h1>
+				<p class="meta"><time datetime="2017-10-20T11:36:34+08:00" pubdate data-updated="true">2017/10/20</time></p>
 			 </header>
 		  	<div class="entry-content">
-			  	<pre><code class="language-objc">-(UIImage *)imageFromViewAtFrame:(CGRect)rect{
-    UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
+			  	<p><strong>转载：</strong><a href="http://blog.csdn.net/yangbingbinga/article/details/43114469">http://blog.csdn.net/yangbingbinga/article/details/43114469</a></p>
 
-    UIGraphicsBeginImageContext(screenWindow.frame.size);//全屏截图，包括window
+<pre><code>typedef  struct{  //自定义一个结构体  
+    int age;  
+    int number;  
+}Student;  
 
-    [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+Student stu = {&quot;lisi&quot;,&#39;m&#39;,20,90};
+  
+NSValue *stu=[NSValue valueWithBytes:&amp;stu objCtype :@encode(Student)];//把结构体封装成一个对象  
+  
+  
+Student  value2;//定义一个结构体变量来接受从NSValue得到的结构体  
+  
+  
+[stu getValue:&amp;value2];//把 stu对象中的结构体取出来  
+  
+  
+int a=value2.age;  //取得结构体中的字段 
 
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+</code></pre>
 
-    //截取指定区域生成图片
-    CGImageRef imageRef = viewImage.CGImage;
-    //myInmageRect想要截取的区域
-    CGRect myImageRect=rect ;
-    CGImageRef subImageRef = CGImageCreateWithImageInRect(imageRef, myImageRect);
+<p>其他,系统自带的  </p>
 
-    //获取上下文
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(context, myImageRect, subImageRef);
-    //转换img
-    UIImage* image = [UIImage imageWithCGImage:subImageRef];
-    UIGraphicsEndImageContext();
+<pre><code>
+CGPoint p=[value  CGPointValue];  
+系统自带的创建 NSValue 和  获取 CG结构体值的方法
+NSValue *v=[NSValue valueWithCGRect:CGRectMake(0, 0, 0, 0)];  
+CGRect rect=[v CGRectValue];  
+NSValue *v2=[NSValue valueWithCGSize:CGSizeZero];  
+CGSize size=[v2 CGSizeValue];  
+NSValue *v3=[NSValue valueWithCGPoint:CGPointMake(0, 0)];  
+CGPoint p=[v3 CGPointValue];  
 
-    return image;
-}
 </code></pre>
 
 			</div>
@@ -121,7 +131,9 @@ $(document).ready(function(event) {
 			<strong>Categories:</strong>&nbsp; 
 			<span class="categories">
 			
-			    <a class='category' href='%E6%80%BB%E7%BB%93.html'>总结</a>&nbsp;
+			    <a class='category' href='ios.html'>ios</a>&nbsp;
+			
+			    <a class='category' href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a>&nbsp;
 			 
 			</span>
 		    </p>
@@ -154,12 +166,12 @@ var duoshuoQuery = {short_name:"mweb-zh"};
 
 	    <p class="meta">
 	    
-	        <a class="basic-alignment left" href="14746843595369.html" 
-	        title="Previous Post: dismissViewControllerAnimated:YES 失效">&laquo; dismissViewControllerAnimated:YES 失效</a>
+	        <a class="basic-alignment left" href="15096738267082.html" 
+	        title="Previous Post: 水波动画,类似咻咻咻">&laquo; 水波动画,类似咻咻咻</a>
 	    
 	    
-	        <a class="basic-alignment right" href="14737664411987.html" 
-	        title="Next Post: UILongPressGestureRecognizer 回调方法执行两次的问题">UILongPressGestureRecognizer 回调方法执行两次的问题 &raquo;</a>
+	        <a class="basic-alignment right" href="15084656776459.html" 
+	        title="Next Post: "> &raquo;</a>
 	    
 	    </p>
 	  </footer>

@@ -82,6 +82,101 @@ $(document).ready(function(event) {
 
 	<article>
 		 <header>
+		  	<h1 class="entry-title"><a href="15096738267082.html">水波动画,类似咻咻咻</a></h1>
+			<p class="meta"><time datetime="2017-11-03T09:50:26+08:00" 
+			pubdate data-updated="true">2017/11/3</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<pre><code> // 设定为缩放
+    CABasicAnimation *sizeAnimation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
+
+    // 动画选项设定
+    sizeAnimation.repeatCount = CGFLOAT_MAX; // 重复次数
+    sizeAnimation.autoreverses = NO; // 动画结束时执行逆动画
+
+// 缩放倍数
+    sizeAnimation.fromValue = [NSNumber numberWithFloat:0.5]; // 开始时的倍率
+    sizeAnimation.toValue = [NSNumber numberWithFloat:1.4]; // 结束时的倍率
+
+    CABasicAnimation *alphanitation = [CABasicAnimation animationWithKeyPath:@&quot;opacity&quot;];
+    alphanitation.fromValue = @(1);
+    alphanitation.toValue = @(0);
+
+
+/* 动画组 */
+    CAAnimationGroup *group = [CAAnimationGroup animation];
+// 动画选项设定
+    group.duration = 1;
+    group.repeatCount = CGFLOAT_MAX;
+    // 确保controller display 在进入的时候还是继续执行动画
+    // 默认状态下 动画在viewcontroller display的时候会立刻结束动画，但是finish的bool值是false
+    group.removedOnCompletion = NO;
+// 添加动画
+    group.animations = [NSArray arrayWithObjects:sizeAnimation, alphanitation,nil];
+    [waveView.layer addAnimation:group forKey:@&quot;anitation&quot;];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></h1>
+			<p class="meta"><time datetime="2017-10-20T11:36:34+08:00" 
+			pubdate data-updated="true">2017/10/20</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>转载：</strong><a href="http://blog.csdn.net/yangbingbinga/article/details/43114469">http://blog.csdn.net/yangbingbinga/article/details/43114469</a></p>
+
+<pre><code>typedef  struct{  //自定义一个结构体  
+    int age;  
+    int number;  
+}Student;  
+
+Student stu = {&quot;lisi&quot;,&#39;m&#39;,20,90};
+  
+NSValue *stu=[NSValue valueWithBytes:&amp;stu objCtype :@encode(Student)];//把结构体封装成一个对象  
+  
+  
+Student  value2;//定义一个结构体变量来接受从NSValue得到的结构体  
+  
+  
+[stu getValue:&amp;value2];//把 stu对象中的结构体取出来  
+  
+  
+int a=value2.age;  //取得结构体中的字段 
+
+</code></pre>
+
+<p>其他,系统自带的  </p>
+
+<pre><code>
+CGPoint p=[value  CGPointValue];  
+系统自带的创建 NSValue 和  获取 CG结构体值的方法
+NSValue *v=[NSValue valueWithCGRect:CGRectMake(0, 0, 0, 0)];  
+CGRect rect=[v CGRectValue];  
+NSValue *v2=[NSValue valueWithCGSize:CGSizeZero];  
+CGSize size=[v2 CGSizeValue];  
+NSValue *v3=[NSValue valueWithCGPoint:CGPointMake(0, 0)];  
+CGPoint p=[v3 CGPointValue];  
+
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
 		  	<h1 class="entry-title"><a href="iOS%E6%B2%99%E7%9B%92.html">沙盒SandBox</a></h1>
 			<p class="meta"><time datetime="2016-12-22T11:06:07+08:00" 
 			pubdate data-updated="true">2016/12/22</time></p>
@@ -630,7 +725,7 @@ l NATIONAL VARYING CHARACTER(16)<br/>
 	  <ul id="recent_posts">
 	  
 	      <li class="post">
-	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	        <a href="ios.html"><strong>ios&nbsp;(56)</strong></a>
 	         <p class="cat-children-p"> 
 	        
 	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
@@ -639,9 +734,11 @@ l NATIONAL VARYING CHARACTER(16)<br/>
 	        
 	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
 	        
-	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(11)</a>&nbsp;&nbsp;
 	        
 	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E4%B8%B4%E6%97%B6.html">临时&nbsp;(1)</a>&nbsp;&nbsp;
 	        
 	         </p> 
 	      </li>
@@ -661,7 +758,7 @@ l NATIONAL VARYING CHARACTER(16)<br/>
 	      </li>
 	  
 	      <li class="post">
-	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        <a href="express.html"><strong>express&nbsp;(11)</strong></a>
 	        
 	        
 	        
@@ -675,7 +772,21 @@ l NATIONAL VARYING CHARACTER(16)<br/>
 	      </li>
 	  
 	      <li class="post">
+	        <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
 	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="ReactiveCocoa.html"><strong>ReactiveCocoa&nbsp;(1)</strong></a>
 	        
 	        
 	        
@@ -689,31 +800,31 @@ l NATIONAL VARYING CHARACTER(16)<br/>
 	  
 	      
 		      <li class="post">
-		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		        <a href="15114058607700.html">PostgresSQL</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="15064062122465.html">Vue学习</a>
+		        <a href="15099405809795.html">iOS11 NavigationBar 适配</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="15058259666834.html"></a>
+		        <a href="15096738267082.html">水波动画,类似咻咻咻</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="14944963010893.html">webGL浏览器支持</a>
+		        <a href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		        <a href="15084656776459.html"></a>
 		      </li>
 	     
 	  

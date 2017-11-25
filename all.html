@@ -82,6 +82,508 @@ $(document).ready(function(event) {
 
 	<article>
 		 <header>
+		  	<h1 class="entry-title"><a href="15114058607700.html">PostgresSQL</a></h1>
+			<p class="meta"><time datetime="2017-11-23T10:57:40+08:00" 
+			pubdate data-updated="true">2017/11/23</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>转自整理：</strong><br/>
+<a href="http://www.ruanyifeng.com/blog/2013/12/getting_started_with_postgresql.html">PostgreSQL新手入门</a></p>
+
+<h2 id="toc_0">安装</h2>
+
+<blockquote>
+<blockquote>
+<p>apt-get install postgresql-client</p>
+
+<p>apt-get install postgresql</p>
+</blockquote>
+</blockquote>
+
+<p>正常情况下，安装完成后，PostgreSQL服务器会自动在本机的5432端口开启。</p>
+
+<p>安装图形管理界面</p>
+
+<blockquote>
+<blockquote>
+<p>apt-get install pgadmin3</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_1">添加用户和数据库</h2>
+
+<p>初次安装后，默认生成一个名为<code>postgres</code>的数据库和一个名为<code>postgres</code>的数据库用户。这里需要注意的是，同时还生成了一个名为<code>postgres</code>的<code>Linux</code>系统用户。</p>
+
+<h3 id="toc_2">使用PostgreSQL控制台创建用户和数据库</h3>
+
+<p>1、新建一个Linux新用户，可以取你想要的名字，这里为dbuser。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo adduser dbuser</p>
+</blockquote>
+</blockquote>
+
+<p>2、切换到postgres用户。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo supostgres</p>
+</blockquote>
+</blockquote>
+
+<p>3、psql命令登录PostgreSQL控制台。</p>
+
+<blockquote>
+<blockquote>
+<p>psql</p>
+</blockquote>
+</blockquote>
+
+<p>这时相当于系统用户<code>postgres</code>以<strong>同名数据库用户的身份</strong>，登录数据库，这是不用输入密码的。如果一切正常，系统提示符会变为<code>postgres=#</code>，表示这时已经进入了数据库控制台。以下的命令都在控制台内完成。</p>
+
+<ul>
+<li><p>第一件事是使用<code>\password</code>命令，为<code>postgres</code>用户设置一个密码。</p>
+
+<blockquote>
+<blockquote>
+<p>\password postgres</p>
+</blockquote>
+</blockquote></li>
+<li><p>第二件事是创建数据库用户<strong>dbuser</strong>（刚才创建的是Linux系统用户），并设置密码。</p>
+
+<blockquote>
+<blockquote>
+<p>CREATE USER dbuser WITH PASSWORD &#39;password&#39;;</p>
+</blockquote>
+</blockquote></li>
+<li><p>第三件事是创建用户数据库，这里为<code>exampledb</code>，并指定所有者为<code>dbuser</code>。</p>
+
+<blockquote>
+<blockquote>
+<p>CREATE DATABASE exampledb OWNER dbuser;</p>
+</blockquote>
+</blockquote></li>
+<li><p>第四件事是将<code>exampledb</code>数据库的所有权限都赋予<code>dbuser</code>，否则<code>dbuser</code>只能登录控制台，没有任何数据库操作权限。</p>
+
+<blockquote>
+<blockquote>
+<p>GRANT ALL PRIVILEGES ON DATABASE exampledb to dbuser;</p>
+</blockquote>
+</blockquote></li>
+<li><p>最后，使用\q命令退出控制台（也可以直接按ctrl+D）。</p>
+
+<blockquote>
+<blockquote>
+<p>\q</p>
+</blockquote>
+</blockquote></li>
+</ul>
+
+<h3 id="toc_3">使用Shell命令行创建用户和数据库</h3>
+
+<ul>
+<li><p>首先，创建数据库用户<code>dbuser</code>，并指定其为超级用户。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres createuser --superuser dbuser</p>
+</blockquote>
+</blockquote></li>
+<li><p>然后，登录数据库控制台，设置<code>dbuser</code>用户的密码，完成后退出控制台。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres psql<br/>
+\password dbuser<br/>
+\q</p>
+</blockquote>
+</blockquote></li>
+<li><p>接着，在<code>shell</code>命令行下，创建数据库<code>exampledb</code>，并指定所有者为<code>dbuser</code>。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres createdb -O dbuser exampledb</p>
+</blockquote>
+</blockquote></li>
+</ul>
+
+<h2 id="toc_4">登录数据库</h2>
+
+<p>添加新用户和新数据库以后，就要以新用户的名义登录数据库，这时使用的是<code>psql</code>命令。</p>
+
+<blockquote>
+<blockquote>
+<p>psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432</p>
+</blockquote>
+</blockquote>
+
+<p>上面命令的参数含义如下：<br/>
+ -U指定用户<br/>
+ -d指定数据库<br/>
+ -h指定服务器<br/>
+ -p指定端口。</p>
+
+<p>输入上面命令以后，系统会提示输入<code>dbuser</code>用户的密码。输入正确，就可以登录控制台了。<br/>
+<code>psql</code>命令存在简写形式。如果当前<code>Linux</code>系统用户，同时也是<code>PostgreSQL</code>用户，则可以省略用户名（-U参数的部分）。举例来说，我的<code>Linux</code>系统用户名为<code>ruanyf</code>，且<code>PostgreSQL</code>数据库存在同名用户，则我以<code>ruanyf</code>身份登录Linux系统后，可以直接使用下面的命令登录数据库，且不需要密码。</p>
+
+<blockquote>
+<blockquote>
+<p>psql exampledb</p>
+</blockquote>
+</blockquote>
+
+<p>此时，如果<code>PostgreSQL</code>内部还存在与当前系统用户同名的数据库，则连数据库名都可以省略。比如，假定存在一个叫做<code>ruanyf</code>的数据库，则直接键入<code>psql</code>就可以登录该数据库。</p>
+
+<blockquote>
+<blockquote>
+<p>psql</p>
+</blockquote>
+</blockquote>
+
+<p>另外，如果要恢复外部数据，可以使用下面的命令。</p>
+
+<blockquote>
+<blockquote>
+<p>psql exampledb &lt; exampledb.sql</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_5">常用命令</h2>
+
+<p>除了前面已经用到的<code>\password</code>命令（设置密码）和<code>\q</code>命令（退出）以外，控制台还提供一系列其他命令。</p>
+
+<pre><code>\h：查看SQL命令的解释，比如\h select。
+\?：查看psql命令列表。
+\l：列出所有数据库。
+\c [database_name]：连接其他数据库。
+\d：列出当前数据库的所有表格。
+\d [table_name]：列出某一张表格的结构。
+\du：列出所有用户。
+\e：打开文本编辑器。
+\conninfo：列出当前数据库和连接的信息。
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="15099405809795.html">iOS11 NavigationBar 适配</a></h1>
+			<p class="meta"><time datetime="2017-11-06T11:56:20+08:00" 
+			pubdate data-updated="true">2017/11/6</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p>iOS11 navigationItem.titleView 适配问题，最近由于Apple 更新了iOS 11版本，在系统升级之后，发现项目中之前适配好的titleView 发生了如下变化：<br/>
+iOS 11 之前<br/>
+\<br/>
+iOS 11<br/>
+\<br/>
+WTF?<br/>
+在iOS 11中titleView的宽度设置了没有效果，也没有拉伸展示，缩成一坨了。项目中有好多地方用到了titleView这个属性，怎么办？<br/>
+打开Xcode 查看视图层级功能，发现在iOS 11 中Apple 改变了UINavigationBar的视图层级，titleView不是加到NavigationBar上了，而是加到UINavigationBarContentView上<br/>
+那么怎么解决这个问题呢？<br/>
+在你自定义的titleView中重写intrinsicContentSize 的Get 方法,如下：<br/>
+- (CGSize)intrinsicContentSize<br/>
+{<br/>
+return UILayoutFittingExpandedSize;<br/>
+}</p>
+
+<p>3.3 titleView支持autolayout</p>
+
+<p>这要求titleView必须是能够自撑开的或实现了- intrinsicContentSize，</p>
+
+<p>适配前<br/>
+这里以UISearchBar为例, 我是外层添加了titleView容器. 高度控制着35的.</p>
+
+<pre><code>// 设置titleView
+UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 35)];//allocate titleView
+[titleView setBackgroundColor:[UIColor clearColor]];
+// 搜索工具条
+UISearchBar *searchBar = [[UISearchBar alloc] init];
+searchBar.placeholder = @&quot;|搜索会员&quot;;
+searchBar.frame = CGRectMake(0, 0, titleView.width, 30);
+searchBar.center = titleView.center;
+searchBar.delegate = self;
+[titleView addSubview:searchBar];
+
+[self.navigationItem.titleView sizeToFit];
+self.navigationItem.titleView = titleView;
+</code></pre>
+
+<p>修改后, 发现UISearchBar圆角变形了,</p>
+
+<p>UISearchBar圆角变形<br/>
+这个时候我们可以添加设置圆角的, 效果如下:</p>
+
+<p>searchBar.layer.cornerRadius = 10;<br/>
+searchBar.layer.masksToBounds = YES;</p>
+
+<p>适配后<br/>
+如果是自定义titleview, 只需要在你自定义的titleview对应的 View中实现- intrinsicContentSize方法;<br/>
+- (CGSize)intrinsicContentSize {<br/>
+    return UILayoutFittingExpandedSize;<br/>
+}<br/>
+如果你的项目是自定义的navigationBar，那么在iOS11上运行就可能出现布局错乱，解决办法是重写UINavigationBar的 layoutSubviews方法，调整布局，代码如下：<br/>
+- (void)layoutSubviews {<br/>
+    [super layoutSubviews];</p>
+
+<pre><code>//注意导航栏及状态栏高度适配
+self.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), naviBarHeight);
+for (UIView *view in self.subviews) {
+    if([NSStringFromClass([view class]) containsString:@&quot;Background&quot;]) {
+        view.frame = self.bounds;
+    }
+    else if ([NSStringFromClass([view class]) containsString:@&quot;ContentView&quot;]) {
+        CGRect frame = view.frame;
+        frame.origin.y = statusBarHeight;
+        frame.size.height = self.bounds.size.height - frame.origin.y;
+        view.frame = frame;
+    }
+}
+</code></pre>
+
+<p>}</p>
+
+<p>作者：smile丽语<br/>
+链接：<a href="http://www.jianshu.com/p/a674d5e19260">http://www.jianshu.com/p/a674d5e19260</a><br/>
+來源：简书<br/>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p><a href="https://stackoverflow.com/questions/45350035/ios-11-searchbar-in-navigationbar">https://stackoverflow.com/questions/45350035/ios-11-searchbar-in-navigationbar</a></p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="15096738267082.html">水波动画,类似咻咻咻</a></h1>
+			<p class="meta"><time datetime="2017-11-03T09:50:26+08:00" 
+			pubdate data-updated="true">2017/11/3</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<pre><code> // 设定为缩放
+    CABasicAnimation *sizeAnimation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
+
+    // 动画选项设定
+    sizeAnimation.repeatCount = CGFLOAT_MAX; // 重复次数
+    sizeAnimation.autoreverses = NO; // 动画结束时执行逆动画
+
+// 缩放倍数
+    sizeAnimation.fromValue = [NSNumber numberWithFloat:0.5]; // 开始时的倍率
+    sizeAnimation.toValue = [NSNumber numberWithFloat:1.4]; // 结束时的倍率
+
+    CABasicAnimation *alphanitation = [CABasicAnimation animationWithKeyPath:@&quot;opacity&quot;];
+    alphanitation.fromValue = @(1);
+    alphanitation.toValue = @(0);
+
+
+/* 动画组 */
+    CAAnimationGroup *group = [CAAnimationGroup animation];
+// 动画选项设定
+    group.duration = 1;
+    group.repeatCount = CGFLOAT_MAX;
+    // 确保controller display 在进入的时候还是继续执行动画
+    // 默认状态下 动画在viewcontroller display的时候会立刻结束动画，但是finish的bool值是false
+    group.removedOnCompletion = NO;
+// 添加动画
+    group.animations = [NSArray arrayWithObjects:sizeAnimation, alphanitation,nil];
+    [waveView.layer addAnimation:group forKey:@&quot;anitation&quot;];
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></h1>
+			<p class="meta"><time datetime="2017-10-20T11:36:34+08:00" 
+			pubdate data-updated="true">2017/10/20</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><strong>转载：</strong><a href="http://blog.csdn.net/yangbingbinga/article/details/43114469">http://blog.csdn.net/yangbingbinga/article/details/43114469</a></p>
+
+<pre><code>typedef  struct{  //自定义一个结构体  
+    int age;  
+    int number;  
+}Student;  
+
+Student stu = {&quot;lisi&quot;,&#39;m&#39;,20,90};
+  
+NSValue *stu=[NSValue valueWithBytes:&amp;stu objCtype :@encode(Student)];//把结构体封装成一个对象  
+  
+  
+Student  value2;//定义一个结构体变量来接受从NSValue得到的结构体  
+  
+  
+[stu getValue:&amp;value2];//把 stu对象中的结构体取出来  
+  
+  
+int a=value2.age;  //取得结构体中的字段 
+
+</code></pre>
+
+<p>其他,系统自带的  </p>
+
+<pre><code>
+CGPoint p=[value  CGPointValue];  
+系统自带的创建 NSValue 和  获取 CG结构体值的方法
+NSValue *v=[NSValue valueWithCGRect:CGRectMake(0, 0, 0, 0)];  
+CGRect rect=[v CGRectValue];  
+NSValue *v2=[NSValue valueWithCGSize:CGSizeZero];  
+CGSize size=[v2 CGSizeValue];  
+NSValue *v3=[NSValue valueWithCGPoint:CGPointMake(0, 0)];  
+CGPoint p=[v3 CGPointValue];  
+
+</code></pre>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="15084656776459.html"></a></h1>
+			<p class="meta"><time datetime="2017-10-20T10:14:37+08:00" 
+			pubdate data-updated="true">2017/10/20</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><a href="http://liyaogang.com/%E5%AF%B9weakify%E5%92%8Cstrongify%E7%9A%84%E5%87%A0%E7%82%B9%E7%90%86%E8%A7%A3/">http://liyaogang.com/%E5%AF%B9weakify%E5%92%8Cstrongify%E7%9A%84%E5%87%A0%E7%82%B9%E7%90%86%E8%A7%A3/</a></p>
+
+<ol>
+<li><p>为什么要加 autoreleasepool{} 或 try{} @finally{} {} . <br/>
+答: 这样做是为了在代码中使用这两个宏时能够加上 @ 符号, 实现 @weakify(self) 和 @strongify(self) 这样的效果，将宏替换为实际的实现时, 代码就变成了 @autoreleasepool{} 和 @try , 这两个其实实际上并没有什么实际的作用, 仅仅是为了可以加 “@” 符号而已.<br/>
+至于为什么在Debug环境要使用 @autoreleasepool{} 而在Release环境使用 @try{} @finally{} {} 这个是为了在Debug环境下保持编译器的分析报错能力, 而使用 @try{} @finally{} {} 会抑制编译器的这个能力，原本的报错会变成一个警告。 <br/>
+详细解释请看:<br/>
+请谨慎使用@weakify和@strongify<br/>
+ReactiveCocoa中weakify与strongify的作用<br/>
+Reactive Cocoa中@weakify和@strongify实现分析</p></li>
+<li><p>typeof(self) 在block代码块内这样写为什么不会造成循环引用(retain cycle)? <br/>
+答:  typeof 、 __typeof 、 <strong>typeof</strong> 这三种写法功能是一样的，这三个函数并不是标准C中规定的，它是一种编译器特性。<br/>
+个人认为在block代码块中使用 typeof(self) , 是用来获取self这个指针的类型的，而并未使用到self对象，因此不会对self对象造成强引用。<br/>
+详细解释请看:<br/>
+Stack Overflow</p></li>
+<li><p>为什么要在block代码块内写 @strongify(self) ? <br/>
+答: 在block代码块内写 @strongify(self) 与block代码块外的 @weakify(self) 一起搭配使用的目的是为了在执行代码块内代码时(注意仅仅是在执行block代码块的代码时)保证self对象不会释放。如果self对象在block代码块的代码执行之前提前释放, 则不适用于此。此解释也同时可以解释问题4。</p></li>
+<li><p>以下代码，在执行block之前将view置为nil，但是block代码块内已经对view强引用了，为什么block代码块内的打印还是null? <br/>
+Objective-C<br/>
+@interface ViewController ()<br/>
+@property (copy  , nonatomic) void(<sup>myblock)();</sup><br/>
+@end</p></li>
+</ol>
+
+<p>@implementation ViewController</p>
+
+<ul>
+<li><p>(void)viewDidLoad {<br/>
+[super viewDidLoad];</p>
+
+<p>UIView *view = [[UIView alloc] init];<br/>
+// @weakify(view)<br/>
+__weak __typeof(view) weakView = view;<br/>
+NSLog(@&quot;view(block块前)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock = {<br/>
+    // @strongify(view)<br/>
+    __strong __typeof(view) view = weakView;<br/>
+    NSLog(@&quot;view(block块内)</mark>&gt;%@&quot;, view);<br/>
+};<br/>
+view = nil;<br/>
+NSLog(@&quot;view(block块后)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock();<br/>
+}<br/>
+打印结果: <br/>
+Bash<br/>
+2017-05-16 14:12:44.512 test[34550:12206532] view(block块前)</mark>&gt;<UIView: 0x7fe1c530dcf0; frame = (0 0; 0 0); layer = <CALayer: 0x6100000370e0>&gt;<br/>
+2017-05-16 14:12:44.513 test[34550:12206532] view(block块后)<mark>&gt;(null)<br/>
+2017-05-16 14:12:44.513 test[34550:12206532] view(block块内)</mark>&gt;(null)<br/>
+答: 虽然myblock代码块内对view强引用了, 但是在执行 view=nil 时, myblock的这段实现代码仅仅是存储在内存区，并未执行，所以此时 view=nil 时，view对象的引用计数变为0会立即释放, 当执行到 self.myblock(); 时，block才会对view强引用，而此时view已经释放了，因此打印结果为 null 。 <br/>
+正确的测试代码如下:<br/>
+Objective-C<br/>
+@interface ViewController ()<br/>
+@property (copy  , nonatomic) void(<sup>myblock)();</sup><br/>
+@end</p></li>
+</ul>
+
+<p>@implementation ViewController</p>
+
+<ul>
+<li><p>(void)viewDidLoad {<br/>
+[super viewDidLoad];</p>
+
+<p>__block UIView *view = [[UIView alloc] init];<br/>
+// @weakify(view)<br/>
+__weak __typeof(view) weakView = view;<br/>
+NSLog(@&quot;view(block块前)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock = {<br/>
+    // @strongify(view)<br/>
+    __strong __typeof(view) strongView = weakView;<br/>
+    view = nil;<br/>
+    NSLog(@&quot;view(block块内)</mark>&gt;%@&quot;, strongView);<br/>
+};<br/>
+NSLog(@&quot;view(block块后)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock();<br/>
+NSLog(@&quot;view(block执行后)</mark>&gt;%@&quot;, weakView);<br/>
+}<br/>
+打印结果:<br/>
+Bash<br/>
+2017-05-16 15:17:57.729 test[34648:12246862] view(block块前)<mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
+2017-05-16 15:17:57.730 test[34648:12246862] view(block块后)</mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
+2017-05-16 15:17:57.730 test[34648:12246862] view(block块内)<mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
+2017-05-16 15:17:57.730 test[34648:12246862] view(block执行后)</mark>&gt;(null)</p></li>
+</ul>
+
+<p>command 注册错误要使用command.errors</p>
+
+<pre><code>[self.drawerCoorViewModel.loadCoorCommand.errors subscribeNext:^(NSError *error) {
+        [self.viewController showErrorMsg:error.domain];
+    }];
+</code></pre>
+
+<p>RAC() 参数定义需要考虑接收类型<br/>
+```<br/>
+RAC(self.drawerDynamicViewModel, markerID) = RACObserve(self.drawerViewModel, markerID);</p>
+
+<p>如果markerID 为 nsinteger 类型 ，如果此时markerID 为nil，就会报错<br/>
+因为对象不能直接赋值给 普通数值类型<br/>
+```</p>
+
+<p>内存循环引用</p>
+
+<p>[[_btn_addMarker rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:<sup>__kindof UIControl *x</sup> {<br/>
+        @strongify(self);<br/>
+        // 这里必须使用 self.peripheryViewModel 不能使用_peripheryViewModel<br/>
+        [self.peripheryViewModel.addMarkerSingnal sendNext:self.peripheryViewModel.mapPoi];<br/>
+    }];</p>
+
+
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
 		  	<h1 class="entry-title"><a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a></h1>
 			<p class="meta"><time datetime="2017-10-12T14:30:04+08:00" 
 			pubdate data-updated="true">2017/10/12</time></p>
@@ -739,346 +1241,6 @@ npm uninstall --save lodash//会更新到`package.json`
 		
 
 	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14903271954232.html">Reids使用</a></h1>
-			<p class="meta"><time datetime="2017-03-24T11:46:35+08:00" 
-			pubdate data-updated="true">2017/3/24</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0">启动客户端</h2>
-
-<pre><code>$ redis-cli
-</code></pre>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14901728464166.html">PostGreSql</a></h1>
-			<p class="meta"><time datetime="2017-03-22T16:54:06+08:00" 
-			pubdate data-updated="true">2017/3/22</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0">导出表</h2>
-
-<p><code>pg_dump -h 10.15.128.51 -U postgres -d lakala -t \&quot;DailyActiveTerminalInfos\&quot; &gt;daily.sql；</code></p>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14896551414725.html">Node 学习</a></h1>
-			<p class="meta"><time datetime="2017-03-16T17:05:41+08:00" 
-			pubdate data-updated="true">2017/3/16</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<h2 id="toc_0">全局对象和全局变量</h2>
-
-<p>它们是所有模块都可以调用的。<br/>
-全局对象：</p>
-
-<blockquote>
-<blockquote>
-<p><code>global</code>：表示Node所在的全局环境，类似于浏览器的window对象。需要注意的是，如果在浏览器中声明一个全局变量，实际上是声明了一个全局对象的属性，比如var x = 1等同于设置window.x = 1，但是Node不是这样，至少在模块中不是这样（REPL环境的行为与浏览器一致）。在模块文件中，声明var x = 1，该变量不是global对象的属性，global.x等于undefined。这是因为模块的全局变量都是该模块私有的，其他模块无法取到。<br/>
-<code>process</code>：该对象表示Node所处的当前进程，允许开发者与该进程互动。<br/>
-<code>console</code>：指向Node内置的console模块，提供命令行环境中的标准输入、标准输出功能。<br/>
-<code>Buffer</code>:Node处理二进制数据的一个接口。</p>
-</blockquote>
-</blockquote>
-
-<p>全局变量：</p>
-
-<blockquote>
-<blockquote>
-<p>__filename：指向当前运行的脚本文件名。<br/>
-__dirname：指向当前运行的脚本所在的目录。</p>
-</blockquote>
-</blockquote>
-
-<h2 id="toc_1">核心模块</h2>
-
-<p>Node.js的用处在于，它本身还提供了一系列功能模块，与操作系统互动。这些核心的功能模块，不用安装就可以使用</p>
-
-<blockquote>
-<blockquote>
-<p><code>http</code>：提供HTTP服务器功能。<br/>
-<code>url</code>：解析URL。<br/>
-<code>fs</code>：与文件系统交互。<br/>
-<code>querystring</code>：解析URL的查询字符串。<br/>
-<code>child_process</code>：新建子进程。<br/>
-<code>util</code>：提供一系列实用小工具。<br/>
-<code>path</code>：处理文件路径。<br/>
-<code>crypto</code>：提供加密和解密功能，基本上是对OpenSSL的包装。</p>
-</blockquote>
-</blockquote>
-
-<h2 id="toc_2">Child Process模块</h2>
-
-<p>child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。</p>
-
-<h2 id="toc_3">Node 升级</h2>
-
-<p>node有一个模块叫n，是专门用来管理node.js的版本的。<br/>
-首先安装n模块：</p>
-
-<pre><code>npm install -g n
-</code></pre>
-
-<p>升级node.js到最新稳定版</p>
-
-<pre><code>n stable
-</code></pre>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14892247193418.html">常用正则</a></h1>
-			<p class="meta"><time datetime="2017-03-11T17:31:59+08:00" 
-			pubdate data-updated="true">2017/3/11</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<p>数字和字母组合4-20位</p>
-
-<p><code>^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{3,19}$</code></p>
-
-
-		</div>
-
-		
-
-	</article>
- 
-	<article>
-		 <header>
-		  	<h1 class="entry-title"><a href="14892215616260.html">sequelize. 钩子</a></h1>
-			<p class="meta"><time datetime="2017-03-11T16:39:21+08:00" 
-			pubdate data-updated="true">2017/3/11</time></p>
-		 </header>
-	  	<div class="entry-content">
-		  	
-		  	<p>user.update 调用<br/>
-hooks: {<br/>
-            beforeUpdate(user, options, next) {<br/>
-                bcrypt.genSalt(10, (err, salt) =&gt; {<br/>
-                    bcrypt.hash(user.password, salt, null, (error, hash) =&gt; {<br/>
-                        user.password = hash;<br/>
-                        next(null, user);<br/>
-                    });<br/>
-                });<br/>
-            },</p>
-
-<pre><code>    },
-
-    ##sequelize 事务
-</code></pre>
-
-<pre><code>return db.lakalaSequelize.transaction(t =&gt;
-                    Promise.map(sqlArray, (sql, index) =&gt; db.lakalaSequelize.query(sql,
-                        { type: db.lakalaSequelize.QueryTypes.SELECT, transaction: t })
-                    .then((result) =&gt; {
-                        if (!_.isEmpty(result)) {
-                            const item = itemArray[index];
-                            item.BUSINESS_NAME = result[0].business_name;
-                            item.MERCHANT_CODE = result[0].merchant_code;
-                            item.MERCHANT_ADDR = result[0].MERCHANT_ADDR;
-                            return item;
-                        }
-                        return itemArray[index];
-                    }))).then(result =&gt; result);
-</code></pre>
-
-<h2 id="toc_0">Sequelize 外键</h2>
-
-<p>数据库中的表之间存在一定的关联关系，表之间的关系基于主/外键进行关联、创建约束等。关系表中的数据分为1对1(1:1)、1对多(1:M)、多对多(N:M)三种关联关系。</p>
-
-<p>在Sequelize中建立关联关系，通过调用模型(源模型)的belongsTo、hasOne、hasMany、belongsToMany方法，再将要建立关系的模型(目标模型)做为参数传入即可。这些方法会按以下规则创建关联关系：</p>
-
-<p>hasOne - 与目标模型建立1:1关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasOne()<br/>
-belongsTo - 与目标模型建立1:1关联关系，关联关系(外键)存在于源模型中。详见：Model.belongsTo()<br/>
-hasMany - 与目标模型建立1:N关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasMany()<br/>
-belongsToMany - 与目标模型建立N:M关联关系，会通过sourceId和targetId创建交叉表。详见：Model.belongsToMany()</p>
-
-<p>用户(User)－与其它模型存在1:1、1:N、N:M<br/>
-用户登录信息(UserCheckin)－与User存在1:1关系<br/>
-用户地址(UserAddress)－与User存在N:1关系<br/>
-角色(Role)－与User存在N:M关系<br/>
-<img src="media/14892215616260/14920682242135.png" alt=""/></p>
-
-<pre><code>module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(&#39;User&#39;, {
-    id:{type:DataTypes.BIGINT(11), autoIncrement:true, primaryKey : true, unique : true},
-    username: { type: DataTypes.STRING,  allowNull: false, comment:&#39;用户名&#39; },
-    password: { type: DataTypes.STRING, allowNull: false, comment:&#39;用户密码&#39; },
-    active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, comment:&#39;是否正常状态&#39; }
-  },
-  {
-    timestamps: true,
-    underscored: true,
-    paranoid: true,
-    freezeTableName: true,
-    tableName: &#39;user&#39;,
-    charset: &#39;utf8&#39;,
-    collate: &#39;utf8_general_ci&#39;
-});
-}
-
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(&#39;UserCheckin&#39;, {
-    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true },
-    userId: { 
-      type: DataTypes.BIGINT(11), 
-      field: &#39;user_id&#39;,
-      unique: true, 
-      references: {
-        model: &#39;User&#39;,
-        key: &#39;id&#39;
-      },
-      comment:&#39;用户Id&#39; },
-    loginIp: { type: DataTypes.STRING, field: &#39;login_ip&#39;, allowNull: false, defaultValue: &#39;&#39; , validate: {isIP: true}, comment:&#39;登录IP&#39;}
-  },
-  {
-    underscored: true,
-    timestamps: true,
-    tableName: &#39;userCheckin&#39;,
-    comment: &#39;用户登录信息&#39;,
-    charset: &#39;utf8&#39;,
-    collate: &#39;utf8_general_ci&#39;,
-    indexes: [{
-      name: &#39;userCheckin_userId&#39;,
-      method: &#39;BTREE&#39;,
-     fields: [&#39;user_id&#39;]
-    }]
-  });
-}
-
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(&#39;UserAddress&#39;, {
-    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;主键&#39; },
-    userId: {type: DataTypes.BIGINT(11), field: &#39;user_id&#39;, allowNull: false, comment:&#39;用户Id&#39; },
-    consignee : { type: DataTypes.STRING, field: &#39;consignee&#39;, allowNull: false, comment:&#39;收货人&#39; },
-    address: { type: DataTypes.STRING(1024), field: &#39;address&#39;, allowNull: false, comment:&#39;详细地址&#39; },
-    zipCode: { type: DataTypes.STRING(16), field: &#39;zip_code&#39;, allowNull: true, comment:&#39;邮编&#39; },
-    tel: { type: DataTypes.STRING(32), field: &#39;tel&#39;, allowNull: false, comment:&#39;电话&#39; },
-  },
-  {
-    underscore: true,
-    timestamps: false,
-    freezeTableName: true,
-    tableName: &#39;userAddress&#39;,
-    comment: &#39;用户地址表&#39;,
-    charset: &#39;utf8&#39;,
-    collate: &#39;utf8_general_ci&#39;,
-    indexes: [{
-      name: &#39;userAddress_userId&#39;,
-      method: &#39;BTREE&#39;,
-      fields: [&#39;user_id&#39;]
-    }]
-  });
-}
-</code></pre>
-
-<p>User模型与UserAddress存在1:N的关联关系，但在这样我们并没有用references特性显式的指定外键。这是因为，Sequlieze不仅可以在模型定义时指定外键，还可以在建立模型关系时指定，甚至主外键关系并不需要显示的存在，只要在建立模型关系时指定关联键即可。</p>
-
-<pre><code>module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(&#39;Role&#39;, {
-    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;角色Id&#39; },
-    roleName: { type: DataTypes.STRING, field: &#39;role_name&#39;, comment:&#39;角色名&#39; }
-  },
-  {
-    underscored: true,
-    timestamps: false,
-    freezeTableName: true,
-    tableName: &#39;role&#39;,
-    charset: &#39;utf8&#39;,
-    collate: &#39;utf8_general_ci&#39;
-  });
-}
-</code></pre>
-
-<p>Role模型与User存在N:M的关系，这样就需要两者通过一个关系表（关系模型）进行关联。但并不需要手工建立这个关系表，指定关联关系后Sequelize会自动创建关系表。</p>
-
-<p>注意：在上面定义模型时，我们使用了comment属性添加字段描述。经测试及查看Sequlize源码，这一特性并不会向数据中添加相关描述信息，但仍然建议添加这一属性以增强代码的可读性。</p>
-
-<p>1.3 模型关联与数据库同步</p>
-
-<p>定义好模型后，就可以建立模型关联关系，并将模型及关系同步到数据库中。</p>
-
-<p>模型导入</p>
-
-<p>在上面定义模型时，我们每个模型定义为了单独的文件，这样就需要通过sequlize.import()方法导入模型：</p>
-
-<p>var sequelize=require(&#39;./_db&#39;).sequelize();<br/>
-var User = sequelize.import(&#39;./user.js&#39;);<br/>
-var UserCheckin = sequelize.import(&#39;./userCheckin.js&#39;);<br/>
-var UserAddress = sequelize.import(&#39;./userAddress.js&#39;);<br/>
-var Role = sequelize.import(&#39;./role.js&#39;);<br/>
-关系建立</p>
-
-<p>导入后，建立模型关系：</p>
-
-<p>// 建立模型之间的关系<br/>
-User.hasOne(UserCheckin);<br/>
-UserCheckin.belongsTo(User);<br/>
-User.hasMany(UserAddress, {foreignKey:&#39;user_id&#39;, targetKey:&#39;id&#39;, as:&#39;Address&#39;});<br/>
-User.belongsToMany(Role, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});<br/>
-Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});<br/>
-在定义UserAddress模型时，我们没有定义关联模型，所以需要在hasMany()方法中通过foreignKey和targetKey来指定关联关系(主外键关系)，指定后该关系同样会被同步到数据库中。除指定关联关系外，我们还指定了as选项，该选项表示“别名”，目标模型会混入到源模型后会使用该名称。</p>
-
-<p>通过belongsToMany()方法建立Role与User之间的关系时，设置了through选项，该选项表示“关系”（可以是一个模型或字符串，使用字符串时表示在数据库中表名）。</p>
-
-<p>同步数据库</p>
-
-<p>建立关联关系后，调用sequelize.sync()方法即可以将模型及关联关系同步到数据库中。</p>
-
-<p>async function updateLayerStyle(layerUUID, style) {<br/>
-  const result = Layer.update(<br/>
-    {<br/>
-      style<br/>
-    },<br/>
-    {<br/>
-      where: {<br/>
-        uuid: layerUUID<br/>
-      },<br/>
-     ** returning: true, //返回结果<br/>
-**    **  plain: true //返回结果不带元数据<br/>
-**    }<br/>
-  )<br/>
-    .then(instance =&gt; instance[1].toJSON())<br/>
-    .catch((err) =&gt; {<br/>
-      const error = { error_code: 1000003, message: err };<br/>
-      throw error;<br/>
-    });<br/>
-  return result;<br/>
-}</p>
-
-
-		</div>
-
-		
-
-	</article>
   
 	<div class="pagination">
 	 <a class="prev" href="all_1.html">&larr; Older</a> 
@@ -1094,7 +1256,7 @@ Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;})
 	  <ul id="recent_posts">
 	  
 	      <li class="post">
-	        <a href="ios.html"><strong>ios&nbsp;(53)</strong></a>
+	        <a href="ios.html"><strong>ios&nbsp;(56)</strong></a>
 	         <p class="cat-children-p"> 
 	        
 	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
@@ -1103,9 +1265,11 @@ Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;})
 	        
 	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
 	        
-	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(9)</a>&nbsp;&nbsp;
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(11)</a>&nbsp;&nbsp;
 	        
 	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E4%B8%B4%E6%97%B6.html">临时&nbsp;(1)</a>&nbsp;&nbsp;
 	        
 	         </p> 
 	      </li>
@@ -1125,7 +1289,7 @@ Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;})
 	      </li>
 	  
 	      <li class="post">
-	        <a href="express.html"><strong>express&nbsp;(12)</strong></a>
+	        <a href="express.html"><strong>express&nbsp;(11)</strong></a>
 	        
 	        
 	        
@@ -1139,7 +1303,21 @@ Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;})
 	      </li>
 	  
 	      <li class="post">
+	        <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
 	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="ReactiveCocoa.html"><strong>ReactiveCocoa&nbsp;(1)</strong></a>
 	        
 	        
 	        
@@ -1153,31 +1331,31 @@ Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;})
 	  
 	      
 		      <li class="post">
-		        <a href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a>
+		        <a href="15114058607700.html">PostgresSQL</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="15064062122465.html">Vue学习</a>
+		        <a href="15099405809795.html">iOS11 NavigationBar 适配</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="15058259666834.html"></a>
+		        <a href="15096738267082.html">水波动画,类似咻咻咻</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="14944963010893.html">webGL浏览器支持</a>
+		        <a href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a>
 		      </li>
 	     
 	  
 	      
 		      <li class="post">
-		        <a href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a>
+		        <a href="15084656776459.html"></a>
 		      </li>
 	     
 	  

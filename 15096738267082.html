@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>
     
-  截取指定区域图片 - 小小程序猿
+  水波动画,类似咻咻咻 - 小小程序猿
   
 
   </title>
@@ -81,34 +81,37 @@ $(document).ready(function(event) {
 <div>
 	<article class="hentry" role="article">
 	<header>
-			  	<h1 class="entry-title">截取指定区域图片</h1>
-				<p class="meta"><time datetime="2016-09-18T10:08:41+08:00" pubdate data-updated="true">2016/9/18</time></p>
+			  	<h1 class="entry-title">水波动画,类似咻咻咻</h1>
+				<p class="meta"><time datetime="2017-11-03T09:50:26+08:00" pubdate data-updated="true">2017/11/3</time></p>
 			 </header>
 		  	<div class="entry-content">
-			  	<pre><code class="language-objc">-(UIImage *)imageFromViewAtFrame:(CGRect)rect{
-    UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
+			  	<pre><code> // 设定为缩放
+    CABasicAnimation *sizeAnimation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
 
-    UIGraphicsBeginImageContext(screenWindow.frame.size);//全屏截图，包括window
+    // 动画选项设定
+    sizeAnimation.repeatCount = CGFLOAT_MAX; // 重复次数
+    sizeAnimation.autoreverses = NO; // 动画结束时执行逆动画
 
-    [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+// 缩放倍数
+    sizeAnimation.fromValue = [NSNumber numberWithFloat:0.5]; // 开始时的倍率
+    sizeAnimation.toValue = [NSNumber numberWithFloat:1.4]; // 结束时的倍率
 
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    CABasicAnimation *alphanitation = [CABasicAnimation animationWithKeyPath:@&quot;opacity&quot;];
+    alphanitation.fromValue = @(1);
+    alphanitation.toValue = @(0);
 
-    //截取指定区域生成图片
-    CGImageRef imageRef = viewImage.CGImage;
-    //myInmageRect想要截取的区域
-    CGRect myImageRect=rect ;
-    CGImageRef subImageRef = CGImageCreateWithImageInRect(imageRef, myImageRect);
 
-    //获取上下文
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(context, myImageRect, subImageRef);
-    //转换img
-    UIImage* image = [UIImage imageWithCGImage:subImageRef];
-    UIGraphicsEndImageContext();
-
-    return image;
-}
+/* 动画组 */
+    CAAnimationGroup *group = [CAAnimationGroup animation];
+// 动画选项设定
+    group.duration = 1;
+    group.repeatCount = CGFLOAT_MAX;
+    // 确保controller display 在进入的时候还是继续执行动画
+    // 默认状态下 动画在viewcontroller display的时候会立刻结束动画，但是finish的bool值是false
+    group.removedOnCompletion = NO;
+// 添加动画
+    group.animations = [NSArray arrayWithObjects:sizeAnimation, alphanitation,nil];
+    [waveView.layer addAnimation:group forKey:@&quot;anitation&quot;];
 </code></pre>
 
 			</div>
@@ -121,7 +124,9 @@ $(document).ready(function(event) {
 			<strong>Categories:</strong>&nbsp; 
 			<span class="categories">
 			
-			    <a class='category' href='%E6%80%BB%E7%BB%93.html'>总结</a>&nbsp;
+			    <a class='category' href='ios.html'>ios</a>&nbsp;
+			
+			    <a class='category' href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a>&nbsp;
 			 
 			</span>
 		    </p>
@@ -154,12 +159,12 @@ var duoshuoQuery = {short_name:"mweb-zh"};
 
 	    <p class="meta">
 	    
-	        <a class="basic-alignment left" href="14746843595369.html" 
-	        title="Previous Post: dismissViewControllerAnimated:YES 失效">&laquo; dismissViewControllerAnimated:YES 失效</a>
+	        <a class="basic-alignment left" href="15099405809795.html" 
+	        title="Previous Post: iOS11 NavigationBar 适配">&laquo; iOS11 NavigationBar 适配</a>
 	    
 	    
-	        <a class="basic-alignment right" href="14737664411987.html" 
-	        title="Next Post: UILongPressGestureRecognizer 回调方法执行两次的问题">UILongPressGestureRecognizer 回调方法执行两次的问题 &raquo;</a>
+	        <a class="basic-alignment right" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html" 
+	        title="Next Post: 结构体封装成对象">结构体封装成对象 &raquo;</a>
 	    
 	    </p>
 	  </footer>

@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>
     
-  截取指定区域图片 - 小小程序猿
+  ReactiveCocoa - 小小程序猿
   
 
   </title>
@@ -78,92 +78,136 @@ $(document).ready(function(event) {
 </nav>
   <div id="main">
     <div id="content"> 
-<div>
-	<article class="hentry" role="article">
-	<header>
-			  	<h1 class="entry-title">截取指定区域图片</h1>
-				<p class="meta"><time datetime="2016-09-18T10:08:41+08:00" pubdate data-updated="true">2016/9/18</time></p>
-			 </header>
-		  	<div class="entry-content">
-			  	<pre><code class="language-objc">-(UIImage *)imageFromViewAtFrame:(CGRect)rect{
-    UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
+<div class="blog-index">
 
-    UIGraphicsBeginImageContext(screenWindow.frame.size);//全屏截图，包括window
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="15084656776459.html"></a></h1>
+			<p class="meta"><time datetime="2017-10-20T10:14:37+08:00" 
+			pubdate data-updated="true">2017/10/20</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<p><a href="http://liyaogang.com/%E5%AF%B9weakify%E5%92%8Cstrongify%E7%9A%84%E5%87%A0%E7%82%B9%E7%90%86%E8%A7%A3/">http://liyaogang.com/%E5%AF%B9weakify%E5%92%8Cstrongify%E7%9A%84%E5%87%A0%E7%82%B9%E7%90%86%E8%A7%A3/</a></p>
 
-    [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+<ol>
+<li><p>为什么要加 autoreleasepool{} 或 try{} @finally{} {} . <br/>
+答: 这样做是为了在代码中使用这两个宏时能够加上 @ 符号, 实现 @weakify(self) 和 @strongify(self) 这样的效果，将宏替换为实际的实现时, 代码就变成了 @autoreleasepool{} 和 @try , 这两个其实实际上并没有什么实际的作用, 仅仅是为了可以加 “@” 符号而已.<br/>
+至于为什么在Debug环境要使用 @autoreleasepool{} 而在Release环境使用 @try{} @finally{} {} 这个是为了在Debug环境下保持编译器的分析报错能力, 而使用 @try{} @finally{} {} 会抑制编译器的这个能力，原本的报错会变成一个警告。 <br/>
+详细解释请看:<br/>
+请谨慎使用@weakify和@strongify<br/>
+ReactiveCocoa中weakify与strongify的作用<br/>
+Reactive Cocoa中@weakify和@strongify实现分析</p></li>
+<li><p>typeof(self) 在block代码块内这样写为什么不会造成循环引用(retain cycle)? <br/>
+答:  typeof 、 __typeof 、 <strong>typeof</strong> 这三种写法功能是一样的，这三个函数并不是标准C中规定的，它是一种编译器特性。<br/>
+个人认为在block代码块中使用 typeof(self) , 是用来获取self这个指针的类型的，而并未使用到self对象，因此不会对self对象造成强引用。<br/>
+详细解释请看:<br/>
+Stack Overflow</p></li>
+<li><p>为什么要在block代码块内写 @strongify(self) ? <br/>
+答: 在block代码块内写 @strongify(self) 与block代码块外的 @weakify(self) 一起搭配使用的目的是为了在执行代码块内代码时(注意仅仅是在执行block代码块的代码时)保证self对象不会释放。如果self对象在block代码块的代码执行之前提前释放, 则不适用于此。此解释也同时可以解释问题4。</p></li>
+<li><p>以下代码，在执行block之前将view置为nil，但是block代码块内已经对view强引用了，为什么block代码块内的打印还是null? <br/>
+Objective-C<br/>
+@interface ViewController ()<br/>
+@property (copy  , nonatomic) void(<sup>myblock)();</sup><br/>
+@end</p></li>
+</ol>
 
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+<p>@implementation ViewController</p>
 
-    //截取指定区域生成图片
-    CGImageRef imageRef = viewImage.CGImage;
-    //myInmageRect想要截取的区域
-    CGRect myImageRect=rect ;
-    CGImageRef subImageRef = CGImageCreateWithImageInRect(imageRef, myImageRect);
+<ul>
+<li><p>(void)viewDidLoad {<br/>
+[super viewDidLoad];</p>
 
-    //获取上下文
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(context, myImageRect, subImageRef);
-    //转换img
-    UIImage* image = [UIImage imageWithCGImage:subImageRef];
-    UIGraphicsEndImageContext();
+<p>UIView *view = [[UIView alloc] init];<br/>
+// @weakify(view)<br/>
+__weak __typeof(view) weakView = view;<br/>
+NSLog(@&quot;view(block块前)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock = {<br/>
+    // @strongify(view)<br/>
+    __strong __typeof(view) view = weakView;<br/>
+    NSLog(@&quot;view(block块内)</mark>&gt;%@&quot;, view);<br/>
+};<br/>
+view = nil;<br/>
+NSLog(@&quot;view(block块后)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock();<br/>
+}<br/>
+打印结果: <br/>
+Bash<br/>
+2017-05-16 14:12:44.512 test[34550:12206532] view(block块前)</mark>&gt;<UIView: 0x7fe1c530dcf0; frame = (0 0; 0 0); layer = <CALayer: 0x6100000370e0>&gt;<br/>
+2017-05-16 14:12:44.513 test[34550:12206532] view(block块后)<mark>&gt;(null)<br/>
+2017-05-16 14:12:44.513 test[34550:12206532] view(block块内)</mark>&gt;(null)<br/>
+答: 虽然myblock代码块内对view强引用了, 但是在执行 view=nil 时, myblock的这段实现代码仅仅是存储在内存区，并未执行，所以此时 view=nil 时，view对象的引用计数变为0会立即释放, 当执行到 self.myblock(); 时，block才会对view强引用，而此时view已经释放了，因此打印结果为 null 。 <br/>
+正确的测试代码如下:<br/>
+Objective-C<br/>
+@interface ViewController ()<br/>
+@property (copy  , nonatomic) void(<sup>myblock)();</sup><br/>
+@end</p></li>
+</ul>
 
-    return image;
-}
+<p>@implementation ViewController</p>
+
+<ul>
+<li><p>(void)viewDidLoad {<br/>
+[super viewDidLoad];</p>
+
+<p>__block UIView *view = [[UIView alloc] init];<br/>
+// @weakify(view)<br/>
+__weak __typeof(view) weakView = view;<br/>
+NSLog(@&quot;view(block块前)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock = {<br/>
+    // @strongify(view)<br/>
+    __strong __typeof(view) strongView = weakView;<br/>
+    view = nil;<br/>
+    NSLog(@&quot;view(block块内)</mark>&gt;%@&quot;, strongView);<br/>
+};<br/>
+NSLog(@&quot;view(block块后)<mark>&gt;%@&quot;, weakView);<br/>
+self.myblock();<br/>
+NSLog(@&quot;view(block执行后)</mark>&gt;%@&quot;, weakView);<br/>
+}<br/>
+打印结果:<br/>
+Bash<br/>
+2017-05-16 15:17:57.729 test[34648:12246862] view(block块前)<mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
+2017-05-16 15:17:57.730 test[34648:12246862] view(block块后)</mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
+2017-05-16 15:17:57.730 test[34648:12246862] view(block块内)<mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
+2017-05-16 15:17:57.730 test[34648:12246862] view(block执行后)</mark>&gt;(null)</p></li>
+</ul>
+
+<p>command 注册错误要使用command.errors</p>
+
+<pre><code>[self.drawerCoorViewModel.loadCoorCommand.errors subscribeNext:^(NSError *error) {
+        [self.viewController showErrorMsg:error.domain];
+    }];
 </code></pre>
 
-			</div>
+<p>RAC() 参数定义需要考虑接收类型<br/>
+```<br/>
+RAC(self.drawerDynamicViewModel, markerID) = RACObserve(self.drawerViewModel, markerID);</p>
 
-		
-	  
-		<footer>
-		 <p class="meta">
+<p>如果markerID 为 nsinteger 类型 ，如果此时markerID 为nil，就会报错<br/>
+因为对象不能直接赋值给 普通数值类型<br/>
+```</p>
 
-			<strong>Categories:</strong>&nbsp; 
-			<span class="categories">
-			
-			    <a class='category' href='%E6%80%BB%E7%BB%93.html'>总结</a>&nbsp;
-			 
-			</span>
-		    </p>
-		    <p class="meta">
-		      
-		 </p>
-	    
-		<div class="sharing">
-		  <!-- 多说评论框 start -->
-    <div class="ds-thread" ></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"mweb-zh"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-<!-- 多说公共JS代码 end -->
-          
+<p>内存循环引用</p>
 
-          
+<p>[[_btn_addMarker rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:<sup>__kindof UIControl *x</sup> {<br/>
+        @strongify(self);<br/>
+        // 这里必须使用 self.peripheryViewModel 不能使用_peripheryViewModel<br/>
+        [self.peripheryViewModel.addMarkerSingnal sendNext:self.peripheryViewModel.mapPoi];<br/>
+    }];</p>
+
 
 		</div>
 
-	    <p class="meta">
-	    
-	        <a class="basic-alignment left" href="14746843595369.html" 
-	        title="Previous Post: dismissViewControllerAnimated:YES 失效">&laquo; dismissViewControllerAnimated:YES 失效</a>
-	    
-	    
-	        <a class="basic-alignment right" href="14737664411987.html" 
-	        title="Next Post: UILongPressGestureRecognizer 回调方法执行两次的问题">UILongPressGestureRecognizer 回调方法执行两次的问题 &raquo;</a>
-	    
-	    </p>
-	  </footer>
+		
+
 	</article>
+  
+	<div class="pagination">
+	
+<a href="archives.html">Blog Archives</a>
+	 
+	    
+	</div>
 </div>
  <aside class="sidebar"> 
 
