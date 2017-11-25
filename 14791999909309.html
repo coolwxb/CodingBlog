@@ -1,91 +1,274 @@
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
     
   Button添加图片和调整位置 - 小小程序猿
   
-
   </title>
-  <meta name="author" content="">
-  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+ <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+ <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
 
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
-  <script src="asset/js/modernizr-2.0.js"></script>
-  <script src="asset/js/jquery.min.js"></script>
-  <script src="asset/highlightjs/highlight.pack.js"></script>
-  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script>hljs.initHighlightingOnLoad();</script>
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+    <script src="asset/highlightjs/highlight.pack.js"></script>
+    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
 
-  <style type="text/css">
-  .cat-children-p{ padding: 6px 0px;}
-  .hljs{background: none;}
-  </style>
-  <script type="text/javascript">
-  var isAddSildbar = true;
-  </script>
-  <script src="asset/js/octopress.js" type="text/javascript"></script>
-</head>
-<script type="text/javascript">
-//链接新开窗口
-function addBlankTargetForLinks () {
-  $('a[href^="http"]').each(function(){
-      $(this).attr('target', '_blank');
-  });
-}
-$(document).ready(function(event) {
-  addBlankTargetForLinks();
-});
-</script>
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="index.html">小小程序猿</a></h1>
-  
-    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
-  
-</hgroup>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:daycoding.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-  <li id=""><a target="self" href="index.html">Home</a></li>
-
-  <li id=""><a target="_self" href="archives.html">Archives</a></li>
-
-</ul>
+<div id="header">
+    <h1><a href="index.html">小小程序猿</a></h1>
+</div>
 
 </nav>
-  <div id="main">
-    <div id="content"> 
-<div>
-	<article class="hentry" role="article">
-	<header>
-			  	<h1 class="entry-title">Button添加图片和调整位置</h1>
-				<p class="meta"><time datetime="2016-11-15T16:53:10+08:00" pubdate data-updated="true">2016/11/15</time></p>
-			 </header>
-		  	<div class="entry-content">
-			  	<pre><code class="language-objc">CGSize titleSize = button.titleLabel.intrinsicContentSize;
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; 小小程序猿</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <li><a href="index.html">Home</a></li>
+      
+        <li class="divider"></li>
+        <li><label>ios</label></li>
+
+          
+            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
+          
+            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
+          
+            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
+          
+            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Android</label></li>
+
+          
+            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
+          
+            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
+          
+            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
+          
+            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
+          
+            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
+          
+            <li><a title="guava" href="14729744657413.html">guava</a></li>
+          
+            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>其他</label></li>
+
+          
+            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
+          
+            <li><a title="销售易Pass" href="14917937079752.html">销售易Pass</a></li>
+          
+            <li><a title="2016年工作总结" href="14834244198095.html">2016年工作总结</a></li>
+          
+            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>express</label></li>
+
+          
+            <li><a title="VSCode 智能感知配置" href="14924298431586.html">VSCode 智能感知配置</a></li>
+          
+            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
+          
+            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
+          
+            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
+          
+            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
+          
+            <li><a title="PostGreSql" href="14901728464166.html">PostGreSql</a></li>
+          
+            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
+          
+            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
+          
+            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
+          
+            <li><a title="passport" href="14892005669552.html">passport</a></li>
+          
+            <li><a title="Promise 学习" href="14883392060267.html">Promise 学习</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>node</label></li>
+
+          
+            <li><a title="Node 发送邮件" href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>数据库</label></li>
+
+          
+            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Vue</label></li>
+
+          
+            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>ReactiveCocoa</label></li>
+
+          
+            <li><a title="" href="15084656776459.html"></a></li>
+          
+
+      
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+        <section id="main-content" role="main" class="scroll-container">
+
+          <div class="row">
+            <div class="large-3 medium-3 columns">
+              <div class="hide-for-small">
+                <div class="sidebar">
+                <nav>
+                  <ul id="side-nav" class="side-nav">
+
+                    
+                      <li class="side-title"><span>ios</span></li>
+                        
+                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
+                        
+                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
+                        
+                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
+                        
+                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Android</span></li>
+                        
+                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
+                        
+                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
+                        
+                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
+                        
+                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
+                        
+                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
+                        
+                          <li><a title="guava" href="14729744657413.html">guava</a></li>
+                        
+                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>其他</span></li>
+                        
+                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
+                        
+                          <li><a title="销售易Pass" href="14917937079752.html">销售易Pass</a></li>
+                        
+                          <li><a title="2016年工作总结" href="14834244198095.html">2016年工作总结</a></li>
+                        
+                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="VSCode 智能感知配置" href="14924298431586.html">VSCode 智能感知配置</a></li>
+                        
+                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
+                        
+                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
+                        
+                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
+                        
+                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
+                        
+                          <li><a title="PostGreSql" href="14901728464166.html">PostGreSql</a></li>
+                        
+                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
+                        
+                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
+                        
+                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
+                        
+                          <li><a title="passport" href="14892005669552.html">passport</a></li>
+                        
+                          <li><a title="Promise 学习" href="14883392060267.html">Promise 学习</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>node</span></li>
+                        
+                          <li><a title="Node 发送邮件" href="node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html">Node 发送邮件</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>数据库</span></li>
+                        
+                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Vue</span></li>
+                        
+                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>ReactiveCocoa</span></li>
+                        
+                          <li><a title="" href="15084656776459.html"></a></li>
+                        
+
+                    
+                  </ul>
+                </nav>
+                </div>
+              </div>
+            </div>
+            <div class="large-9 medium-9 columns">
+
+ <div class="markdown-body">
+<h1>Button添加图片和调整位置</h1>
+
+<pre><code class="language-objc">CGSize titleSize = button.titleLabel.intrinsicContentSize;
 CGSize imageSize = image.size;
 CGFloat interval = 1.0;
     
@@ -94,24 +277,33 @@ button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, i
 
 </code></pre>
 
-			</div>
 
+</div>
+
+<br /><br />
+<hr />
+
+<div class="row clearfix">
+  <div class="large-6 columns">
+	<div class="text-left" style="padding:15px 0px;">
 		
-	  
-		<footer>
-		 <p class="meta">
-
-			
-			<span class="categories">
-			 
-			</span>
-		    </p>
-		    <p class="meta">
-		      
-		 </p>
+	        <a href="14792095195618.html"  title="Previous Post: UIView显示单侧border">&laquo; UIView显示单侧border</a>
 	    
-		<div class="sharing">
-		  <!-- 多说评论框 start -->
+	</div>
+  </div>
+  <div class="large-6 columns">
+	<div class="text-right" style="padding:15px 0px;">
+		
+	        <a href="14779048724646.html" 
+	        title="Next Post: 升级Xcode8不能用ios7的真机和模拟器测试">升级Xcode8不能用ios7的真机和模拟器测试 &raquo;</a>
+	    
+	</div>
+  </div>
+</div>
+
+<div class="row">
+<div style="padding:0px 0.93em;" class="share-comments">
+<!-- 多说评论框 start -->
     <div class="ds-thread" ></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -127,180 +319,49 @@ var duoshuoQuery = {short_name:"mweb-zh"};
     })();
     </script>
 <!-- 多说公共JS代码 end -->
-          
-
-          
-
-		</div>
-
-	    <p class="meta">
-	    
-	        <a class="basic-alignment left" href="14792095195618.html" 
-	        title="Previous Post: UIView显示单侧border">&laquo; UIView显示单侧border</a>
-	    
-	    
-	        <a class="basic-alignment right" href="14779048724646.html" 
-	        title="Next Post: 升级Xcode8不能用ios7的真机和模拟器测试">升级Xcode8不能用ios7的真机和模拟器测试 &raquo;</a>
-	    
-	    </p>
-	  </footer>
-	</article>
 </div>
- <aside class="sidebar"> 
+</div>
+<script type="text/javascript">
+	$(function(){
+		var currentURL = '14791999909309.html';
+		$('#side-nav a').each(function(){
+			if($(this).attr('href') == currentURL){
+				$(this).parent().addClass('active');
+			}
+		});
+	});
+</script>  
+</div></div>
 
-	<section>
-	  <h1>Categories</h1>
-	  <ul id="recent_posts">
-	  
-	      <li class="post">
-	        <a href="ios.html"><strong>ios&nbsp;(56)</strong></a>
-	         <p class="cat-children-p"> 
-	        
-	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
-	        
-	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
-	        
-	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(22)</a>&nbsp;&nbsp;
-	        
-	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(11)</a>&nbsp;&nbsp;
-	        
-	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
-	        
-	        	<a href="%E4%B8%B4%E6%97%B6.html">临时&nbsp;(1)</a>&nbsp;&nbsp;
-	        
-	         </p> 
-	      </li>
-	  
-	      <li class="post">
-	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
-	        
-	        
-	        
-	      </li>
-	  
-	      <li class="post">
-	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
-	        
-	        
-	        
-	      </li>
-	  
-	      <li class="post">
-	        <a href="express.html"><strong>express&nbsp;(11)</strong></a>
-	        
-	        
-	        
-	      </li>
-	  
-	      <li class="post">
-	        <a href="node.html"><strong>node&nbsp;(1)</strong></a>
-	        
-	        
-	        
-	      </li>
-	  
-	      <li class="post">
-	        <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库&nbsp;(1)</strong></a>
-	        
-	        
-	        
-	      </li>
-	  
-	      <li class="post">
-	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
-	        
-	        
-	        
-	      </li>
-	  
-	      <li class="post">
-	        <a href="ReactiveCocoa.html"><strong>ReactiveCocoa&nbsp;(1)</strong></a>
-	        
-	        
-	        
-	      </li>
-	   
-	  </ul>
-	</section>
-	<section>
-	  <h1>Recent Posts</h1>
-	  <ul id="recent_posts">
-	  
-	      
-		      <li class="post">
-		        <a href="15114058607700.html">PostgresSQL</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="15099405809795.html">iOS11 NavigationBar 适配</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="15096738267082.html">水波动画,类似咻咻咻</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a>
-		      </li>
-	     
-	  
-	      
-		      <li class="post">
-		        <a href="15084656776459.html"></a>
-		      </li>
-	     
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-	   
-	  </ul>
-	</section>
-	
-</aside> </div></div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 -  -
-  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
-</p>
 
-</footer>
+<div class="page-bottom">
+  <div class="row">
+  <hr />
+  <div class="small-9 columns">
+  <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+  <div class="small-3 columns">
+  <p class="copyright text-right"><a href="#header">TOP</a></p>
+  </div>
+   
+  </div>
+</div>
 
-  
+        </section>
+      </div>
+    </div>
     
+    
+    <script src="asset/js/foundation.min.js"></script>
+    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
+    <script>
+      $(document).foundation();
 
-<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+     
+    </script>
+    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
 var _hmt = _hmt || [];
@@ -312,5 +373,5 @@ var _hmt = _hmt || [];
 })();
 </script>
 
-</body>
+  </body>
 </html>
