@@ -4,7 +4,7 @@
   <title><![CDATA[小小程序猿]]></title>
   <link href="http://daycoding.com/atom.xml" rel="self"/>
   <link href="http://daycoding.com/"/>
-  <updated>2017-11-25T23:08:19+08:00</updated>
+  <updated>2017-11-26T10:23:27+08:00</updated>
   <id>http://daycoding.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -12,6 +12,504 @@
   </author>
   <generator uri="http://www.mweb.im">MWeb</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sequelize 创建连接]]></title>
+    <link href="http://daycoding.com/15116580970818.html"/>
+    <updated>2017-11-26T09:01:37+08:00</updated>
+    <id>http://daycoding.com/15116580970818.html</id>
+    <content type="html"><![CDATA[
+<pre><code>const sequelize = new Sequelize(&#39;database&#39;, &#39;username&#39;, &#39;password&#39;, {
+  // the sql dialect of the database
+  // currently supported: &#39;mysql&#39;, &#39;sqlite&#39;, &#39;postgres&#39;, &#39;mssql&#39;
+  dialect: &#39;mysql&#39;,
+
+  // custom host; default: localhost
+  host: &#39;my.server.tld&#39;,
+
+  // custom port; default: dialect default
+  port: 12345,
+
+  // custom protocol; default: &#39;tcp&#39;
+  // postgres only, useful for Heroku
+  protocol: null,
+
+  // disable logging; default: console.log
+  logging: false,
+
+  // you can also pass any dialect options to the underlying dialect library
+  // - default is empty
+  // - currently supported: &#39;mysql&#39;, &#39;postgres&#39;, &#39;mssql&#39;
+  dialectOptions: {
+    socketPath: &#39;/Applications/MAMP/tmp/mysql/mysql.sock&#39;,
+    supportBigNumbers: true,
+    bigNumberStrings: true
+  },
+
+  // the storage engine for sqlite
+  // - default &#39;:memory:&#39;
+  storage: &#39;path/to/database.sqlite&#39;,
+
+  // disable inserting undefined values as NULL
+  // - default: false
+  omitNull: true,
+
+  // a flag for using a native library or not.
+  // in the case of &#39;pg&#39; -- set this to true will allow SSL support
+  // - default: false
+  native: true,
+
+  // Specify options, which are used when sequelize.define is called.
+  // The following example:
+  //   define: { timestamps: false }
+  // is basically the same as:
+  //   sequelize.define(name, attributes, { timestamps: false })
+  // so defining the timestamps for each model will be not necessary
+  define: {
+    
+    underscored: false
+    freezeTableName: false,
+    charset: &#39;utf8&#39;,
+    dialectOptions: {
+      collate: &#39;utf8_general_ci&#39;
+    },
+    
+    timestamps: true
+  },
+
+  // similar for sync: you can define this to always force sync for models
+  sync: { force: true },
+
+  // pool configuration used to pool database connections
+  pool: {
+    max: 5,
+    idle: 30000,
+    acquire: 60000,
+  },
+
+  // isolation level of each transaction
+  // defaults to dialect default
+  isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ
+})
+</code></pre>
+
+<h1 id="toc_0">sequelize 查询参数</h1>
+
+<pre><code>// Options is an object with the following keys:
+sequelize
+  .query(&#39;SELECT 1&#39;, {
+    // A function (or false) for logging your queries
+    // Will get called for every SQL query that gets send
+    // to the server.
+    logging: console.log,
+
+    // If plain is true, then sequelize will only return the first
+    // record of the result set. In case of false it will all records.
+    plain: false,
+
+    // Set this to true if you don&#39;t have a model definition for your query.
+    raw: false,
+
+    // The type of query you are executing. The query type affects how results are formatted before they are passed back.
+    type: Sequelize.QueryTypes.SELECT
+  })
+
+// Note the second argument being null!
+// Even if we declared a callee here, the raw: true would
+// supersede and return a raw object.
+sequelize
+  .query(&#39;SELECT * FROM projects&#39;, { raw: true })
+  .then(projects =&gt; {
+    console.log(projects)
+  })
+</code></pre>
+
+<h1 id="toc_1">sequelize sql占位符</h1>
+
+<pre><code>sequelize
+  .query(
+    &#39;SELECT * FROM projects WHERE status = ?&#39;,
+    { raw: true, replacements: [&#39;active&#39;]
+  )
+  .then(projects =&gt; {
+    console.log(projects)
+  })
+
+sequelize
+  .query(
+    &#39;SELECT * FROM projects WHERE status = :status &#39;,
+    { raw: true, replacements: { status: &#39;active&#39; } }
+  )
+  .then(projects =&gt; {
+    console.log(projects)
+  })
+</code></pre>
+
+<h1 id="toc_2">sequelize model 定义</h1>
+
+<pre><code>const Foo = sequelize.define(&#39;foo&#39;, {
+ // instantiating will automatically set the flag to true if not set
+ flag: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true },
+
+ // default values for dates =&gt; current time
+ myDate: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+
+ // setting allowNull to false will add NOT NULL to the column, which means an error will be
+ // thrown from the DB when the query is executed if the column is null. If you want to check that a value
+ // is not null before querying the DB, look at the validations section below.
+ title: { type: Sequelize.STRING, allowNull: false },
+
+ // Creating two objects with the same value will throw an error. The unique property can be either a
+ // boolean, or a string. If you provide the same string for multiple columns, they will form a
+ // composite unique key.
+ uniqueOne: { type: Sequelize.STRING,  unique: &#39;compositeIndex&#39; },
+ uniqueTwo: { type: Sequelize.INTEGER, unique: &#39;compositeIndex&#39; },
+
+ // The unique property is simply a shorthand to create a unique constraint.
+ someUnique: { type: Sequelize.STRING, unique: true },
+
+ // It&#39;s exactly the same as creating the index in the model&#39;s options.
+ { someUnique: { type: Sequelize.STRING } },
+ { indexes: [ { unique: true, fields: [ &#39;someUnique&#39; ] } ] },
+
+ // Go on reading for further information about primary keys
+ identifier: { type: Sequelize.STRING, primaryKey: true },
+
+ // autoIncrement can be used to create auto_incrementing integer columns
+ incrementMe: { type: Sequelize.INTEGER, autoIncrement: true },
+
+ // You can specify a custom field name via the &#39;field&#39; attribute:
+ fieldWithUnderscores: { type: Sequelize.STRING, field: &#39;field_with_underscores&#39; },
+
+ // It is possible to create foreign keys:
+ bar_id: {
+   type: Sequelize.INTEGER,
+
+   references: {
+     // This is a reference to another model
+     model: Bar,
+
+     // This is the column name of the referenced model
+     key: &#39;id&#39;,
+
+     // This declares when to check the foreign key constraint. PostgreSQL only.
+     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+   }
+ }
+})
+</code></pre>
+
+<h1 id="toc_3">DataTypes 类型</h1>
+
+<pre><code>//常用
+Sequelize.STRING                      // VARCHAR(255)
+Sequelize.STRING(1234)                // VARCHAR(1234)
+Sequelize.STRING.BINARY               // VARCHAR BINARY
+Sequelize.TEXT                        // TEXT
+Sequelize.TEXT(&#39;tiny&#39;)                // TINYTEXT
+
+Sequelize.INTEGER                     // INTEGER
+Sequelize.BIGINT                      // BIGINT
+Sequelize.BIGINT(11)                  // BIGINT(11)
+
+Sequelize.FLOAT                       // FLOAT
+Sequelize.FLOAT(11)                   // FLOAT(11)
+Sequelize.FLOAT(11, 12)               // FLOAT(11,12)
+
+Sequelize.REAL                        // REAL        PostgreSQL only.
+Sequelize.REAL(11)                    // REAL(11)    PostgreSQL only.
+Sequelize.REAL(11, 12)                // REAL(11,12) PostgreSQL only.
+
+Sequelize.DOUBLE                      // DOUBLE
+Sequelize.DOUBLE(11)                  // DOUBLE(11)
+Sequelize.DOUBLE(11, 12)              // DOUBLE(11,12)
+
+Sequelize.DECIMAL                     // DECIMAL
+Sequelize.DECIMAL(10, 2)              // DECIMAL(10,2)
+
+Sequelize.DATE                        // DATETIME for mysql / sqlite, TIMESTAMP WITH TIME ZONE for postgres
+Sequelize.DATE(6)                     // DATETIME(6) for mysql 5.6.4+. Fractional seconds support with up to 6 digits of precision
+Sequelize.DATEONLY                    // DATE without time.
+Sequelize.BOOLEAN                     // TINYINT(1)
+
+Sequelize.ENUM(&#39;value 1&#39;, &#39;value 2&#39;)  // An ENUM with allowed values &#39;value 1&#39; and &#39;value 2&#39;
+Sequelize.ARRAY(Sequelize.TEXT)       // Defines an array. PostgreSQL only.
+
+Sequelize.JSON                        // JSON column. PostgreSQL, SQLite and MySQL only.
+Sequelize.JSONB                       // JSONB column. PostgreSQL only.
+
+Sequelize.BLOB                        // BLOB (bytea for PostgreSQL)
+Sequelize.BLOB(&#39;tiny&#39;)                // TINYBLOB (bytea for PostgreSQL. Other options are medium and long)
+
+Sequelize.UUID                        // UUID datatype for PostgreSQL and SQLite, CHAR(36) BINARY for MySQL (use defaultValue: Sequelize.UUIDV1 or Sequelize.UUIDV4 to make sequelize generate the ids automatically)
+
+Sequelize.RANGE(Sequelize.INTEGER)    // Defines int4range range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.BIGINT)     // Defined int8range range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.DATE)       // Defines tstzrange range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.DATEONLY)   // Defines daterange range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.DECIMAL)    // Defines numrange range. PostgreSQL only.
+
+Sequelize.ARRAY(Sequelize.RANGE(Sequelize.DATE)) // Defines array of tstzrange ranges. PostgreSQL only.
+
+Sequelize.GEOMETRY                    // Spatial column.  PostgreSQL (with PostGIS) or MySQL only.
+Sequelize.GEOMETRY(&#39;POINT&#39;)           // Spatial column with geometry type. PostgreSQL (with PostGIS) or MySQL only.
+Sequelize.GEOMETRY(&#39;POINT&#39;, 4326)     // Spatial column with geometry type and SRID.  PostgreSQL (with PostGIS) or MySQL only.
+</code></pre>
+
+<h1 id="toc_4">Model getter，setter定义</h1>
+
+<pre><code>//Defining as part of a property
+
+const Employee = sequelize.define(&#39;employee&#39;, {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    get() {
+      const title = this.getDataValue(&#39;title&#39;);
+      // &#39;this&#39; allows you to access attributes of the instance
+      return this.getDataValue(&#39;name&#39;) + &#39; (&#39; + title + &#39;)&#39;;
+    },
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    set(val) {
+      this.setDataValue(&#39;title&#39;, val.toUpperCase());
+    }
+  }
+});
+
+Employee
+  .create({ name: &#39;John Doe&#39;, title: &#39;senior engineer&#39; })
+  .then(employee =&gt; {
+    console.log(employee.get(&#39;name&#39;)); // John Doe (SENIOR ENGINEER)
+    console.log(employee.get(&#39;title&#39;)); // SENIOR ENGINEER
+  })
+  
+  
+  
+  
+  //Defining as part of the model options
+
+  const Foo = sequelize.define(&#39;foo&#39;, {
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING
+}, {
+  getterMethods: {
+    fullName() {
+      return this.firstname + &#39; &#39; + this.lastname
+    }
+  },
+
+  setterMethods: {
+    fullName(value) {
+      const names = value.split(&#39; &#39;);
+
+      this.setDataValue(&#39;firstname&#39;, names.slice(0, -1).join(&#39; &#39;));
+      this.setDataValue(&#39;lastname&#39;, names.slice(-1).join(&#39; &#39;));
+    },
+  }
+});
+</code></pre>
+
+<h1 id="toc_5">索引</h1>
+
+<pre><code>sequelize.define(&#39;user&#39;, {}, {
+  indexes: [
+    // Create a unique index on poem
+    {
+      unique: true,
+      fields: [&#39;poem&#39;]
+    },
+
+    // Creates a gin index on data with the jsonb_path_ops operator
+    {
+      fields: [&#39;data&#39;],
+      using: &#39;gin&#39;,
+      operator: &#39;jsonb_path_ops&#39;
+    },
+
+    // By default index name will be [table]_[fields]
+    // Creates a multi column partial index
+    {
+      name: &#39;public_by_author&#39;,
+      fields: [&#39;author&#39;, &#39;status&#39;],
+      where: {
+        status: &#39;public&#39;
+      }
+    },
+
+    // A BTREE index with a ordered field
+    {
+      name: &#39;title_index&#39;,
+      method: &#39;BTREE&#39;,
+      fields: [&#39;author&#39;, {attribute: &#39;title&#39;, collate: &#39;en_US&#39;, order: &#39;DESC&#39;, length: 5}]
+    }
+  ]
+})
+</code></pre>
+
+<h1 id="toc_6">事务</h1>
+
+<pre><code>//Managed transaction (auto-callback)
+
+return sequelize.transaction(function (t) {
+
+  // chain all your queries here. make sure you return them.
+  return User.create({
+    firstName: &#39;Abraham&#39;,
+    lastName: &#39;Lincoln&#39;
+  }, {transaction: t}).then(function (user) {
+    return user.setShooter({
+      firstName: &#39;John&#39;,
+      lastName: &#39;Boothe&#39;
+    }, {transaction: t});
+  });
+
+}).then(function (result) {
+  // Transaction has been committed
+  // result is whatever the result of the promise chain returned to the transaction callback
+}).catch(function (err) {
+  // Transaction has been rolled back
+  // err is whatever rejected the promise chain returned to the transaction callback
+});
+</code></pre>
+
+<pre><code>// Unmanaged transaction (then-callback)
+return sequelize.transaction().then(function (t) {
+  return User.create({
+    firstName: &#39;Bart&#39;,
+    lastName: &#39;Simpson&#39;
+  }, {transaction: t}).then(function (user) {
+    return user.addSibling({
+      firstName: &#39;Lisa&#39;,
+      lastName: &#39;Simpson&#39;
+    }, {transaction: t});
+  }).then(function () {
+    return t.commit();
+  }).catch(function (err) {
+    return t.rollback();
+  });
+});
+</code></pre>
+
+<h1 id="toc_7">Hooks</h1>
+
+<pre><code>(1)
+  beforeBulkCreate(instances, options)
+  beforeBulkDestroy(options)
+  beforeBulkUpdate(options)
+(2)
+  beforeValidate(instance, options)
+(-)
+  validate
+(3)
+  afterValidate(instance, options)
+  - or -
+  validationFailed(instance, options, error)
+(4)
+  beforeCreate(instance, options)
+  beforeDestroy(instance, options)
+  beforeUpdate(instance, options)
+  beforeSave(instance, options)
+  beforeUpsert(values, options)
+(-)
+  create
+  destroy
+  update
+(5)
+  afterCreate(instance, options)
+  afterDestroy(instance, options)
+  afterUpdate(instance, options)
+  afterSave(instance, options)
+  afterUpsert(created, options)
+(6)
+  afterBulkCreate(instances, options)
+  afterBulkDestroy(options)
+</code></pre>
+
+<h2 id="toc_8">Hooks 声明</h2>
+
+<pre><code>// Method 1 via the .define() method
+const User = sequelize.define(&#39;user&#39;, {
+  username: DataTypes.STRING,
+  mood: {
+    type: DataTypes.ENUM,
+    values: [&#39;happy&#39;, &#39;sad&#39;, &#39;neutral&#39;]
+  }
+}, {
+  hooks: {
+    beforeValidate: (user, options) =&gt; {
+      user.mood = &#39;happy&#39;;
+    },
+    afterValidate: (user, options) =&gt; {
+      user.username = &#39;Toni&#39;;
+    }
+  }
+});
+
+// Method 2 via the .hook() method (or its alias .addHook() method)
+User.hook(&#39;beforeValidate&#39;, (user, options) =&gt; {
+  user.mood = &#39;happy&#39;;
+});
+
+User.addHook(&#39;afterValidate&#39;, &#39;someCustomName&#39;, (user, options) =&gt; {
+  return sequelize.Promise.reject(new Error(&quot;I&#39;m afraid I can&#39;t let you do that!&quot;));
+});
+
+// Method 3 via the direct method
+User.beforeCreate((user, options) =&gt; {
+  return hashPassword(user.password).then(hashedPw =&gt; {
+    user.password = hashedPw;
+  });
+});
+
+User.afterValidate(&#39;myHookAfter&#39;, (user, options) =&gt; {
+  user.username = &#39;Toni&#39;;
+});
+</code></pre>
+
+<h2 id="toc_9">Hooks使用</h2>
+
+<h3 id="toc_10">Instance hooks</h3>
+
+<pre><code>The following hooks will emit whenever you&#39;re editing a single object
+
+beforeValidate
+afterValidate or validationFailed
+beforeCreate / beforeUpdate  / beforeDestroy
+afterCreate / afterUpdate / afterDestroy
+
+// ...define ...
+User.beforeCreate(user =&gt; {
+  if (user.accessLevel &gt; 10 &amp;&amp; user.username !== &quot;Boss&quot;) {
+    throw new Error(&quot;You can&#39;t grant this user an access level above 10!&quot;)
+  }
+})
+
+</code></pre>
+
+<h3 id="toc_11">Model hooks</h3>
+
+<pre><code>Sometimes you&#39;ll be editing more than one record at a time by utilizing the bulkCreate, update, destroy methods on the model. The following will emit whenever you&#39;re using one of those methods:
+
+beforeBulkCreate(instances, options)
+beforeBulkUpdate(options)
+beforeBulkDestroy(options)
+afterBulkCreate(instances, options)
+afterBulkUpdate(options)
+afterBulkDestroy(options)
+
+Model.destroy({ where: {accessLevel: 0}, individualHooks: true});
+// Will select all records that are about to be deleted and emit before- + after- Destroy on each instance
+
+Model.update({username: &#39;Toni&#39;}, { where: {accessLevel: 0}, individualHooks: true});
+// Will select all records that are about to be updated and emit before- + after- Update on each instance
+
+</code></pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PostgresSQL]]></title>
@@ -370,246 +868,6 @@ CGPoint p=[v3 CGPointValue];
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
-    <link href="http://daycoding.com/15084656776459.html"/>
-    <updated>2017-10-20T10:14:37+08:00</updated>
-    <id>http://daycoding.com/15084656776459.html</id>
-    <content type="html"><![CDATA[
-<p><a href="http://liyaogang.com/%E5%AF%B9weakify%E5%92%8Cstrongify%E7%9A%84%E5%87%A0%E7%82%B9%E7%90%86%E8%A7%A3/">http://liyaogang.com/%E5%AF%B9weakify%E5%92%8Cstrongify%E7%9A%84%E5%87%A0%E7%82%B9%E7%90%86%E8%A7%A3/</a></p>
-
-<ol>
-<li><p>为什么要加 autoreleasepool{} 或 try{} @finally{} {} . <br/>
-答: 这样做是为了在代码中使用这两个宏时能够加上 @ 符号, 实现 @weakify(self) 和 @strongify(self) 这样的效果，将宏替换为实际的实现时, 代码就变成了 @autoreleasepool{} 和 @try , 这两个其实实际上并没有什么实际的作用, 仅仅是为了可以加 “@” 符号而已.<br/>
-至于为什么在Debug环境要使用 @autoreleasepool{} 而在Release环境使用 @try{} @finally{} {} 这个是为了在Debug环境下保持编译器的分析报错能力, 而使用 @try{} @finally{} {} 会抑制编译器的这个能力，原本的报错会变成一个警告。 <br/>
-详细解释请看:<br/>
-请谨慎使用@weakify和@strongify<br/>
-ReactiveCocoa中weakify与strongify的作用<br/>
-Reactive Cocoa中@weakify和@strongify实现分析</p></li>
-<li><p>typeof(self) 在block代码块内这样写为什么不会造成循环引用(retain cycle)? <br/>
-答:  typeof 、 __typeof 、 <strong>typeof</strong> 这三种写法功能是一样的，这三个函数并不是标准C中规定的，它是一种编译器特性。<br/>
-个人认为在block代码块中使用 typeof(self) , 是用来获取self这个指针的类型的，而并未使用到self对象，因此不会对self对象造成强引用。<br/>
-详细解释请看:<br/>
-Stack Overflow</p></li>
-<li><p>为什么要在block代码块内写 @strongify(self) ? <br/>
-答: 在block代码块内写 @strongify(self) 与block代码块外的 @weakify(self) 一起搭配使用的目的是为了在执行代码块内代码时(注意仅仅是在执行block代码块的代码时)保证self对象不会释放。如果self对象在block代码块的代码执行之前提前释放, 则不适用于此。此解释也同时可以解释问题4。</p></li>
-<li><p>以下代码，在执行block之前将view置为nil，但是block代码块内已经对view强引用了，为什么block代码块内的打印还是null? <br/>
-Objective-C<br/>
-@interface ViewController ()<br/>
-@property (copy  , nonatomic) void(<sup>myblock)();</sup><br/>
-@end</p></li>
-</ol>
-
-<p>@implementation ViewController</p>
-
-<ul>
-<li><p>(void)viewDidLoad {<br/>
-[super viewDidLoad];</p>
-
-<p>UIView *view = [[UIView alloc] init];<br/>
-// @weakify(view)<br/>
-__weak __typeof(view) weakView = view;<br/>
-NSLog(@&quot;view(block块前)<mark>&gt;%@&quot;, weakView);<br/>
-self.myblock = {<br/>
-    // @strongify(view)<br/>
-    __strong __typeof(view) view = weakView;<br/>
-    NSLog(@&quot;view(block块内)</mark>&gt;%@&quot;, view);<br/>
-};<br/>
-view = nil;<br/>
-NSLog(@&quot;view(block块后)<mark>&gt;%@&quot;, weakView);<br/>
-self.myblock();<br/>
-}<br/>
-打印结果: <br/>
-Bash<br/>
-2017-05-16 14:12:44.512 test[34550:12206532] view(block块前)</mark>&gt;<UIView: 0x7fe1c530dcf0; frame = (0 0; 0 0); layer = <CALayer: 0x6100000370e0>&gt;<br/>
-2017-05-16 14:12:44.513 test[34550:12206532] view(block块后)<mark>&gt;(null)<br/>
-2017-05-16 14:12:44.513 test[34550:12206532] view(block块内)</mark>&gt;(null)<br/>
-答: 虽然myblock代码块内对view强引用了, 但是在执行 view=nil 时, myblock的这段实现代码仅仅是存储在内存区，并未执行，所以此时 view=nil 时，view对象的引用计数变为0会立即释放, 当执行到 self.myblock(); 时，block才会对view强引用，而此时view已经释放了，因此打印结果为 null 。 <br/>
-正确的测试代码如下:<br/>
-Objective-C<br/>
-@interface ViewController ()<br/>
-@property (copy  , nonatomic) void(<sup>myblock)();</sup><br/>
-@end</p></li>
-</ul>
-
-<p>@implementation ViewController</p>
-
-<ul>
-<li><p>(void)viewDidLoad {<br/>
-[super viewDidLoad];</p>
-
-<p>__block UIView *view = [[UIView alloc] init];<br/>
-// @weakify(view)<br/>
-__weak __typeof(view) weakView = view;<br/>
-NSLog(@&quot;view(block块前)<mark>&gt;%@&quot;, weakView);<br/>
-self.myblock = {<br/>
-    // @strongify(view)<br/>
-    __strong __typeof(view) strongView = weakView;<br/>
-    view = nil;<br/>
-    NSLog(@&quot;view(block块内)</mark>&gt;%@&quot;, strongView);<br/>
-};<br/>
-NSLog(@&quot;view(block块后)<mark>&gt;%@&quot;, weakView);<br/>
-self.myblock();<br/>
-NSLog(@&quot;view(block执行后)</mark>&gt;%@&quot;, weakView);<br/>
-}<br/>
-打印结果:<br/>
-Bash<br/>
-2017-05-16 15:17:57.729 test[34648:12246862] view(block块前)<mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
-2017-05-16 15:17:57.730 test[34648:12246862] view(block块后)</mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
-2017-05-16 15:17:57.730 test[34648:12246862] view(block块内)<mark>&gt;<UIView: 0x7fe03e1176c0; frame = (0 0; 0 0); layer = <CALayer: 0x618000421d00>&gt;<br/>
-2017-05-16 15:17:57.730 test[34648:12246862] view(block执行后)</mark>&gt;(null)</p></li>
-</ul>
-
-<p>command 注册错误要使用command.errors</p>
-
-<pre><code>[self.drawerCoorViewModel.loadCoorCommand.errors subscribeNext:^(NSError *error) {
-        [self.viewController showErrorMsg:error.domain];
-    }];
-</code></pre>
-
-<p>RAC() 参数定义需要考虑接收类型<br/>
-```<br/>
-RAC(self.drawerDynamicViewModel, markerID) = RACObserve(self.drawerViewModel, markerID);</p>
-
-<p>如果markerID 为 nsinteger 类型 ，如果此时markerID 为nil，就会报错<br/>
-因为对象不能直接赋值给 普通数值类型<br/>
-```</p>
-
-<p>内存循环引用</p>
-
-<p>[[_btn_addMarker rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:<sup>__kindof UIControl *x</sup> {<br/>
-        @strongify(self);<br/>
-        // 这里必须使用 self.peripheryViewModel 不能使用_peripheryViewModel<br/>
-        [self.peripheryViewModel.addMarkerSingnal sendNext:self.peripheryViewModel.mapPoi];<br/>
-    }];</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Node 发送邮件]]></title>
-    <link href="http://daycoding.com/node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html"/>
-    <updated>2017-10-12T14:30:04+08:00</updated>
-    <id>http://daycoding.com/node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6.html</id>
-    <content type="html"><![CDATA[
-<p><strong>参考转载：<a href="http://www.jianshu.com/p/ee200a67853c">Node.js使用NodeMailer发送邮件</a></strong></p>
-
-<h2 id="toc_0">依赖</h2>
-
-<p><code>nodemailer</code></p>
-
-<pre><code>npm install nodemailer
-</code></pre>
-
-<h2 id="toc_1">使用</h2>
-
-<h3 id="toc_2">创建实例</h3>
-
-<pre><code>const mailTransport = nodemailer.createTransport({
-    host : &#39;smtp.sina.com&#39;,
-    secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
-    auth : {
-        user : &#39;你的邮箱地址&#39;,
-        pass : &#39;你的邮箱密码&#39;
-    },
-});
-
-</code></pre>
-
-<h3 id="toc_3">配置内容</h3>
-
-<pre><code>var options = {
-        from           : &#39;&quot;你的名字&quot; &lt;你的邮箱地址&gt;&#39;,
-        to             : &#39;&quot;用户1&quot; &lt;邮箱地址1&gt;, &quot;用户2&quot; &lt;邮箱地址2&gt;&#39;,
-        // cc          : &#39;&#39;    //抄送
-        // bcc         : &#39;&#39;    //密送
-        subject        : &#39;一封来自Node Mailer的邮件&#39;,
-        text           : &#39;一封来自Node Mailer的邮件&#39;,
-        html           : &#39;&lt;h1&gt;你好，这是一封来自NodeMailer的邮件！&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;cid:00000001&quot;/&gt;&lt;/p&gt;&#39;,
-        attachments    : 
-                    [
-                        {
-                            filename: &#39;img1.png&#39;,            // 改成你的附件名
-                            path: &#39;public/images/img1.png&#39;,  // 改成你的附件路径
-                            cid : &#39;00000001&#39;                 // cid可被邮件使用
-                        },
-                        {
-                            filename: &#39;img2.png&#39;,            // 改成你的附件名
-                            path: &#39;public/images/img2.png&#39;,  // 改成你的附件路径
-                            cid : &#39;00000002&#39;                 // cid可被邮件使用
-                        },
-                    ]
-    };
-    
-</code></pre>
-
-<h3 id="toc_4">发送</h3>
-
-<pre><code>mailTransport.sendMail(options, function(err, msg){
-        if(err){
-            console.log(err);
-            res.render(&#39;index&#39;, { title: err });
-        }
-        else {
-            console.log(msg);
-            res.render(&#39;index&#39;, { title: &quot;已接收：&quot;+msg.accepted});
-        }
-    });
-
-</code></pre>
-
-<h2 id="toc_5">完整代码</h2>
-
-<pre><code>const nodemailer  = require(&#39;nodemailer&#39;);
-
-const mailTransport = nodemailer.createTransport({
-    host : &#39;smtp.sina.com&#39;,
-    secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
-    auth : {
-        user : &#39;你的邮箱地址&#39;,
-        pass : &#39;你的邮箱密码&#39;
-    },
-});
-
-const options = {
-        from           : &#39;&quot;你的名字&quot; &lt;你的邮箱地址&gt;&#39;,
-        to             : &#39;&quot;用户1&quot; &lt;邮箱地址1&gt;, &quot;用户2&quot; &lt;邮箱地址2&gt;&#39;,
-        // cc          : &#39;&#39;    //抄送
-        // bcc         : &#39;&#39;    //密送
-        subject        : &#39;一封来自Node Mailer的邮件&#39;,
-        text           : &#39;一封来自Node Mailer的邮件&#39;,
-        html           : &#39;&lt;h1&gt;你好，这是一封来自NodeMailer的邮件！&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;cid:00000001&quot;/&gt;&lt;/p&gt;&#39;,
-        attachments    : 
-                    [
-                        {
-                            filename: &#39;img1.png&#39;,            // 改成你的附件名
-                            path: &#39;public/images/img1.png&#39;,  // 改成你的附件路径
-                            cid : &#39;00000001&#39;                 // cid可被邮件使用
-                        },
-                        {
-                            filename: &#39;img2.png&#39;,            // 改成你的附件名
-                            path: &#39;public/images/img2.png&#39;,  // 改成你的附件路径
-                            cid : &#39;00000002&#39;                 // cid可被邮件使用
-                        },
-                    ]
-    };
-
-    mailTransport.sendMail(options, function(err, msg){
-        if(err){
-            console.log(err);
-            res.render(&#39;index&#39;, { title: err });
-        }
-        else {
-            console.log(msg);
-            res.render(&#39;index&#39;, { title: &quot;已接收：&quot;+msg.accepted});
-        }
-    });
-
-</code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Vue学习]]></title>
     <link href="http://daycoding.com/15064062122465.html"/>
     <updated>2017-09-26T14:10:12+08:00</updated>
@@ -746,100 +1004,6 @@ if (textField == myTextField1) {
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[VSCode 智能感知配置]]></title>
-    <link href="http://daycoding.com/14924298431586.html"/>
-    <updated>2017-04-17T19:50:43+08:00</updated>
-    <id>http://daycoding.com/14924298431586.html</id>
-    <content type="html"><![CDATA[
-<p>VSCode的好用Extension：typings-autoinstaller</p>
-
-<p>typings</p>
-
-<p>用來管理TypeScritp的定義檔 *.d.ts</p>
-
-<p>安裝語法 npm install typings -g</p>
-
-<p>定義檔來源可以是DefinitelyTyped(dt)、github、npm、bower等</p>
-
-<p>建立 typings.json 並 下載定義檔</p>
-
-<p>typings.json 用來設定typings如何抓取定義檔</p>
-
-<p>typings install dt~lodash --global --save</p>
-
-<p>有一些套件不知道其定義檔來源，且一個一個找來源有點麻煩</p>
-
-<p>使用VSCode的Extension幫你快速安裝</p>
-
-<p>安裝VSCode Extension typings-autoinstaller</p>
-
-<p>Ctrl or Cmd+Shfit+P 叫出 Command Palette</p>
-
-<p>輸入Typings: Install definitions for all dependencies，按下Enter</p>
-
-<p>此Extension會依據package.json所安裝的模組，</p>
-
-<p>自動幫你建立或設定typings.json及下載相關的定義檔。</p>
-
-<p>package.json的dependencies區塊</p>
-
-<p>其定義檔下載設定會放在typings.json的globalDependencies</p>
-
-<p>package.json的devDependencies區塊</p>
-
-<p>其定義檔下載設定會放在typings.json的globalDevDependencies</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[销售易Pass]]></title>
-    <link href="http://daycoding.com/14917937079752.html"/>
-    <updated>2017-04-10T11:08:27+08:00</updated>
-    <id>http://daycoding.com/14917937079752.html</id>
-    <content type="html"><![CDATA[
-<p>字段<br/>
-一个对象上的字段使用数据类型来定义这个字段可以包含哪些内容，特殊的字段 类型在销售易平台将会有不同的展现方式，有时也将有不同的响应方式。<br/>
-Table 1   字段类型<br/>
-字段类型 描述<br/>
-Bool 布尔值，数据通常存储为 Y, N，展现为是、否选项或者 check box。<br/>
-Currency 标示存储数据为货币数额，此类型字段将支持多币种功能。 ID 系统级唯一标识符。<br/>
-Sequence 自增长的数字序列。<br/>
-Integer 整数类型。<br/>
-Note 长字符。<br/>
-Number 数字类型。<br/>
-Phone 电话类型。显示时，可分割区号。<br/>
-Email 电子邮件地址类型。<br/>
-Text 字符类型，长度不超过 2000 字符。<br/>
-Date 日期类型，仅保存和显示日期，无时间信息。<br/>
-Datetime 日期时间类型，保存和显示日期 + 时间信息。<br/>
-URL 保存超链接，用户点击此字段可以打开浏览器前往该网址。</p>
-
-<p>URL 保存超链接，用户点击此字段可以打开浏览器前往该网址。<br/>
- Open API<br/>
-销售易 Open API 基于 REST API 的风格，支持 GET、POST 操作。 在使用 Open API 注意时，请注意如下限制:<br/>
-— 每日次数访问限制:<br/>
-Open API 每日访问次数与购买的 API 用户数有关，每个租户每日可用用 户 <em>1000 次;假如您购买了 100 个 API 用户，那您每日的 API 访问次数 为 100</em>1000=100000 次<br/>
-— 每秒并发数限制<br/>
-每个用户在 1 秒内可调用 15 次 API</p>
-
-<p>Bulk API<br/>
-批量 API 是基于 Open API，并对载入或删除大型数据集进行了优化。通过提 交批次，您可以使用异步查询、插入、更新、更新插入或删除许多记录。<br/>
-在使用 Bulk API 注意时，请注意如下限制: <br/>
-— 每天每账号Bulk API请求次数最大1000 <br/>
-— 每秒每账号Bulk API请求次数最大为15 <br/>
-— 每账号文件上传大小限制20M<br/>
-— 每异步任务提交数据量最大为5000<br/>
-— 每异步任务查询返回数据量最大为5000 <br/>
-销售易 Open API 支持以下两种 OAuth2.0 授权方式:<br/>
-• 授权码模式<br/>
-• 密码模式<br/>
-注意:在使用 OAuth2.0 认证前，您必需先在销售易的后台管理系统创建连接器， 此连接器与您需要对接的应用程序相关，详情参见创建连接器。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[PM2日志分割]]></title>
     <link href="http://daycoding.com/14914632553537.html"/>
     <updated>2017-04-06T15:20:55+08:00</updated>
@@ -956,8 +1120,6 @@ getUser().tap(function(user) {
   //user is the user from getUser(), not recordStatsAsync()
 });
 </code></pre>
-
-<p><img src="media/14909323944752/14943788547606.jpg" alt=""/></p>
 
 ]]></content>
   </entry>
@@ -1100,7 +1262,7 @@ npm uninstall --save lodash//会更新到`package.json`
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[PostGreSql]]></title>
+    <title type="html"><![CDATA[PostGreSql导表]]></title>
     <link href="http://daycoding.com/14901728464166.html"/>
     <updated>2017-03-22T16:54:06+08:00</updated>
     <id>http://daycoding.com/14901728464166.html</id>
@@ -1197,21 +1359,21 @@ __dirname：指向当前运行的脚本所在的目录。</p>
     <updated>2017-03-11T16:39:21+08:00</updated>
     <id>http://daycoding.com/14892215616260.html</id>
     <content type="html"><![CDATA[
-<p>user.update 调用<br/>
-hooks: {<br/>
-            beforeUpdate(user, options, next) {<br/>
-                bcrypt.genSalt(10, (err, salt) =&gt; {<br/>
-                    bcrypt.hash(user.password, salt, null, (error, hash) =&gt; {<br/>
-                        user.password = hash;<br/>
-                        next(null, user);<br/>
-                    });<br/>
-                });<br/>
-            },</p>
+<h3 id="toc_0"><code>user.update</code> 调用</h3>
 
-<pre><code>    },
-
-    ##sequelize 事务
+<pre><code>hooks: {
+    beforeUpdate(user, options, next) {
+         bcrypt.genSalt(10, (err, salt) =&gt; {
+                    bcrypt.hash(user.password, salt, null, (error, hash) =&gt; {
+                        user.password = hash;
+                        next(null, user);
+                    });
+                });
+            }     
+        }
 </code></pre>
+
+<h1 id="toc_1">sequelize 事务</h1>
 
 <pre><code>return db.lakalaSequelize.transaction(t =&gt;
                     Promise.map(sqlArray, (sql, index) =&gt; db.lakalaSequelize.query(sql,
@@ -1228,22 +1390,32 @@ hooks: {<br/>
                     }))).then(result =&gt; result);
 </code></pre>
 
-<h2 id="toc_0">Sequelize 外键</h2>
+<h1 id="toc_2">Sequelize 外键</h1>
 
 <p>数据库中的表之间存在一定的关联关系，表之间的关系基于主/外键进行关联、创建约束等。关系表中的数据分为1对1(1:1)、1对多(1:M)、多对多(N:M)三种关联关系。</p>
 
-<p>在Sequelize中建立关联关系，通过调用模型(源模型)的belongsTo、hasOne、hasMany、belongsToMany方法，再将要建立关系的模型(目标模型)做为参数传入即可。这些方法会按以下规则创建关联关系：</p>
+<p>在<code>Sequelize</code>中建立关联关系，通过调用模型(源模型)的<code>belongsTo</code>、<code>hasOne</code>、<code>hasMany</code>、<code>belongsToMany</code>方法，再将要建立关系的模型(目标模型)做为参数传入即可。这些方法会按以下规则创建关联关系：</p>
 
-<p>hasOne - 与目标模型建立1:1关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasOne()<br/>
-belongsTo - 与目标模型建立1:1关联关系，关联关系(外键)存在于源模型中。详见：Model.belongsTo()<br/>
-hasMany - 与目标模型建立1:N关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasMany()<br/>
-belongsToMany - 与目标模型建立N:M关联关系，会通过sourceId和targetId创建交叉表。详见：Model.belongsToMany()</p>
+<blockquote>
+<blockquote>
+<p>hasOne - 与目标模型建立1:1关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasOne()</p>
 
-<p>用户(User)－与其它模型存在1:1、1:N、N:M<br/>
-用户登录信息(UserCheckin)－与User存在1:1关系<br/>
-用户地址(UserAddress)－与User存在N:1关系<br/>
-角色(Role)－与User存在N:M关系<br/>
-<img src="media/14892215616260/14920682242135.png" alt=""/></p>
+<p>belongsTo - 与目标模型建立1:1关联关系，关联关系(外键)存在于源模型中。详见：Model.belongsTo()</p>
+
+<p>hasMany - 与目标模型建立1:N关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasMany()</p>
+
+<p>belongsToMany - 与目标模型建立N:M关联关系，会通过sourceId和targetId创建交叉表。详见：Model.belongsToMany()</p>
+</blockquote>
+</blockquote>
+
+<ul>
+<li>用户(User)－与其它模型存在1:1、1:N、N:M</li>
+<li>用户登录信息(UserCheckin)－与User存在1:1关系</li>
+<li>用户地址(UserAddress)－与User存在N:1关系</li>
+<li>角色(Role)－与User存在N:M关系</li>
+</ul>
+
+<p><img src="media/14892215616260/14920682242135.png" alt=""/></p>
 
 <pre><code>module.exports = function (sequelize, DataTypes) {
   return sequelize.define(&#39;User&#39;, {
@@ -1318,7 +1490,7 @@ module.exports = function (sequelize, DataTypes) {
 }
 </code></pre>
 
-<p>User模型与UserAddress存在1:N的关联关系，但在这样我们并没有用references特性显式的指定外键。这是因为，Sequlieze不仅可以在模型定义时指定外键，还可以在建立模型关系时指定，甚至主外键关系并不需要显示的存在，只要在建立模型关系时指定关联键即可。</p>
+<p><code>User</code>模型与<code>UserAddress</code>存在1:N的关联关系，但在这样我们并没有用<code>references</code>特性显式的指定外键。这是因为，<code>Sequlieze</code>不仅可以在模型定义时指定外键，还可以在建立模型关系时指定，甚至主外键关系并不需要显示的存在，只要在建立模型关系时指定关联键即可。</p>
 
 <pre><code>module.exports = function (sequelize, DataTypes) {
   return sequelize.define(&#39;Role&#39;, {
@@ -1336,61 +1508,356 @@ module.exports = function (sequelize, DataTypes) {
 }
 </code></pre>
 
-<p>Role模型与User存在N:M的关系，这样就需要两者通过一个关系表（关系模型）进行关联。但并不需要手工建立这个关系表，指定关联关系后Sequelize会自动创建关系表。</p>
+<p><code>Role</code>模型与<code>User</code>存在N:M的关系，这样就需要两者通过一个关系表（关系模型）进行关联。但并不需要手工建立这个关系表，指定关联关系后<code>Sequelize</code>会自动创建关系表。</p>
 
-<p>注意：在上面定义模型时，我们使用了comment属性添加字段描述。经测试及查看Sequlize源码，这一特性并不会向数据中添加相关描述信息，但仍然建议添加这一属性以增强代码的可读性。</p>
+<p>注意：在上面定义模型时，我们使用了<code>comment</code>属性添加字段描述。经测试及查看<code>Sequlize</code>源码，这一特性并不会向数据中添加相关描述信息，但仍然建议添加这一属性以增强代码的可读性。</p>
 
-<p>1.3 模型关联与数据库同步</p>
+<h2 id="toc_3">模型关联与数据库同步</h2>
 
 <p>定义好模型后，就可以建立模型关联关系，并将模型及关系同步到数据库中。</p>
 
 <p>模型导入</p>
 
-<p>在上面定义模型时，我们每个模型定义为了单独的文件，这样就需要通过sequlize.import()方法导入模型：</p>
+<p>在上面定义模型时，我们每个模型定义为了单独的文件，这样就需要通过<code>sequlize.import()</code>方法导入模型：</p>
 
-<p>var sequelize=require(&#39;./_db&#39;).sequelize();<br/>
-var User = sequelize.import(&#39;./user.js&#39;);<br/>
-var UserCheckin = sequelize.import(&#39;./userCheckin.js&#39;);<br/>
-var UserAddress = sequelize.import(&#39;./userAddress.js&#39;);<br/>
-var Role = sequelize.import(&#39;./role.js&#39;);<br/>
-关系建立</p>
+<pre><code>var sequelize=require(&#39;./_db&#39;).sequelize();
+var User = sequelize.import(&#39;./user.js&#39;);
+var UserCheckin = sequelize.import(&#39;./userCheckin.js&#39;);
+var UserAddress = sequelize.import(&#39;./userAddress.js&#39;);
+var Role = sequelize.import(&#39;./role.js&#39;);
+
+</code></pre>
+
+<p>关系建立</p>
 
 <p>导入后，建立模型关系：</p>
 
-<p>// 建立模型之间的关系<br/>
-User.hasOne(UserCheckin);<br/>
-UserCheckin.belongsTo(User);<br/>
-User.hasMany(UserAddress, {foreignKey:&#39;user_id&#39;, targetKey:&#39;id&#39;, as:&#39;Address&#39;});<br/>
-User.belongsToMany(Role, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});<br/>
-Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});<br/>
-在定义UserAddress模型时，我们没有定义关联模型，所以需要在hasMany()方法中通过foreignKey和targetKey来指定关联关系(主外键关系)，指定后该关系同样会被同步到数据库中。除指定关联关系外，我们还指定了as选项，该选项表示“别名”，目标模型会混入到源模型后会使用该名称。</p>
+<pre><code>// 建立模型之间的关系
+User.hasOne(UserCheckin);
+UserCheckin.belongsTo(User);
+User.hasMany(UserAddress, {foreignKey:&#39;user_id&#39;, targetKey:&#39;id&#39;, as:&#39;Address&#39;});
+User.belongsToMany(Role, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});
+Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});
+</code></pre>
 
-<p>通过belongsToMany()方法建立Role与User之间的关系时，设置了through选项，该选项表示“关系”（可以是一个模型或字符串，使用字符串时表示在数据库中表名）。</p>
+<p>在定义<code>UserAddress</code>模型时，我们没有定义关联模型，所以需要在<code>hasMany()</code>方法中通过<code>foreignKey</code>和<code>targetKey</code>来指定关联关系(主外键关系)，指定后该关系同样会被同步到数据库中。除指定关联关系外，我们还指定了<code>as</code>选项，该选项表示“<strong>别名</strong>”，<strong>目标模型会混入到源模型后会使用该名称。</strong></p>
 
-<p>同步数据库</p>
+<p>通过<strong>belongsToMany()</strong>方法建立<code>Role</code>与<code>User</code>之间的关系时，设置了<code>through</code>选项，该选项表示“<strong>关系</strong>”（可以是一个模型或字符串，使用字符串时表示在数据库中表名）。</p>
 
-<p>建立关联关系后，调用sequelize.sync()方法即可以将模型及关联关系同步到数据库中。</p>
+<h2 id="toc_4">同步数据库</h2>
 
-<p>async function updateLayerStyle(layerUUID, style) {<br/>
-  const result = Layer.update(<br/>
-    {<br/>
-      style<br/>
-    },<br/>
-    {<br/>
-      where: {<br/>
-        uuid: layerUUID<br/>
-      },<br/>
-     ** returning: true, //返回结果<br/>
-**    **  plain: true //返回结果不带元数据<br/>
-**    }<br/>
-  )<br/>
-    .then(instance =&gt; instance[1].toJSON())<br/>
-    .catch((err) =&gt; {<br/>
-      const error = { error_code: 1000003, message: err };<br/>
-      throw error;<br/>
+<p>建立关联关系后，调用<code>sequelize.sync()</code>方法即可以将模型及关联关系同步到数据库中。</p>
+
+<h2 id="toc_5">外键例子理解</h2>
+
+<p><a href="http://docs.sequelizejs.com/manual/tutorial/associations.html">官方文档</a></p>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company); // Will add companyId to user
+
+const User = this.sequelize.define(&#39;user&#39;, {/* attributes */}, {underscored: true}) // 不已驼峰形式命名 而是用下划线
+const Company  = this.sequelize.define(&#39;company&#39;, {
+  uuid: {
+    type: Sequelize.UUID,
+    primaryKey: true
+  }
+});
+
+User.belongsTo(Company); // Will add company_uuid to user
+
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const UserRole  = this.sequelize.define(&#39;userRole&#39;, {/* attributes */});
+
+User.belongsTo(UserRole, {as: &#39;role&#39;}); // Adds roleId to user rather than userRoleId
+
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company, {foreignKey: &#39;fk_company&#39;}); // Adds fk_company to User
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company, {foreignKey: &#39;fk_companyname&#39;, targetKey: &#39;name&#39;}); // Adds fk_companyname to User
+</code></pre>
+
+<pre><code>Project.belongsToMany(User, {through: &#39;UserProject&#39;});
+User.belongsToMany(Project, {through: &#39;UserProject&#39;});
+</code></pre>
+
+<pre><code>// Series has a trainer_id=Trainer.id foreign reference key after we call Trainer.hasMany(series)
+const Series = sequelize.define(&#39;series&#39;, {
+  title:        DataTypes.STRING,
+  sub_title:    DataTypes.STRING,
+  description:  DataTypes.TEXT,
+
+  // Set FK relationship (hasMany) with `Trainer`
+  trainer_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: &quot;trainer&quot;,
+      key: &quot;id&quot;
+    }
+  }
+})
+
+const Trainer = sequelize.define(&#39;trainer&#39;, {
+  first_name: DataTypes.STRING,
+  last_name:  DataTypes.STRING
+});
+
+// Video has a series_id=Series.id foreign reference key after we call Series.hasOne(Video)...
+const Video = sequelize.define(&#39;video&#39;, {
+  title:        DataTypes.STRING,
+  sequence:     DataTypes.INTEGER,
+  description:  DataTypes.TEXT,
+
+  // set relationship (hasOne) with `Series`
+  series_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Series, // Can be both a string representing the table name, or a reference to the model
+      key:   &quot;id&quot;
+    }
+  }
+});
+
+Series.hasOne(Video);
+Trainer.hasMany(Series);
+</code></pre>
+
+<p>理解:<br/>
+1. 无论是<code>hasOne</code>还是<code>belongsTo</code>，左面的都是源对象（source）右面都是目标对象（target）<br/>
+2. 不指定<code>sourceKey</code>或者<code>targetKey</code>都是指<strong>对象主键列作为外键所指向的列</strong><br/>
+3. <code>as</code>作为别名，能替代外键名称，如 <code>roleID</code>代替<code>userRoleId</code>,同时<code>getRole</code>、<code>setRole</code>代替<code>getUserRole</code>、<code>setUserRole</code><br/>
+4. 可以使用<code>foreignKey</code>指定外键名称来替代默认的<code>modelId</code>名称<br/>
+5. <code>belongsTo</code>模式下外键默认在<strong>源目标对象</strong>上，外键默认指向<strong>目标对象主键列</strong>，使用<code>targetKey</code>来<strong>改变外键指向列</strong><br/>
+6. <code>belongsToMany</code>会生成中间表，<code>through</code>指定表名</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[passport]]></title>
+    <link href="http://daycoding.com/14892005669552.html"/>
+    <updated>2017-03-11T10:49:26+08:00</updated>
+    <id>http://daycoding.com/14892005669552.html</id>
+    <content type="html"><![CDATA[
+<p>passport的验证过程主要依赖具体的验证策略来实现的，比较常用的有session策略、local策略和github策略等，验证逻辑都是在这些策略类中定义的。passport模块的定义主要包括三个部分：passport类、相关中间件和验证策略，passport自带了session验证策略，如果要使用其他验证策略，需要自行添加。</p>
+
+<pre><code>    passport的使用分为五个部分：
+</code></pre>
+
+<p>首先必须通过app.use(passport.initialize())对passport进行初始化，否则后面的验证方法无法执行<br/>
+在全局范围内添加session验证中间件，app.use(passport.session());，这个主要是为了记住用户的登录状态，可以指定session过期时间<br/>
+给passport添加验证策略<br/>
+在具体的路由上使用第三步中添加的验证中间件<br/>
+给passport定义序列化和反序列化函数</p>
+
+<p>Username &amp; Password</p>
+
+<p>The most widely used way for websites to authenticate users is via a username and password. Support for this mechanism is provided by the passport-local module.</p>
+
+<p>Install</p>
+
+<p>$ npm install passport-local<br/>
+Configuration</p>
+
+<p>var passport = require(&#39;passport&#39;)<br/>
+  , LocalStrategy = require(&#39;passport-local&#39;).Strategy;</p>
+
+<p>passport.use(new LocalStrategy(<br/>
+  function(username, password, done) {<br/>
+    User.findOne({ username: username }, function(err, user) {<br/>
+      if (err) { return done(err); }<br/>
+      if (!user) {<br/>
+        return done(null, false, { message: &#39;Incorrect username.&#39; });<br/>
+      }<br/>
+      if (!user.validPassword(password)) {<br/>
+        return done(null, false, { message: &#39;Incorrect password.&#39; });<br/>
+      }<br/>
+      return done(null, user);<br/>
     });<br/>
-  return result;<br/>
-}</p>
+  }<br/>
+));<br/>
+The verify callback for local authentication accepts username and password arguments, which are submitted to the application via a login form.</p>
+
+<p>Form</p>
+
+<p>A form is placed on a web page, allowing the user to enter their credentials and log in.</p>
+
+<form action="/login" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Log In"/>
+    </div>
+</form>
+
+<p>Route</p>
+
+<p>The login form is submitted to the server via the POST method. Using authenticate() with the local strategy will handle the login request.</p>
+
+<p>app.post(&#39;/login&#39;,<br/>
+  passport.authenticate(&#39;local&#39;, { successRedirect: &#39;/&#39;,<br/>
+                                   failureRedirect: &#39;/login&#39;,<br/>
+                                   failureFlash: true })<br/>
+);<br/>
+Setting the failureFlash option to true instructs Passport to flash an error message using the message option set by the verify callback above. This is helpful when prompting the user to try again.</p>
+
+<p>Parameters</p>
+
+<p>By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults.</p>
+
+<p>passport.use(new LocalStrategy({<br/>
+    usernameField: &#39;email&#39;,<br/>
+    passwordField: &#39;passwd&#39;<br/>
+  },<br/>
+  function(username, password, done) {<br/>
+    // ...<br/>
+  }<br/>
+));</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SVGKit 导入]]></title>
+    <link href="http://daycoding.com/14875633942562.html"/>
+    <updated>2017-02-20T12:03:14+08:00</updated>
+    <id>http://daycoding.com/14875633942562.html</id>
+    <content type="html"><![CDATA[
+<p>framework导入<br/>
+```objc</p>
+
+<h1 id="toc_0">import <CocoaLumberjack/CocoaLumberjack.h></h1>
+
+<h1 id="toc_1">ifdef DEBUG</h1>
+
+<p>static const DDLogLevel ddLogLevel = DDLogLevelVerbose;</p>
+
+<h1 id="toc_2">else</h1>
+
+<p>static const DDLogLevel ddLogLevel = DDLogLevelWarning;</p>
+
+<h1 id="toc_3">endif</h1>
+
+<pre><code>
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[拦截UIViewController的popViewController事件]]></title>
+    <link href="http://daycoding.com/%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html"/>
+    <updated>2016-12-26T15:33:14+08:00</updated>
+    <id>http://daycoding.com/%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html</id>
+    <content type="html"><![CDATA[
+<p>实现拦截<code>UIViewController</code>的<code>pop</code>操作有两种方式：</p>
+
+<ul>
+<li>自定义实现返回按钮，即设置<code>UIBarButtonItem</code>来实现自定义的返回操作。</li>
+<li>创建<code>UINavigatonController</code>的<code>Category</code>，来定制<code>navigationBar: shouldPopItem:</code>的逻辑。</li>
+</ul>
+
+<p><strong>UIViewController+BackButtonHandler.h：</strong></p>
+
+<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
+
+@protocol BackButtonHandlerProtocol &lt;NSObject&gt;
+@optional
+// Override this method in UIViewController derived class to handle &#39;Back&#39; button click
+-(BOOL)navigationShouldPopOnBackButton;
+@end
+
+@interface UIViewController (BackButtonHandler) &lt;BackButtonHandlerProtocol&gt;
+
+@end
+</code></pre>
+
+<p><strong>UIViewController+BackButtonHandler.m：</strong></p>
+
+<pre><code class="language-objc">#import &quot;UIViewController+BackButtonHandler.h&quot;
+
+@implementation UIViewController (BackButtonHandler)
+
+@end
+
+@implementation UINavigationController (ShouldPopOnBackButton)
+
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
+
+    if([self.viewControllers count] &lt; [navigationBar.items count]) {
+        return YES;
+    }
+
+    BOOL shouldPop = YES;
+    UIViewController* vc = [self topViewController];
+    if([vc respondsToSelector:@selector(navigationShouldPopOnBackButton)]) {
+        shouldPop = [vc navigationShouldPopOnBackButton];
+    }
+
+    if(shouldPop) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self popViewControllerAnimated:YES];
+        });
+    } else {
+        // Workaround for iOS7.1. Thanks to @boliva - http://stackoverflow.com/posts/comments/34452906
+        for(UIView *subview in [navigationBar subviews]) {
+            if(0. &lt; subview.alpha &amp;&amp; subview.alpha &lt; 1.) {
+                [UIView animateWithDuration:.25 animations:^{
+                    subview.alpha = 1.;
+                }];
+            }
+        }
+    }
+
+    return NO;
+}
+
+</code></pre>
+
+<p><strong>使用：</strong></p>
+
+<ul>
+<li>在<code>UIViewController</code>当中引入头文件</li>
+</ul>
+
+<pre><code>#import &quot;UIViewController+BackButtonHandler.h&quot;
+</code></pre>
+
+<ul>
+<li>在<code>UIViewController</code>中实现<code>navigationShouldPopOnBackButton</code>方法。</li>
+</ul>
+
+<pre><code class="language-objc">- (BOOL)navigationShouldPopOnBackButton{
+    [[[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;确定返回上一界面?&quot;
+                               delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil] show];
+    //renturn no 拦截pop事件
+    return NO;
+}
+</code></pre>
+
+<p><strong>参考：</strong></p>
+
+<ul>
+<li><p><a href="http://www.jianshu.com/p/25fd027916fa">iOS拦截导航栏返回按钮事件的正确方式</a></p></li>
+<li><p><a href="https://github.com/onegray/UIViewController-BackButtonHandler">UIViewController-BackButtonHandler</a></p></li>
+</ul>
 
 ]]></content>
   </entry>
