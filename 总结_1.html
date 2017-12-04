@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,66 +252,35 @@
 
 	
 		<div class="markdown-body">
-		<h1>OC 调用 Swift 代码</h1>
+		<h1>App应考虑到的一些东西</h1>
 
-		<p>1、 创建新的OC项目工程，命名为<code>OCCallSwift</code></p>
+		<p>摘自：<a href="http://casatwy.com/iosying-yong-jia-gou-tan-kai-pian.html">iOS应用架构谈<br/>
+</a></p>
 
-<p><img src="media/14729757522229/14671175998790.jpg" alt="14671175998790"/></p>
-
-<p>2、 新建Swift文件，如果项目中没有<code>Bridging header</code>文件的话会提示你创建</p>
-
-<p><img src="media/14729757522229/14671176603786.jpg" alt="14671176603786"/><br/>
-<img src="media/14729757522229/14671187492915.png" alt="14671187492915"/></p>
-
-<p><code>OCCallSwift-Swift.h</code>头文件</p>
-
-<p><img src="media/14729757522229/14671188837357.jpg" alt="14671188837357"/></p>
-
-<p>3、编写Swift文件代码方法</p>
-
-<pre><code>
-import Foundation
-
-class SwiftUtil: NSObject {
-    func calledByOC(info:String) -&gt; Void {
-        print(&quot;\(info) ,swift 方法被调用了&quot;)
-    }
-}
+<pre><code>•   如何让业务开发工程师方便安全地调用网络API？然后尽可能保证用户在各种网络环境下都能有良好的体验？
+•   页面如何组织，才能尽可能降低业务方代码的耦合度？尽可能降低业务方开发界面的复杂度，提高他们的效率？
+•   当数据有在本地存取的需求的时候，如何能够保证数据在本地的合理安排？如何尽可能地减小性能消耗？
+•   iOS应用有审核周期，如何能够通过不发版本的方式展示新的内容给用户？如何修复紧急bug？
 
 </code></pre>
 
-<p>4、编写Controller文件</p>
+<p>针对团队：<br/>
+• 收集用户数据，给产品和运营提供参考<br/>
+• 合理地组织各业务方开发的业务模块，以及相关基础模块<br/>
+• 每日app的自动打包，提供给QA工程师的测试工具</p>
 
-<p>导入头文件<code>#import &quot;OCCallSwift-swift.h&quot;</code>，<strong>头文件格式为 <code>项目名称-swift.h</code></strong>，之后重新编译一下工程，之后就可以像调用普通类一样调用Swift方法了。</p>
-
-<pre><code>
-#import &quot;ViewController.h&quot;
-#import &quot;OCCallSwift-swift.h&quot;
-
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    SwiftUtil*  util = [[SwiftUtil alloc] init];
-    [util calledByOC:@&quot;从OC 调用&quot;];
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-}
-
-@end
-</code></pre>
+<p>第一步：搞清楚要解决哪些问题，并找到解决这些问题的充要条件<br/>
+第二步：问题分类，分模块<br/>
+第三步：搞清楚各问题之间的依赖关系，建立好模块交流规范并设计模块<br/>
+第四步：推演预测一下未来可能的走向，必要时添加新的模块，记录更多的基础数据以备未来之需<br/>
+第五步：先解决依赖关系中最基础的问题，实现基础模块，然后再用基础模块堆叠出整个架构<br/>
+第六步：打点，跑单元测试，跑性能测试，根据数据去优化对应的地方</p>
 
 
 		</div>
+	
+
+ 
 	
 
  

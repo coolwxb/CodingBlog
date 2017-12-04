@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,38 +252,118 @@
 
 	
 		<div class="markdown-body">
-		<h1>UISearchBar</h1>
+		<h1>UILabel</h1>
 
-		<h2 id="toc_0">修改背景色</h2>
+		<h4 id="toc_0">UILabel 添加富文本</h4>
 
-<pre><code>mySearchBar.backgroundColor = RGBACOLOR(249,249,249,1);
-mySearchBar.backgroundImage = [self imageWithColor:[UIColor clearColor] size:mySearchBar.bounds.size];
+<pre><code> // 创建一个富文本
+            NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:[cell.btn_title.text stringByAppendingString:@&quot; &quot;]];
 
-//取消searchbar背景色
-- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size/Users/coolwxb/Documents/博客/blog/source/_posts/Masonry 使用复习总结.markdown
-{
-    CGRect rect = CGRectMake(0, 0, size.width, size.height);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
+            // 添加表情
+            NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+            // 表情图片
+            attch.image = [UIImage imageNamed:@&quot;ic_photo&quot;];
+            // 设置图片大小
+            attch.bounds = CGRectMake(0, -2, attch.image.size.width,attch.image.size.height);
 
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
+            // 创建带有图片的富文本
+            NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+            [attri appendAttributedString:string];
 
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+            // 用label的attributedText属性来使用富文本
+            cell.btn_title.attributedText = attri;
 
-    return image;
-}
 </code></pre>
 
-<h2 id="toc_1">UISearchBar 获取焦点并显示光标</h2>
+<h4 id="toc_1">富文本使用</h4>
 
-<pre><code> _oneSearchBar.tintColor = [UIColor blackColor];
- [_oneSearchBar becomeFirstResponder];
+<pre><code>NSString *str = @&quot;人生若只如初见，何事秋风悲画扇。\n等闲变却故人心，却道故人心易变。\n骊山语罢清宵半，泪雨霖铃终不怨。\n何如薄幸锦衣郎，比翼连枝当日愿。&quot;;
+NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
+
+</code></pre>
+
+<p><strong>attrStr</strong>添加字体和设置字体的范围</p>
+
+<pre><code>[attrStr addAttribute:NSFontAttributeName
+                value:[UIFont systemFontOfSize:30.0f]
+                range:NSMakeRange(0, 3)];
+
+</code></pre>
+
+<p><strong>attStr</strong>添加文字颜色</p>
+
+<pre><code>[attrStr addAttribute:NSForegroundColorAttributeName
+                value:[UIColor redColor]
+                range:NSMakeRange(17, 7)];
+
+</code></pre>
+
+<p><strong>attStr</strong>添加下划线</p>
+
+<pre><code>[attrStr addAttribute:NSUnderlineStyleAttributeName
+                value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
+                range:NSMakeRange(8, 7)];
+
+</code></pre>
+
+<p><strong>段落样式</strong></p>
+
+<pre><code>NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+//行间距
+paragraph.lineSpacing = 10;
+//段落间距
+paragraph.paragraphSpacing = 20;
+//对齐方式
+paragraph.alignment = NSTextAlignmentLeft;
+//指定段落开始的缩进像素
+paragraph.firstLineHeadIndent = 30;
+//调整全部文字的缩进像素
+paragraph.headIndent = 10;
+
+</code></pre>
+
+<p><strong>attrStr</strong>添加段落设置</p>
+
+<pre><code>[attrStr addAttribute:NSParagraphStyleAttributeName
+                value:paragraph
+                range:NSMakeRange(0, [str length])];
+
+NSString *urlStr = @&quot;www.南瓜瓜.com&quot;;
+NSURL *url = [NSURL URLWithString:urlStr];
+
+</code></pre>
+
+<p><strong>创建label</strong></p>
+
+<pre><code>UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60, 100, 200, 0)];
+label.backgroundColor = [UIColor lightGrayColor];
+//自动换行
+label.numberOfLines = 0;
+//设置label的富文本
+label.attributedText = attrStr;
+//label高度自适应
+[label sizeToFit];
+[self.view addSubview:label];
+
+</code></pre>
+
+<p>设置sizeToFit之后是可以取出label的高度的，这样做label高度自适应。</p>
+
+<pre><code>CGFloat height = label.frame.size.height;
+NSLog(@&quot;height = %f&quot;,height);
 </code></pre>
 
 
 		</div>
+	
+
+ 
+	
+
+ 
+	
+
+ 
 	
 
  

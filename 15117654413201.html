@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Button添加图片和调整位置 - 小小程序猿
+  UIImageWriteToSavedPhotosAlbum CRASH - 小小程序猿
   
   </title>
  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
@@ -248,16 +248,45 @@
             <div class="large-9 medium-9 columns">
 
  <div class="markdown-body">
-<h1>Button添加图片和调整位置</h1>
+<h1>UIImageWriteToSavedPhotosAlbum CRASH</h1>
 
-<pre><code class="language-objc">CGSize titleSize = button.titleLabel.intrinsicContentSize;
-CGSize imageSize = image.size;
-CGFloat interval = 1.0;
+<p>在ios11 中调用相机拍照在回调方法中执行压缩图片报错<br/>
+代码如下：</p>
+
+<pre><code>- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
+    @try {
+
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        //将相片保存到相册
+        UIImageWriteToSavedPhotosAlbum(image, self, NULL, NULL);
+
+        // 将图片写入文件
+        CGSize newSize = CGSizeMake(100,100);
+        //We prepare a bitmap with the new size
+    UIGraphicsBeginImageContextWithOptions(newSize, YES, 0.0);
     
-button.imageEdgeInsets = UIEdgeInsetsMake(0,titleSize.width + interval+5, 0, -(titleSize.width + interval+5));
-button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, imageSize.width + interval);
+    //Draws a rect for the image
+    [image drawInRect:CGRectMake(0, 0,newSize.width, newSize.height)];
+    
+    //We set the scaled image from the context
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+        
+        [picker dismissViewControllerAnimated:YES completion:nil];
 
+    }
+    @catch (NSException *exception) {
+        DDLogDebug(@&quot;%@&quot;, exception);
+    }
+    @finally {
+
+    }
+
+}
 </code></pre>
+
+<p>总是在<code>image drawInRect:</code>方法出报错。原以为是在图片尺寸过大问题，但是经过各种测试均不是压缩方法上出现问题。后确定是由于<code>UIImageWriteToSavedPhotosAlbum</code>出错,UIImageWriteToSavedPhotosAlbum 设置了代理对象却没有实现方法，最后参数都修改为NULL</p>
 
 
 </div>
@@ -269,15 +298,15 @@ button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, i
   <div class="large-6 columns">
 	<div class="text-left" style="padding:15px 0px;">
 		
-	        <a href="14792095195618.html"  title="Previous Post: UIView显示单侧border">&laquo; UIView显示单侧border</a>
+	        <a href="15117817736257.html"  title="Previous Post: node xlsx">&laquo; node xlsx</a>
 	    
 	</div>
   </div>
   <div class="large-6 columns">
 	<div class="text-right" style="padding:15px 0px;">
 		
-	        <a href="14779048724646.html" 
-	        title="Next Post: 升级Xcode8不能用ios7的真机和模拟器测试">升级Xcode8不能用ios7的真机和模拟器测试 &raquo;</a>
+	        <a href="15116580970818.html" 
+	        title="Next Post: Sequelize 创建连接">Sequelize 创建连接 &raquo;</a>
 	    
 	</div>
   </div>
@@ -305,7 +334,7 @@ var duoshuoQuery = {short_name:"mweb-zh"};
 </div>
 <script type="text/javascript">
 	$(function(){
-		var currentURL = '14791999909309.html';
+		var currentURL = '15117654413201.html';
 		$('#side-nav a').each(function(){
 			if($(this).attr('href') == currentURL){
 				$(this).parent().addClass('active');

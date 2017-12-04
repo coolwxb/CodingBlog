@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,13 +252,38 @@
 
 	
 		<div class="markdown-body">
-		<h1>webGL浏览器支持</h1>
+		<h1>Git 删除已经跟踪的文件或目录</h1>
 
-		<p><img src="media/14944963010893/14980083105786.jpg" alt=""/><br/>
-<a href="http://caniuse.com/#search=gl">WebGL 浏览器支持</a></p>
+		<p><strong>转载：</strong><a href="http://www.jianshu.com/p/706560653753">Git 删除已经跟踪的文件或目录</a></p>
+
+<p>如果第一次提交的时候，没有在<code>gitignore</code>文件中添加忽略文件，那么这些文件（目录也是文件）就会被<code>git</code>跟踪，<code>push</code>的时候也会被推送到远程。所以最好就是一开始在<code>commit</code>之前先添加到<code>gitignore</code>中。</p>
+
+<p>如果文件已经被跟踪且被推送到远程，可以按照下面方法解决：</p>
+
+<pre><code>rm -rf 文件
+git rm -r --cached 要忽略的文件
+git add -A (添加所有)
+git push origin 分支
+</code></pre>
+
+<p>如果同名的文件过多，如：<code>.class</code> 文件被提交了，那么如果这样一个一个显然效率太低，可以按照下面方法操作：</p>
+
+<pre><code>find . -iname 文件名 -exec rm -rf {}\;
+</code></pre>
+
+<p>重复上面的步骤，文件名替换为下一个要删除的文件名<br/>
+修改<code>gitignore</code>，添加忽略文件</p>
+
+<pre><code>git rm -r --cached 要忽略的文件
+git add -A
+git push origin 分支
+</code></pre>
 
 
 		</div>
+	
+
+ 
 	
 
  

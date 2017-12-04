@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,94 +252,395 @@
 
 	
 		<div class="markdown-body">
-		<h1>Sqlite</h1>
+		<h1>Masonry</h1>
 
-		<h2 id="toc_0">SQLITE 数据类型</h2>
-
-<p>一般数据采用的固定的静态数据类型，而SQLite采用的是动态数据类型，会根据存入值自动判断。</p>
-
-<p>SQLite具有以下五种数据类型：</p>
-
-<blockquote>
-<ol>
-<li>NULL：空值。</li>
-<li>INTEGER：带符号的整型，具体取决有存入数字的范围大小。</li>
-<li>REAL：浮点数字，存储为8-byte IEEE浮点数。</li>
-<li>TEXT：字符串文本。</li>
-<li>BLOB：二进制对象。</li>
-<li>INTEGER : 代替bool类型</li>
-</ol>
+		<blockquote>
+<p>为了解决ios 原生写约束太痛苦这个问题<br/>
+github：<a href="https://github.com/SnapKit/Masonry">Masonry<br/>
+</a></p>
 </blockquote>
 
-<p>但实际上，sqlite3也接受如下的数据类型：</p>
+<h2 id="toc_0">安装</h2>
 
-<blockquote>
-<p>smallint: 16 位元的整数。</p>
+<p>使用Pod组织安装masonry<br/>
+<code><br/>
+platform :ios, &#39;6.0&#39;<br/>
+pod &#39;Masonry&#39;<br/>
+</code><br/>
+<strong>注意</strong></p>
 
-<p>interger: 32 位元的整数。</p>
+<ul>
+<li><em>如果配合xib使用需要将“Use Auto Layout”和“Use Size Classes”这两个选项去掉，要不然控制台会报错</em></li>
+<li><em>要先添加view，在添加约束</em></li>
+<li><em>最好在约束中设置控件大小</em></li>
+</ul>
 
-<p>decimal(p,s) :p 精确值和 s 大小的十进位整数，精确值p是指全部有几个数(digits)大小值，s是指小数点後有几位数。如果没有特别指定，则系统会设为 p=5; s=0 。</p>
+<h3 id="toc_1">经常用到的约束</h3>
 
-<p>float : 32位元的实数。</p>
+<p>设置控件宽高</p>
 
-<p>double : 64位元的实数。</p>
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+//要先添加view 之后才能添加约束
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+//make.size.mas_equalTo(CGSizeMake(100, 100));
+//如果使用eqaulto时，设置数值前需要加@
+//mas_equalTo则不用
+make.height.equalTo(@100);
+make.width.mas_equalTo(100);
+}];
 
-<p>char(n) : n 长度的字串，n不能超过 254。</p>
+</code></pre>
 
-<p>varchar(n) :长度不固定且其最大长度为 n 的字串，n不能超过 4000。</p>
+<p>运行结果：<br/>
+<img src="media/14729745479232/QQ20150629-1@2x.png" alt="运行结果"/></p>
 
-<p>graphic(n) 和 char(n) 一样，不过其单位是两个字元 double-bytes， n不能超过127。这个形态是为了支援两个字元长度的字体，例如中文字。</p>
+<p>等同于其他控件宽高</p>
 
-<p>vargraphic(n): 可变长度且其最大长度为 n 的双字元字串，n不能超过 2000</p>
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    //make.size.mas_equalTo(CGSizeMake(100, 100));
+    //如果使用eqaulto时，设置数值前需要加@
+    //mas_equalTo则不用
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+}];
 
-<p>date : 包含了 年份、月份、日期。</p>
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    //make.size.equalTo(red);
+    //等价于
+    make.width.equalTo(red);
+    make.height.equalTo(red);
+    //这个用来设置距离红方块的距离
+    make.left.equalTo(red.mas_right).offset(10);
+}];
 
-<p>time : 包含了 小时、分钟、秒。</p>
+</code></pre>
 
-<p>timestamp :包含了 年、月、日、时、分、秒、千分之一秒。</p>
+<p>结果：<br/>
+<img src="media/14729745479232/QQ20150629-2@2x.png" alt="enter image description here"/></p>
 
-<p>datetime 包含日期时间格式，必须写成&#39;2010-08-05&#39;不能写为&#39;2010-8-5&#39;，否则在读取时会产生错误！</p>
-</blockquote>
+<h3 id="toc_2">设置边距margin</h3>
 
-<p><strong><code>Sqlite常用数据类型</code></strong></p>
+<p>top和left的边距设置</p>
 
-<p>这句话本身就有问题，因为：SQLite是<strong><code>无类型</code></strong>的. 这意味着你可以保存任何类型的数据到你所想要保存的任何表的任何列中, 无论这列声明的数据类型是什么(只有自动递增Integer Primary Key才有用). 对于SQLite来说对字段不指定类型是完全有效的. 如:</p>
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+}];
 
-<blockquote>
-<p>Create Table ex3(a, b, c);</p>
-</blockquote>
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.width.equalTo(red);
+    make.height.equalTo(red);
+    make.left.equalTo(red.mas_right).offset(100);
+    make.top.equalTo(red.mas_bottom).offset(100);
+}];
 
-<p>即使SQLite允许忽略数据类型, 但是仍然建议在你的Create Table语句中指定数据类型. 因为数据类型对于你和其他的程序员交流, 或者你准备换掉你的数据库引擎是非常有用的. SQLite支持常见的数据类型, 如:<br/>
-<code>sql<br/>
-CREATE TABLE ex2(<br/>
-a VARCHAR(10),<br/>
-b NVARCHAR(15),<br/>
-c TEXT,<br/>
-d INTEGER,<br/>
-e FLOAT,<br/>
-f BOOLEAN,<br/>
-g CLOB,<br/>
-h BLOB,<br/>
-i TIMESTAMP,<br/>
-j NUMERIC(10,5),<br/>
-k VARYING CHARACTER (24),<br/>
-l NATIONAL VARYING CHARACTER(16)<br/>
-);<br/>
-</code></p>
+</code></pre>
 
-<h2 id="toc_1"><code>char</code>、<code>varchar</code>、<code>text</code>和<code>nchar</code>、<code>nvarchar</code>、<code>ntext</code>的区别</h2>
+<p>运行结果：<br/>
+<img src="media/14729745479232/48420037.jpg" alt=""/><br/>
+右方和下方的边距设置</p>
 
-<ol>
-<li><p><code>CHAR</code>。CHAR存储定长数据很方便，CHAR字段上的索引效率级高，比如定义char(10)，那么不论你存储的数据是否达到了10个字节，都要占去10个字节的空间,不足的自动用空格填充。</p></li>
-<li><p><code>VARCHAR</code>。存储变长数据，但存储效率没有CHAR高。如果一个字段可能的值是不固定长度的，我们只知道它不可能超过10个字符，把它定义为 VARCHAR(10)是最合算的。VARCHAR类型的实际长度是它的值的实际长度+1。为什么“+1”呢？这一个字节用于保存实际使用了多大的长度。从空间上考虑，用varchar合适；从效率上考虑，用char合适，关键是根据实际情况找到权衡点。</p></li>
-<li><p><code>TEXT</code>。text存储可变长度的非Unicode数据，最大长度为231-1(2,147,483,647)个字符。</p></li>
-<li><p><code>NCHAR、NVARCHAR、NTEXT</code>。这三种从名字上看比前面三种多了个“N”。它表示存储的是Unicode数据类型的字符。我们知道字符中，英文字符只需要一个字节存储就足够了，但汉字众多，需要两个字节存储，英文与汉字同时存在时容易造成混乱，Unicode字符集就是为了解决字符集这种不兼容的问题而产生的，它所有的字符都用两个字节表示，即英文字符也是用两个字节表示。nchar、nvarchar的长度是在1到4000之间。和char、varchar比较起来，nchar、nvarchar则最多存储4000个字符，不论是英文还是汉字；而char、varchar最多能存储8000个英文，4000个汉字。可以看出使用nchar、nvarchar数据类型时不用担心输入的字符是英文还是汉字，较为方便，但在存储英文时数量上有些损失。</p></li>
-</ol>
+<pre><code>UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+    make.right.equalTo(self.view.mas_right).offset(-50);
+    make.bottom.equalTo(self.view.mas_bottom).offset(-20);
+}];
 
-<p><strong>所以一般来说，如果含有中文字符，用nchar/nvarchar，如果纯英文和数字，用char/varchar。</strong></p>
+</code></pre>
+
+<p>运行结果：<br/>
+<img src="media/14729745479232/30251805.jpg" alt=""/></p>
+
+<p><strong>注意：在设置边距的时候上、左边距的值是正数，右、下的边距值是负数</strong></p>
+
+<h3 id="toc_3">设置左右对齐</h3>
+
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(200);
+    make.left.equalTo(self.view.mas_left).offset(30);
+}];
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@100);
+    make.width.mas_equalTo(100);
+    //让蓝方块在红方块下方
+    make.top.equalTo(red.mas_bottom).offset(10);
+    //设置左对齐
+    make.left.equalTo(red.mas_left);
+}];
+
+</code></pre>
+
+<p>运行结果：<br/>
+<img src="media/14729745479232/39647700.jpg" alt=""/></p>
+
+<p><img src="media/14729745479232/60579122.jpg" alt=""/></p>
+
+<h3 id="toc_4">撑满剩余空间</h3>
+
+<pre><code>UIView* red = [[UIView alloc]init];
+red.backgroundColor = [UIColor redColor];
+[self.view addSubview:red];
+[red mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(@50);
+    make.width.mas_equalTo(50);
+    make.left.equalTo(self.view.mas_left).offset(10);
+    make.top.equalTo(self.view.mas_top).offset(20);
+}];
+
+UIView* blue= [[UIView alloc] init];
+blue.backgroundColor = [UIColor blueColor];
+[self.view addSubview:blue];
+[blue mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.height.equalTo(red);
+    make.centerY.equalTo(red.mas_centerY);
+    make.left.equalTo(red.mas_right).offset(10);
+    make.right.equalTo(self.view.mas_right).offset(-10);
+}];
+
+</code></pre>
+
+<p>结果：<br/>
+<img src="media/14729745479232/67504229.jpg" alt="运行结果"/></p>
+
+<h3 id="toc_5">Masonary 位移动画</h3>
+
+<p>在研究自定义类似<code>Alert</code>弹窗的视图的时候，想实现动画从屏幕底部（屏幕外）移动到屏幕靠底部（屏幕中）,如果不靠点击事件触发动画，而是在显示的时候就触发动画，动画执行的效果和预想不同：会从屏幕左上角开始展开到指定位置，而当执行延迟函数有停顿间隔后在执行动画会得到预想效果，代码：</p>
+
+<pre><code>//
+//  ChoosePicActiont.m
+//  dituwuyou
+//
+//  Created by coolwxb on 16/3/23.
+//  Copyright © 2016年 dituwuyou. All rights reserved.
+//
+
+#import &quot;PicActiontSheet.h&quot;
+#import &quot;ColorChangeUtil.h&quot;
+
+@implementation PicActiontSheet
+
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+
+        self.windowLevel = UIWindowLevelStatusBar+1;
+        self.backgroundColor =[UIColor clearColor];
+
+        UIView* bg = [[UIView alloc]initWithFrame:frame];
+        bg.backgroundColor = [UIColor blackColor];
+        bg.alpha = 0.5f;
+        [self addSubview:bg];
+
+        _bg_actionSheet = [[UIView alloc]init];
+        _bg_actionSheet.backgroundColor = [UIColor whiteColor];
+        _bg_actionSheet.layer.cornerRadius = 4.0f;
+        _bg_actionSheet.layer.masksToBounds = YES;
+        [self addSubview:_bg_actionSheet];
+
+        UILabel* lb_info = [[UILabel alloc]init];
+        lb_info.text = @&quot;选择照片&quot;;
+        lb_info.textColor = [ColorChangeUtil getColor:@&quot;#d4d4d4&quot;];
+        lb_info.font =[UIFont systemFontOfSize:12];
+        [_bg_actionSheet addSubview:lb_info];
+        [lb_info mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_bg_actionSheet.mas_centerX);
+            make.top.equalTo(_bg_actionSheet.mas_top).offset(9);
+        }];
+
+        UITapGestureRecognizer* tap_camera = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeFromCamera)];
+        UITapGestureRecognizer* tap_photo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeFromPhoto)];
+        UITapGestureRecognizer* tap_cancle = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismiss)];
+
+        UIView* item_camera = [self makeItemView:@&quot;拍照&quot; andAction:tap_camera andShotTopLine:YES andShowBottomLine:YES];
+        [_bg_actionSheet addSubview:item_camera];
+
+        UIView* item_photo = [self makeItemView:@&quot;从相册中选取&quot; andAction:tap_photo andShotTopLine:NO andShowBottomLine:YES];
+        [_bg_actionSheet addSubview:item_photo];
+
+        UIView* item_cancle = [self makeItemView:@&quot;取消&quot; andAction:tap_cancle andShotTopLine:YES andShowBottomLine:YES];
+        [_bg_actionSheet addSubview:item_cancle];
+        [item_camera mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_bg_actionSheet.mas_top).offset(30);
+            make.height.equalTo(@44);
+            make.left.right.equalTo(_bg_actionSheet);
+        }];
+        [item_photo mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(item_camera.mas_bottom);
+            make.height.equalTo(@44);
+            make.left.right.equalTo(_bg_actionSheet);
+        }];
+        [item_cancle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(item_photo.mas_bottom).offset(10);
+            make.height.equalTo(@44);
+            make.left.right.equalTo(_bg_actionSheet);
+            make.bottom.equalTo(_bg_actionSheet.mas_bottom).offset(-10);
+        }];
+
+        //放到屏幕底部不显示 稍后移动到屏幕中
+        [_bg_actionSheet mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.top.equalTo(self.mas_bottom).offset(0);
+            make.size.mas_equalTo(CGSizeMake(300, 182));
+            make.centerX.equalTo(self.mas_centerX);
+
+        }];
+
+    }
+    return self;
+}
+
+-(UIView*)makeItemView:(NSString*)info andAction:(UITapGestureRecognizer*)tap andShotTopLine:(BOOL)showTopLine andShowBottomLine:(BOOL)showBottomLine
+{
+    UIView* item = [[UIView alloc]init];
+    item.backgroundColor = [UIColor whiteColor];
+    item.userInteractionEnabled = YES;
+    [item addGestureRecognizer:tap];
+    UILabel* lb_info = [[UILabel alloc]init];
+    lb_info.text = info;
+    lb_info.textColor = [ColorChangeUtil getColor:@&quot;#206ee3&quot;];
+    lb_info.font = [UIFont systemFontOfSize:14];
+    [item addSubview:lb_info];
+
+    UIView* topline =[[UIView alloc]init];
+    topline.backgroundColor = [ColorChangeUtil getColor:@&quot;#e1e1e1&quot;];
+    [item addSubview:topline];
+    topline.hidden = !showTopLine;
+
+    UIView* bottomline =[[UIView alloc]init];
+    bottomline.backgroundColor = [ColorChangeUtil getColor:@&quot;#e1e1e1&quot;];
+    [item addSubview:bottomline];
+    bottomline.hidden = !showBottomLine;
+
+    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(item);
+        make.top.equalTo(item.mas_top);
+        make.height.mas_equalTo(0.5);
+    }];
+
+    [bottomline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(item);
+        make.bottom.equalTo(item.mas_bottom);
+        make.height.mas_equalTo(0.5);
+    }];
+
+    [lb_info mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(item.mas_centerY);
+        make.centerX.equalTo(item.mas_centerX);
+    }];
+    return item;
+}
+
+-(void)takeFromCamera
+{
+    [_delegate takeFromCamera];
+    [self dismiss];
+}
+
+-(void)takeFromPhoto
+{
+
+    [_delegate takeFromPhoto];
+    [self dismiss];
+}
+
+- (void)show{
+    [self makeKeyAndVisible];
+
+    //这里不延迟执行 会出现从屏幕左上角开始执行动画
+    //加上延迟会执行预想的动画，从下向上移动
+    //如果是通过点击事件来执行位移动画则不需要延迟执行
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_bg_actionSheet mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.size.mas_equalTo(CGSizeMake(300, 182));
+            make.centerX.equalTo(self.mas_centerX);
+        }];
+        //这里不添加也能照常执行动画
+//        [self setNeedsUpdateConstraints]; //必须调用
+//        [self updateConstraintsIfNeeded]; //更新
+
+        [UIView animateWithDuration:0.1 animations:^{
+            [self layoutIfNeeded];
+        }];
+    });
+
+}
+
+- (void)dismiss{
+    [_delegate dismissActionSheet];
+}
+
+@end
+
+</code></pre>
+
+<h4 id="toc_6">UITableViewCell的contentView宽度为0的约束警告</h4>
+
+<pre><code>[bg mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.top.equalTo(self.contentView).offset(HOffsetScale(10));
+make.width.mas_equalTo(SCREEN_WIDTH-WOffsetScale(30));//必须加宽度 如果不加，会报   contentview.width==0 的约束警报
+    make.centerX.equalTo(bg.superview);
+    make.bottom.equalTo(self.contentView).offset(HOffsetScale(0));
+    make.height.mas_greaterThanOrEqualTo(HOffsetScale(44));
+}];
+
+</code></pre>
+
+<h3 id="toc_7">Masonry调试</h3>
+
+<pre><code>    //you can attach debug keys to views like so:
+//    greenView.mas_key = @&quot;greenView&quot;;
+//    redView.mas_key = @&quot;redView&quot;;
+//    blueView.mas_key = @&quot;blueView&quot;;
+//    superview.mas_key = @&quot;superview&quot;;
+
+    //OR you can attach keys automagically like so:
+    MASAttachKeys(greenView, redView, blueView, superview);
+
+</code></pre>
 
 
 		</div>
+	
+
+ 
+	
+
+ 
+	
+
+ 
+	
+
+ 
+	
+
+ 
 	
 
  

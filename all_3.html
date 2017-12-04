@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,20 +252,43 @@
 
 	
 		<div class="markdown-body">
-		<h1>解决xcode升级之后安装的插件失效</h1>
+		<h1>IOS常用转译字符</h1>
 
-		<p>code升级之后uuid会发生变化，致使原来的plugin失效</p>
+		<table>
+<thead>
+<tr>
+<th style="text-align: left">转移字符</th>
+<th style="text-align: left">含义</th>
+</tr>
+</thead>
 
-<p><strong><em>解决方案</em></strong></p>
-
-<ul>
-<li><p>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add <code>defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID</code></p></li>
-<li><p>find every plugin&#39;s Info.plist</p></li>
-<li><p>default read current UUID of XCode</p></li>
-<li><p>default write current UUID of XCode into plugin&#39;s DVTPlugInCompatibilityUUIDs</p></li>
-</ul>
-
-<p><em>from:</em><a href="http://stackoverflow.com/questions/22324303/the-plugin-didnt-work-on-xcode-5-1">stackoverflow</a></p>
+<tbody>
+<tr>
+<td style="text-align: left">\b</td>
+<td style="text-align: left">退格</td>
+</tr>
+<tr>
+<td style="text-align: left">\n</td>
+<td style="text-align: left">换行</td>
+</tr>
+<tr>
+<td style="text-align: left">\r</td>
+<td style="text-align: left">回车</td>
+</tr>
+<tr>
+<td style="text-align: left">&quot;</td>
+<td style="text-align: left">双引号</td>
+</tr>
+<tr>
+<td style="text-align: left">\&#39;</td>
+<td style="text-align: left">单引号</td>
+</tr>
+<tr>
+<td style="text-align: left">&amp;&amp;</td>
+<td style="text-align: left">&amp;</td>
+</tr>
+</tbody>
+</table>
 
 
 		</div>

@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,52 +252,57 @@
 
 	
 		<div class="markdown-body">
-		<h1>NSDictionary不能写入文件</h1>
+		<h1>BOOL / bool / Boolean / NSCFBoolean 区别</h1>
 
-		<p><strong>问题：</strong><br/>
-调用字典<code>- (BOOL)writeToURL:(NSURL *)url atomically:(BOOL)atomically;</code>写入文件失败</p>
+		<table>
+<thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Typedef</th>
+<th style="text-align: left">Header</th>
+<th style="text-align: left">True Value</th>
+<th style="text-align: left">False Value</th>
+</tr>
+</thead>
 
-<p><strong>分析原因：</strong><br/>
-字典中有<code>null</code>值，所以需要<code>NSKeyedArchiver</code>将之转化为<code>NSData</code>后再写入文件<br/>
-<code>NSDictionary</code>中的数据：</p>
-
-<pre><code>{
-    style = &lt;null&gt;,
-    status = 1,
-    title = &quot;new&quot;,
-    source = 1,
-    mid = &quot;1iJltVKJ14kLn3sZgo3wCg&quot;,
-    user_id = 10011,
-    updated_at = &quot;2016-05-27T20:10:50.000+08:00&quot;,
-    city_code = 131,
-    permission = &quot;grp&quot;,
-    city = &quot;北京市&quot;,
-    backup_time = &lt;null&gt;,
-    is_del = 0,
-    id = 94445,
-    level = 12,
-    org_id = 10011,
-    base_map = &quot;normal&quot;,
-    rqcode = &quot;/uploads/rqcode/1iJltVKJ14kLn3sZgo3wCg.png&quot;,
-    avatar = &quot;/uploads/avatars/2016/5/11/8ed403c6652f4d599f1e50daa89c427e.png&quot;,
-    center = &quot;116.403874,39.914889&quot;,
-    created_at = &quot;2016-05-11T15:08:43.000+08:00&quot;,
-    rating = 0,
-    description = &quot;&quot;,
-}
-
-</code></pre>
-
-<p><strong>解决方法：</strong></p>
-
-<pre><code>//写入
-NSString* path = [[FileUtil dirCache] stringByAppendingPathComponent:@&quot;EDITMAP&quot;];
-BOOL success = [[NSKeyedArchiver archivedDataWithRootObject:_mapArray[indexPath.row]] writeToFile:path atomically:YES];
-
-//读取
-NSData* data  = [[NSData alloc]initWithContentsOfFile:[[FileUtil dirCache] stringByAppendingPathComponent:@&quot;EDITMAP&quot;]];
-NSDictionary* dic = (NSDictionary*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
-</code></pre>
+<tbody>
+<tr>
+<td style="text-align: left">BOOL</td>
+<td style="text-align: left">signed char</td>
+<td style="text-align: left">objc.h</td>
+<td style="text-align: left">YES</td>
+<td style="text-align: left">NO</td>
+</tr>
+<tr>
+<td style="text-align: left">bool</td>
+<td style="text-align: left">_Bool (int)</td>
+<td style="text-align: left">stdbool.h</td>
+<td style="text-align: left">true</td>
+<td style="text-align: left">false</td>
+</tr>
+<tr>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">unsigned char</td>
+<td style="text-align: left">MacTypes.h</td>
+<td style="text-align: left">True</td>
+<td style="text-align: left">False</td>
+</tr>
+<tr>
+<td style="text-align: left">NSNumber</td>
+<td style="text-align: left">__NSCFBoolean</td>
+<td style="text-align: left">Foundation.h</td>
+<td style="text-align: left">@(YES)</td>
+<td style="text-align: left">@(NO)</td>
+</tr>
+<tr>
+<td style="text-align: left">CFBooleanRef</td>
+<td style="text-align: left">struct</td>
+<td style="text-align: left">CoreFoundation.h</td>
+<td style="text-align: left">kCFBooleanTrue</td>
+<td style="text-align: left">kCFBooleanFalse</td>
+</tr>
+</tbody>
+</table>
 
 
 		</div>

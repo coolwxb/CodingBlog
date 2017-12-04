@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Button添加图片和调整位置 - 小小程序猿
+  地图画线 polygon - 小小程序猿
   
   </title>
  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
@@ -248,16 +248,55 @@
             <div class="large-9 medium-9 columns">
 
  <div class="markdown-body">
-<h1>Button添加图片和调整位置</h1>
+<h1>地图画线 polygon</h1>
 
-<pre><code class="language-objc">CGSize titleSize = button.titleLabel.intrinsicContentSize;
-CGSize imageSize = image.size;
-CGFloat interval = 1.0;
-    
-button.imageEdgeInsets = UIEdgeInsetsMake(0,titleSize.width + interval+5, 0, -(titleSize.width + interval+5));
-button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, imageSize.width + interval);
+<p>转自： <a href="http://www.jianshu.com/p/f925cdb53aa2">百度地图画面</a></p>
+
+<p>方法一:</p>
+
+<pre><code>MKMapPoint *arrayPoint = malloc(sizeof(MKMapPoint) * locations.count); 
+// 这块必须动态分派内存，具体为什么，还不知道。用malloc分配内存在堆内分配内存，用完改变量后，必须手动释放内存。
+// 如果不这么创建，当locations值特别大时，会无法为arrayPoint[i]复制，
+arrayPoint[i]会变为nil
+// 不能初始化成  MKMapPoint[locations.count] 
+for (int i = 0; i &lt; locations.count; i++) {
+    CLLocation   *location = [locations objectAtIndex:i];
+    MKMapPoint point = MKMapPointForCoordinate(location.coordinate);
+    arrayPoint[i] = point;
+}
+MKPolyline *line = [MKPolyline polylineWithPoints:arrayPoint count:locations.count];
+[_mapView addOverlay:line];
+free(arrayPoint);
 
 </code></pre>
+
+<p>方法二：</p>
+
+<pre><code>CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * locations.count);
+for (int i = 0; i &lt; locations.count; i++) {
+    NSLog(@&quot;%@&quot;,locations[i]);
+    CLLocation *location =  locations[i];
+    coords[i] = [location coordinate];
+}
+
+MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coords count:locations.count];
+[_mapView addOverlay:polyline];
+free(coords);
+
+</code></pre>
+
+<p><strong>注意事项</strong></p>
+
+<p><code>malloc</code>动态分配内存，记得用完该变量记得<code>free</code>掉</p>
+
+<p>如果写成：</p>
+
+<pre><code>BMKMapPoint *pionts = new BMKMapPoint[index];
+</code></pre>
+
+<p>要把文件后缀从<code>m</code>改成了<code>mm</code>。</p>
+
+<p>百度静态库中采用<code>ObjectC++</code>实现，以上是<code>ObjectC++</code>的特性。如果把文件后缀改为<code>mm</code>，则<code>xcode</code>会用<code>ObjectC++</code>的方式来编译文件</p>
 
 
 </div>
@@ -269,15 +308,15 @@ button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, i
   <div class="large-6 columns">
 	<div class="text-left" style="padding:15px 0px;">
 		
-	        <a href="14792095195618.html"  title="Previous Post: UIView显示单侧border">&laquo; UIView显示单侧border</a>
+	        <a href="15120934542709.html"  title="Previous Post: NSTimer 闪退问题">&laquo; NSTimer 闪退问题</a>
 	    
 	</div>
   </div>
   <div class="large-6 columns">
 	<div class="text-right" style="padding:15px 0px;">
 		
-	        <a href="14779048724646.html" 
-	        title="Next Post: 升级Xcode8不能用ios7的真机和模拟器测试">升级Xcode8不能用ios7的真机和模拟器测试 &raquo;</a>
+	        <a href="15117817736257.html" 
+	        title="Next Post: node xlsx">node xlsx &raquo;</a>
 	    
 	</div>
   </div>
@@ -305,7 +344,7 @@ var duoshuoQuery = {short_name:"mweb-zh"};
 </div>
 <script type="text/javascript">
 	$(function(){
-		var currentURL = '14791999909309.html';
+		var currentURL = '15120110700552.html';
 		$('#side-nav a').each(function(){
 			if($(this).attr('href') == currentURL){
 				$(this).parent().addClass('active');

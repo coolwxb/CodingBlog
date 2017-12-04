@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,11 +252,53 @@
 
 	
 		<div class="markdown-body">
-		<h1>常用正则</h1>
+		<h1>Promise 使用</h1>
 
-		<p>数字和字母组合4-20位</p>
+		<h2 id="toc_0">.spread</h2>
 
-<p><code>^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{3,19}$</code></p>
+<pre><code>//对应promise数组里的返回值
+.spread(
+    [function(any values...) fulfilledHandler]
+) -&gt; Promise
+
+
+Promise.all([
+    fs.readFileAsync(&quot;file1.txt&quot;),
+    fs.readFileAsync(&quot;file2.txt&quot;)
+]).spread(function(file1text, file2text) {
+    if (file1text === file2text) {
+        console.log(&quot;files are equal&quot;);
+    }
+    else {
+        console.log(&quot;files are not equal&quot;);
+    }
+});
+
+Promise.delay(500).then(function() {
+   return [fs.readFileAsync(&quot;file1.txt&quot;),
+           fs.readFileAsync(&quot;file2.txt&quot;)] ;
+}).spread(function(file1text, file2text) {
+    if (file1text === file2text) {
+        console.log(&quot;files are equal&quot;);
+    }
+    else {
+        console.log(&quot;files are not equal&quot;);
+    }
+});
+</code></pre>
+
+<h2 id="toc_1">.tap</h2>
+
+<pre><code>.tap(function(any value) handler) -&gt; Promise
+
+getUser().tap(function(user) {
+  //Like in finally, if you return a promise from the handler
+  //the promise is awaited for before passing the original value through
+  return recordStatsAsync();
+}).then(function(user) {
+  //user is the user from getUser(), not recordStatsAsync()
+});
+</code></pre>
 
 
 		</div>

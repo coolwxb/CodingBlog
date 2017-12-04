@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,99 +252,55 @@
 
 	
 		<div class="markdown-body">
-		<h1>拦截UIViewController的popViewController事件</h1>
+		<h1>地图画线 polygon</h1>
 
-		<p>实现拦截<code>UIViewController</code>的<code>pop</code>操作有两种方式：</p>
+		<p>转自： <a href="http://www.jianshu.com/p/f925cdb53aa2">百度地图画面</a></p>
 
-<ul>
-<li>自定义实现返回按钮，即设置<code>UIBarButtonItem</code>来实现自定义的返回操作。</li>
-<li>创建<code>UINavigatonController</code>的<code>Category</code>，来定制<code>navigationBar: shouldPopItem:</code>的逻辑。</li>
-</ul>
+<p>方法一:</p>
 
-<p><strong>UIViewController+BackButtonHandler.h：</strong></p>
+<pre><code>MKMapPoint *arrayPoint = malloc(sizeof(MKMapPoint) * locations.count); 
+// 这块必须动态分派内存，具体为什么，还不知道。用malloc分配内存在堆内分配内存，用完改变量后，必须手动释放内存。
+// 如果不这么创建，当locations值特别大时，会无法为arrayPoint[i]复制，
+arrayPoint[i]会变为nil
+// 不能初始化成  MKMapPoint[locations.count] 
+for (int i = 0; i &lt; locations.count; i++) {
+    CLLocation   *location = [locations objectAtIndex:i];
+    MKMapPoint point = MKMapPointForCoordinate(location.coordinate);
+    arrayPoint[i] = point;
+}
+MKPolyline *line = [MKPolyline polylineWithPoints:arrayPoint count:locations.count];
+[_mapView addOverlay:line];
+free(arrayPoint);
 
-<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
-
-@protocol BackButtonHandlerProtocol &lt;NSObject&gt;
-@optional
-// Override this method in UIViewController derived class to handle &#39;Back&#39; button click
--(BOOL)navigationShouldPopOnBackButton;
-@end
-
-@interface UIViewController (BackButtonHandler) &lt;BackButtonHandlerProtocol&gt;
-
-@end
 </code></pre>
 
-<p><strong>UIViewController+BackButtonHandler.m：</strong></p>
+<p>方法二：</p>
 
-<pre><code class="language-objc">#import &quot;UIViewController+BackButtonHandler.h&quot;
-
-@implementation UIViewController (BackButtonHandler)
-
-@end
-
-@implementation UINavigationController (ShouldPopOnBackButton)
-
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
-
-    if([self.viewControllers count] &lt; [navigationBar.items count]) {
-        return YES;
-    }
-
-    BOOL shouldPop = YES;
-    UIViewController* vc = [self topViewController];
-    if([vc respondsToSelector:@selector(navigationShouldPopOnBackButton)]) {
-        shouldPop = [vc navigationShouldPopOnBackButton];
-    }
-
-    if(shouldPop) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self popViewControllerAnimated:YES];
-        });
-    } else {
-        // Workaround for iOS7.1. Thanks to @boliva - http://stackoverflow.com/posts/comments/34452906
-        for(UIView *subview in [navigationBar subviews]) {
-            if(0. &lt; subview.alpha &amp;&amp; subview.alpha &lt; 1.) {
-                [UIView animateWithDuration:.25 animations:^{
-                    subview.alpha = 1.;
-                }];
-            }
-        }
-    }
-
-    return NO;
+<pre><code>CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * locations.count);
+for (int i = 0; i &lt; locations.count; i++) {
+    NSLog(@&quot;%@&quot;,locations[i]);
+    CLLocation *location =  locations[i];
+    coords[i] = [location coordinate];
 }
 
+MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coords count:locations.count];
+[_mapView addOverlay:polyline];
+free(coords);
+
 </code></pre>
 
-<p><strong>使用：</strong></p>
+<p><strong>注意事项</strong></p>
 
-<ul>
-<li>在<code>UIViewController</code>当中引入头文件</li>
-</ul>
+<p><code>malloc</code>动态分配内存，记得用完该变量记得<code>free</code>掉</p>
 
-<pre><code>#import &quot;UIViewController+BackButtonHandler.h&quot;
+<p>如果写成：</p>
+
+<pre><code>BMKMapPoint *pionts = new BMKMapPoint[index];
 </code></pre>
 
-<ul>
-<li>在<code>UIViewController</code>中实现<code>navigationShouldPopOnBackButton</code>方法。</li>
-</ul>
+<p>要把文件后缀从<code>m</code>改成了<code>mm</code>。</p>
 
-<pre><code class="language-objc">- (BOOL)navigationShouldPopOnBackButton{
-    [[[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;确定返回上一界面?&quot;
-                               delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil] show];
-    //renturn no 拦截pop事件
-    return NO;
-}
-</code></pre>
-
-<p><strong>参考：</strong></p>
-
-<ul>
-<li><p><a href="http://www.jianshu.com/p/25fd027916fa">iOS拦截导航栏返回按钮事件的正确方式</a></p></li>
-<li><p><a href="https://github.com/onegray/UIViewController-BackButtonHandler">UIViewController-BackButtonHandler</a></p></li>
-</ul>
+<p>百度静态库中采用<code>ObjectC++</code>实现，以上是<code>ObjectC++</code>的特性。如果把文件后缀改为<code>mm</code>，则<code>xcode</code>会用<code>ObjectC++</code>的方式来编译文件</p>
 
 
 		</div>

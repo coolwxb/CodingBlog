@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,67 +252,90 @@
 
 	
 		<div class="markdown-body">
-		<h1>PM2日志分割</h1>
+		<h1>node xlsx</h1>
 
-		<p>pm2的日志文件默认在根目录下的.pm2/logs文件夹中，每个程序都会自动生成一个out.log和error.log文件。但是程序的日志只会写在这个两个文件中，并不会自动分割。</p>
+		<p>抽取表头：</p>
 
-<p>如果程序的日志量很大，而且长期运行必然使out.log的文件会无限增大。打开日志很慢，日志跟踪就成了问题。</p>
+<pre><code>@gregpinero the JSON conversion has a little bit of &quot;intelligence&quot; and is poorly documented :/
 
-<p>解决的办法就是进行日志分割。本文是使用logrotate进行分割。</p>
+For example consider this worksheet:
 
-<p>使用<code>liunx</code>的<code>logrotate</code></p>
+|foo|bar|baz|
+| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+Let&#39;s say we are in node (the relevant parts work the same way in browser). Read the workbook:
 
-<p>在pm2的官方文档中，提供了使用logrotate的方案<code>sudo pm2 logrotate -u user</code></p>
+var XLSX = require(&#39;xlsx&#39;);
+var wb = XLSX.readFile(&#39;Workbook4.xlsx&#39;);
+var ws = wb.Sheets.Sheet1;
+So by default, the conversion will read the first row and use them as keys in the row object:
 
-<p>会自动生成一个<code>logrotate</code>的默认配置文件，文件路径为<code>/etc/logrotate.d/pm2-user</code>，配置内容为：</p>
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1)
+[ { foo: &#39;1&#39;, bar: &#39;2&#39;, baz: &#39;3&#39; },
+  { foo: &#39;4&#39;, bar: &#39;5&#39;, baz: &#39;6&#39; } ]
+If a field is missing, the data won&#39;t show up. If there&#39;s data in a cell with no header (say, data in cell D2 but not D1), data won&#39;t show up.
 
-<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
-        rotate 12
-        weekly
-        missingok
-        notifempty
-        compress
-        delaycompress
-        create 0640 user user
-}
+passing an options argument with header controls the output:
+
+Setting header to 1 will generate arrays:
+
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1, {header:1})
+[ [ &#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39; ], [ &#39;1&#39;, &#39;2&#39;, &#39;3&#39; ], [ &#39;4&#39;, &#39;5&#39;, &#39;6&#39; ] ]
+Setting header to A will use the column names:
+
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1, {header:&#39;A&#39;})
+[ { A: &#39;foo&#39;, B: &#39;bar&#39;, C: &#39;baz&#39; },
+  { A: &#39;1&#39;, B: &#39;2&#39;, C: &#39;3&#39; },
+  { A: &#39;4&#39;, B: &#39;5&#39;, C: &#39;6&#39; } ]
+You can even give custom labels by passing an array:
+
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1, {header:[&quot;what&quot;, &quot;the&quot;, &quot;flip&quot;]})
+[ { what: &#39;foo&#39;, the: &#39;bar&#39;, flip: &#39;baz&#39; },
+  { what: &#39;1&#39;, the: &#39;2&#39;, flip: &#39;3&#39; },
+  { what: &#39;4&#39;, the: &#39;5&#39;, flip: &#39;6&#39; } ]
+The easiest way to control the range is to change the !ref value on the sheet. It&#39;s expected to be an A1-style range like &quot;A1:C4&quot;. Changing the value will change the range that the utils look at:
+
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;]
+&#39;A1:C3&#39;
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1)
+[ { foo: &#39;1&#39;, bar: &#39;2&#39;, baz: &#39;3&#39; },
+  { foo: &#39;4&#39;, bar: &#39;5&#39;, baz: &#39;6&#39; } ]
+
+// now change to A1:A3
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;] = &#39;A1:A3&#39;;
+&#39;A1:A3&#39;
+// the output will change
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1)
+[ { foo: &#39;1&#39; }, { foo: &#39;4&#39; } ]
+The same parameter also affects writing workbooks -- cells outside of that range are not included:
+
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;] = &#39;A1:C3&#39;;
+&#39;A1:C3&#39;
+&gt; XLSX.read(XLSX.write(wb, {type:&#39;binary&#39;}), {type:&#39;binary&#39;}).Sheets.Sheet1
+{ &#39;!ref&#39;: &#39;A1:C3&#39;,
+  A1: { t: &#39;s&#39;, v: &#39;foo&#39;, h: &#39;foo&#39;, w: &#39;foo&#39; },
+  B1: { t: &#39;s&#39;, v: &#39;bar&#39;, h: &#39;bar&#39;, w: &#39;bar&#39; },
+  C1: { t: &#39;s&#39;, v: &#39;baz&#39;, h: &#39;baz&#39;, w: &#39;baz&#39; },
+  A2: { t: &#39;n&#39;, v: 1, w: &#39;1&#39; },
+  B2: { t: &#39;n&#39;, v: 2, w: &#39;2&#39; },
+  C2: { t: &#39;n&#39;, v: 3, w: &#39;3&#39; },
+  A3: { t: &#39;n&#39;, v: 4, w: &#39;4&#39; },
+  B3: { t: &#39;n&#39;, v: 5, w: &#39;5&#39; },
+  C3: { t: &#39;n&#39;, v: 6, w: &#39;6&#39; } }
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;] = &#39;A1:A3&#39;;
+&#39;A1:A3&#39;
+&gt; XLSX.read(XLSX.write(wb, {type:&#39;binary&#39;}), {type:&#39;binary&#39;}).Sheets.Sheet1
+{ &#39;!ref&#39;: &#39;A1:A3&#39;,
+  A1: { t: &#39;s&#39;, v: &#39;foo&#39;, h: &#39;foo&#39;, w: &#39;foo&#39; },
+  A2: { t: &#39;n&#39;, v: 1, w: &#39;1&#39; },
+  A3: { t: &#39;n&#39;, v: 4, w: &#39;4&#39; } }
 </code></pre>
-
-<p><strong>这里</strong>：</p>
-
-<p><code>rotate 12</code>：存储归档日志的最大个数，超过就会更早的日志文件删除，一直保持12个；<br/>
-<code>weekly</code>：日志文件按周轮询，其值可以为：<code>daily</code>、<code>weekly</code>、<code>monthly</code>、<code>yearly</code>；<br/>
-<code>missingok</code>：在日志轮循期间，任何错误将被忽略，例如“文件无法找到”之类的错误；<br/>
-<code>notifempty</code>：如果日志文件为空，轮循不会进行；<br/>
-<code>compress</code>：在轮循任务完成后，已轮循的归档将使用<code>gzip</code>进行压缩；<br/>
-<code>delaycompress</code>：总是与<code>compress</code>选项一起用，<code>delaycompress</code>选项指示<code>logrotate</code>不要将最近的归档压缩，压缩将在下一次轮循周期进行。这在你或任何软件仍然需要读取最新归档时很有用；<br/>
-<code>create 0640 user user</code>：以指定的权限创建全新的日志文件，同时logrotate也会重命名原始日志文件。</p>
-
-<p><strong>还可以添加以下配置</strong>：<br/>
-<code>dateext</code>：让旧日志文件以创建日期命名；<br/>
-<code>size=50M</code>：日志文件以50MB的大小作为一次轮询<br/>
-<code>prerotate/endscript</code>：在转储以前需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
-<code>postrotate/endscript</code>：在转储以后需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
-在此我们可以定制化的修改配置，比如想要每周轮询一次，并且以日期进行命名，则：</p>
-
-<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
-        rotate 12
-        weekly
-        dateext
-        missingok
-        notifempty
-        compress
-        delaycompress
-        create 0640 user user
-        postrotate
-             pm2 reloadLogs
-        endscript
-}
-</code></pre>
-
-<p>这个生成出来的日志就是以<code>out.log-日期</code>的格式。</p>
 
 
 		</div>
+	
+
+ 
 	
 
  

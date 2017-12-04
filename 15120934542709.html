@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Button添加图片和调整位置 - 小小程序猿
+  NSTimer 闪退问题 - 小小程序猿
   
   </title>
  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
@@ -248,15 +248,47 @@
             <div class="large-9 medium-9 columns">
 
  <div class="markdown-body">
-<h1>Button添加图片和调整位置</h1>
+<h1>NSTimer 闪退问题</h1>
 
-<pre><code class="language-objc">CGSize titleSize = button.titleLabel.intrinsicContentSize;
-CGSize imageSize = image.size;
-CGFloat interval = 1.0;
-    
-button.imageEdgeInsets = UIEdgeInsetsMake(0,titleSize.width + interval+5, 0, -(titleSize.width + interval+5));
-button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, imageSize.width + interval);
+<p>转载：<a href="http://www.jianshu.com/p/39b0d5731939">NSTimer的坑</a></p>
 
+<p>现有项目支持<code>iOS8</code>以上的系统，结果在一个任务中启用了定时器<code>NSTimer</code>的新方法导致app闪退，特此记录。</p>
+
+<p>下面三个API都是新增的，标识有<code>API_AVAILABLE(macosx(10.12)</code>, <code>ios(10.0)</code>, <code>watchos(3.0)</code>, <code>tvos(10.0)</code>。</p>
+
+<pre><code>// 新Api
+
+/// Creates and returns a new NSTimer object initialized with the specified block object. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+/// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+
+/// Creates and returns a new NSTimer object initialized with the specified block object and schedules it on the current run loop in the default mode.
+/// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+
+/// Initializes a new NSTimer object using the block as the main body of execution for the timer. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+/// - parameter:  fireDate   The time at which the timer should first fire.
+/// - parameter:  interval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
+- (instancetype)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+</code></pre>
+
+<p>特别是前两个，跟以下<code>API</code>要区分开，一时手快容易混淆，容易让使用低于<code>10.0</code>系统的用户直接闪退,报错<code>unrecognized selector</code>;</p>
+
+<pre><code>// 旧Api
+
++ (NSTimer )timerWithTimeInterval:(NSTimeInterval)ti invocation:(NSInvocation )invocation repeats:(BOOL)yesOrNo;
++ 
++ (NSTimer )scheduledTimerWithTimeInterval:(NSTimeInterval)ti invocation:(NSInvocation )invocation repeats:(BOOL)yesOrNo;
+
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
+
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
 </code></pre>
 
 
@@ -269,15 +301,15 @@ button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, i
   <div class="large-6 columns">
 	<div class="text-left" style="padding:15px 0px;">
 		
-	        <a href="14792095195618.html"  title="Previous Post: UIView显示单侧border">&laquo; UIView显示单侧border</a>
+	        <a href="15123557749433.html"  title="Previous Post: Git 删除已经跟踪的文件或目录">&laquo; Git 删除已经跟踪的文件或目录</a>
 	    
 	</div>
   </div>
   <div class="large-6 columns">
 	<div class="text-right" style="padding:15px 0px;">
 		
-	        <a href="14779048724646.html" 
-	        title="Next Post: 升级Xcode8不能用ios7的真机和模拟器测试">升级Xcode8不能用ios7的真机和模拟器测试 &raquo;</a>
+	        <a href="15120110700552.html" 
+	        title="Next Post: 地图画线 polygon">地图画线 polygon &raquo;</a>
 	    
 	</div>
   </div>
@@ -305,7 +337,7 @@ var duoshuoQuery = {short_name:"mweb-zh"};
 </div>
 <script type="text/javascript">
 	$(function(){
-		var currentURL = '14791999909309.html';
+		var currentURL = '15120934542709.html';
 		$('#side-nav a').each(function(){
 			if($(this).attr('href') == currentURL){
 				$(this).parent().addClass('active');

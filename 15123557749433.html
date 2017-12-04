@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Button添加图片和调整位置 - 小小程序猿
+  Git 删除已经跟踪的文件或目录 - 小小程序猿
   
   </title>
  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
@@ -248,15 +248,31 @@
             <div class="large-9 medium-9 columns">
 
  <div class="markdown-body">
-<h1>Button添加图片和调整位置</h1>
+<h1>Git 删除已经跟踪的文件或目录</h1>
 
-<pre><code class="language-objc">CGSize titleSize = button.titleLabel.intrinsicContentSize;
-CGSize imageSize = image.size;
-CGFloat interval = 1.0;
-    
-button.imageEdgeInsets = UIEdgeInsetsMake(0,titleSize.width + interval+5, 0, -(titleSize.width + interval+5));
-button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, imageSize.width + interval);
+<p><strong>转载：</strong><a href="http://www.jianshu.com/p/706560653753">Git 删除已经跟踪的文件或目录</a></p>
 
+<p>如果第一次提交的时候，没有在<code>gitignore</code>文件中添加忽略文件，那么这些文件（目录也是文件）就会被<code>git</code>跟踪，<code>push</code>的时候也会被推送到远程。所以最好就是一开始在<code>commit</code>之前先添加到<code>gitignore</code>中。</p>
+
+<p>如果文件已经被跟踪且被推送到远程，可以按照下面方法解决：</p>
+
+<pre><code>rm -rf 文件
+git rm -r --cached 要忽略的文件
+git add -A (添加所有)
+git push origin 分支
+</code></pre>
+
+<p>如果同名的文件过多，如：<code>.class</code> 文件被提交了，那么如果这样一个一个显然效率太低，可以按照下面方法操作：</p>
+
+<pre><code>find . -iname 文件名 -exec rm -rf {}\;
+</code></pre>
+
+<p>重复上面的步骤，文件名替换为下一个要删除的文件名<br/>
+修改<code>gitignore</code>，添加忽略文件</p>
+
+<pre><code>git rm -r --cached 要忽略的文件
+git add -A
+git push origin 分支
 </code></pre>
 
 
@@ -269,15 +285,13 @@ button.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageSize.width + interval), 0, i
   <div class="large-6 columns">
 	<div class="text-left" style="padding:15px 0px;">
 		
-	        <a href="14792095195618.html"  title="Previous Post: UIView显示单侧border">&laquo; UIView显示单侧border</a>
-	    
 	</div>
   </div>
   <div class="large-6 columns">
 	<div class="text-right" style="padding:15px 0px;">
 		
-	        <a href="14779048724646.html" 
-	        title="Next Post: 升级Xcode8不能用ios7的真机和模拟器测试">升级Xcode8不能用ios7的真机和模拟器测试 &raquo;</a>
+	        <a href="15120934542709.html" 
+	        title="Next Post: NSTimer 闪退问题">NSTimer 闪退问题 &raquo;</a>
 	    
 	</div>
   </div>
@@ -305,7 +319,7 @@ var duoshuoQuery = {short_name:"mweb-zh"};
 </div>
 <script type="text/javascript">
 	$(function(){
-		var currentURL = '14791999909309.html';
+		var currentURL = '15123557749433.html';
 		$('#side-nav a').each(function(){
 			if($(this).attr('href') == currentURL){
 				$(this).parent().addClass('active');

@@ -47,6 +47,8 @@
         <li><label>ios</label></li>
 
           
+            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+          
             <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
           
             <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -81,6 +83,8 @@
         <li><label>其他</label></li>
 
           
+            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+          
             <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
           
             <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -90,6 +94,8 @@
         <li class="divider"></li>
         <li><label>express</label></li>
 
+          
+            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
           
             <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
           
@@ -152,6 +158,8 @@
                     
                       <li class="side-title"><span>ios</span></li>
                         
+                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
+                        
                           <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
                         
                           <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
@@ -182,6 +190,8 @@
                     
                       <li class="side-title"><span>其他</span></li>
                         
+                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
+                        
                           <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
                         
                           <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
@@ -189,6 +199,8 @@
 
                     
                       <li class="side-title"><span>express</span></li>
+                        
+                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
                         
                           <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
                         
@@ -240,39 +252,54 @@
 
 	
 		<div class="markdown-body">
-		<h1>水波动画,类似咻咻咻</h1>
+		<h1>NSTimer 闪退问题</h1>
 
-		<pre><code> // 设定为缩放
-    CABasicAnimation *sizeAnimation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
+		<p>转载：<a href="http://www.jianshu.com/p/39b0d5731939">NSTimer的坑</a></p>
 
-    // 动画选项设定
-    sizeAnimation.repeatCount = CGFLOAT_MAX; // 重复次数
-    sizeAnimation.autoreverses = NO; // 动画结束时执行逆动画
+<p>现有项目支持<code>iOS8</code>以上的系统，结果在一个任务中启用了定时器<code>NSTimer</code>的新方法导致app闪退，特此记录。</p>
 
-// 缩放倍数
-    sizeAnimation.fromValue = [NSNumber numberWithFloat:0.5]; // 开始时的倍率
-    sizeAnimation.toValue = [NSNumber numberWithFloat:1.4]; // 结束时的倍率
+<p>下面三个API都是新增的，标识有<code>API_AVAILABLE(macosx(10.12)</code>, <code>ios(10.0)</code>, <code>watchos(3.0)</code>, <code>tvos(10.0)</code>。</p>
 
-    CABasicAnimation *alphanitation = [CABasicAnimation animationWithKeyPath:@&quot;opacity&quot;];
-    alphanitation.fromValue = @(1);
-    alphanitation.toValue = @(0);
+<pre><code>// 新Api
 
+/// Creates and returns a new NSTimer object initialized with the specified block object. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+/// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
 
-/* 动画组 */
-    CAAnimationGroup *group = [CAAnimationGroup animation];
-// 动画选项设定
-    group.duration = 1;
-    group.repeatCount = CGFLOAT_MAX;
-    // 确保controller display 在进入的时候还是继续执行动画
-    // 默认状态下 动画在viewcontroller display的时候会立刻结束动画，但是finish的bool值是false
-    group.removedOnCompletion = NO;
-// 添加动画
-    group.animations = [NSArray arrayWithObjects:sizeAnimation, alphanitation,nil];
-    [waveView.layer addAnimation:group forKey:@&quot;anitation&quot;];
+/// Creates and returns a new NSTimer object initialized with the specified block object and schedules it on the current run loop in the default mode.
+/// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+
+/// Initializes a new NSTimer object using the block as the main body of execution for the timer. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+/// - parameter:  fireDate   The time at which the timer should first fire.
+/// - parameter:  interval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
+- (instancetype)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+</code></pre>
+
+<p>特别是前两个，跟以下<code>API</code>要区分开，一时手快容易混淆，容易让使用低于<code>10.0</code>系统的用户直接闪退,报错<code>unrecognized selector</code>;</p>
+
+<pre><code>// 旧Api
+
++ (NSTimer )timerWithTimeInterval:(NSTimeInterval)ti invocation:(NSInvocation )invocation repeats:(BOOL)yesOrNo;
++ 
++ (NSTimer )scheduledTimerWithTimeInterval:(NSTimeInterval)ti invocation:(NSInvocation )invocation repeats:(BOOL)yesOrNo;
+
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
+
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
 </code></pre>
 
 
 		</div>
+	
+
+ 
 	
 
  
