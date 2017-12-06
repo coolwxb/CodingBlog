@@ -8,17 +8,23 @@
   express - 小小程序猿
   
   </title>
- <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
- <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,32 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html">小小程序猿</a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; 小小程序猿</span>
@@ -41,220 +68,57 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>ios</label></li>
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
 
-          
-            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-          
-            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-          
-            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-          
-            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-          
-            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>Android</label></li>
+        
+            <li><a href="ios.html">ios</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
+        
+            <li><a href="express.html">express</a></li>
+        
+            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
+        
+            <li><a href="Vue.html">Vue</a></li>
+        
+            <li><a href="sequelize.html">sequelize</a></li>
+         
 
-          
-            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-          
-            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-          
-            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-          
-            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-          
-            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-          
-            <li><a title="guava" href="14729744657413.html">guava</a></li>
-          
-            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>其他</label></li>
-
-          
-            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-          
-            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-          
-            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>express</label></li>
-
-          
-            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-          
-            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-          
-            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-          
-            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-          
-            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-          
-            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-          
-            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-          
-            <li><a title="passport" href="14892005669552.html">passport</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>数据库</label></li>
-
-          
-            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-          
-            <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>Vue</label></li>
-
-          
-            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>sequelize</label></li>
-
-          
-            <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-          
-            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
-
-                    
-                      <li class="side-title"><span>ios</span></li>
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15117817736257.html">
+                
+                  <h1>node xlsx</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
                         
-                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-                        
-                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-                        
-                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-                        
-                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-                        
-                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Android</span></li>
-                        
-                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-                        
-                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-                        
-                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-                        
-                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-                        
-                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-                        
-                          <li><a title="guava" href="14729744657413.html">guava</a></li>
-                        
-                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>其他</span></li>
-                        
-                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-                        
-                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-                        
-                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>express</span></li>
-                        
-                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-                        
-                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-                        
-                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-                        
-                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-                        
-                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-                        
-                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-                        
-                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-                        
-                          <li><a title="passport" href="14892005669552.html">passport</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>数据库</span></li>
-                        
-                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-                        
-                          <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Vue</span></li>
-                        
-                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>sequelize</span></li>
-                        
-                          <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-                        
-                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-                        
-
-                    
-                  </ul>
-                </nav>
-                </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>node xlsx</h1>
-
-		<p>抽取表头：</p>
+                        	<p>抽取表头：</p>
 
 <pre><code>@gregpinero the JSON conversion has a little bit of &quot;intelligence&quot; and is poorly documented :/
 
@@ -331,63 +195,792 @@ The same parameter also affects writing workbooks -- cells outside of that range
   A3: { t: &#39;n&#39;, v: 4, w: &#39;4&#39; } }
 </code></pre>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/27</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14914632553537.html">
+                
+                  <h1>PM2日志分割</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>pm2的日志文件默认在根目录下的.pm2/logs文件夹中，每个程序都会自动生成一个out.log和error.log文件。但是程序的日志只会写在这个两个文件中，并不会自动分割。</p>
+
+<p>如果程序的日志量很大，而且长期运行必然使out.log的文件会无限增大。打开日志很慢，日志跟踪就成了问题。</p>
+
+<p>解决的办法就是进行日志分割。本文是使用logrotate进行分割。</p>
+
+<p>使用<code>liunx</code>的<code>logrotate</code></p>
+
+<p>在pm2的官方文档中，提供了使用logrotate的方案<code>sudo pm2 logrotate -u user</code></p>
+
+<p>会自动生成一个<code>logrotate</code>的默认配置文件，文件路径为<code>/etc/logrotate.d/pm2-user</code>，配置内容为：</p>
+
+<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
+        rotate 12
+        weekly
+        missingok
+        notifempty
+        compress
+        delaycompress
+        create 0640 user user
+}
+</code></pre>
+
+<p><strong>这里</strong>：</p>
+
+<p><code>rotate 12</code>：存储归档日志的最大个数，超过就会更早的日志文件删除，一直保持12个；<br/>
+<code>weekly</code>：日志文件按周轮询，其值可以为：<code>daily</code>、<code>weekly</code>、<code>monthly</code>、<code>yearly</code>；<br/>
+<code>missingok</code>：在日志轮循期间，任何错误将被忽略，例如“文件无法找到”之类的错误；<br/>
+<code>notifempty</code>：如果日志文件为空，轮循不会进行；<br/>
+<code>compress</code>：在轮循任务完成后，已轮循的归档将使用<code>gzip</code>进行压缩；<br/>
+<code>delaycompress</code>：总是与<code>compress</code>选项一起用，<code>delaycompress</code>选项指示<code>logrotate</code>不要将最近的归档压缩，压缩将在下一次轮循周期进行。这在你或任何软件仍然需要读取最新归档时很有用；<br/>
+<code>create 0640 user user</code>：以指定的权限创建全新的日志文件，同时logrotate也会重命名原始日志文件。</p>
+
+<p><strong>还可以添加以下配置</strong>：<br/>
+<code>dateext</code>：让旧日志文件以创建日期命名；<br/>
+<code>size=50M</code>：日志文件以50MB的大小作为一次轮询<br/>
+<code>prerotate/endscript</code>：在转储以前需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
+<code>postrotate/endscript</code>：在转储以后需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
+在此我们可以定制化的修改配置，比如想要每周轮询一次，并且以日期进行命名，则：</p>
+
+<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
+        rotate 12
+        weekly
+        dateext
+        missingok
+        notifempty
+        compress
+        delaycompress
+        create 0640 user user
+        postrotate
+             pm2 reloadLogs
+        endscript
+}
+</code></pre>
+
+<p>这个生成出来的日志就是以<code>out.log-日期</code>的格式。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/4/6</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14909323944752.html">
+                
+                  <h1>Promise 使用</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">.spread</h2>
+
+<pre><code>//对应promise数组里的返回值
+.spread(
+    [function(any values...) fulfilledHandler]
+) -&gt; Promise
+
+
+Promise.all([
+    fs.readFileAsync(&quot;file1.txt&quot;),
+    fs.readFileAsync(&quot;file2.txt&quot;)
+]).spread(function(file1text, file2text) {
+    if (file1text === file2text) {
+        console.log(&quot;files are equal&quot;);
+    }
+    else {
+        console.log(&quot;files are not equal&quot;);
+    }
+});
+
+Promise.delay(500).then(function() {
+   return [fs.readFileAsync(&quot;file1.txt&quot;),
+           fs.readFileAsync(&quot;file2.txt&quot;)] ;
+}).spread(function(file1text, file2text) {
+    if (file1text === file2text) {
+        console.log(&quot;files are equal&quot;);
+    }
+    else {
+        console.log(&quot;files are not equal&quot;);
+    }
+});
+</code></pre>
+
+<h2 id="toc_1">.tap</h2>
+
+<pre><code>.tap(function(any value) handler) -&gt; Promise
+
+getUser().tap(function(user) {
+  //Like in finally, if you return a promise from the handler
+  //the promise is awaited for before passing the original value through
+  return recordStatsAsync();
+}).then(function(user) {
+  //user is the user from getUser(), not recordStatsAsync()
+});
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/31</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14904296924146.html">
+                
+                  <h1>NPM 使用</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">查看npm 版本</h2>
+
+<pre><code>npm -v
+</code></pre>
+
+<h2 id="toc_1">更新NPM最新版本</h2>
+
+<pre><code>npm install npm@latest -g
+</code></pre>
+
+<h2 id="toc_2">安装packeage</h2>
+
+<pre><code>npm install &lt;package_name&gt;  //install locally，会创建node_modules文件夹并放入其中
+</code></pre>
+
+<h2 id="toc_3">package.json管理package</h2>
+
+<p>优点：</p>
+
+<ul>
+<li>通过文件管理项目所依赖模块</li>
+<li>能够制定使用特定版本的模块</li>
+<li>更方便多人协作开发</li>
+</ul>
+
+<p><code>package.json</code>最少含有下面属性：<br/>
+* <code>name</code>：不能有空格<br/>
+* <code>version</code>：x.x.x格式</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;my-awesome-package&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;
+}
+</code></pre>
+
+<h3 id="toc_4">创建package.json</h3>
+
+<pre><code>npm init //会有帮助提示
+npm init --yes //不会有帮助提示
+</code></pre>
+
+<p>demo：</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;my_package&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package.git&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;bugs&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package/issues&quot;
+  },
+  &quot;homepage&quot;: &quot;https://github.com/ashleygwilliams/my_package&quot;
+}
+</code></pre>
+
+<ul>
+<li><code>name</code>:当前文件夹名称</li>
+<li><code>version</code>:默认‘1.0.0’</li>
+<li><code>description</code>:描述,作用同readme</li>
+<li><p><code>main</code>:默认<code>index.js</code></p>
+
+<h3 id="toc_5">在package.json 中指定依赖包</h3></li>
+<li><p><code>dependencies</code>:应用用到的依赖</p></li>
+<li><p><code>devDependencies</code>:只有开发和测试时需要用到的</p></li>
+</ul>
+
+<pre><code>npm install &lt;package_name&gt; --save  //添加到`package.json`中的 `dependencies`
+npm install &lt;package_name&gt; --save-dev  //添加到`package.json`中的 `devDependencies`
+
+</code></pre>
+
+<h2 id="toc_6">更新package</h2>
+
+<pre><code>npm update  //与`package.json`在同级下执行命令
+</code></pre>
+
+<h2 id="toc_7">删除package</h2>
+
+<pre><code>npm uninstall lodash
+npm uninstall --save lodash//会更新到`package.json`
+</code></pre>
+
+<h2 id="toc_8">全局global安装package</h2>
+
+<pre><code>npm install -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_9">全局global更新package</h2>
+
+<pre><code>npm update -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_10">全局global删除package</h2>
+
+<pre><code>npm uninstall -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_11">Package与Modules</h2>
+
+<ul>
+<li><code>package</code>:是在<code>package.json</code>中描述的。可以是一个文件或是一个目录</li>
+<li><code>module</code>:能被<code>Node.js</code> <strong>require()</strong>的称为<code>module</code></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/25</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14903271954232.html">
+                
+                  <h1>Reids使用</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">启动客户端</h2>
+
+<pre><code>$ redis-cli
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14896551414725.html">
+                
+                  <h1>Node 学习</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">全局对象和全局变量</h2>
+
+<p>它们是所有模块都可以调用的。<br/>
+全局对象：</p>
+
+<blockquote>
+<blockquote>
+<p><code>global</code>：表示Node所在的全局环境，类似于浏览器的window对象。需要注意的是，如果在浏览器中声明一个全局变量，实际上是声明了一个全局对象的属性，比如var x = 1等同于设置window.x = 1，但是Node不是这样，至少在模块中不是这样（REPL环境的行为与浏览器一致）。在模块文件中，声明var x = 1，该变量不是global对象的属性，global.x等于undefined。这是因为模块的全局变量都是该模块私有的，其他模块无法取到。<br/>
+<code>process</code>：该对象表示Node所处的当前进程，允许开发者与该进程互动。<br/>
+<code>console</code>：指向Node内置的console模块，提供命令行环境中的标准输入、标准输出功能。<br/>
+<code>Buffer</code>:Node处理二进制数据的一个接口。</p>
+</blockquote>
+</blockquote>
+
+<p>全局变量：</p>
+
+<blockquote>
+<blockquote>
+<p>__filename：指向当前运行的脚本文件名。<br/>
+__dirname：指向当前运行的脚本所在的目录。</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_1">核心模块</h2>
+
+<p>Node.js的用处在于，它本身还提供了一系列功能模块，与操作系统互动。这些核心的功能模块，不用安装就可以使用</p>
+
+<blockquote>
+<blockquote>
+<p><code>http</code>：提供HTTP服务器功能。<br/>
+<code>url</code>：解析URL。<br/>
+<code>fs</code>：与文件系统交互。<br/>
+<code>querystring</code>：解析URL的查询字符串。<br/>
+<code>child_process</code>：新建子进程。<br/>
+<code>util</code>：提供一系列实用小工具。<br/>
+<code>path</code>：处理文件路径。<br/>
+<code>crypto</code>：提供加密和解密功能，基本上是对OpenSSL的包装。</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_2">Child Process模块</h2>
+
+<p>child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。</p>
+
+<h2 id="toc_3">Node 升级</h2>
+
+<p>node有一个模块叫n，是专门用来管理node.js的版本的。<br/>
+首先安装n模块：</p>
+
+<pre><code>npm install -g n
+</code></pre>
+
+<p>升级node.js到最新稳定版</p>
+
+<pre><code>n stable
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14892247193418.html">
+                
+                  <h1>常用正则</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>数字和字母组合4-20位</p>
+
+<p><code>^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{3,19}$</code></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14892005669552.html">
+                
+                  <h1>passport</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>passport的验证过程主要依赖具体的验证策略来实现的，比较常用的有session策略、local策略和github策略等，验证逻辑都是在这些策略类中定义的。passport模块的定义主要包括三个部分：passport类、相关中间件和验证策略，passport自带了session验证策略，如果要使用其他验证策略，需要自行添加。</p>
+
+<pre><code>    passport的使用分为五个部分：
+</code></pre>
+
+<p>首先必须通过app.use(passport.initialize())对passport进行初始化，否则后面的验证方法无法执行<br/>
+在全局范围内添加session验证中间件，app.use(passport.session());，这个主要是为了记住用户的登录状态，可以指定session过期时间<br/>
+给passport添加验证策略<br/>
+在具体的路由上使用第三步中添加的验证中间件<br/>
+给passport定义序列化和反序列化函数</p>
+
+<p>Username &amp; Password</p>
+
+<p>The most widely used way for websites to authenticate users is via a username and password. Support for this mechanism is provided by the passport-local module.</p>
+
+<p>Install</p>
+
+<p>$ npm install passport-local<br/>
+Configuration</p>
+
+<p>var passport = require(&#39;passport&#39;)<br/>
+  , LocalStrategy = require(&#39;passport-local&#39;).Strategy;</p>
+
+<p>passport.use(new LocalStrategy(<br/>
+  function(username, password, done) {<br/>
+    User.findOne({ username: username }, function(err, user) {<br/>
+      if (err) { return done(err); }<br/>
+      if (!user) {<br/>
+        return done(null, false, { message: &#39;Incorrect username.&#39; });<br/>
+      }<br/>
+      if (!user.validPassword(password)) {<br/>
+        return done(null, false, { message: &#39;Incorrect password.&#39; });<br/>
+      }<br/>
+      return done(null, user);<br/>
+    });<br/>
+  }<br/>
+));<br/>
+The verify callback for local authentication accepts username and password arguments, which are submitted to the application via a login form.</p>
+
+<p>Form</p>
+
+<p>A form is placed on a web page, allowing the user to enter their credentials and log in.</p>
+
+<form action="/login" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Log In"/>
+    </div>
+</form>
+
+<p>Route</p>
+
+<p>The login form is submitted to the server via the POST method. Using authenticate() with the local strategy will handle the login request.</p>
+
+<p>app.post(&#39;/login&#39;,<br/>
+  passport.authenticate(&#39;local&#39;, { successRedirect: &#39;/&#39;,<br/>
+                                   failureRedirect: &#39;/login&#39;,<br/>
+                                   failureFlash: true })<br/>
+);<br/>
+Setting the failureFlash option to true instructs Passport to flash an error message using the message option set by the verify callback above. This is helpful when prompting the user to try again.</p>
+
+<p>Parameters</p>
+
+<p>By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults.</p>
+
+<p>passport.use(new LocalStrategy({<br/>
+    usernameField: &#39;email&#39;,<br/>
+    passwordField: &#39;passwd&#39;<br/>
+  },<br/>
+  function(username, password, done) {<br/>
+    // ...<br/>
+  }<br/>
+));</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
+            
+                <h1>小小程序猿</h1>
+                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="ios.html"><strong>ios</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
+        
+            <a href="express.html"><strong>express</strong></a>
+        
+            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
+        
+            <a href="Vue.html"><strong>Vue</strong></a>
+        
+            <a href="sequelize.html"><strong>sequelize</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120934542709.html">NSTimer 闪退问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120110700552.html">地图画线 polygon</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15117817736257.html">node xlsx</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
@@ -399,6 +992,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 
   </body>
 </html>

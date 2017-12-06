@@ -8,17 +8,23 @@
   小小程序猿
   
   </title>
- <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
- <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,32 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html">小小程序猿</a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; 小小程序猿</span>
@@ -41,220 +68,128 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>ios</label></li>
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
 
-          
-            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-          
-            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-          
-            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-          
-            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-          
-            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>Android</label></li>
+        
+            <li><a href="ios.html">ios</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
+        
+            <li><a href="express.html">express</a></li>
+        
+            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
+        
+            <li><a href="Vue.html">Vue</a></li>
+        
+            <li><a href="sequelize.html">sequelize</a></li>
+         
 
-          
-            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-          
-            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-          
-            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-          
-            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-          
-            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-          
-            <li><a title="guava" href="14729744657413.html">guava</a></li>
-          
-            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>其他</label></li>
-
-          
-            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-          
-            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-          
-            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>express</label></li>
-
-          
-            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-          
-            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-          
-            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-          
-            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-          
-            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-          
-            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-          
-            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-          
-            <li><a title="passport" href="14892005669552.html">passport</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>数据库</label></li>
-
-          
-            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-          
-            <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>Vue</label></li>
-
-          
-            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>sequelize</label></li>
-
-          
-            <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-          
-            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="14729752147247.html">
+                
+                  <h1>结构体</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在ios开发中我们经常要使用结构体，但是我们在使用结构体数组的时候xcode会有黄色警告提示。</p>
 
-                    
-                      <li class="side-title"><span>ios</span></li>
-                        
-                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-                        
-                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-                        
-                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-                        
-                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-                        
-                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-                        
+<blockquote>
+<p>BMKMapPoint *points = new BMKMapPoint[pointCount];</p>
+</blockquote>
 
-                    
-                      <li class="side-title"><span>Android</span></li>
-                        
-                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-                        
-                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-                        
-                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-                        
-                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-                        
-                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-                        
-                          <li><a title="guava" href="14729744657413.html">guava</a></li>
-                        
-                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-                        
+<p>BMKMapPoint 是一个结构体，我动态声明一个结构体数组。</p>
 
-                    
-                      <li class="side-title"><span>其他</span></li>
-                        
-                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-                        
-                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-                        
-                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-                        
+<blockquote>
+<p>delete [] points;</p>
+</blockquote>
 
-                    
-                      <li class="side-title"><span>express</span></li>
-                        
-                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-                        
-                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-                        
-                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-                        
-                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-                        
-                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-                        
-                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-                        
-                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-                        
-                          <li><a title="passport" href="14892005669552.html">passport</a></li>
-                        
+<p>释放一个结构体数组。</p>
 
-                    
-                      <li class="side-title"><span>数据库</span></li>
-                        
-                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-                        
-                          <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-                        
+<p>编写函数希望返回一个结构体数组的时候</p>
 
-                    
-                      <li class="side-title"><span>Vue</span></li>
-                        
-                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-                        
+<pre><code>+ (CLLocationCoordinate2D *)arrayTransformCoordinate:(NSArray *)array
+{
+    CLLocationCoordinate2D coors[60];
+    int i =0;
+    for (NSDictionary *dic in array) {
+        coors[i].latitude = ((NSNumber *)([dic objectForKey:@&quot;latitude&quot;])).doubleValue;
+        coors[i].longitude = ((NSNumber *)([dic objectForKey:@&quot;longitude&quot;])).doubleValue;
+        i++;
+    }
+    return coors;
+}
 
-                    
-                      <li class="side-title"><span>sequelize</span></li>
-                        
-                          <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-                        
-                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-                        
+</code></pre>
 
-                    
-                  </ul>
-                </nav>
+<p>我们可以这样来消除黄色警告：将.m后缀改为.mm </p>
+
+<p>这样就行了，意思就是 告诉编译器用objective-c++来编译文件。</p>
+
+<h2 id="toc_0">结构体数组长度</h2>
+
+<blockquote>
+<p>sz = (sizeof foo) / (sizeof foo[0]);</p>
+</blockquote>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>遍历</h1>
-
-		<h2 id="toc_0">常用遍历方法</h2>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729751822088.html">
+                
+                  <h1>遍历</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">常用遍历方法</h2>
 
 <ul>
 <li>经典for循环</li>
@@ -290,84 +225,1444 @@ for (NSString *string in [strings reverseObjectEnumerator]) {
 }];
 </code></pre>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729751502502.html">
+                
+                  <h1>UIWindow</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">获取屏幕window</h2>
+
+<pre><code>[UIApplication sharedApplication].keyWindow]
+
+</code></pre>
+
+<h2 id="toc_1">屏幕上手势监听</h2>
+
+<p><img src="media/14569958313677.jpg" alt=""/></p>
+
+<p>问题：设计弹出层使用window来实现，对<code>item</code>的背景设置了<code>tap</code>事件，并设置了跳转，对<code>window</code>的<code>touch</code>事件进行设置，点击后<code>window</code>消失，但是<code>touch</code>会拦截<code>tap</code>的事件，只好进行修改，对<code>tap</code>设置了代理来进行区别<code>tap</code>动作</p>
+
+<p>代码：</p>
+
+<pre><code>- (void)dismiss{
+    [self setHidden:YES];    
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    // 点击消失
+    [self dismiss];
+}
+//如果不加手势监听会直接执行touchesBegan  是对话框消失
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+
+    // Disallow recognition of tap gestures in the segmented control.
+    if ((touch.view ==_bg_head) &amp;&amp; (gestureRecognizer == _headtap)) {
+        [self gotoEditUserInfoController];
+    }
+    if ((touch.view ==_bg_setting) &amp;&amp; (gestureRecognizer == _settingtap)) {
+        [self gotoSettingController];
+    }
+    return YES;
+}
+
+</code></pre>
+
+<p>同时要对原有的<code>keywindow</code>进行保存，当弹出窗口退出时重新调用其<code>makeKeyAndVisible</code>方法，对弹出窗口调用<code>resignKeyWindow</code>方法并赋值为<code>nil</code></p>
+
+<pre><code> [_itemSettingView.originWindow makeKeyAndVisible];
+ [_itemSettingView resignKeyWindow];
+
+</code></pre>
+
+<h2 id="toc_2">模仿引导操作视图、添加遮罩view遮罩整个屏幕，包括status bar、navigationbar</h2>
+
+<p>在ios7中，获取当前UIWindow，向上添加遮罩view</p>
+
+<pre><code>UIView * bg =[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+bg.backgroundColor = [UIColor blackColor];
+bg.alpha = 0.5;
+UIWindow* window = [[UIApplication sharedApplication]keyWindow];
+[window addSubview:bg];
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729750807474.html">
+                
+                  <h1>UIView</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">masonry 添加约束，并修改约束添加View动画</h2>
+
+<pre><code>
+//添加约束
+masView = [UIView new];
+masView.backgroundColor = [UIColor redColor];
+[self.view addSubview:masView];
+[masView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    make.leading.equalTo(self.view).offset(20);//距离self.view左侧20
+    make.top.equalTo(self.view).offset(200);//距离self.view顶部200
+    make.width.offset(80);//宽度80
+    make.height.offset(80);//高度80
+}];
+
+//更新约束并添加动画,如果更新不成功可尝试 mas_remakeConstraints
+[masView mas_updateConstraints:^(MASConstraintMaker *make) {
+    make.width.and.height.offset(100);
+    make.leading.equalTo(self.view).offset(100);
+}];
+
+[UIView animateWithDuration:3 animations:^{
+    [self.view layoutIfNeeded];
+}];
+
+</code></pre>
+
+<h2 id="toc_1">uiview 圆角设置</h2>
+
+<pre><code>m_mainImgView.layer.cornerRadius = 6;
+m_mainImgView.layer.masksToBounds = YES; 
+
+</code></pre>
+
+<h2 id="toc_2">UIView缩放动画</h2>
+
+<pre><code>-(void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    /* 为新添的annotationView添加弹出动画. */
+    for (UIView *view in views)
+    {
+        [self addBounceAnnimationToView:view];
+    }
+
+}
+/* annotation弹出的动画. */
+- (void)addBounceAnnimationToView:(UIView *)view
+{
+    CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
+
+    bounceAnimation.values = @[@(0.05), @(1.1), @(0.9), @(1)];
+    bounceAnimation.duration = 0.6;
+
+    NSMutableArray *timingFunctions = [[NSMutableArray alloc] initWithCapacity:bounceAnimation.values.count];
+    for (NSUInteger i = 0; i &lt; bounceAnimation.values.count; i++)
+    {
+        [timingFunctions addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    }
+    [bounceAnimation setTimingFunctions:timingFunctions.copy];
+
+    bounceAnimation.removedOnCompletion = NO;
+
+    [view.layer addAnimation:bounceAnimation forKey:@&quot;bounce&quot;];
+}
+
+</code></pre>
+
+<h4 id="toc_3">边框阴影</h4>
+
+<pre><code>- (void)viewDidLoad  
+{  
+    [self.view setBackgroundColor:[UIColor whiteColor]];  
+    UIView *shadowView=[[UIView alloc] initWithFrame:CGRectMake(100, 100, 120, 120)];  
+    [shadowView setBackgroundColor:[UIColor grayColor]];  
+    [shadowView.layer setCornerRadius:4.0f];//设置View圆角  
+    [shadowView.layer setShadowColor:[UIColor blackColor].CGColor];//设置View的阴影颜色  
+    [shadowView.layer setShadowOpacity:0.8f];//设置阴影的透明度  
+    [shadowView.layer setOpacity:0.5f];//设置View的透明度  
+    [shadowView.layer setShadowOffset:CGSizeMake(4.0, 3.0)];//设置View Shadow的偏移量  
+    [self.view addSubview:shadowView];  
+    [super viewDidLoad];  
+    // Do any additional setup after loading the view, typically from a nib.  
+}  
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729750523588.html">
+                
+                  <h1>TextView</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">输入单行文本</h2>
+
+<p>使用UITextField</p>
+
+<h2 id="toc_1">输入文本显示密码样式</h2>
+
+<pre><code>et_newPwd.secureTextEntry = YES;
+
+</code></pre>
+
+<h2 id="toc_2">uitextview 小键盘完成回调</h2>
+
+<pre><code>- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
+ replacementText:(NSString *)text {
+    if ([text isEqualToString:@&quot;\n&quot;]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+</code></pre>
+
+<h2 id="toc_3">uitextview 计算动态高度</h2>
+
+<p>textview需要将<code>scrollenabled</code>设置为no</p>
+
+<pre><code> _textView.scrollEnabled = NO;
+ _textView.showsVerticalScrollIndicator = NO;
+ _textView.showsHorizontalScrollIndicator = NO;
+
+</code></pre>
+
+<pre><code>
+//方式一
+#pragma mark -  uitextview 代理
+- (void)textViewDidChange:(UITextView *)theTextView
+{
+
+     float oldheight = theTextView.frame.size.height;
+     float height = [self.tv_layer_title sizeThatFits:CGSizeMake(self.tv_layer_title.frame.size.width, FLT_MAX)].height ;
+
+    if (fabs(height - oldheight) &gt; 0.01) {
+        [self.bg_title mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height+20);
+        }];
+
+        [self.tv_layer_title mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height);
+        }];
+
+    }
+
+}
+
+//方式二  计算放入文字放入控件后应有的高度
+
+//这里的20 是放置控件时与父视图左右边距空留出来的20
+//self.caluteCell.textView 即是要放入文字的控件
+CGSize infoSize = [self.caluteCell.textView sizeThatFits:CGSizeMake(SCREEN_WIDTH-20, FLT_MAX)];
+
+</code></pre>
+
+<h2 id="toc_4">调整uitextview 默认内边距</h2>
+
+<pre><code>_textView.contentInset = UIEdgeInsetsMake(0, -5, 0, 0);
+
+</code></pre>
+
+<h3 id="toc_5">uitextView 调整视图中心点位置</h3>
+
+<pre><code>//注册监听
+ [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(changeContentViewPoint:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(changeContentViewPoint:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+
+// 根据键盘状态，调整_mainView的位置
+- (void) changeContentViewPoint:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGFloat keyBoardEndY = value.CGRectValue.origin.y;  // 得到键盘弹出后的键盘视图所在y坐标
+
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+
+    // 添加移动动画，使视图跟随键盘移动
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+//        [UIView setAnimationCurve:curve];
+
+        self.center = CGPointMake(self.center.x, keyBoardEndY -64- self.bounds.size.height/2.0);   // keyBoardEndY的坐标包括了状态栏的高度，要减去
+
+    }];
+}
+
+</code></pre>
+
+<h3 id="toc_6">获取view所在的controller</h3>
+
+<pre><code> UIResponder *responder = self;
+                    while ((responder = [responder nextResponder])){
+                        if ([responder isKindOfClass: [EditMarker2ViewController class]])
+                        {
+                            EditMarker2ViewController* controller =(EditMarker2ViewController *)responder;
+                            [controller.navigationController popViewControllerAnimated:YES];
+
+                        }
+
+                    }
+
+</code></pre>
+
+<h3 id="toc_7">UITextView的包涵inset高度</h3>
+
+<p>设置<code>_textView.contentInset = UIEdgeInsetsMake(10,0,-10,0);</code>即上边距和底边距各10像素<br/>
+但是使用<code>fdcell</code>利用约束动态计算cell高度时测量的是不包含inset的uitextview高度所以需要额外+20个单位像素<br/>
+```objc<br/>
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath<br/>
+{</p>
+
+<pre><code>if (indexPath.section==1) {
+    return 108;
+}else
+{
+    float height =  [tableView fd_heightForCellWithIdentifier:@&quot;cell&quot; configuration:^(EditMarkerExpandableTextCellTableViewCell* cell) {
+        MarkerAttr* attr = [self.attrArray objectAtIndex:indexPath.row];
+
+        cell.textView.text = [self.dataDic objectForKey:attr.key];
+
+    }];
+    //额外添加10+10 上边距+下边距 inset
+    return height+20.0f;
+}
+return 100;
+
+</code></pre>
+
+<p>}</p>
+
+<pre><code>
+### 失去焦点  使键盘消失
+```objc
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+   [textField resignFirstResponder];
+    return YES;
+}
+
+</code></pre>
+
+<h3 id="toc_8">点击空白处隐藏键盘</h3>
+
+<pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+</code></pre>
+
+<pre><code>
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729750129157.html">
+                
+                  <h1>UITextField</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">UITextField 快速添加左侧内边距padding</h2>
+
+<p>思路1：可向UITextField左侧添加一个空白的view，来调整内边距</p>
+
+<pre><code>UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+_et_groupName.leftView = paddingView;
+_et_groupName.leftViewMode = UITextFieldViewModeAlways;
+</code></pre>
+
+<p>思路2：移动sublayer的位置</p>
+
+<pre><code class="language-objc">textField.layer.sublayerTransform = CATransform3DMakeTranslation(8, 0, 0);
+</code></pre>
+
+<p>PS:思路2会有小的缺陷，如果显示clearbutton的画会显示不全</p>
+
+<p><strong>from:</strong><a href="http://stackoverflow.com/questions/2694411/text-inset-for-uitextfield">Text inset for UITextField</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729749889650.html">
+                
+                  <h1>UITabelView</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">使用开源组件FDTemplateLayoutCell 动态计算Cell高度相关问题</h2>
+
+<ol>
+<li>自定义Cell</li>
+</ol>
+
+<p>需要注意tableview注册自定义的cell，否侧程序崩溃报错</p>
+
+<pre><code>[self.tbl_marker registerClass:[DataListOverLayerTableViewCell class] forCellReuseIdentifier:@&quot;LINE&quot;];
+
+</code></pre>
+
+<ol>
+<li>自定义Cell 约束条件</li>
+</ol>
+
+<p>如果自定义Cell约束条件错误会导致测量的高度为0，需逐步修改约束条件直至能计算出高度</p>
+
+<p><strong>注意：约束条件最好包括 top\bottom\left\right 和 width、height</strong>这样能最大程度保证能测量出来高度</p>
+
+<pre><code>[self.btn_title mas_makeConstraints:^(MASConstraintMaker *make) {
+
+make.left.equalTo(self.contentView.mas_left).offset(10);
+
+make.top.equalTo(self.contentView.mas_top).offset(10);
+
+make.bottom.equalTo(hline.mas_top).offset(-10);
+
+make.right.equalTo(self.contentView.mas_right).offset(-10);
+
+make.width.mas_equalTo(self.contentView.frame.size.width-20);
+
+make.height.greaterThanOrEqualTo(@60);
+
+}];       
+
+</code></pre>
+
+<h2 id="toc_1">设置cell点击选中状态去掉背景</h2>
+
+<p>由于使用FDTemplateLayoutCell 作为预加载cell高度计算，这时会先调用<code>**heightForRowAtIndexPath**</code>方法计算高度，在<code>tableView fd_heightForCellWithIdentifier:@&quot;MARKER&quot; configuration:^(DataListTableViewCell* cell)</code>中会生成cell，所以在执行方法<code>cellForRowAtIndexPath</code>的时候就会取得缓存cell<code>[tableView dequeueReusableCellWithIdentifier:@&quot;MARKER&quot;]</code>不会执行cell的初始化方法,所以在初始化里执行<code>cell.selectionStyle = UITableViewCellSelectionStyleNone;</code>不会有任何效果，需要移除到初始化方法外</p>
+
+<pre><code>-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//取消选中效果
+[self.tbl_marker deselectRowAtIndexPath:[self.tbl_marker indexPathForSelectedRow] animated:YES];
+}
+
+</code></pre>
+
+<h2 id="toc_2">就尼玛0.5进位问题导致cell高度不对，uitextview不显示文字</h2>
+
+<pre><code>//这里返回的height 是float 不能随意改成int
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+if (indexPath.section==1) {
+   return 108;
+}else
+{
+//这里返回的height 是float 不能随意改成int
+//如果返回int 会导致舍去0.5个单位 导致uitextview 高度被舍去1px 导致不显示文字
+   float height =  [tableView fd_heightForCellWithIdentifier:@&quot;cell&quot; configuration:^(EditMarkerExpandableTextCellTableViewCell* cell) {
+       MarkerAttr* attr = [self.attrArray objectAtIndex:indexPath.row];
+
+       cell.textView.text = [self.dataDic objectForKey:attr.key];
+
+   }];
+
+   return height;
+}
+return 100;
+
+}
+
+</code></pre>
+
+<h2 id="toc_3">获取被点击view所在的UITableViewCell</h2>
+
+<p><strong><em>原因</em></strong>：由于IOS系统不同，不能使用<code>LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[[view superview ] superview]</code>来获取cell，因为contentview和cell之间在不同版本里相隔了一个其他view</p>
+
+<p>使用如下代码解决问题：</p>
+
+<pre><code>CGPoint buttonPosition = [view convertPoint:CGPointZero toView:self.tbv_layers];
+NSIndexPath *indexPath = [self.tbv_layers indexPathForRowAtPoint:buttonPosition];
+LayerCellTableViewCell* cell = (LayerCellTableViewCell*)[self.tbv_layers cellForRowAtIndexPath:indexPath];
+
+</code></pre>
+
+<h2 id="toc_4">利用UITable的group特性来设置cell之间的间距并取消header的悬浮效果</h2>
+
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = 10; //这里是我的headerView和footerView的高度
+    if (_tableView.contentOffset.y&lt;=sectionHeaderHeight&amp;&amp;_tableView.contentOffset.y&gt;=0) {
+        _tableView.contentInset = UIEdgeInsetsMake(-_tableView.contentOffset.y, 0, 0, 0);
+    } else if (_tableView.contentOffset.y&gt;=sectionHeaderHeight) {
+        _tableView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_5">刷新单个cell或者section</h2>
+
+<pre><code>//一个section刷新      
+NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];      
+[tableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];      
+//一个cell刷新      
+NSIndexPath *indexPath=[NSIndexPath indexPathForRow:3 inSection:0];      
+[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone]; 
+
+</code></pre>
+
+<h2 id="toc_6">UITableView 去掉底部多余分割线</h2>
+
+<pre><code>self.tableView.tableFooterView=[[UIView alloc]init];//关键语句     
+
+</code></pre>
+
+<h2 id="toc_7">UITableViewCell 选中时背景颜色改变</h2>
+
+<pre><code>tempCell.selectedBackgroundView = [[UIView alloc] initWithFrame:tempCell.frame] ;
+tempCell.selectedBackgroundView.backgroundColor = [ColorChangeUtil getColor:@&quot;#f1f1f1&quot;];
+
+</code></pre>
+
+<h2 id="toc_8">避免出现uitableview左移</h2>
+
+<pre><code>-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
+    {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_9">避免cell重用</h2>
+
+<p>通过为每个cell指定不同的重用标识符(reuseIdentifier)来解决。<br/>
+重用机制是根据相同的标识符来重用cell的，标识符不同的cell不能彼此重用。于是我们将每个cell的标识符都设置为不同，就可以避免不同cell重用的问题了。</p>
+
+<pre><code> NSString *ID = [NSString stringWithFormat:@&quot;Cell%ld%ld&quot;, [indexPath section], [indexPath row]];//以indexPath来唯一确定cell
+AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[AddGroupMemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+
+</code></pre>
+
+<h2 id="toc_10">使用FDCELL和xib配合加载自定义cell 约束警告的错误</h2>
+
+<p><code>self.tableView.estimatedRowHeight = 200;//预算行高</code>如果不加这句话控制台会报警告错误<br/>
+<code>objc<br/>
+&lt;NSLayoutConstraint:0x154f256f0 UILabel:0x159460f80.leading == UITableViewCellContentView:0x159460e00.leading + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x154f285e0 SZTextView:0x1557b1200.leading == UILabel:0x159460f80.leading&gt;,<br/>
+&lt;NSLayoutConstraint:0x159470c20 UITableViewCellContentView:0x159460e00.trailing == SZTextView:0x1557b1200.trailing + 10&gt;,<br/>
+&lt;NSLayoutConstraint:0x1561857d0 UITableViewCellContentView:0x159460e00.width == 0&gt;,<br/>
+</code></p>
+
+<p>总是提示<code>contentview.width</code>的宽度为0</p>
+
+<h2 id="toc_11">FDCELL 打印log</h2>
+
+<pre><code>self.tableView.fd_debugLogEnabled = YES;//开启log打印高度
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729749117844.html">
+                
+                  <h1>UIScreen</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">Controller中非成员变量window添加到窗口不显示</h2>
+
+<p><strong>不显示：</strong></p>
+
+<pre><code>-(void)gotoSetting
+{
+    UIWindow* window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]    bounds]];
+    window.windowLevel = UIWindowLevelStatusBar+1;
+    window.backgroundColor =[UIColor redColor];
+    window.hidden = NO;
+    [window makeKeyAndVisible];
+}
+
+</code></pre>
+
+<p><strong>显示</strong></p>
+
+<pre><code>@property (nonatomic, strong) UIWindow* window;
+-(void)gotoSetting
+{
+    _window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    _window.windowLevel = UIWindowLevelStatusBar+1;
+    _window.backgroundColor =[UIColor redColor];
+    _window.hidden = NO;
+    [_window makeKeyAndVisible];
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729748694506.html">
+                
+                  <h1>UINavigationController</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">UINavigationController 调整controller的顺序</h2>
+
+<p><strong>业务场景：</strong></p>
+
+<p>有时候我们需要调整UINavigationController中controller的顺序，但是单独靠</p>
+
+<pre><code>- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated
+
+</code></pre>
+
+<p>并不能满足我们的需要。</p>
+
+<p>比如：在一个列表界面，创建新信息进入编辑界面，成功后在进入展示界面，这时如果我们通过<strong><code>popController</code></strong>方法返回的到<strong>列表界面</strong>，就会一级一级弹出，会在弹出编辑界面之后才返回到<strong>列表界面</strong>，影响用户体验。</p>
+
+<p><strong>解决方案：</strong></p>
+
+<p>使用<code>NavigationController</code>的<code>setViewControllers</code>方法来调整controller的顺序</p>
+
+<pre><code>NSMutableArray * viewControllers = [self.navigationController.viewControllers mutableCopy];
+                    [viewControllers removeLastObject];
+                    [viewControllers addObject:controller];
+                    [self.navigationController setViewControllers:viewControllers animated:YES];
+
+</code></pre>
+
+<h2 id="toc_1">调整navagationbar的背景颜色</h2>
+
+<pre><code> UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:controller];
+ [nav.navigationBar setBarTintColor:[ColorChangeUtil getColor:LIGHT_BLUE]];
+
+</code></pre>
+
+<h2 id="toc_2">显示的模态视图带有navagationbar</h2>
+
+<p>默认模态视图不带navagationbar，需要自己添加navagationController来为维持controller栈的关系</p>
+
+<pre><code>    CreateNewViewController* controller = [[CreateNewViewController alloc]init];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:controller];
+    [nav.navigationBar setBarTintColor:[ColorChangeUtil getColor:LIGHT_BLUE]];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+
+</code></pre>
+
+<h2 id="toc_3">调整UIBarButtonItem的字体大小</h2>
+
+<pre><code>// You may specify the font, text color, and shadow properties for the title in the text attributes dictionary, using the keys found in NSAttributedString.h.
+[mUIBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : FONT(15)} forState:UIControlStateNormal];
+</code></pre>
+
+<h2 id="toc_4">UiViewController pushController切换出现卡顿</h2>
+
+<blockquote>
+<p>导致卡顿的的罪魁祸首就是UIViewController的View的默认color为空，背景色是透明的。这其实不是卡顿，而是由于透明颜色重叠后视觉上的问题，设置一个背景色就可以了。</p>
+</blockquote>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729748445236.html">
+                
+                  <h1>UILabel</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h4 id="toc_0">UILabel 添加富文本</h4>
+
+<pre><code> // 创建一个富文本
+            NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:[cell.btn_title.text stringByAppendingString:@&quot; &quot;]];
+
+            // 添加表情
+            NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+            // 表情图片
+            attch.image = [UIImage imageNamed:@&quot;ic_photo&quot;];
+            // 设置图片大小
+            attch.bounds = CGRectMake(0, -2, attch.image.size.width,attch.image.size.height);
+
+            // 创建带有图片的富文本
+            NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+            [attri appendAttributedString:string];
+
+            // 用label的attributedText属性来使用富文本
+            cell.btn_title.attributedText = attri;
+
+</code></pre>
+
+<h4 id="toc_1">富文本使用</h4>
+
+<pre><code>NSString *str = @&quot;人生若只如初见，何事秋风悲画扇。\n等闲变却故人心，却道故人心易变。\n骊山语罢清宵半，泪雨霖铃终不怨。\n何如薄幸锦衣郎，比翼连枝当日愿。&quot;;
+NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
+
+</code></pre>
+
+<p><strong>attrStr</strong>添加字体和设置字体的范围</p>
+
+<pre><code>[attrStr addAttribute:NSFontAttributeName
+                value:[UIFont systemFontOfSize:30.0f]
+                range:NSMakeRange(0, 3)];
+
+</code></pre>
+
+<p><strong>attStr</strong>添加文字颜色</p>
+
+<pre><code>[attrStr addAttribute:NSForegroundColorAttributeName
+                value:[UIColor redColor]
+                range:NSMakeRange(17, 7)];
+
+</code></pre>
+
+<p><strong>attStr</strong>添加下划线</p>
+
+<pre><code>[attrStr addAttribute:NSUnderlineStyleAttributeName
+                value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
+                range:NSMakeRange(8, 7)];
+
+</code></pre>
+
+<p><strong>段落样式</strong></p>
+
+<pre><code>NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+//行间距
+paragraph.lineSpacing = 10;
+//段落间距
+paragraph.paragraphSpacing = 20;
+//对齐方式
+paragraph.alignment = NSTextAlignmentLeft;
+//指定段落开始的缩进像素
+paragraph.firstLineHeadIndent = 30;
+//调整全部文字的缩进像素
+paragraph.headIndent = 10;
+
+</code></pre>
+
+<p><strong>attrStr</strong>添加段落设置</p>
+
+<pre><code>[attrStr addAttribute:NSParagraphStyleAttributeName
+                value:paragraph
+                range:NSMakeRange(0, [str length])];
+
+NSString *urlStr = @&quot;www.南瓜瓜.com&quot;;
+NSURL *url = [NSURL URLWithString:urlStr];
+
+</code></pre>
+
+<p><strong>创建label</strong></p>
+
+<pre><code>UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60, 100, 200, 0)];
+label.backgroundColor = [UIColor lightGrayColor];
+//自动换行
+label.numberOfLines = 0;
+//设置label的富文本
+label.attributedText = attrStr;
+//label高度自适应
+[label sizeToFit];
+[self.view addSubview:label];
+
+</code></pre>
+
+<p>设置sizeToFit之后是可以取出label的高度的，这样做label高度自适应。</p>
+
+<pre><code>CGFloat height = label.frame.size.height;
+NSLog(@&quot;height = %f&quot;,height);
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729747772832.html">
+                
+                  <h1>UIAlert</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h4 id="toc_0">UIAlertView 添加参数</h4>
+
+<p>使用<code>运行时</code>来添加附带的参数</p>
+
+<pre><code>//1、void* 指针变量
+static char alertKey;
+
+UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@&quot;&quot; message:[NSString stringWithFormat:@&quot;确定%@么?&quot;,label.text] delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
+        NSDictionary* paramDic  =@{
+                                    @&quot;index&quot;:[NSNumber numberWithInteger:index],
+                                    @&quot;oper&quot;:label.text
+
+                                   };
+//2、赋参数
+objc_setAssociatedObject(alert, &amp;alertKey, paramDic, OBJC_ASSOCIATION_RETAIN);
+
+[alert show];
+
+</code></pre>
+
+<pre><code>-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            break;
+        case 1:
+        {
+           //3、取参数
+           NSDictionary* param =  objc_getAssociatedObject(alertView, &amp;alertKey);
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729747441498.html">
+                
+                  <h1>GCD</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">计时</h2>
+
+<h3 id="toc_1">GCD计时器</h3>
+
+<pre><code>__block int timeout=10; //倒计时时间
+    __weak typeof(self) weakself = self;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL,0), 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        if(timeout&lt;=0){ //倒计时结束，关闭
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+               [weakself.btn_authCode setBackgroundColor:CUSCOLOR(LIGHT_BLUE) ];
+               [weakself.btn_authCode setTitle:[NSString stringWithFormat:@&quot;重新获取验证码&quot;] forState:UIControlStateNormal];
+                weakself.btn_authCode.enabled = YES;
+
+            });
+        }else{
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                 [weakself.btn_authCode setTitle:[NSString stringWithFormat:@&quot;%ds后重新获取&quot;,timeout] forState:UIControlStateNormal];
+            });
+            timeout--;
+
+        }
+    });
+    dispatch_resume(timer);
+</code></pre>
+
+<h3 id="toc_2">NSTimer计时</h3>
+
+<pre><code>当使用NSTimer的scheduledTimerWithTimeInterval方法时。事实上此时Timer会被加入到当前线程的Run Loop中，且模式是默认的NSDefaultRunLoopMode。而如果当前线程就是主线程，也就是UI线程时，某些UI事件，比如UIScrollView的拖动操作，会将Run Loop切换成NSEventTrackingRunLoopMode模式，在这个过程中，默认的NSDefaultRunLoopMode模式中注册的事件是不会被执行的。也就是说，此时使用scheduledTimerWithTimeInterval添加到Run Loop中的Timer就不会执行。
+
+所以为了设置一个不被UI干扰的Timer，我们需要手动创建一个Timer，然后使用NSRunLoop的addTimer:forMode:方法来把Timer按照指定模式加入到Run Loop中。这里使用的模式是：NSRunLoopCommonModes，这个模式等效于NSDefaultRunLoopMode和NSEventTrackingRunLoopMode的结合。
+</code></pre>
+
+<pre><code class="language-objc">// 新建NSTimer对象
+NSTimer *timer = [NSTimer timerWithTimeInterval:5.0 target:self selector:@selector(show) userInfo:nil repeats:YES];
+// 将NSTimer添加到RunLoop中,并且告诉系统,当前Tiemr只有在RunLoop的默认模式下才有效
+[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+// 所以在UITrackingRunLoopMode模式下，定时器的方法不会执行，但定时器仍计时
+</code></pre>
+
+<p>参考：<a href="https://www.mgenware.com/blog/?p=459">OS: NSTimer使用小记</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729747060001.html">
+                
+                  <h1>UISearchBar</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">修改背景色</h2>
+
+<pre><code>mySearchBar.backgroundColor = RGBACOLOR(249,249,249,1);
+mySearchBar.backgroundImage = [self imageWithColor:[UIColor clearColor] size:mySearchBar.bounds.size];
+
+//取消searchbar背景色
+- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size/Users/coolwxb/Documents/博客/blog/source/_posts/Masonry 使用复习总结.markdown
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return image;
+}
+</code></pre>
+
+<h2 id="toc_1">UISearchBar 获取焦点并显示光标</h2>
+
+<pre><code> _oneSearchBar.tintColor = [UIColor blackColor];
+ [_oneSearchBar becomeFirstResponder];
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729746812409.html">
+                
+                  <h1>Navigation</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">屏蔽NavigationBar的title</h2>
+
+<pre><code>
+    //屏蔽显示navigationbar 的title
+    UILabel *label = [[UILabel alloc] init];
+    self.navigationItem.titleView = label;
+
+</code></pre>
+
+<h2 id="toc_1">修改Controller的标题title和颜色</h2>
+
+<pre><code>
+UIColor * color = [UIColor whiteColor];
+
+NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];
+
+self.navigationBar.titleTextAttributes = dict;
+
+</code></pre>
+
+<p>PS：相关属性在<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/"><code>NSAttributedString.h</code></a>这个头文件中</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729746247024.html">
+                
+                  <h1>Popupwindow</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">点击空白消失</h2>
+
+<pre><code>myPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+myPopupWindow.setOutsideTouchable(true);
+myPopupWindow.setFocusable(true);
+
+</code></pre>
+
+<p><strong>需要设置popupwindow的backgroundDrawable才能使outsideTouchable生效</strong></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   <a href="all_3.html">&laquo; Prev Page</a>  
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			 <a href="all_5.html">&raquo; Next Page</a> 
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
+            
+                <h1>小小程序猿</h1>
+                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="ios.html"><strong>ios</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
+        
+            <a href="express.html"><strong>express</strong></a>
+        
+            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
+        
+            <a href="Vue.html"><strong>Vue</strong></a>
+        
+            <a href="sequelize.html"><strong>sequelize</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120934542709.html">NSTimer 闪退问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120110700552.html">地图画线 polygon</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15117817736257.html">node xlsx</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
@@ -379,6 +1674,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 
   </body>
 </html>

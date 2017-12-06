@@ -8,17 +8,23 @@
   sequelize - 小小程序猿
   
   </title>
- <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
- <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,32 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html">小小程序猿</a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; 小小程序猿</span>
@@ -41,220 +68,57 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>ios</label></li>
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
 
-          
-            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-          
-            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-          
-            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-          
-            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-          
-            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>Android</label></li>
+        
+            <li><a href="ios.html">ios</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
+        
+            <li><a href="express.html">express</a></li>
+        
+            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
+        
+            <li><a href="Vue.html">Vue</a></li>
+        
+            <li><a href="sequelize.html">sequelize</a></li>
+         
 
-          
-            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-          
-            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-          
-            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-          
-            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-          
-            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-          
-            <li><a title="guava" href="14729744657413.html">guava</a></li>
-          
-            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>其他</label></li>
-
-          
-            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-          
-            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-          
-            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>express</label></li>
-
-          
-            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-          
-            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-          
-            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-          
-            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-          
-            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-          
-            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-          
-            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-          
-            <li><a title="passport" href="14892005669552.html">passport</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>数据库</label></li>
-
-          
-            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-          
-            <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>Vue</label></li>
-
-          
-            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>sequelize</label></li>
-
-          
-            <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-          
-            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
-
-                    
-                      <li class="side-title"><span>ios</span></li>
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15116580970818.html">
+                
+                  <h1>Sequelize 创建连接</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
                         
-                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-                        
-                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-                        
-                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-                        
-                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-                        
-                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Android</span></li>
-                        
-                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-                        
-                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-                        
-                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-                        
-                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-                        
-                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-                        
-                          <li><a title="guava" href="14729744657413.html">guava</a></li>
-                        
-                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>其他</span></li>
-                        
-                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-                        
-                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-                        
-                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>express</span></li>
-                        
-                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-                        
-                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-                        
-                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-                        
-                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-                        
-                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-                        
-                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-                        
-                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-                        
-                          <li><a title="passport" href="14892005669552.html">passport</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>数据库</span></li>
-                        
-                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-                        
-                          <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Vue</span></li>
-                        
-                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>sequelize</span></li>
-                        
-                          <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-                        
-                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-                        
-
-                    
-                  </ul>
-                </nav>
-                </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>Sequelize 创建连接</h1>
-
-		<pre><code>const sequelize = new Sequelize(&#39;database&#39;, &#39;username&#39;, &#39;password&#39;, {
+                        	<pre><code>const sequelize = new Sequelize(&#39;database&#39;, &#39;username&#39;, &#39;password&#39;, {
   // the sql dialect of the database
   // currently supported: &#39;mysql&#39;, &#39;sqlite&#39;, &#39;postgres&#39;, &#39;mssql&#39;
   dialect: &#39;mysql&#39;,
@@ -743,45 +607,524 @@ Model.update({username: &#39;Toni&#39;}, { where: {accessLevel: 0}, individualHo
 
 </code></pre>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sequelize.html'>sequelize</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14892215616260.html">
+                
+                  <h1>sequelize. 钩子</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0"><code>user.update</code> 调用</h3>
+
+<pre><code>hooks: {
+    beforeUpdate(user, options, next) {
+         bcrypt.genSalt(10, (err, salt) =&gt; {
+                    bcrypt.hash(user.password, salt, null, (error, hash) =&gt; {
+                        user.password = hash;
+                        next(null, user);
+                    });
+                });
+            }     
+        }
+</code></pre>
+
+<h1 id="toc_1">sequelize 事务</h1>
+
+<pre><code>return db.lakalaSequelize.transaction(t =&gt;
+                    Promise.map(sqlArray, (sql, index) =&gt; db.lakalaSequelize.query(sql,
+                        { type: db.lakalaSequelize.QueryTypes.SELECT, transaction: t })
+                    .then((result) =&gt; {
+                        if (!_.isEmpty(result)) {
+                            const item = itemArray[index];
+                            item.BUSINESS_NAME = result[0].business_name;
+                            item.MERCHANT_CODE = result[0].merchant_code;
+                            item.MERCHANT_ADDR = result[0].MERCHANT_ADDR;
+                            return item;
+                        }
+                        return itemArray[index];
+                    }))).then(result =&gt; result);
+</code></pre>
+
+<h1 id="toc_2">Sequelize 外键</h1>
+
+<p>数据库中的表之间存在一定的关联关系，表之间的关系基于主/外键进行关联、创建约束等。关系表中的数据分为1对1(1:1)、1对多(1:M)、多对多(N:M)三种关联关系。</p>
+
+<p>在<code>Sequelize</code>中建立关联关系，通过调用模型(源模型)的<code>belongsTo</code>、<code>hasOne</code>、<code>hasMany</code>、<code>belongsToMany</code>方法，再将要建立关系的模型(目标模型)做为参数传入即可。这些方法会按以下规则创建关联关系：</p>
+
+<blockquote>
+<blockquote>
+<p>hasOne - 与目标模型建立1:1关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasOne()</p>
+
+<p>belongsTo - 与目标模型建立1:1关联关系，关联关系(外键)存在于源模型中。详见：Model.belongsTo()</p>
+
+<p>hasMany - 与目标模型建立1:N关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasMany()</p>
+
+<p>belongsToMany - 与目标模型建立N:M关联关系，会通过sourceId和targetId创建交叉表。详见：Model.belongsToMany()</p>
+</blockquote>
+</blockquote>
+
+<ul>
+<li>用户(User)－与其它模型存在1:1、1:N、N:M</li>
+<li>用户登录信息(UserCheckin)－与User存在1:1关系</li>
+<li>用户地址(UserAddress)－与User存在N:1关系</li>
+<li>角色(Role)－与User存在N:M关系</li>
+</ul>
+
+<p><img src="media/14892215616260/14920682242135.png" alt=""/></p>
+
+<pre><code>module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;User&#39;, {
+    id:{type:DataTypes.BIGINT(11), autoIncrement:true, primaryKey : true, unique : true},
+    username: { type: DataTypes.STRING,  allowNull: false, comment:&#39;用户名&#39; },
+    password: { type: DataTypes.STRING, allowNull: false, comment:&#39;用户密码&#39; },
+    active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, comment:&#39;是否正常状态&#39; }
+  },
+  {
+    timestamps: true,
+    underscored: true,
+    paranoid: true,
+    freezeTableName: true,
+    tableName: &#39;user&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;
+});
+}
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;UserCheckin&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true },
+    userId: { 
+      type: DataTypes.BIGINT(11), 
+      field: &#39;user_id&#39;,
+      unique: true, 
+      references: {
+        model: &#39;User&#39;,
+        key: &#39;id&#39;
+      },
+      comment:&#39;用户Id&#39; },
+    loginIp: { type: DataTypes.STRING, field: &#39;login_ip&#39;, allowNull: false, defaultValue: &#39;&#39; , validate: {isIP: true}, comment:&#39;登录IP&#39;}
+  },
+  {
+    underscored: true,
+    timestamps: true,
+    tableName: &#39;userCheckin&#39;,
+    comment: &#39;用户登录信息&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;,
+    indexes: [{
+      name: &#39;userCheckin_userId&#39;,
+      method: &#39;BTREE&#39;,
+     fields: [&#39;user_id&#39;]
+    }]
+  });
+}
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;UserAddress&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;主键&#39; },
+    userId: {type: DataTypes.BIGINT(11), field: &#39;user_id&#39;, allowNull: false, comment:&#39;用户Id&#39; },
+    consignee : { type: DataTypes.STRING, field: &#39;consignee&#39;, allowNull: false, comment:&#39;收货人&#39; },
+    address: { type: DataTypes.STRING(1024), field: &#39;address&#39;, allowNull: false, comment:&#39;详细地址&#39; },
+    zipCode: { type: DataTypes.STRING(16), field: &#39;zip_code&#39;, allowNull: true, comment:&#39;邮编&#39; },
+    tel: { type: DataTypes.STRING(32), field: &#39;tel&#39;, allowNull: false, comment:&#39;电话&#39; },
+  },
+  {
+    underscore: true,
+    timestamps: false,
+    freezeTableName: true,
+    tableName: &#39;userAddress&#39;,
+    comment: &#39;用户地址表&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;,
+    indexes: [{
+      name: &#39;userAddress_userId&#39;,
+      method: &#39;BTREE&#39;,
+      fields: [&#39;user_id&#39;]
+    }]
+  });
+}
+</code></pre>
+
+<p><code>User</code>模型与<code>UserAddress</code>存在1:N的关联关系，但在这样我们并没有用<code>references</code>特性显式的指定外键。这是因为，<code>Sequlieze</code>不仅可以在模型定义时指定外键，还可以在建立模型关系时指定，甚至主外键关系并不需要显示的存在，只要在建立模型关系时指定关联键即可。</p>
+
+<pre><code>module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;Role&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;角色Id&#39; },
+    roleName: { type: DataTypes.STRING, field: &#39;role_name&#39;, comment:&#39;角色名&#39; }
+  },
+  {
+    underscored: true,
+    timestamps: false,
+    freezeTableName: true,
+    tableName: &#39;role&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;
+  });
+}
+</code></pre>
+
+<p><code>Role</code>模型与<code>User</code>存在N:M的关系，这样就需要两者通过一个关系表（关系模型）进行关联。但并不需要手工建立这个关系表，指定关联关系后<code>Sequelize</code>会自动创建关系表。</p>
+
+<p>注意：在上面定义模型时，我们使用了<code>comment</code>属性添加字段描述。经测试及查看<code>Sequlize</code>源码，这一特性并不会向数据中添加相关描述信息，但仍然建议添加这一属性以增强代码的可读性。</p>
+
+<h2 id="toc_3">模型关联与数据库同步</h2>
+
+<p>定义好模型后，就可以建立模型关联关系，并将模型及关系同步到数据库中。</p>
+
+<p>模型导入</p>
+
+<p>在上面定义模型时，我们每个模型定义为了单独的文件，这样就需要通过<code>sequlize.import()</code>方法导入模型：</p>
+
+<pre><code>var sequelize=require(&#39;./_db&#39;).sequelize();
+var User = sequelize.import(&#39;./user.js&#39;);
+var UserCheckin = sequelize.import(&#39;./userCheckin.js&#39;);
+var UserAddress = sequelize.import(&#39;./userAddress.js&#39;);
+var Role = sequelize.import(&#39;./role.js&#39;);
+
+</code></pre>
+
+<p>关系建立</p>
+
+<p>导入后，建立模型关系：</p>
+
+<pre><code>// 建立模型之间的关系
+User.hasOne(UserCheckin);
+UserCheckin.belongsTo(User);
+User.hasMany(UserAddress, {foreignKey:&#39;user_id&#39;, targetKey:&#39;id&#39;, as:&#39;Address&#39;});
+User.belongsToMany(Role, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});
+Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});
+</code></pre>
+
+<p>在定义<code>UserAddress</code>模型时，我们没有定义关联模型，所以需要在<code>hasMany()</code>方法中通过<code>foreignKey</code>和<code>targetKey</code>来指定关联关系(主外键关系)，指定后该关系同样会被同步到数据库中。除指定关联关系外，我们还指定了<code>as</code>选项，该选项表示“<strong>别名</strong>”，<strong>目标模型会混入到源模型后会使用该名称。</strong></p>
+
+<p>通过<strong>belongsToMany()</strong>方法建立<code>Role</code>与<code>User</code>之间的关系时，设置了<code>through</code>选项，该选项表示“<strong>关系</strong>”（可以是一个模型或字符串，使用字符串时表示在数据库中表名）。</p>
+
+<h2 id="toc_4">同步数据库</h2>
+
+<p>建立关联关系后，调用<code>sequelize.sync()</code>方法即可以将模型及关联关系同步到数据库中。</p>
+
+<h2 id="toc_5">外键例子理解</h2>
+
+<p><a href="http://docs.sequelizejs.com/manual/tutorial/associations.html">官方文档</a></p>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company); // Will add companyId to user
+
+const User = this.sequelize.define(&#39;user&#39;, {/* attributes */}, {underscored: true}) // 不已驼峰形式命名 而是用下划线
+const Company  = this.sequelize.define(&#39;company&#39;, {
+  uuid: {
+    type: Sequelize.UUID,
+    primaryKey: true
+  }
+});
+
+User.belongsTo(Company); // Will add company_uuid to user
+
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const UserRole  = this.sequelize.define(&#39;userRole&#39;, {/* attributes */});
+
+User.belongsTo(UserRole, {as: &#39;role&#39;}); // Adds roleId to user rather than userRoleId
+
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company, {foreignKey: &#39;fk_company&#39;}); // Adds fk_company to User
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company, {foreignKey: &#39;fk_companyname&#39;, targetKey: &#39;name&#39;}); // Adds fk_companyname to User
+</code></pre>
+
+<pre><code>Project.belongsToMany(User, {through: &#39;UserProject&#39;});
+User.belongsToMany(Project, {through: &#39;UserProject&#39;});
+</code></pre>
+
+<pre><code>// Series has a trainer_id=Trainer.id foreign reference key after we call Trainer.hasMany(series)
+const Series = sequelize.define(&#39;series&#39;, {
+  title:        DataTypes.STRING,
+  sub_title:    DataTypes.STRING,
+  description:  DataTypes.TEXT,
+
+  // Set FK relationship (hasMany) with `Trainer`
+  trainer_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: &quot;trainer&quot;,
+      key: &quot;id&quot;
+    }
+  }
+})
+
+const Trainer = sequelize.define(&#39;trainer&#39;, {
+  first_name: DataTypes.STRING,
+  last_name:  DataTypes.STRING
+});
+
+// Video has a series_id=Series.id foreign reference key after we call Series.hasOne(Video)...
+const Video = sequelize.define(&#39;video&#39;, {
+  title:        DataTypes.STRING,
+  sequence:     DataTypes.INTEGER,
+  description:  DataTypes.TEXT,
+
+  // set relationship (hasOne) with `Series`
+  series_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Series, // Can be both a string representing the table name, or a reference to the model
+      key:   &quot;id&quot;
+    }
+  }
+});
+
+Series.hasOne(Video);
+Trainer.hasMany(Series);
+</code></pre>
+
+<p>理解:<br/>
+1. 无论是<code>hasOne</code>还是<code>belongsTo</code>，左面的都是源对象（source）右面都是目标对象（target）<br/>
+2. 不指定<code>sourceKey</code>或者<code>targetKey</code>都是指<strong>对象主键列作为外键所指向的列</strong><br/>
+3. <code>as</code>作为别名，能替代外键名称，如 <code>roleID</code>代替<code>userRoleId</code>,同时<code>getRole</code>、<code>setRole</code>代替<code>getUserRole</code>、<code>setUserRole</code><br/>
+4. 可以使用<code>foreignKey</code>指定外键名称来替代默认的<code>modelId</code>名称<br/>
+5. <code>belongsTo</code>模式下外键默认在<strong>源目标对象</strong>上，外键默认指向<strong>目标对象主键列</strong>，使用<code>targetKey</code>来<strong>改变外键指向列</strong><br/>
+6. <code>belongsToMany</code>会生成中间表，<code>through</code>指定表名</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sequelize.html'>sequelize</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
+            
+                <h1>小小程序猿</h1>
+                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
+                <div class="social">
 
-  
-  
-</div></div>
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="ios.html"><strong>ios</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
+        
+            <a href="express.html"><strong>express</strong></a>
+        
+            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
+        
+            <a href="Vue.html"><strong>Vue</strong></a>
+        
+            <a href="sequelize.html"><strong>sequelize</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120934542709.html">NSTimer 闪退问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120110700552.html">地图画线 polygon</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15117817736257.html">node xlsx</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
@@ -793,6 +1136,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 
   </body>
 </html>

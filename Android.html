@@ -8,17 +8,23 @@
   Android - 小小程序猿
   
   </title>
- <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
- <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,32 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html">小小程序猿</a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; 小小程序猿</span>
@@ -41,220 +68,57 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>ios</label></li>
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
 
-          
-            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-          
-            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-          
-            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-          
-            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-          
-            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>Android</label></li>
+        
+            <li><a href="ios.html">ios</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
+        
+            <li><a href="express.html">express</a></li>
+        
+            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
+        
+            <li><a href="Vue.html">Vue</a></li>
+        
+            <li><a href="sequelize.html">sequelize</a></li>
+         
 
-          
-            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-          
-            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-          
-            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-          
-            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-          
-            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-          
-            <li><a title="guava" href="14729744657413.html">guava</a></li>
-          
-            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>其他</label></li>
-
-          
-            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-          
-            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-          
-            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>express</label></li>
-
-          
-            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-          
-            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-          
-            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-          
-            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-          
-            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-          
-            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-          
-            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-          
-            <li><a title="passport" href="14892005669552.html">passport</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>数据库</label></li>
-
-          
-            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-          
-            <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>Vue</label></li>
-
-          
-            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>sequelize</label></li>
-
-          
-            <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-          
-            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
-
-                    
-                      <li class="side-title"><span>ios</span></li>
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="14729756163770.html">
+                
+                  <h1>Android studio 换源</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
                         
-                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-                        
-                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-                        
-                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-                        
-                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-                        
-                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Android</span></li>
-                        
-                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-                        
-                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-                        
-                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-                        
-                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-                        
-                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-                        
-                          <li><a title="guava" href="14729744657413.html">guava</a></li>
-                        
-                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>其他</span></li>
-                        
-                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-                        
-                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-                        
-                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>express</span></li>
-                        
-                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-                        
-                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-                        
-                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-                        
-                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-                        
-                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-                        
-                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-                        
-                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-                        
-                          <li><a title="passport" href="14892005669552.html">passport</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>数据库</span></li>
-                        
-                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-                        
-                          <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Vue</span></li>
-                        
-                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>sequelize</span></li>
-                        
-                          <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-                        
-                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-                        
-
-                    
-                  </ul>
-                </nav>
-                </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>Android studio 换源</h1>
-
-		<p>由于国内GFW的原因，经常导致android studio 莫名其妙的编译不了，多数原因是由于不能下载依赖库</p>
+                        	<p>由于国内GFW的原因，经常导致android studio 莫名其妙的编译不了，多数原因是由于不能下载依赖库</p>
 
 <p>Gradle支持三种不同的仓库，分别是：Maven和Ivy以及文件夹。依赖包会在你执行build构建的时候从这些远程仓库下载，当然Gradle会为你在本地保留缓存，所以一个特定版本的依赖包只需要下载一次。</p>
 
@@ -277,60 +141,919 @@
 }
 </code></pre>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Android.html'>Android</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729754866475.html">
+                
+                  <h1>点在面内（2）</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">导入</h2>
+
+<p>判断触摸点是否在一个多边形的内部<br/>
+方法</p>
+
+<h2 id="toc_1">数学方法</h2>
+
+<p>这个方法的好处是任意平台都可以使用，不仅现于Android<br/>
+算法：<br/>
+求解通过该点的水平线与多边形各边的交点，单边交点为奇数，则成立<br/>
+ok我们其实就是需要看这个点的单边射线与多边形的交点，代码实现如下：</p>
+
+<pre><code>public boolean isInPolygon(Point point, Point[] points, int n) {  
+        int nCross = 0;  
+        for (int i = 0; i &lt; n; i++) {  
+            Point p1 = points[i];  
+            Point p2 = points[(i + 1) % n];  
+            // 求解 y=p.y 与 p1 p2 的交点  
+            // p1p2 与 y=p0.y平行  
+            if (p1.y == p2.y)  
+                continue;  
+            // 交点在p1p2延长线上  
+            if (point.y &lt; Math.min(p1.y, p2.y))  
+                continue;  
+            // 交点在p1p2延长线上  
+            if (point.y &gt;= Math.max(p1.y, p2.y))  
+                continue;  
+            // 求交点的 X 坐标  
+            double x = (double) (point.y - p1.y) * (double) (p2.x - p1.x)  
+                    / (double) (p2.y - p1.y) + p1.x;  
+            // 只统计单边交点  
+            if (x &gt; point.x)  
+                nCross++;  
+        }  
+        return (nCross % 2 == 1);  
+    }  
+
+</code></pre>
+
+<p>经典算法，通用实现</p>
+
+<h2 id="toc_2">Android</h2>
+
+<p>借用Android开发中的碰撞检测的思想，我们使用Region来判断，Region的详细资料稍后会有总结：<br/>
+充分借助Android的api来实现：</p>
+
+<pre><code>RectF rectF = new RectF();  
+        path.computeBounds(rectF, true);  
+        Region region = new Region();  
+        region.setPath(path, new Region((int) rectF.left,  
+                        (int) rectF.top, (int) rectF.right,  
+                        (int) rectF.bottom));  
+        if (region.contains(point.x, point.y)) {  
+
+        }  
+
+</code></pre>
+
+<p>以上。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Android.html'>Android</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729754588363.html">
+                
+                  <h1>点在面内（1）</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>参考文献】：</p>
+
+<p>1、<a href="http://www.cnblogs.com/devymex/archive/2010/08/19/1803885.html">两条直线的关系</a></p>
+
+<p>2、<a href="http://wenku.baidu.com/view/5e3913a2b0717fd5360cdccf.html?qq-pf-to=pcqq.c2c">点与多边形的关系</a></p>
+
+<p>经过在网上的一番搜索，发现目前比较通用的就是射线法，而我采用的就是X轴射线法。主要理论来源于西安交大的一篇论文（即参考文献的第二条）</p>
+
+<p>代码讲解：<br/>
+主要的类有两个：一个是坐标点的抽象类，另一个是位置关系判断工具类。</p>
+
+<pre><code>package com.niux.crm.core.common.bmap;
+
+/**
+ * 用于构造百度地图中的经纬度点
+ * 
+ * @author zhengtian
+ * @date 2013-8-5 下午02:54:41
+ */
+public class BmapPoint {
+    private double lng;// 经度
+    private double lat;// 纬度
+
+    public BmapPoint() {
+
+    }
+
+    public BmapPoint(double lng, double lat) {
+        this.lng = lng;
+        this.lat = lat;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof BmapPoint) {
+            BmapPoint bmapPoint = (BmapPoint) obj;
+            return (bmapPoint.getLng() == lng &amp;&amp; bmapPoint.getLat() == lat) ? true : false;
+        } else {
+            return false;
+        }
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_0">位置关系判断工具类</h2>
+
+<p>点与多边形的位置关系的判定规则：</p>
+
+<p>1、根据多边形的坐标，虚拟出一个外包矩形，主要是为了提前过滤不相关的点，减少运算量。</p>
+
+<p>2、然后判断是否有重合的点。</p>
+
+<p>3、判断点与斜线的交点。</p>
+
+<p>4、判断点过顶点的情况。</p>
+
+<p>5、判断点与边重合的情况。</p>
+
+<p>6、判断点在边上的情况。</p>
+
+<p>其中点过顶点，以及点与边重合的情况，主要采用了加权边的思想，论文与代码中有注释。</p>
+
+<pre><code>package com.niux.crm.core.common.bmap;
+
+import java.util.Arrays;
+
+/**
+ * 用于点与多边形位置关系的判断
+ * 
+ * @author zhengtian
+ * @date 2013-8-5 上午11:59:35
+ */
+public class GraphUtils {
+
+    /**
+     * 判断点是否在多边形内(基本思路是用交点法)
+     * 
+     * @param point
+     * @param boundaryPoints
+     * @return
+     */
+    public static boolean isPointInPolygon(BmapPoint point, BmapPoint[] boundaryPoints) {
+        // 防止第一个点与最后一个点相同
+        if (boundaryPoints != null &amp;&amp; boundaryPoints.length &gt; 0
+                &amp;&amp; boundaryPoints[boundaryPoints.length - 1].equals(boundaryPoints[0])) {
+            boundaryPoints = Arrays.copyOf(boundaryPoints, boundaryPoints.length - 1);
+        }
+        int pointCount = boundaryPoints.length;
+
+        // 首先判断点是否在多边形的外包矩形内，如果在，则进一步判断，否则返回false
+        if (!isPointInRectangle(point, boundaryPoints)) {
+            return false;
+        }
+
+        // 如果点与多边形的其中一个顶点重合，那么直接返回true
+        for (int i = 0; i &lt; pointCount; i++) {
+            if (point.equals(boundaryPoints[i])) {
+                return true;
+            }
+        }
+
+        /**
+         * 基本思想是利用X轴射线法，计算射线与多边形各边的交点，如果是偶数，则点在多边形外，否则在多边形内。还会考虑一些特殊情况，如点在多边形顶点上
+         * ， 点在多边形边上等特殊情况。
+         */
+        // X轴射线与多边形的交点数
+        int intersectPointCount = 0;
+        // X轴射线与多边形的交点权值
+        float intersectPointWeights = 0;
+        // 浮点类型计算时候与0比较时候的容差
+        double precision = 2e-10;
+        // 边P1P2的两个端点
+        BmapPoint point1 = boundaryPoints[0], point2;
+        // 循环判断所有的边
+        for (int i = 1; i &lt;= pointCount; i++) {
+            point2 = boundaryPoints[i % pointCount];
+
+            /**
+             * 如果点的y坐标在边P1P2的y坐标开区间范围之外，那么不相交。
+             */
+            if (point.getLat() &lt; Math.min(point1.getLat(), point2.getLat())
+                    || point.getLat() &gt; Math.max(point1.getLat(), point2.getLat())) {
+                point1 = point2;
+                continue;
+            }
+
+            /**
+             * 此处判断射线与边相交
+             */
+            if (point.getLat() &gt; Math.min(point1.getLat(), point2.getLat())
+                    &amp;&amp; point.getLat() &lt; Math.max(point1.getLat(), point2.getLat())) {// 如果点的y坐标在边P1P2的y坐标开区间内
+                if (point1.getLng() == point2.getLng()) {// 若边P1P2是垂直的
+                    if (point.getLng() == point1.getLng()) {
+                        // 若点在垂直的边P1P2上，则点在多边形内
+                        return true;
+                    } else if (point.getLng() &lt; point1.getLng()) {
+                        // 若点在在垂直的边P1P2左边，则点与该边必然有交点
+                        ++intersectPointCount;
+                    }
+                } else {// 若边P1P2是斜线
+                    if (point.getLng() &lt;= Math.min(point1.getLng(), point2.getLng())) {// 点point的x坐标在点P1和P2的左侧
+                        ++intersectPointCount;
+                    } else if (point.getLng() &gt; Math.min(point1.getLng(), point2.getLng())
+                            &amp;&amp; point.getLng() &lt; Math.max(point1.getLng(), point2.getLng())) {// 点point的x坐标在点P1和P2的x坐标中间
+                        double slopeDiff = 0.0d;
+                        if (point1.getLat() &gt; point2.getLat()) {
+                            slopeDiff = (point.getLat() - point2.getLat()) / (point.getLng() - point2.getLng())
+                                    - (point1.getLat() - point2.getLat()) / (point1.getLng() - point2.getLng());
+                        } else {
+                            slopeDiff = (point.getLat() - point1.getLat()) / (point.getLng() - point1.getLng())
+                                    - (point2.getLat() - point1.getLat()) / (point2.getLng() - point1.getLng());
+                        }
+                        if (slopeDiff &gt; 0) {
+                            if (slopeDiff &lt; precision) {// 由于double精度在计算时会有损失，故匹配一定的容差。经试验，坐标经度可以达到0.0001
+                                // 点在斜线P1P2上
+                                return true;
+                            } else {
+                                // 点与斜线P1P2有交点
+                                intersectPointCount++;
+                            }
+                        }
+                    }
+                }
+            } else {
+                // 边P1P2水平
+                if (point1.getLat() == point2.getLat()) {
+                    if (point.getLng() &lt;= Math.max(point1.getLng(), point2.getLng())
+                            &amp;&amp; point.getLng() &gt;= Math.min(point1.getLng(), point2.getLng())) {
+                        // 若点在水平的边P1P2上，则点在多边形内
+                        return true;
+                    }
+                }
+                /**
+                 * 判断点通过多边形顶点
+                 */
+                if (((point.getLat() == point1.getLat() &amp;&amp; point.getLng() &lt; point1.getLng()))
+                        || (point.getLat() == point2.getLat() &amp;&amp; point.getLng() &lt; point2.getLng())) {
+                    if (point2.getLat() &lt; point1.getLat()) {
+                        intersectPointWeights += -0.5;
+                    } else if (point2.getLat() &gt; point1.getLat()) {
+                        intersectPointWeights += 0.5;
+                    }
+                }
+            }
+            point1 = point2;
+        }
+
+        if ((intersectPointCount + Math.abs(intersectPointWeights)) % 2 == 0) {// 偶数在多边形外
+            return false;
+        } else { // 奇数在多边形内
+            return true;
+        }
+    }
+
+    /**
+     * 判断点是否在矩形内在矩形边界上，也算在矩形内(根据这些点，构造一个外包矩形)
+     * 
+     * @param point
+     *            点对象
+     * @param boundaryPoints
+     *            矩形边界点
+     * @return
+     */
+    public static boolean isPointInRectangle(BmapPoint point, BmapPoint[] boundaryPoints) {
+        BmapPoint southWestPoint = getSouthWestPoint(boundaryPoints); // 西南角点
+        BmapPoint northEastPoint = getNorthEastPoint(boundaryPoints); // 东北角点
+        return (point.getLng() &gt;= southWestPoint.getLng() &amp;&amp; point.getLng() &lt;= northEastPoint.getLng()
+                &amp;&amp; point.getLat() &gt;= southWestPoint.getLat() &amp;&amp; point.getLat() &lt;= northEastPoint.getLat());
+
+    }
+
+    /**
+     * 根据这组坐标，画一个矩形，然后得到这个矩形西南角的顶点坐标
+     * 
+     * @param vertexs
+     * @return
+     */
+    private static BmapPoint getSouthWestPoint(BmapPoint[] vertexs) {
+        double minLng = vertexs[0].getLng(), minLat = vertexs[0].getLat();
+        for (BmapPoint bmapPoint : vertexs) {
+            double lng = bmapPoint.getLng();
+            double lat = bmapPoint.getLat();
+            if (lng &lt; minLng) {
+                minLng = lng;
+            }
+            if (lat &lt; minLat) {
+                minLat = lat;
+            }
+        }
+        return new BmapPoint(minLng, minLat);
+    }
+
+    /**
+     * 根据这组坐标，画一个矩形，然后得到这个矩形东北角的顶点坐标
+     * 
+     * @param vertexs
+     * @return
+     */
+    private static BmapPoint getNorthEastPoint(BmapPoint[] vertexs) {
+        double maxLng = 0.0d, maxLat = 0.0d;
+        for (BmapPoint bmapPoint : vertexs) {
+            double lng = bmapPoint.getLng();
+            double lat = bmapPoint.getLat();
+            if (lng &gt; maxLng) {
+                maxLng = lng;
+            }
+            if (lat &gt; maxLat) {
+                maxLat = lat;
+            }
+        }
+        return new BmapPoint(maxLng, maxLat);
+    }
+
+}
+
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Android.html'>Android</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729754295011.html">
+                
+                  <h1>android对svg矢量图的支持</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">什么是svg？</h2>
+
+<blockquote>
+<p>SVG可缩放矢量图形（Scalable Vector Graphics）是基于可扩展标记语言（XML），用于描述二维矢量图形的一种图形格式。SVG是W3C(&quot;World Wide Web ConSortium&quot; 即 &quot; 国际互联网标准组织&quot;)在2000年8月制定的一种新的二维矢量图形格式，也是规范中的网络矢量图形标准。SVG严格遵从XML语法，并用文本格式的描述性语言来描述图像内容，因此是一种和图像分辨率无关的矢量图形格式</p>
+</blockquote>
+
+<h2 id="toc_1">svg的优势？</h2>
+
+<blockquote>
+<p>1．任意放缩。<br/>
+用户可以任意缩放图像显示，而不会破坏图像的清晰度、细节等。<br/>
+2．文本独立。<br/>
+SVG图像中的文字独立于图像，文字保留可编辑和可搜寻的状态。也不会再有字体的限制，用户系统即使没有安装某一字体，也会看到和他们制作时完全相同的画面。<br/>
+3．较小文件。<br/>
+总体来讲，SVG文件比那些GIF和JPEG格式的文件要小很多，因而下载也很快。<br/>
+4．超强显示效果<br/>
+SVG图像在屏幕上总是边缘清晰，它的清晰度适合任何屏幕分辨率和打印分辨率。<br/>
+5．超级颜色控制。<br/>
+SVG图像提供一个1 600万种颜色的调色板，支持ICC颜色描述文件标准、RGB、线X填充、渐变和蒙版。</p>
+</blockquote>
+
+<h2 id="toc_2">Android对svg的支持</h2>
+
+<blockquote>
+<p>In Android 5.0 (API Level 21) and above, you can define vector drawables, which scale without losing definition. You need only one asset file for a vector image, as opposed to an asset file for each screen density in the case of bitmap images. To create a vector image, you define the details of the shape inside aXML element.</p>
+
+<pre><code>&lt;!-- res/drawable/heart.xml --&gt;
+&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    &lt;!-- intrinsic size of the drawable --&gt;
+    android:height=&quot;256dp&quot;
+    android:width=&quot;256dp&quot;
+    &lt;!-- size of the virtual canvas --&gt;
+    android:viewportWidth=&quot;32&quot;
+    android:viewportHeight=&quot;32&quot;&gt;
+  &lt;!-- draw a path --&gt;
+  &lt;path android:fillColor=&quot;#8fff&quot;
+      android:pathData=&quot;M20.5,9.5
+                        c-1.955,0,-3.83,1.268,-4.5,3
+                        c-0.67,-1.732,-2.547,-3,-4.5,-3
+                        C8.957,9.5,7,11.432,7,14
+                        c0,3.53,3.793,6.257,9,11.5
+                        c5.207,-5.242,9,-7.97,9,-11.5
+                        C25,11.432,23.043,9.5,20.5,9.5z&quot; /&gt;
+&lt;/vector&gt;
+</code></pre>
+
+<p><a href="https://developer.android.com/training/material/drawables.html">摘自：Android Create Vector Drawables</a></p>
+
+<pre><code></code></pre>
+</blockquote>
+
+<p>在5.0系统以上才能使用<code>vector</code>对svg有很好的支持，要想在5.0以下的系统使用我们就需要使用<em><a href="https://code.google.com/p/svg-android/">svg-android</a></em>这个类库来支持。</p>
+
+<p>简单实用方法：<br/>
+<code>java<br/>
+SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.filename);<br/>
+Picture picture = svg.getPicture();<br/>
+Drawable drawable = svg.createPictureDrawable();<br/>
+</code></p>
+
+<p>这样我们就能用imageview填充svg格式的矢量图片了。</p>
+
+<h2 id="toc_3">与现有图片加载类库Universal-Image-Loader集成</h2>
+
+<p>原有项目使用Universal-Image-Loader作为图片加载类库，使用服务器端发来的图片url即可完成异步加载图片，但是现在服务器端传回的数据中可能会包涵svg矢量图片的url，类似：</p>
+
+<blockquote>
+<p><code>http://xxxx.com/warehouse.svg</code></p>
+</blockquote>
+
+<p>这样就造成Universal-Image-Loader加载出错。</p>
+
+<p><strong>解决方案：</strong></p>
+
+<p>我对Universal-Image-Loader缓存策略进行了设置，设置开启Discache，这样就会在手机的存储空间内进行缓存。之后使用同步加载图片的方法加载图片url</p>
+
+<p><code>Bitmap bitmaptmp = imageLoader.loadImageSync(url, ImageUtil.getScaledDisOptions());</code></p>
+
+<p>这里就分为两种情况：<br/>
+- 正常图片的url，即后缀名为png或者jpg的url，这样会直接加载<br/>
+- 加载svg格式图的url，使用上述方法加载，返回的bitmaptmp的结果为null，但是会在手机磁盘上进行缓存</p>
+
+<p>这里对bitmaptmp是否为null做判断即可，如果是null，就根据url去寻找指定的svg源文件缓存，即调用方法</p>
+
+<p><code>FileInputStream fis = new FileInputStream(imageLoader.getDiskCache().get(url));</code></p>
+
+<p>获取svg文件流之后即可使用<code>avg-android</code>的方法转换图片了：</p>
+
+<pre><code>SVG svg = new SVGBuilder().readFromInputStream(fis)
+// if svg in res/raw
+// if svg in assets
+// .setWhiteMode(true)
+// draw fills in white, doesn&#39;t draw strokes
+// .setColorSwap(0xFF008800, 0xFF33AAFF)
+// swap a single colour
+// .setColorFilter(filter) 
+// run through a colour filter
+// .set[Stroke|Fill]ColorFilter(filter)
+// apply a colour filter to only the stroke or fill
+.build();
+PictureDrawable pictureDrawable = svg.getDrawable();
+Bitmap tmp =Bitmap.createBitmap(pictureDrawable.getIntrinsicWidth(), pictureDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_4444);
+Canvas canvas = new Canvas(tmp);
+canvas.drawPicture(pictureDrawable.getPicture());
+bitmaptmp = tmp;
+
+</code></pre>
+
+<p>至此即可使用imageview来加载bitmaptmp了。</p>
+
+<p><strong>欢迎拍砖指正！</strong></p>
+
+<p><strong><em>参考网站：</em></strong></p>
+
+<blockquote>
+<p><a href="http://stackoverflow.com/questions/7201542/svg-to-bitmap-at-runtime-conversion-in-android">http://stackoverflow.com/questions/7201542/svg-to-bitmap-at-runtime-conversion-in-android</a><br/>
+<a href="https://developer.android.com/training/material/drawables.html">https://developer.android.com/training/material/drawables.html</a><br/>
+<a href="http://www.w3.org/TR/SVG11/paths.html#PathData">http://www.w3.org/TR/SVG11/paths.html#PathData</a><br/>
+<a href="https://code.google.com/p/svg-android/">https://code.google.com/p/svg-android/</a><br/>
+<a href="http://baike.baidu.com/subview/85022/9539763.htm">http://baike.baidu.com/subview/85022/9539763.htm</a></p>
+</blockquote>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Android.html'>Android</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729753957657.html">
+                
+                  <h1>Android 6.0 (Marshmallow) 加载svg图片 报错</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>错误：</p>
+
+<pre><code>Caused by: java.lang.RuntimeException: java.lang.NoSuchFieldException: No field value in class Ljava/lang/String; (declaration of &#39;java.lang.String&#39; appears in /system/framework/core-libart.jar)
+
+</code></pre>
+
+<p>解决方案：<br/>
+<a href="http://stackoverflow.com/questions/33035866/android-6-0-marshmallow-static-initialization-exception-on-getdeclaredfield">StackOverflow解决方案</a></p>
+
+<p>合并分支自己打包jar包</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Android.html'>Android</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729744657413.html">
+                
+                  <h1>guava</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><img src="media/14729744657413/14729744944600.jpg" alt=""/></p>
+
+<p><img src="media/14729744657413/14729745133828.jpg" alt=""/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Android.html'>Android</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729743869940.html">
+                
+                  <h1>FastJson</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>junit 测试解析json数据报错</p>
+
+<pre><code>com.alibaba.fastjson.JSONException: create asm deserializer error, com.dituwuyou.bean.User
+    at com.alibaba.fastjson.parser.ParserConfig.createJavaBeanDeserializer(ParserConfig.java:529)
+    at com.alibaba.fastjson.parser.ParserConfig.getDeserializer(ParserConfig.java:430)
+    at com.alibaba.fastjson.parser.ParserConfig.getDeserializer(ParserConfig.java:351)
+    at com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(DefaultJSONParser.java:548)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:251)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:227)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:186)
+    at com.alibaba.fastjson.JSON.parseObject(JSON.java:304)
+    at com.dituwuyou.service.impl.UserService.getUserInfo(UserService.java:108)
+    at com.dituwuyou.service.impl.UserService.bindUmengNotifacation(UserService.java:80)
+    at com.dituwuyou.service.impl.UserService_.access$001(UserService_.java:11)
+    at com.dituwuyou.service.impl.UserService_$1.execute(UserService_.java:44)
+    at org.androidannotations.api.BackgroundExecutor$Task.run(BackgroundExecutor.java:393)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+    at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.reflect.InvocationTargetException
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+    at com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory.createJavaBeanDeserializer(ASMDeserializerFactory.java:110)
+    at com.alibaba.fastjson.parser.ParserConfig.createJavaBeanDeserializer(ParserConfig.java:520)
+    ... 19 more
+Caused by: java.lang.LinkageError: com/alibaba/fastjson/parser/ParserConfig
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer.createFieldDeserializer(ASMJavaBeanDeserializer.java:41)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer$InnerJavaBeanDeserializer.createFieldDeserializer(ASMJavaBeanDeserializer.java:90)
+    at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.addFieldDeserializer(JavaBeanDeserializer.java:82)
+    at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.&lt;init&gt;(JavaBeanDeserializer.java:47)
+    at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.&lt;init&gt;(JavaBeanDeserializer.java:38)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer$InnerJavaBeanDeserializer.&lt;init&gt;(ASMJavaBeanDeserializer.java:81)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer$InnerJavaBeanDeserializer.&lt;init&gt;(ASMJavaBeanDeserializer.java:78)
+    at com.alibaba.fastjson.parser.deserializer.ASMJavaBeanDeserializer.&lt;init&gt;(ASMJavaBeanDeserializer.java:16)
+    at Fastjson_ASM_User_2.&lt;init&gt;(Unknown Source)
+    ... 25 more
+
+</code></pre>
+
+<p><strong><em>解决方案</em></strong><br/>
+设置<code>ParserConfig.getGlobalInstance().setAsmEnable(false);</code></p>
+
+<p><em>参考</em><br/>
+<a href="https://github.com/alibaba/fastjson/issues/383">FastJson 官方github issue</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Android.html'>Android</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
+            
+                <h1>小小程序猿</h1>
+                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="ios.html"><strong>ios</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
+        
+            <a href="express.html"><strong>express</strong></a>
+        
+            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
+        
+            <a href="Vue.html"><strong>Vue</strong></a>
+        
+            <a href="sequelize.html"><strong>sequelize</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120934542709.html">NSTimer 闪退问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120110700552.html">地图画线 polygon</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15117817736257.html">node xlsx</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
@@ -342,6 +1065,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 
   </body>
 </html>

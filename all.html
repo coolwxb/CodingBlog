@@ -8,17 +8,23 @@
   小小程序猿
   
   </title>
- <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
- <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,32 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html">小小程序猿</a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; 小小程序猿</span>
@@ -41,220 +68,121 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>ios</label></li>
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
 
-          
-            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-          
-            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-          
-            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-          
-            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-          
-            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>Android</label></li>
+        
+            <li><a href="ios.html">ios</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
+        
+            <li><a href="express.html">express</a></li>
+        
+            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
+        
+            <li><a href="Vue.html">Vue</a></li>
+        
+            <li><a href="sequelize.html">sequelize</a></li>
+         
 
-          
-            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-          
-            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-          
-            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-          
-            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-          
-            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-          
-            <li><a title="guava" href="14729744657413.html">guava</a></li>
-          
-            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>其他</label></li>
-
-          
-            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-          
-            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-          
-            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>express</label></li>
-
-          
-            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-          
-            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-          
-            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-          
-            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-          
-            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-          
-            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-          
-            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-          
-            <li><a title="passport" href="14892005669552.html">passport</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>数据库</label></li>
-
-          
-            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-          
-            <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>Vue</label></li>
-
-          
-            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>sequelize</label></li>
-
-          
-            <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-          
-            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15125625563816.html">
+                
+                  <h1>MAC 电脑自带软件处理PNG图片背景透明</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>转自：<a href="https://www.macx.cn/thread-2093768-1-1.html">https://www.macx.cn/thread-2093768-1-1.html</a></p>
 
-                    
-                      <li class="side-title"><span>ios</span></li>
-                        
-                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-                        
-                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-                        
-                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-                        
-                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-                        
-                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-                        
+<p>现在OS X中自带的【预览】功能十分强大，我们甚至可以通过预览来直接制作一些透明效果的PNG图片，当做图片素材（例如图标）使用。这里要用到的是【预览】中的“即时Alpha”工具。</p>
 
-                    
-                      <li class="side-title"><span>Android</span></li>
-                        
-                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-                        
-                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-                        
-                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-                        
-                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-                        
-                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-                        
-                          <li><a title="guava" href="14729744657413.html">guava</a></li>
-                        
-                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-                        
+<ol>
+<li>首先我们要使用预览打开你希望制作成为透明背景效果的图片</li>
+</ol>
 
-                    
-                      <li class="side-title"><span>其他</span></li>
-                        
-                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-                        
-                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-                        
-                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-                        
+<p><img src="media/15125625563816/15125629162268.jpg" alt=""/></p>
 
-                    
-                      <li class="side-title"><span>express</span></li>
-                        
-                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-                        
-                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-                        
-                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-                        
-                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-                        
-                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-                        
-                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-                        
-                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-                        
-                          <li><a title="passport" href="14892005669552.html">passport</a></li>
-                        
+<ol>
+<li><p>点击预览上方工具栏的笔状编辑工具，显示编辑工具栏</p>
 
-                    
-                      <li class="side-title"><span>数据库</span></li>
-                        
-                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-                        
-                          <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-                        
+<p><img src="media/15125625563816/15125629306238.jpg" alt=""/></p></li>
+<li><p>在出现的编辑工具栏中，找到 &quot;即时Alpha&quot; 这个功能，像一个魔术笔一样的按钮，点一下准备开始编辑（如果没出现在默认列表，那即时Alpha就是在选择工具的下拉菜单中）</p></li>
+<li><p>这个时候，用鼠标点击一下图片，不要松开，开始进行拖动，上下移动，直到选中图案为止，一般情况下红色区域都会变成透明的；这里涉及到几个细节问题，鼠标光标第一点就是拖动的要慢；另外如果图形复杂不好选中，可以采用反向选择法，就是先+A全选图片，再使用“即时Alpha”拖动空白区域，示例中的WWDC就是这样选中的。其中道理大家可以自行体会实践，简单地说即时Alpha就是一个特殊的选择工具。</p></li>
+</ol>
 
-                    
-                      <li class="side-title"><span>Vue</span></li>
-                        
-                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-                        
+<p><img src="media/15125625563816/15125629538589.jpg" alt=""/></p>
 
-                    
-                      <li class="side-title"><span>sequelize</span></li>
-                        
-                          <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-                        
-                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-                        
+<ol>
+<li>当把希望成为透明的区域准确选中以后，可以按Delete键，或者+X 剪裁掉不需要的区域，这次剩下的就只有图标了</li>
+</ol>
 
-                    
-                  </ul>
-                </nav>
+<p><img src="media/15125625563816/15125629694819.jpg" alt=""/></p>
+
+<p>这样任务就已经基本完成，之后就是导出保存图片，在预览左上方文件下拉菜单中可以找到</p>
+
+<p><img src="media/15125625563816/15125629844406.jpg" alt=""/></p>
+
+<p>-一般我们选择使用图像质量较高的PNG格式来导出透明背景的图案，记得选中Alpha<br/>
+<img src="media/15125625563816/15125629926108.jpg" alt=""/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/12/6</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%85%B6%E4%BB%96.html'>其他</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>Git 删除已经跟踪的文件或目录</h1>
-
-		<p><strong>转载：</strong><a href="http://www.jianshu.com/p/706560653753">Git 删除已经跟踪的文件或目录</a></p>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15123557749433.html">
+                
+                  <h1>Git 删除已经跟踪的文件或目录</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>转载：</strong><a href="http://www.jianshu.com/p/706560653753">Git 删除已经跟踪的文件或目录</a></p>
 
 <p>如果第一次提交的时候，没有在<code>gitignore</code>文件中添加忽略文件，那么这些文件（目录也是文件）就会被<code>git</code>跟踪，<code>push</code>的时候也会被推送到远程。所以最好就是一开始在<code>commit</code>之前先添加到<code>gitignore</code>中。</p>
 
@@ -279,84 +207,1729 @@ git add -A
 git push origin 分支
 </code></pre>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/12/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%85%B6%E4%BB%96.html'>其他</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15120934542709.html">
+                
+                  <h1>NSTimer 闪退问题</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>转载：<a href="http://www.jianshu.com/p/39b0d5731939">NSTimer的坑</a></p>
+
+<p>现有项目支持<code>iOS8</code>以上的系统，结果在一个任务中启用了定时器<code>NSTimer</code>的新方法导致app闪退，特此记录。</p>
+
+<p>下面三个API都是新增的，标识有<code>API_AVAILABLE(macosx(10.12)</code>, <code>ios(10.0)</code>, <code>watchos(3.0)</code>, <code>tvos(10.0)</code>。</p>
+
+<pre><code>// 新Api
+
+/// Creates and returns a new NSTimer object initialized with the specified block object. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+/// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+
+/// Creates and returns a new NSTimer object initialized with the specified block object and schedules it on the current run loop in the default mode.
+/// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+
+/// Initializes a new NSTimer object using the block as the main body of execution for the timer. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+/// - parameter:  fireDate   The time at which the timer should first fire.
+/// - parameter:  interval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+/// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+/// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
+- (instancetype)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+</code></pre>
+
+<p>特别是前两个，跟以下<code>API</code>要区分开，一时手快容易混淆，容易让使用低于<code>10.0</code>系统的用户直接闪退,报错<code>unrecognized selector</code>;</p>
+
+<pre><code>// 旧Api
+
++ (NSTimer )timerWithTimeInterval:(NSTimeInterval)ti invocation:(NSInvocation )invocation repeats:(BOOL)yesOrNo;
++ 
++ (NSTimer )scheduledTimerWithTimeInterval:(NSTimeInterval)ti invocation:(NSInvocation )invocation repeats:(BOOL)yesOrNo;
+
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
+
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/12/1</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15120110700552.html">
+                
+                  <h1>地图画线 polygon</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>转自： <a href="http://www.jianshu.com/p/f925cdb53aa2">百度地图画面</a></p>
+
+<p>方法一:</p>
+
+<pre><code>MKMapPoint *arrayPoint = malloc(sizeof(MKMapPoint) * locations.count); 
+// 这块必须动态分派内存，具体为什么，还不知道。用malloc分配内存在堆内分配内存，用完改变量后，必须手动释放内存。
+// 如果不这么创建，当locations值特别大时，会无法为arrayPoint[i]复制，
+arrayPoint[i]会变为nil
+// 不能初始化成  MKMapPoint[locations.count] 
+for (int i = 0; i &lt; locations.count; i++) {
+    CLLocation   *location = [locations objectAtIndex:i];
+    MKMapPoint point = MKMapPointForCoordinate(location.coordinate);
+    arrayPoint[i] = point;
+}
+MKPolyline *line = [MKPolyline polylineWithPoints:arrayPoint count:locations.count];
+[_mapView addOverlay:line];
+free(arrayPoint);
+
+</code></pre>
+
+<p>方法二：</p>
+
+<pre><code>CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * locations.count);
+for (int i = 0; i &lt; locations.count; i++) {
+    NSLog(@&quot;%@&quot;,locations[i]);
+    CLLocation *location =  locations[i];
+    coords[i] = [location coordinate];
+}
+
+MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coords count:locations.count];
+[_mapView addOverlay:polyline];
+free(coords);
+
+</code></pre>
+
+<p><strong>注意事项</strong></p>
+
+<p><code>malloc</code>动态分配内存，记得用完该变量记得<code>free</code>掉</p>
+
+<p>如果写成：</p>
+
+<pre><code>BMKMapPoint *pionts = new BMKMapPoint[index];
+</code></pre>
+
+<p>要把文件后缀从<code>m</code>改成了<code>mm</code>。</p>
+
+<p>百度静态库中采用<code>ObjectC++</code>实现，以上是<code>ObjectC++</code>的特性。如果把文件后缀改为<code>mm</code>，则<code>xcode</code>会用<code>ObjectC++</code>的方式来编译文件</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/30</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15117817736257.html">
+                
+                  <h1>node xlsx</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>抽取表头：</p>
+
+<pre><code>@gregpinero the JSON conversion has a little bit of &quot;intelligence&quot; and is poorly documented :/
+
+For example consider this worksheet:
+
+|foo|bar|baz|
+| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+Let&#39;s say we are in node (the relevant parts work the same way in browser). Read the workbook:
+
+var XLSX = require(&#39;xlsx&#39;);
+var wb = XLSX.readFile(&#39;Workbook4.xlsx&#39;);
+var ws = wb.Sheets.Sheet1;
+So by default, the conversion will read the first row and use them as keys in the row object:
+
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1)
+[ { foo: &#39;1&#39;, bar: &#39;2&#39;, baz: &#39;3&#39; },
+  { foo: &#39;4&#39;, bar: &#39;5&#39;, baz: &#39;6&#39; } ]
+If a field is missing, the data won&#39;t show up. If there&#39;s data in a cell with no header (say, data in cell D2 but not D1), data won&#39;t show up.
+
+passing an options argument with header controls the output:
+
+Setting header to 1 will generate arrays:
+
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1, {header:1})
+[ [ &#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39; ], [ &#39;1&#39;, &#39;2&#39;, &#39;3&#39; ], [ &#39;4&#39;, &#39;5&#39;, &#39;6&#39; ] ]
+Setting header to A will use the column names:
+
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1, {header:&#39;A&#39;})
+[ { A: &#39;foo&#39;, B: &#39;bar&#39;, C: &#39;baz&#39; },
+  { A: &#39;1&#39;, B: &#39;2&#39;, C: &#39;3&#39; },
+  { A: &#39;4&#39;, B: &#39;5&#39;, C: &#39;6&#39; } ]
+You can even give custom labels by passing an array:
+
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1, {header:[&quot;what&quot;, &quot;the&quot;, &quot;flip&quot;]})
+[ { what: &#39;foo&#39;, the: &#39;bar&#39;, flip: &#39;baz&#39; },
+  { what: &#39;1&#39;, the: &#39;2&#39;, flip: &#39;3&#39; },
+  { what: &#39;4&#39;, the: &#39;5&#39;, flip: &#39;6&#39; } ]
+The easiest way to control the range is to change the !ref value on the sheet. It&#39;s expected to be an A1-style range like &quot;A1:C4&quot;. Changing the value will change the range that the utils look at:
+
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;]
+&#39;A1:C3&#39;
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1)
+[ { foo: &#39;1&#39;, bar: &#39;2&#39;, baz: &#39;3&#39; },
+  { foo: &#39;4&#39;, bar: &#39;5&#39;, baz: &#39;6&#39; } ]
+
+// now change to A1:A3
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;] = &#39;A1:A3&#39;;
+&#39;A1:A3&#39;
+// the output will change
+&gt; XLSX.utils.sheet_to_json(wb.Sheets.Sheet1)
+[ { foo: &#39;1&#39; }, { foo: &#39;4&#39; } ]
+The same parameter also affects writing workbooks -- cells outside of that range are not included:
+
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;] = &#39;A1:C3&#39;;
+&#39;A1:C3&#39;
+&gt; XLSX.read(XLSX.write(wb, {type:&#39;binary&#39;}), {type:&#39;binary&#39;}).Sheets.Sheet1
+{ &#39;!ref&#39;: &#39;A1:C3&#39;,
+  A1: { t: &#39;s&#39;, v: &#39;foo&#39;, h: &#39;foo&#39;, w: &#39;foo&#39; },
+  B1: { t: &#39;s&#39;, v: &#39;bar&#39;, h: &#39;bar&#39;, w: &#39;bar&#39; },
+  C1: { t: &#39;s&#39;, v: &#39;baz&#39;, h: &#39;baz&#39;, w: &#39;baz&#39; },
+  A2: { t: &#39;n&#39;, v: 1, w: &#39;1&#39; },
+  B2: { t: &#39;n&#39;, v: 2, w: &#39;2&#39; },
+  C2: { t: &#39;n&#39;, v: 3, w: &#39;3&#39; },
+  A3: { t: &#39;n&#39;, v: 4, w: &#39;4&#39; },
+  B3: { t: &#39;n&#39;, v: 5, w: &#39;5&#39; },
+  C3: { t: &#39;n&#39;, v: 6, w: &#39;6&#39; } }
+&gt; wb.Sheets.Sheet1[&#39;!ref&#39;] = &#39;A1:A3&#39;;
+&#39;A1:A3&#39;
+&gt; XLSX.read(XLSX.write(wb, {type:&#39;binary&#39;}), {type:&#39;binary&#39;}).Sheets.Sheet1
+{ &#39;!ref&#39;: &#39;A1:A3&#39;,
+  A1: { t: &#39;s&#39;, v: &#39;foo&#39;, h: &#39;foo&#39;, w: &#39;foo&#39; },
+  A2: { t: &#39;n&#39;, v: 1, w: &#39;1&#39; },
+  A3: { t: &#39;n&#39;, v: 4, w: &#39;4&#39; } }
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/27</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15117654413201.html">
+                
+                  <h1>UIImageWriteToSavedPhotosAlbum CRASH</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在ios11 中调用相机拍照在回调方法中执行压缩图片报错<br/>
+代码如下：</p>
+
+<pre><code>- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
+    @try {
+
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        //将相片保存到相册
+        UIImageWriteToSavedPhotosAlbum(image, self, NULL, NULL);
+
+        // 将图片写入文件
+        CGSize newSize = CGSizeMake(100,100);
+        //We prepare a bitmap with the new size
+    UIGraphicsBeginImageContextWithOptions(newSize, YES, 0.0);
+    
+    //Draws a rect for the image
+    [image drawInRect:CGRectMake(0, 0,newSize.width, newSize.height)];
+    
+    //We set the scaled image from the context
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+        
+        [picker dismissViewControllerAnimated:YES completion:nil];
+
+    }
+    @catch (NSException *exception) {
+        DDLogDebug(@&quot;%@&quot;, exception);
+    }
+    @finally {
+
+    }
+
+}
+</code></pre>
+
+<p>总是在<code>image drawInRect:</code>方法出报错。原以为是在图片尺寸过大问题，但是经过各种测试均不是压缩方法上出现问题。后确定是由于<code>UIImageWriteToSavedPhotosAlbum</code>出错,UIImageWriteToSavedPhotosAlbum 设置了代理对象却没有实现方法，最后参数都修改为NULL</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/27</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ios.html'>ios</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15116580970818.html">
+                
+                  <h1>Sequelize 创建连接</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code>const sequelize = new Sequelize(&#39;database&#39;, &#39;username&#39;, &#39;password&#39;, {
+  // the sql dialect of the database
+  // currently supported: &#39;mysql&#39;, &#39;sqlite&#39;, &#39;postgres&#39;, &#39;mssql&#39;
+  dialect: &#39;mysql&#39;,
+
+  // custom host; default: localhost
+  host: &#39;my.server.tld&#39;,
+
+  // custom port; default: dialect default
+  port: 12345,
+
+  // custom protocol; default: &#39;tcp&#39;
+  // postgres only, useful for Heroku
+  protocol: null,
+
+  // disable logging; default: console.log
+  logging: false,
+
+  // you can also pass any dialect options to the underlying dialect library
+  // - default is empty
+  // - currently supported: &#39;mysql&#39;, &#39;postgres&#39;, &#39;mssql&#39;
+  dialectOptions: {
+    socketPath: &#39;/Applications/MAMP/tmp/mysql/mysql.sock&#39;,
+    supportBigNumbers: true,
+    bigNumberStrings: true
+  },
+
+  // the storage engine for sqlite
+  // - default &#39;:memory:&#39;
+  storage: &#39;path/to/database.sqlite&#39;,
+
+  // disable inserting undefined values as NULL
+  // - default: false
+  omitNull: true,
+
+  // a flag for using a native library or not.
+  // in the case of &#39;pg&#39; -- set this to true will allow SSL support
+  // - default: false
+  native: true,
+
+  // Specify options, which are used when sequelize.define is called.
+  // The following example:
+  //   define: { timestamps: false }
+  // is basically the same as:
+  //   sequelize.define(name, attributes, { timestamps: false })
+  // so defining the timestamps for each model will be not necessary
+  define: {
+    
+    underscored: false
+    freezeTableName: false,
+    charset: &#39;utf8&#39;,
+    dialectOptions: {
+      collate: &#39;utf8_general_ci&#39;
+    },
+    
+    timestamps: true
+  },
+
+  // similar for sync: you can define this to always force sync for models
+  sync: { force: true },
+
+  // pool configuration used to pool database connections
+  pool: {
+    max: 5,
+    idle: 30000,
+    acquire: 60000,
+  },
+
+  // isolation level of each transaction
+  // defaults to dialect default
+  isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ
+})
+</code></pre>
+
+<h1 id="toc_0">sequelize 查询参数</h1>
+
+<pre><code>// Options is an object with the following keys:
+sequelize
+  .query(&#39;SELECT 1&#39;, {
+    // A function (or false) for logging your queries
+    // Will get called for every SQL query that gets send
+    // to the server.
+    logging: console.log,
+
+    // If plain is true, then sequelize will only return the first
+    // record of the result set. In case of false it will all records.
+    plain: false,
+
+    // Set this to true if you don&#39;t have a model definition for your query.
+    raw: false,
+
+    // The type of query you are executing. The query type affects how results are formatted before they are passed back.
+    type: Sequelize.QueryTypes.SELECT
+  })
+
+// Note the second argument being null!
+// Even if we declared a callee here, the raw: true would
+// supersede and return a raw object.
+sequelize
+  .query(&#39;SELECT * FROM projects&#39;, { raw: true })
+  .then(projects =&gt; {
+    console.log(projects)
+  })
+</code></pre>
+
+<h1 id="toc_1">sequelize sql占位符</h1>
+
+<pre><code>sequelize
+  .query(
+    &#39;SELECT * FROM projects WHERE status = ?&#39;,
+    { raw: true, replacements: [&#39;active&#39;]
+  )
+  .then(projects =&gt; {
+    console.log(projects)
+  })
+
+sequelize
+  .query(
+    &#39;SELECT * FROM projects WHERE status = :status &#39;,
+    { raw: true, replacements: { status: &#39;active&#39; } }
+  )
+  .then(projects =&gt; {
+    console.log(projects)
+  })
+</code></pre>
+
+<h1 id="toc_2">sequelize model 定义</h1>
+
+<pre><code>const Foo = sequelize.define(&#39;foo&#39;, {
+ // instantiating will automatically set the flag to true if not set
+ flag: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true },
+
+ // default values for dates =&gt; current time
+ myDate: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+
+ // setting allowNull to false will add NOT NULL to the column, which means an error will be
+ // thrown from the DB when the query is executed if the column is null. If you want to check that a value
+ // is not null before querying the DB, look at the validations section below.
+ title: { type: Sequelize.STRING, allowNull: false },
+
+ // Creating two objects with the same value will throw an error. The unique property can be either a
+ // boolean, or a string. If you provide the same string for multiple columns, they will form a
+ // composite unique key.
+ uniqueOne: { type: Sequelize.STRING,  unique: &#39;compositeIndex&#39; },
+ uniqueTwo: { type: Sequelize.INTEGER, unique: &#39;compositeIndex&#39; },
+
+ // The unique property is simply a shorthand to create a unique constraint.
+ someUnique: { type: Sequelize.STRING, unique: true },
+
+ // It&#39;s exactly the same as creating the index in the model&#39;s options.
+ { someUnique: { type: Sequelize.STRING } },
+ { indexes: [ { unique: true, fields: [ &#39;someUnique&#39; ] } ] },
+
+ // Go on reading for further information about primary keys
+ identifier: { type: Sequelize.STRING, primaryKey: true },
+
+ // autoIncrement can be used to create auto_incrementing integer columns
+ incrementMe: { type: Sequelize.INTEGER, autoIncrement: true },
+
+ // You can specify a custom field name via the &#39;field&#39; attribute:
+ fieldWithUnderscores: { type: Sequelize.STRING, field: &#39;field_with_underscores&#39; },
+
+ // It is possible to create foreign keys:
+ bar_id: {
+   type: Sequelize.INTEGER,
+
+   references: {
+     // This is a reference to another model
+     model: Bar,
+
+     // This is the column name of the referenced model
+     key: &#39;id&#39;,
+
+     // This declares when to check the foreign key constraint. PostgreSQL only.
+     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+   }
+ }
+})
+</code></pre>
+
+<h1 id="toc_3">DataTypes 类型</h1>
+
+<pre><code>//常用
+Sequelize.STRING                      // VARCHAR(255)
+Sequelize.STRING(1234)                // VARCHAR(1234)
+Sequelize.STRING.BINARY               // VARCHAR BINARY
+Sequelize.TEXT                        // TEXT
+Sequelize.TEXT(&#39;tiny&#39;)                // TINYTEXT
+
+Sequelize.INTEGER                     // INTEGER
+Sequelize.BIGINT                      // BIGINT
+Sequelize.BIGINT(11)                  // BIGINT(11)
+
+Sequelize.FLOAT                       // FLOAT
+Sequelize.FLOAT(11)                   // FLOAT(11)
+Sequelize.FLOAT(11, 12)               // FLOAT(11,12)
+
+Sequelize.REAL                        // REAL        PostgreSQL only.
+Sequelize.REAL(11)                    // REAL(11)    PostgreSQL only.
+Sequelize.REAL(11, 12)                // REAL(11,12) PostgreSQL only.
+
+Sequelize.DOUBLE                      // DOUBLE
+Sequelize.DOUBLE(11)                  // DOUBLE(11)
+Sequelize.DOUBLE(11, 12)              // DOUBLE(11,12)
+
+Sequelize.DECIMAL                     // DECIMAL
+Sequelize.DECIMAL(10, 2)              // DECIMAL(10,2)
+
+Sequelize.DATE                        // DATETIME for mysql / sqlite, TIMESTAMP WITH TIME ZONE for postgres
+Sequelize.DATE(6)                     // DATETIME(6) for mysql 5.6.4+. Fractional seconds support with up to 6 digits of precision
+Sequelize.DATEONLY                    // DATE without time.
+Sequelize.BOOLEAN                     // TINYINT(1)
+
+Sequelize.ENUM(&#39;value 1&#39;, &#39;value 2&#39;)  // An ENUM with allowed values &#39;value 1&#39; and &#39;value 2&#39;
+Sequelize.ARRAY(Sequelize.TEXT)       // Defines an array. PostgreSQL only.
+
+Sequelize.JSON                        // JSON column. PostgreSQL, SQLite and MySQL only.
+Sequelize.JSONB                       // JSONB column. PostgreSQL only.
+
+Sequelize.BLOB                        // BLOB (bytea for PostgreSQL)
+Sequelize.BLOB(&#39;tiny&#39;)                // TINYBLOB (bytea for PostgreSQL. Other options are medium and long)
+
+Sequelize.UUID                        // UUID datatype for PostgreSQL and SQLite, CHAR(36) BINARY for MySQL (use defaultValue: Sequelize.UUIDV1 or Sequelize.UUIDV4 to make sequelize generate the ids automatically)
+
+Sequelize.RANGE(Sequelize.INTEGER)    // Defines int4range range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.BIGINT)     // Defined int8range range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.DATE)       // Defines tstzrange range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.DATEONLY)   // Defines daterange range. PostgreSQL only.
+Sequelize.RANGE(Sequelize.DECIMAL)    // Defines numrange range. PostgreSQL only.
+
+Sequelize.ARRAY(Sequelize.RANGE(Sequelize.DATE)) // Defines array of tstzrange ranges. PostgreSQL only.
+
+Sequelize.GEOMETRY                    // Spatial column.  PostgreSQL (with PostGIS) or MySQL only.
+Sequelize.GEOMETRY(&#39;POINT&#39;)           // Spatial column with geometry type. PostgreSQL (with PostGIS) or MySQL only.
+Sequelize.GEOMETRY(&#39;POINT&#39;, 4326)     // Spatial column with geometry type and SRID.  PostgreSQL (with PostGIS) or MySQL only.
+</code></pre>
+
+<h1 id="toc_4">Model getter，setter定义</h1>
+
+<pre><code>//Defining as part of a property
+
+const Employee = sequelize.define(&#39;employee&#39;, {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    get() {
+      const title = this.getDataValue(&#39;title&#39;);
+      // &#39;this&#39; allows you to access attributes of the instance
+      return this.getDataValue(&#39;name&#39;) + &#39; (&#39; + title + &#39;)&#39;;
+    },
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    set(val) {
+      this.setDataValue(&#39;title&#39;, val.toUpperCase());
+    }
+  }
+});
+
+Employee
+  .create({ name: &#39;John Doe&#39;, title: &#39;senior engineer&#39; })
+  .then(employee =&gt; {
+    console.log(employee.get(&#39;name&#39;)); // John Doe (SENIOR ENGINEER)
+    console.log(employee.get(&#39;title&#39;)); // SENIOR ENGINEER
+  })
+  
+  
+  
+  
+  //Defining as part of the model options
+
+  const Foo = sequelize.define(&#39;foo&#39;, {
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING
+}, {
+  getterMethods: {
+    fullName() {
+      return this.firstname + &#39; &#39; + this.lastname
+    }
+  },
+
+  setterMethods: {
+    fullName(value) {
+      const names = value.split(&#39; &#39;);
+
+      this.setDataValue(&#39;firstname&#39;, names.slice(0, -1).join(&#39; &#39;));
+      this.setDataValue(&#39;lastname&#39;, names.slice(-1).join(&#39; &#39;));
+    },
+  }
+});
+</code></pre>
+
+<h1 id="toc_5">索引</h1>
+
+<pre><code>sequelize.define(&#39;user&#39;, {}, {
+  indexes: [
+    // Create a unique index on poem
+    {
+      unique: true,
+      fields: [&#39;poem&#39;]
+    },
+
+    // Creates a gin index on data with the jsonb_path_ops operator
+    {
+      fields: [&#39;data&#39;],
+      using: &#39;gin&#39;,
+      operator: &#39;jsonb_path_ops&#39;
+    },
+
+    // By default index name will be [table]_[fields]
+    // Creates a multi column partial index
+    {
+      name: &#39;public_by_author&#39;,
+      fields: [&#39;author&#39;, &#39;status&#39;],
+      where: {
+        status: &#39;public&#39;
+      }
+    },
+
+    // A BTREE index with a ordered field
+    {
+      name: &#39;title_index&#39;,
+      method: &#39;BTREE&#39;,
+      fields: [&#39;author&#39;, {attribute: &#39;title&#39;, collate: &#39;en_US&#39;, order: &#39;DESC&#39;, length: 5}]
+    }
+  ]
+})
+</code></pre>
+
+<h1 id="toc_6">事务</h1>
+
+<pre><code>//Managed transaction (auto-callback)
+
+return sequelize.transaction(function (t) {
+
+  // chain all your queries here. make sure you return them.
+  return User.create({
+    firstName: &#39;Abraham&#39;,
+    lastName: &#39;Lincoln&#39;
+  }, {transaction: t}).then(function (user) {
+    return user.setShooter({
+      firstName: &#39;John&#39;,
+      lastName: &#39;Boothe&#39;
+    }, {transaction: t});
+  });
+
+}).then(function (result) {
+  // Transaction has been committed
+  // result is whatever the result of the promise chain returned to the transaction callback
+}).catch(function (err) {
+  // Transaction has been rolled back
+  // err is whatever rejected the promise chain returned to the transaction callback
+});
+</code></pre>
+
+<pre><code>// Unmanaged transaction (then-callback)
+return sequelize.transaction().then(function (t) {
+  return User.create({
+    firstName: &#39;Bart&#39;,
+    lastName: &#39;Simpson&#39;
+  }, {transaction: t}).then(function (user) {
+    return user.addSibling({
+      firstName: &#39;Lisa&#39;,
+      lastName: &#39;Simpson&#39;
+    }, {transaction: t});
+  }).then(function () {
+    return t.commit();
+  }).catch(function (err) {
+    return t.rollback();
+  });
+});
+</code></pre>
+
+<h1 id="toc_7">Hooks</h1>
+
+<pre><code>(1)
+  beforeBulkCreate(instances, options)
+  beforeBulkDestroy(options)
+  beforeBulkUpdate(options)
+(2)
+  beforeValidate(instance, options)
+(-)
+  validate
+(3)
+  afterValidate(instance, options)
+  - or -
+  validationFailed(instance, options, error)
+(4)
+  beforeCreate(instance, options)
+  beforeDestroy(instance, options)
+  beforeUpdate(instance, options)
+  beforeSave(instance, options)
+  beforeUpsert(values, options)
+(-)
+  create
+  destroy
+  update
+(5)
+  afterCreate(instance, options)
+  afterDestroy(instance, options)
+  afterUpdate(instance, options)
+  afterSave(instance, options)
+  afterUpsert(created, options)
+(6)
+  afterBulkCreate(instances, options)
+  afterBulkDestroy(options)
+</code></pre>
+
+<h2 id="toc_8">Hooks 声明</h2>
+
+<pre><code>// Method 1 via the .define() method
+const User = sequelize.define(&#39;user&#39;, {
+  username: DataTypes.STRING,
+  mood: {
+    type: DataTypes.ENUM,
+    values: [&#39;happy&#39;, &#39;sad&#39;, &#39;neutral&#39;]
+  }
+}, {
+  hooks: {
+    beforeValidate: (user, options) =&gt; {
+      user.mood = &#39;happy&#39;;
+    },
+    afterValidate: (user, options) =&gt; {
+      user.username = &#39;Toni&#39;;
+    }
+  }
+});
+
+// Method 2 via the .hook() method (or its alias .addHook() method)
+User.hook(&#39;beforeValidate&#39;, (user, options) =&gt; {
+  user.mood = &#39;happy&#39;;
+});
+
+User.addHook(&#39;afterValidate&#39;, &#39;someCustomName&#39;, (user, options) =&gt; {
+  return sequelize.Promise.reject(new Error(&quot;I&#39;m afraid I can&#39;t let you do that!&quot;));
+});
+
+// Method 3 via the direct method
+User.beforeCreate((user, options) =&gt; {
+  return hashPassword(user.password).then(hashedPw =&gt; {
+    user.password = hashedPw;
+  });
+});
+
+User.afterValidate(&#39;myHookAfter&#39;, (user, options) =&gt; {
+  user.username = &#39;Toni&#39;;
+});
+</code></pre>
+
+<h2 id="toc_9">Hooks使用</h2>
+
+<h3 id="toc_10">Instance hooks</h3>
+
+<pre><code>The following hooks will emit whenever you&#39;re editing a single object
+
+beforeValidate
+afterValidate or validationFailed
+beforeCreate / beforeUpdate  / beforeDestroy
+afterCreate / afterUpdate / afterDestroy
+
+// ...define ...
+User.beforeCreate(user =&gt; {
+  if (user.accessLevel &gt; 10 &amp;&amp; user.username !== &quot;Boss&quot;) {
+    throw new Error(&quot;You can&#39;t grant this user an access level above 10!&quot;)
+  }
+})
+
+</code></pre>
+
+<h3 id="toc_11">Model hooks</h3>
+
+<pre><code>Sometimes you&#39;ll be editing more than one record at a time by utilizing the bulkCreate, update, destroy methods on the model. The following will emit whenever you&#39;re using one of those methods:
+
+beforeBulkCreate(instances, options)
+beforeBulkUpdate(options)
+beforeBulkDestroy(options)
+afterBulkCreate(instances, options)
+afterBulkUpdate(options)
+afterBulkDestroy(options)
+
+Model.destroy({ where: {accessLevel: 0}, individualHooks: true});
+// Will select all records that are about to be deleted and emit before- + after- Destroy on each instance
+
+Model.update({username: &#39;Toni&#39;}, { where: {accessLevel: 0}, individualHooks: true});
+// Will select all records that are about to be updated and emit before- + after- Update on each instance
+
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sequelize.html'>sequelize</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15114058607700.html">
+                
+                  <h1>PostgresSQL</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>转自整理：</strong><br/>
+<a href="http://www.ruanyifeng.com/blog/2013/12/getting_started_with_postgresql.html">PostgreSQL新手入门</a></p>
+
+<h2 id="toc_0">安装</h2>
+
+<blockquote>
+<blockquote>
+<p>apt-get install postgresql-client</p>
+
+<p>apt-get install postgresql</p>
+</blockquote>
+</blockquote>
+
+<p>正常情况下，安装完成后，PostgreSQL服务器会自动在本机的5432端口开启。</p>
+
+<p>安装图形管理界面</p>
+
+<blockquote>
+<blockquote>
+<p>apt-get install pgadmin3</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_1">添加用户和数据库</h2>
+
+<p>初次安装后，默认生成一个名为<code>postgres</code>的数据库和一个名为<code>postgres</code>的数据库用户。这里需要注意的是，同时还生成了一个名为<code>postgres</code>的<code>Linux</code>系统用户。</p>
+
+<h3 id="toc_2">使用PostgreSQL控制台创建用户和数据库</h3>
+
+<p>1、新建一个Linux新用户，可以取你想要的名字，这里为dbuser。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo adduser dbuser</p>
+</blockquote>
+</blockquote>
+
+<p>2、切换到postgres用户。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo supostgres</p>
+</blockquote>
+</blockquote>
+
+<p>3、psql命令登录PostgreSQL控制台。</p>
+
+<blockquote>
+<blockquote>
+<p>psql</p>
+</blockquote>
+</blockquote>
+
+<p>这时相当于系统用户<code>postgres</code>以<strong>同名数据库用户的身份</strong>，登录数据库，这是不用输入密码的。如果一切正常，系统提示符会变为<code>postgres=#</code>，表示这时已经进入了数据库控制台。以下的命令都在控制台内完成。</p>
+
+<ul>
+<li><p>第一件事是使用<code>\password</code>命令，为<code>postgres</code>用户设置一个密码。</p>
+
+<blockquote>
+<blockquote>
+<p>\password postgres</p>
+</blockquote>
+</blockquote></li>
+<li><p>第二件事是创建数据库用户<strong>dbuser</strong>（刚才创建的是Linux系统用户），并设置密码。</p>
+
+<blockquote>
+<blockquote>
+<p>CREATE USER dbuser WITH PASSWORD &#39;password&#39;;</p>
+</blockquote>
+</blockquote></li>
+<li><p>第三件事是创建用户数据库，这里为<code>exampledb</code>，并指定所有者为<code>dbuser</code>。</p>
+
+<blockquote>
+<blockquote>
+<p>CREATE DATABASE exampledb OWNER dbuser;</p>
+</blockquote>
+</blockquote></li>
+<li><p>第四件事是将<code>exampledb</code>数据库的所有权限都赋予<code>dbuser</code>，否则<code>dbuser</code>只能登录控制台，没有任何数据库操作权限。</p>
+
+<blockquote>
+<blockquote>
+<p>GRANT ALL PRIVILEGES ON DATABASE exampledb to dbuser;</p>
+</blockquote>
+</blockquote></li>
+<li><p>最后，使用\q命令退出控制台（也可以直接按ctrl+D）。</p>
+
+<blockquote>
+<blockquote>
+<p>\q</p>
+</blockquote>
+</blockquote></li>
+</ul>
+
+<h3 id="toc_3">使用Shell命令行创建用户和数据库</h3>
+
+<ul>
+<li><p>首先，创建数据库用户<code>dbuser</code>，并指定其为超级用户。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres createuser --superuser dbuser</p>
+</blockquote>
+</blockquote></li>
+<li><p>然后，登录数据库控制台，设置<code>dbuser</code>用户的密码，完成后退出控制台。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres psql<br/>
+\password dbuser<br/>
+\q</p>
+</blockquote>
+</blockquote></li>
+<li><p>接着，在<code>shell</code>命令行下，创建数据库<code>exampledb</code>，并指定所有者为<code>dbuser</code>。</p>
+
+<blockquote>
+<blockquote>
+<p>sudo -u postgres createdb -O dbuser exampledb</p>
+</blockquote>
+</blockquote></li>
+</ul>
+
+<h2 id="toc_4">登录数据库</h2>
+
+<p>添加新用户和新数据库以后，就要以新用户的名义登录数据库，这时使用的是<code>psql</code>命令。</p>
+
+<blockquote>
+<blockquote>
+<p>psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432</p>
+</blockquote>
+</blockquote>
+
+<p>上面命令的参数含义如下：<br/>
+ -U指定用户<br/>
+ -d指定数据库<br/>
+ -h指定服务器<br/>
+ -p指定端口。</p>
+
+<p>输入上面命令以后，系统会提示输入<code>dbuser</code>用户的密码。输入正确，就可以登录控制台了。<br/>
+<code>psql</code>命令存在简写形式。如果当前<code>Linux</code>系统用户，同时也是<code>PostgreSQL</code>用户，则可以省略用户名（-U参数的部分）。举例来说，我的<code>Linux</code>系统用户名为<code>ruanyf</code>，且<code>PostgreSQL</code>数据库存在同名用户，则我以<code>ruanyf</code>身份登录Linux系统后，可以直接使用下面的命令登录数据库，且不需要密码。</p>
+
+<blockquote>
+<blockquote>
+<p>psql exampledb</p>
+</blockquote>
+</blockquote>
+
+<p>此时，如果<code>PostgreSQL</code>内部还存在与当前系统用户同名的数据库，则连数据库名都可以省略。比如，假定存在一个叫做<code>ruanyf</code>的数据库，则直接键入<code>psql</code>就可以登录该数据库。</p>
+
+<blockquote>
+<blockquote>
+<p>psql</p>
+</blockquote>
+</blockquote>
+
+<p>另外，如果要恢复外部数据，可以使用下面的命令。</p>
+
+<blockquote>
+<blockquote>
+<p>psql exampledb &lt; exampledb.sql</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_5">常用命令</h2>
+
+<p>除了前面已经用到的<code>\password</code>命令（设置密码）和<code>\q</code>命令（退出）以外，控制台还提供一系列其他命令。</p>
+
+<pre><code>\h：查看SQL命令的解释，比如\h select。
+\?：查看psql命令列表。
+\l：列出所有数据库。
+\c [database_name]：连接其他数据库。
+\d：列出当前数据库的所有表格。
+\d [table_name]：列出某一张表格的结构。
+\du：列出所有用户。
+\e：打开文本编辑器。
+\conninfo：列出当前数据库和连接的信息。
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/23</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%95%B0%E6%8D%AE%E5%BA%93.html'>数据库</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15099405809795.html">
+                
+                  <h1>iOS11 NavigationBar 适配</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>iOS11 navigationItem.titleView 适配问题，最近由于Apple 更新了iOS 11版本，在系统升级之后，发现项目中之前适配好的titleView 发生了如下变化：<br/>
+iOS 11 之前<br/>
+\<br/>
+iOS 11<br/>
+\<br/>
+WTF?<br/>
+在iOS 11中titleView的宽度设置了没有效果，也没有拉伸展示，缩成一坨了。项目中有好多地方用到了titleView这个属性，怎么办？<br/>
+打开Xcode 查看视图层级功能，发现在iOS 11 中Apple 改变了UINavigationBar的视图层级，titleView不是加到NavigationBar上了，而是加到UINavigationBarContentView上<br/>
+那么怎么解决这个问题呢？<br/>
+在你自定义的titleView中重写intrinsicContentSize 的Get 方法,如下：<br/>
+- (CGSize)intrinsicContentSize<br/>
+{<br/>
+return UILayoutFittingExpandedSize;<br/>
+}</p>
+
+<p>3.3 titleView支持autolayout</p>
+
+<p>这要求titleView必须是能够自撑开的或实现了- intrinsicContentSize，</p>
+
+<p>适配前<br/>
+这里以UISearchBar为例, 我是外层添加了titleView容器. 高度控制着35的.</p>
+
+<pre><code>// 设置titleView
+UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 35)];//allocate titleView
+[titleView setBackgroundColor:[UIColor clearColor]];
+// 搜索工具条
+UISearchBar *searchBar = [[UISearchBar alloc] init];
+searchBar.placeholder = @&quot;|搜索会员&quot;;
+searchBar.frame = CGRectMake(0, 0, titleView.width, 30);
+searchBar.center = titleView.center;
+searchBar.delegate = self;
+[titleView addSubview:searchBar];
+
+[self.navigationItem.titleView sizeToFit];
+self.navigationItem.titleView = titleView;
+</code></pre>
+
+<p>修改后, 发现UISearchBar圆角变形了,</p>
+
+<p>UISearchBar圆角变形<br/>
+这个时候我们可以添加设置圆角的, 效果如下:</p>
+
+<p>searchBar.layer.cornerRadius = 10;<br/>
+searchBar.layer.masksToBounds = YES;</p>
+
+<p>适配后<br/>
+如果是自定义titleview, 只需要在你自定义的titleview对应的 View中实现- intrinsicContentSize方法;<br/>
+- (CGSize)intrinsicContentSize {<br/>
+    return UILayoutFittingExpandedSize;<br/>
+}<br/>
+如果你的项目是自定义的navigationBar，那么在iOS11上运行就可能出现布局错乱，解决办法是重写UINavigationBar的 layoutSubviews方法，调整布局，代码如下：<br/>
+- (void)layoutSubviews {<br/>
+    [super layoutSubviews];</p>
+
+<pre><code>//注意导航栏及状态栏高度适配
+self.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), naviBarHeight);
+for (UIView *view in self.subviews) {
+    if([NSStringFromClass([view class]) containsString:@&quot;Background&quot;]) {
+        view.frame = self.bounds;
+    }
+    else if ([NSStringFromClass([view class]) containsString:@&quot;ContentView&quot;]) {
+        CGRect frame = view.frame;
+        frame.origin.y = statusBarHeight;
+        frame.size.height = self.bounds.size.height - frame.origin.y;
+        view.frame = frame;
+    }
+}
+</code></pre>
+
+<p>}</p>
+
+<p>作者：smile丽语<br/>
+链接：<a href="http://www.jianshu.com/p/a674d5e19260">http://www.jianshu.com/p/a674d5e19260</a><br/>
+來源：简书<br/>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p><a href="https://stackoverflow.com/questions/45350035/ios-11-searchbar-in-navigationbar">https://stackoverflow.com/questions/45350035/ios-11-searchbar-in-navigationbar</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/6</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E4%B8%B4%E6%97%B6.html'>临时</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15096738267082.html">
+                
+                  <h1>水波动画,类似咻咻咻</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code> // 设定为缩放
+    CABasicAnimation *sizeAnimation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
+
+    // 动画选项设定
+    sizeAnimation.repeatCount = CGFLOAT_MAX; // 重复次数
+    sizeAnimation.autoreverses = NO; // 动画结束时执行逆动画
+
+// 缩放倍数
+    sizeAnimation.fromValue = [NSNumber numberWithFloat:0.5]; // 开始时的倍率
+    sizeAnimation.toValue = [NSNumber numberWithFloat:1.4]; // 结束时的倍率
+
+    CABasicAnimation *alphanitation = [CABasicAnimation animationWithKeyPath:@&quot;opacity&quot;];
+    alphanitation.fromValue = @(1);
+    alphanitation.toValue = @(0);
+
+
+/* 动画组 */
+    CAAnimationGroup *group = [CAAnimationGroup animation];
+// 动画选项设定
+    group.duration = 1;
+    group.repeatCount = CGFLOAT_MAX;
+    // 确保controller display 在进入的时候还是继续执行动画
+    // 默认状态下 动画在viewcontroller display的时候会立刻结束动画，但是finish的bool值是false
+    group.removedOnCompletion = NO;
+// 添加动画
+    group.animations = [NSArray arrayWithObjects:sizeAnimation, alphanitation,nil];
+    [waveView.layer addAnimation:group forKey:@&quot;anitation&quot;];
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/3</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ios.html'>ios</a></span>
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">
+                
+                  <h1>结构体封装成对象</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>转载：</strong><a href="http://blog.csdn.net/yangbingbinga/article/details/43114469">http://blog.csdn.net/yangbingbinga/article/details/43114469</a></p>
+
+<pre><code>typedef  struct{  //自定义一个结构体  
+    int age;  
+    int number;  
+}Student;  
+
+Student stu = {&quot;lisi&quot;,&#39;m&#39;,20,90};
+  
+NSValue *stu=[NSValue valueWithBytes:&amp;stu objCtype :@encode(Student)];//把结构体封装成一个对象  
+  
+  
+Student  value2;//定义一个结构体变量来接受从NSValue得到的结构体  
+  
+  
+[stu getValue:&amp;value2];//把 stu对象中的结构体取出来  
+  
+  
+int a=value2.age;  //取得结构体中的字段 
+
+</code></pre>
+
+<p>其他,系统自带的  </p>
+
+<pre><code>
+CGPoint p=[value  CGPointValue];  
+系统自带的创建 NSValue 和  获取 CG结构体值的方法
+NSValue *v=[NSValue valueWithCGRect:CGRectMake(0, 0, 0, 0)];  
+CGRect rect=[v CGRectValue];  
+NSValue *v2=[NSValue valueWithCGSize:CGSizeZero];  
+CGSize size=[v2 CGSizeValue];  
+NSValue *v3=[NSValue valueWithCGPoint:CGPointMake(0, 0)];  
+CGPoint p=[v3 CGPointValue];  
+
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/10/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ios.html'>ios</a></span>
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15064062122465.html">
+                
+                  <h1>Vue学习</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>模板<code>methods</code>中不能使用箭头函数，要使用<code>function</code><br/>
+如</p>
+
+<pre><code>export default {
+    name: &#39;layerList&#39;,
+
+    data() {
+      return {
+        &#39;sssss&#39;: &#39;ddd&#39;,
+      };
+    },
+    methods: {
+      addClient: function()//这里要使用function不能使用=》,因为函数里的this和vue中this代指不同 
+      {
+        this.sssss = &#39;ddddaaaaa&#39;;
+
+      },
+      onResultChange: (val) =&gt; {
+        this.sssss = val;
+      },
+    },
+  };
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/9/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Vue.html'>Vue</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15058259666834.html">
+                
+                  <h1></h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/9/19</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14944963010893.html">
+                
+                  <h1>webGL浏览器支持</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><img src="media/14944963010893/14980083105786.jpg" alt=""/><br/>
+<a href="http://caniuse.com/#search=gl">WebGL 浏览器支持</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/5/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%85%B6%E4%BB%96.html'>其他</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14944738769390.html">
+                
+                  <h1>IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在没使用IQKerboard之前，给一个textField添加点击事件，只需要在</p>
+
+<ul>
+<li>(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+   if(textField == myTextField) {
+        do something....
+        return NO;
+   }else {
+        return YES;
+   }
+}
+这样就能很简单地做一些操作。
+但是在集成了IQKeyboard之后，就会有一个问题，当一个页面有多个textField之后，点击任意一个textfield，IQKeyboard都会强制执行textFieldShouldBeginEditing这个代理方法，而且是多次执行，执行的次数取决于你有多少个textfield添加了delegate。所以就会出现一个很尴尬的情况：
+我第二个textfield有一个点击事件，添加代理，放在代理方法内判断执行，但是第一个textfield并没有添加代理，当我点击第一个textfield的时候，就会强制执行shouldBegin这个方法，方法的参数是添加带来的第二个textfield。。。。。。</li>
+</ul>
+
+<p>解决办法想了好几种，一开始是想添加事件</p>
+
+<p>[tf addTarget:self action:@selector(textfieldTapped) forControlEvents:UIControlEventTouchDown];<br/>
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {<br/>
+    if(textField == myTextField) {<br/>
+         return NO;<br/>
+    }else {<br/>
+         return YES;<br/>
+    }<br/>
+}<br/>
+但是这样我测试的时候发现当我轻点一下会没有效果，只有重按一下才行，不知道是不是哪里出了问题？<br/>
+后来又想到</p>
+
+<ul>
+<li>(void)textFieldDidBeginEditing:(UITextField *)textField {
+if(textField == myTextField) {
+     [textField performSelector:@selector(resignFirstResponder) withObject:nil afterDelay:0];
+     do something......
+}
+}
+当进入到这个方法内的时候，键盘已经弹出来了，这时候虽然用这个方法能把键盘再收回去，但屏幕上还是能看到，体验很不好。
+解决方案很多，但都不完美。后来在作者的issues里发现作者说了这个</li>
+</ul>
+
+<p>When textField is requested to test that it can become first responder using &#39;[textField canBecomeFirstResponder]; then it asks for it&#39;s delegate via &#39;textFieldShouldBeginEditing&#39; that it can become first responder or not.<br/>
+I&#39;m asking for &#39;canBecomeFirstResponder&#39; in &#39;IQUIView+Hierarchy.m&#39; line no. 118.<br/>
+I tried by adding controlEvents action on textField, but no luck.<br/>
+We really need to find out a solution for this case.<br/>
+command+shift+o进入这个分类里面，看到这个属性</p>
+
+<p>/**<br/>
+ Returns YES if IQKeyboardManager asking for canBecomeFirstResponder. Useful when doing custom work in textFieldShouldBeginEditing: delegate.<br/>
+/**<br/>
+@property (nonatomic, readonly) BOOL isAskingCanBecomeFirstResponder;<br/>
+好像明白了什么。。。</p>
+
+<ul>
+<li>(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+if (textField == myTextField1) {
+    if (textField.isAskingCanBecomeFirstResponder == NO) {
+        NSLog(@&quot;do something...&quot;);
+    }
+    return NO;
+}else if (textField == myTextField2) {
+    if (textField.isAskingCanBecomeFirstResponder == NO) {
+        NSLog(@&quot;do another something...&quot;);
+    }
+    return NO;
+}else {
+  return YES;
+}
+}
+这样就能完美解决每个添加delegate的textfield都会调用textFieldShouldBeginEditing而产生的问题了！！！
+事实证明，还是应该多看看作者的源码啊。。。</li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/5/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ios.html'>ios</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			 <a href="all_1.html">&raquo; Next Page</a> 
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
+            
+                <h1>小小程序猿</h1>
+                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="ios.html"><strong>ios</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
+        
+            <a href="express.html"><strong>express</strong></a>
+        
+            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
+        
+            <a href="Vue.html"><strong>Vue</strong></a>
+        
+            <a href="sequelize.html"><strong>sequelize</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120934542709.html">NSTimer 闪退问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120110700552.html">地图画线 polygon</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15117817736257.html">node xlsx</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
@@ -368,6 +1941,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 
   </body>
 </html>

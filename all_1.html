@@ -8,17 +8,23 @@
   小小程序猿
   
   </title>
- <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
- <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,32 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html">小小程序猿</a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; 小小程序猿</span>
@@ -41,220 +68,145 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>ios</label></li>
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
 
-          
-            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-          
-            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-          
-            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-          
-            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-          
-            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>Android</label></li>
+        
+            <li><a href="ios.html">ios</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
+        
+            <li><a href="express.html">express</a></li>
+        
+            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
+        
+            <li><a href="Vue.html">Vue</a></li>
+        
+            <li><a href="sequelize.html">sequelize</a></li>
+         
 
-          
-            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-          
-            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-          
-            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-          
-            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-          
-            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-          
-            <li><a title="guava" href="14729744657413.html">guava</a></li>
-          
-            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>其他</label></li>
-
-          
-            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-          
-            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-          
-            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>express</label></li>
-
-          
-            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-          
-            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-          
-            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-          
-            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-          
-            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-          
-            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-          
-            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-          
-            <li><a title="passport" href="14892005669552.html">passport</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>数据库</label></li>
-
-          
-            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-          
-            <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>Vue</label></li>
-
-          
-            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>sequelize</label></li>
-
-          
-            <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-          
-            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="14914632553537.html">
+                
+                  <h1>PM2日志分割</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>pm2的日志文件默认在根目录下的.pm2/logs文件夹中，每个程序都会自动生成一个out.log和error.log文件。但是程序的日志只会写在这个两个文件中，并不会自动分割。</p>
 
-                    
-                      <li class="side-title"><span>ios</span></li>
-                        
-                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-                        
-                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-                        
-                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-                        
-                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-                        
-                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-                        
+<p>如果程序的日志量很大，而且长期运行必然使out.log的文件会无限增大。打开日志很慢，日志跟踪就成了问题。</p>
 
-                    
-                      <li class="side-title"><span>Android</span></li>
-                        
-                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-                        
-                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-                        
-                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-                        
-                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-                        
-                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-                        
-                          <li><a title="guava" href="14729744657413.html">guava</a></li>
-                        
-                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-                        
+<p>解决的办法就是进行日志分割。本文是使用logrotate进行分割。</p>
 
-                    
-                      <li class="side-title"><span>其他</span></li>
-                        
-                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-                        
-                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-                        
-                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-                        
+<p>使用<code>liunx</code>的<code>logrotate</code></p>
 
-                    
-                      <li class="side-title"><span>express</span></li>
-                        
-                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-                        
-                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-                        
-                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-                        
-                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-                        
-                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-                        
-                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-                        
-                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-                        
-                          <li><a title="passport" href="14892005669552.html">passport</a></li>
-                        
+<p>在pm2的官方文档中，提供了使用logrotate的方案<code>sudo pm2 logrotate -u user</code></p>
 
-                    
-                      <li class="side-title"><span>数据库</span></li>
-                        
-                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-                        
-                          <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-                        
+<p>会自动生成一个<code>logrotate</code>的默认配置文件，文件路径为<code>/etc/logrotate.d/pm2-user</code>，配置内容为：</p>
 
-                    
-                      <li class="side-title"><span>Vue</span></li>
-                        
-                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-                        
+<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
+        rotate 12
+        weekly
+        missingok
+        notifempty
+        compress
+        delaycompress
+        create 0640 user user
+}
+</code></pre>
 
-                    
-                      <li class="side-title"><span>sequelize</span></li>
-                        
-                          <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-                        
-                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-                        
+<p><strong>这里</strong>：</p>
 
-                    
-                  </ul>
-                </nav>
+<p><code>rotate 12</code>：存储归档日志的最大个数，超过就会更早的日志文件删除，一直保持12个；<br/>
+<code>weekly</code>：日志文件按周轮询，其值可以为：<code>daily</code>、<code>weekly</code>、<code>monthly</code>、<code>yearly</code>；<br/>
+<code>missingok</code>：在日志轮循期间，任何错误将被忽略，例如“文件无法找到”之类的错误；<br/>
+<code>notifempty</code>：如果日志文件为空，轮循不会进行；<br/>
+<code>compress</code>：在轮循任务完成后，已轮循的归档将使用<code>gzip</code>进行压缩；<br/>
+<code>delaycompress</code>：总是与<code>compress</code>选项一起用，<code>delaycompress</code>选项指示<code>logrotate</code>不要将最近的归档压缩，压缩将在下一次轮循周期进行。这在你或任何软件仍然需要读取最新归档时很有用；<br/>
+<code>create 0640 user user</code>：以指定的权限创建全新的日志文件，同时logrotate也会重命名原始日志文件。</p>
+
+<p><strong>还可以添加以下配置</strong>：<br/>
+<code>dateext</code>：让旧日志文件以创建日期命名；<br/>
+<code>size=50M</code>：日志文件以50MB的大小作为一次轮询<br/>
+<code>prerotate/endscript</code>：在转储以前需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
+<code>postrotate/endscript</code>：在转储以后需要执行的命令可以放入这个对，这两个关键字必须单独成行<br/>
+在此我们可以定制化的修改配置，比如想要每周轮询一次，并且以日期进行命名，则：</p>
+
+<pre><code>/home/user/.pm2/pm2.log /home/user/.pm2/logs/*.log {
+        rotate 12
+        weekly
+        dateext
+        missingok
+        notifempty
+        compress
+        delaycompress
+        create 0640 user user
+        postrotate
+             pm2 reloadLogs
+        endscript
+}
+</code></pre>
+
+<p>这个生成出来的日志就是以<code>out.log-日期</code>的格式。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/4/6</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>Promise 使用</h1>
-
-		<h2 id="toc_0">.spread</h2>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14909323944752.html">
+                
+                  <h1>Promise 使用</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">.spread</h2>
 
 <pre><code>//对应promise数组里的返回值
 .spread(
@@ -300,84 +252,1521 @@ getUser().tap(function(user) {
 });
 </code></pre>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/31</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14904296924146.html">
+                
+                  <h1>NPM 使用</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">查看npm 版本</h2>
+
+<pre><code>npm -v
+</code></pre>
+
+<h2 id="toc_1">更新NPM最新版本</h2>
+
+<pre><code>npm install npm@latest -g
+</code></pre>
+
+<h2 id="toc_2">安装packeage</h2>
+
+<pre><code>npm install &lt;package_name&gt;  //install locally，会创建node_modules文件夹并放入其中
+</code></pre>
+
+<h2 id="toc_3">package.json管理package</h2>
+
+<p>优点：</p>
+
+<ul>
+<li>通过文件管理项目所依赖模块</li>
+<li>能够制定使用特定版本的模块</li>
+<li>更方便多人协作开发</li>
+</ul>
+
+<p><code>package.json</code>最少含有下面属性：<br/>
+* <code>name</code>：不能有空格<br/>
+* <code>version</code>：x.x.x格式</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;my-awesome-package&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;
+}
+</code></pre>
+
+<h3 id="toc_4">创建package.json</h3>
+
+<pre><code>npm init //会有帮助提示
+npm init --yes //不会有帮助提示
+</code></pre>
+
+<p>demo：</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;my_package&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package.git&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;bugs&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package/issues&quot;
+  },
+  &quot;homepage&quot;: &quot;https://github.com/ashleygwilliams/my_package&quot;
+}
+</code></pre>
+
+<ul>
+<li><code>name</code>:当前文件夹名称</li>
+<li><code>version</code>:默认‘1.0.0’</li>
+<li><code>description</code>:描述,作用同readme</li>
+<li><p><code>main</code>:默认<code>index.js</code></p>
+
+<h3 id="toc_5">在package.json 中指定依赖包</h3></li>
+<li><p><code>dependencies</code>:应用用到的依赖</p></li>
+<li><p><code>devDependencies</code>:只有开发和测试时需要用到的</p></li>
+</ul>
+
+<pre><code>npm install &lt;package_name&gt; --save  //添加到`package.json`中的 `dependencies`
+npm install &lt;package_name&gt; --save-dev  //添加到`package.json`中的 `devDependencies`
+
+</code></pre>
+
+<h2 id="toc_6">更新package</h2>
+
+<pre><code>npm update  //与`package.json`在同级下执行命令
+</code></pre>
+
+<h2 id="toc_7">删除package</h2>
+
+<pre><code>npm uninstall lodash
+npm uninstall --save lodash//会更新到`package.json`
+</code></pre>
+
+<h2 id="toc_8">全局global安装package</h2>
+
+<pre><code>npm install -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_9">全局global更新package</h2>
+
+<pre><code>npm update -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_10">全局global删除package</h2>
+
+<pre><code>npm uninstall -g &lt;package&gt;
+</code></pre>
+
+<h2 id="toc_11">Package与Modules</h2>
+
+<ul>
+<li><code>package</code>:是在<code>package.json</code>中描述的。可以是一个文件或是一个目录</li>
+<li><code>module</code>:能被<code>Node.js</code> <strong>require()</strong>的称为<code>module</code></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/25</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14903271954232.html">
+                
+                  <h1>Reids使用</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">启动客户端</h2>
+
+<pre><code>$ redis-cli
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14901728464166.html">
+                
+                  <h1>PostGreSql导表</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">导出表</h2>
+
+<p><code>pg_dump -h 10.15.128.51 -U postgres -d lakala -t \&quot;DailyActiveTerminalInfos\&quot; &gt;daily.sql；</code></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/22</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%95%B0%E6%8D%AE%E5%BA%93.html'>数据库</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14896551414725.html">
+                
+                  <h1>Node 学习</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">全局对象和全局变量</h2>
+
+<p>它们是所有模块都可以调用的。<br/>
+全局对象：</p>
+
+<blockquote>
+<blockquote>
+<p><code>global</code>：表示Node所在的全局环境，类似于浏览器的window对象。需要注意的是，如果在浏览器中声明一个全局变量，实际上是声明了一个全局对象的属性，比如var x = 1等同于设置window.x = 1，但是Node不是这样，至少在模块中不是这样（REPL环境的行为与浏览器一致）。在模块文件中，声明var x = 1，该变量不是global对象的属性，global.x等于undefined。这是因为模块的全局变量都是该模块私有的，其他模块无法取到。<br/>
+<code>process</code>：该对象表示Node所处的当前进程，允许开发者与该进程互动。<br/>
+<code>console</code>：指向Node内置的console模块，提供命令行环境中的标准输入、标准输出功能。<br/>
+<code>Buffer</code>:Node处理二进制数据的一个接口。</p>
+</blockquote>
+</blockquote>
+
+<p>全局变量：</p>
+
+<blockquote>
+<blockquote>
+<p>__filename：指向当前运行的脚本文件名。<br/>
+__dirname：指向当前运行的脚本所在的目录。</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_1">核心模块</h2>
+
+<p>Node.js的用处在于，它本身还提供了一系列功能模块，与操作系统互动。这些核心的功能模块，不用安装就可以使用</p>
+
+<blockquote>
+<blockquote>
+<p><code>http</code>：提供HTTP服务器功能。<br/>
+<code>url</code>：解析URL。<br/>
+<code>fs</code>：与文件系统交互。<br/>
+<code>querystring</code>：解析URL的查询字符串。<br/>
+<code>child_process</code>：新建子进程。<br/>
+<code>util</code>：提供一系列实用小工具。<br/>
+<code>path</code>：处理文件路径。<br/>
+<code>crypto</code>：提供加密和解密功能，基本上是对OpenSSL的包装。</p>
+</blockquote>
+</blockquote>
+
+<h2 id="toc_2">Child Process模块</h2>
+
+<p>child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。</p>
+
+<h2 id="toc_3">Node 升级</h2>
+
+<p>node有一个模块叫n，是专门用来管理node.js的版本的。<br/>
+首先安装n模块：</p>
+
+<pre><code>npm install -g n
+</code></pre>
+
+<p>升级node.js到最新稳定版</p>
+
+<pre><code>n stable
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14892247193418.html">
+                
+                  <h1>常用正则</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>数字和字母组合4-20位</p>
+
+<p><code>^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{3,19}$</code></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14892215616260.html">
+                
+                  <h1>sequelize. 钩子</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0"><code>user.update</code> 调用</h3>
+
+<pre><code>hooks: {
+    beforeUpdate(user, options, next) {
+         bcrypt.genSalt(10, (err, salt) =&gt; {
+                    bcrypt.hash(user.password, salt, null, (error, hash) =&gt; {
+                        user.password = hash;
+                        next(null, user);
+                    });
+                });
+            }     
+        }
+</code></pre>
+
+<h1 id="toc_1">sequelize 事务</h1>
+
+<pre><code>return db.lakalaSequelize.transaction(t =&gt;
+                    Promise.map(sqlArray, (sql, index) =&gt; db.lakalaSequelize.query(sql,
+                        { type: db.lakalaSequelize.QueryTypes.SELECT, transaction: t })
+                    .then((result) =&gt; {
+                        if (!_.isEmpty(result)) {
+                            const item = itemArray[index];
+                            item.BUSINESS_NAME = result[0].business_name;
+                            item.MERCHANT_CODE = result[0].merchant_code;
+                            item.MERCHANT_ADDR = result[0].MERCHANT_ADDR;
+                            return item;
+                        }
+                        return itemArray[index];
+                    }))).then(result =&gt; result);
+</code></pre>
+
+<h1 id="toc_2">Sequelize 外键</h1>
+
+<p>数据库中的表之间存在一定的关联关系，表之间的关系基于主/外键进行关联、创建约束等。关系表中的数据分为1对1(1:1)、1对多(1:M)、多对多(N:M)三种关联关系。</p>
+
+<p>在<code>Sequelize</code>中建立关联关系，通过调用模型(源模型)的<code>belongsTo</code>、<code>hasOne</code>、<code>hasMany</code>、<code>belongsToMany</code>方法，再将要建立关系的模型(目标模型)做为参数传入即可。这些方法会按以下规则创建关联关系：</p>
+
+<blockquote>
+<blockquote>
+<p>hasOne - 与目标模型建立1:1关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasOne()</p>
+
+<p>belongsTo - 与目标模型建立1:1关联关系，关联关系(外键)存在于源模型中。详见：Model.belongsTo()</p>
+
+<p>hasMany - 与目标模型建立1:N关联关系，关联关系(外键)存在于目标模型中。详见：Model.hasMany()</p>
+
+<p>belongsToMany - 与目标模型建立N:M关联关系，会通过sourceId和targetId创建交叉表。详见：Model.belongsToMany()</p>
+</blockquote>
+</blockquote>
+
+<ul>
+<li>用户(User)－与其它模型存在1:1、1:N、N:M</li>
+<li>用户登录信息(UserCheckin)－与User存在1:1关系</li>
+<li>用户地址(UserAddress)－与User存在N:1关系</li>
+<li>角色(Role)－与User存在N:M关系</li>
+</ul>
+
+<p><img src="media/14892215616260/14920682242135.png" alt=""/></p>
+
+<pre><code>module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;User&#39;, {
+    id:{type:DataTypes.BIGINT(11), autoIncrement:true, primaryKey : true, unique : true},
+    username: { type: DataTypes.STRING,  allowNull: false, comment:&#39;用户名&#39; },
+    password: { type: DataTypes.STRING, allowNull: false, comment:&#39;用户密码&#39; },
+    active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, comment:&#39;是否正常状态&#39; }
+  },
+  {
+    timestamps: true,
+    underscored: true,
+    paranoid: true,
+    freezeTableName: true,
+    tableName: &#39;user&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;
+});
+}
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;UserCheckin&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true },
+    userId: { 
+      type: DataTypes.BIGINT(11), 
+      field: &#39;user_id&#39;,
+      unique: true, 
+      references: {
+        model: &#39;User&#39;,
+        key: &#39;id&#39;
+      },
+      comment:&#39;用户Id&#39; },
+    loginIp: { type: DataTypes.STRING, field: &#39;login_ip&#39;, allowNull: false, defaultValue: &#39;&#39; , validate: {isIP: true}, comment:&#39;登录IP&#39;}
+  },
+  {
+    underscored: true,
+    timestamps: true,
+    tableName: &#39;userCheckin&#39;,
+    comment: &#39;用户登录信息&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;,
+    indexes: [{
+      name: &#39;userCheckin_userId&#39;,
+      method: &#39;BTREE&#39;,
+     fields: [&#39;user_id&#39;]
+    }]
+  });
+}
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;UserAddress&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;主键&#39; },
+    userId: {type: DataTypes.BIGINT(11), field: &#39;user_id&#39;, allowNull: false, comment:&#39;用户Id&#39; },
+    consignee : { type: DataTypes.STRING, field: &#39;consignee&#39;, allowNull: false, comment:&#39;收货人&#39; },
+    address: { type: DataTypes.STRING(1024), field: &#39;address&#39;, allowNull: false, comment:&#39;详细地址&#39; },
+    zipCode: { type: DataTypes.STRING(16), field: &#39;zip_code&#39;, allowNull: true, comment:&#39;邮编&#39; },
+    tel: { type: DataTypes.STRING(32), field: &#39;tel&#39;, allowNull: false, comment:&#39;电话&#39; },
+  },
+  {
+    underscore: true,
+    timestamps: false,
+    freezeTableName: true,
+    tableName: &#39;userAddress&#39;,
+    comment: &#39;用户地址表&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;,
+    indexes: [{
+      name: &#39;userAddress_userId&#39;,
+      method: &#39;BTREE&#39;,
+      fields: [&#39;user_id&#39;]
+    }]
+  });
+}
+</code></pre>
+
+<p><code>User</code>模型与<code>UserAddress</code>存在1:N的关联关系，但在这样我们并没有用<code>references</code>特性显式的指定外键。这是因为，<code>Sequlieze</code>不仅可以在模型定义时指定外键，还可以在建立模型关系时指定，甚至主外键关系并不需要显示的存在，只要在建立模型关系时指定关联键即可。</p>
+
+<pre><code>module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(&#39;Role&#39;, {
+    id: { type: DataTypes.BIGINT(11), autoIncrement: true, primaryKey: true, unique: true, comment:&#39;角色Id&#39; },
+    roleName: { type: DataTypes.STRING, field: &#39;role_name&#39;, comment:&#39;角色名&#39; }
+  },
+  {
+    underscored: true,
+    timestamps: false,
+    freezeTableName: true,
+    tableName: &#39;role&#39;,
+    charset: &#39;utf8&#39;,
+    collate: &#39;utf8_general_ci&#39;
+  });
+}
+</code></pre>
+
+<p><code>Role</code>模型与<code>User</code>存在N:M的关系，这样就需要两者通过一个关系表（关系模型）进行关联。但并不需要手工建立这个关系表，指定关联关系后<code>Sequelize</code>会自动创建关系表。</p>
+
+<p>注意：在上面定义模型时，我们使用了<code>comment</code>属性添加字段描述。经测试及查看<code>Sequlize</code>源码，这一特性并不会向数据中添加相关描述信息，但仍然建议添加这一属性以增强代码的可读性。</p>
+
+<h2 id="toc_3">模型关联与数据库同步</h2>
+
+<p>定义好模型后，就可以建立模型关联关系，并将模型及关系同步到数据库中。</p>
+
+<p>模型导入</p>
+
+<p>在上面定义模型时，我们每个模型定义为了单独的文件，这样就需要通过<code>sequlize.import()</code>方法导入模型：</p>
+
+<pre><code>var sequelize=require(&#39;./_db&#39;).sequelize();
+var User = sequelize.import(&#39;./user.js&#39;);
+var UserCheckin = sequelize.import(&#39;./userCheckin.js&#39;);
+var UserAddress = sequelize.import(&#39;./userAddress.js&#39;);
+var Role = sequelize.import(&#39;./role.js&#39;);
+
+</code></pre>
+
+<p>关系建立</p>
+
+<p>导入后，建立模型关系：</p>
+
+<pre><code>// 建立模型之间的关系
+User.hasOne(UserCheckin);
+UserCheckin.belongsTo(User);
+User.hasMany(UserAddress, {foreignKey:&#39;user_id&#39;, targetKey:&#39;id&#39;, as:&#39;Address&#39;});
+User.belongsToMany(Role, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});
+Role.belongsToMany(User, {through: &#39;userRoles&#39;, as:&#39;UserRoles&#39;});
+</code></pre>
+
+<p>在定义<code>UserAddress</code>模型时，我们没有定义关联模型，所以需要在<code>hasMany()</code>方法中通过<code>foreignKey</code>和<code>targetKey</code>来指定关联关系(主外键关系)，指定后该关系同样会被同步到数据库中。除指定关联关系外，我们还指定了<code>as</code>选项，该选项表示“<strong>别名</strong>”，<strong>目标模型会混入到源模型后会使用该名称。</strong></p>
+
+<p>通过<strong>belongsToMany()</strong>方法建立<code>Role</code>与<code>User</code>之间的关系时，设置了<code>through</code>选项，该选项表示“<strong>关系</strong>”（可以是一个模型或字符串，使用字符串时表示在数据库中表名）。</p>
+
+<h2 id="toc_4">同步数据库</h2>
+
+<p>建立关联关系后，调用<code>sequelize.sync()</code>方法即可以将模型及关联关系同步到数据库中。</p>
+
+<h2 id="toc_5">外键例子理解</h2>
+
+<p><a href="http://docs.sequelizejs.com/manual/tutorial/associations.html">官方文档</a></p>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company); // Will add companyId to user
+
+const User = this.sequelize.define(&#39;user&#39;, {/* attributes */}, {underscored: true}) // 不已驼峰形式命名 而是用下划线
+const Company  = this.sequelize.define(&#39;company&#39;, {
+  uuid: {
+    type: Sequelize.UUID,
+    primaryKey: true
+  }
+});
+
+User.belongsTo(Company); // Will add company_uuid to user
+
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const UserRole  = this.sequelize.define(&#39;userRole&#39;, {/* attributes */});
+
+User.belongsTo(UserRole, {as: &#39;role&#39;}); // Adds roleId to user rather than userRoleId
+
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company, {foreignKey: &#39;fk_company&#39;}); // Adds fk_company to User
+</code></pre>
+
+<pre><code>const User = this.sequelize.define(&#39;user&#39;, {/* attributes */})
+const Company  = this.sequelize.define(&#39;company&#39;, {/* attributes */});
+
+User.belongsTo(Company, {foreignKey: &#39;fk_companyname&#39;, targetKey: &#39;name&#39;}); // Adds fk_companyname to User
+</code></pre>
+
+<pre><code>Project.belongsToMany(User, {through: &#39;UserProject&#39;});
+User.belongsToMany(Project, {through: &#39;UserProject&#39;});
+</code></pre>
+
+<pre><code>// Series has a trainer_id=Trainer.id foreign reference key after we call Trainer.hasMany(series)
+const Series = sequelize.define(&#39;series&#39;, {
+  title:        DataTypes.STRING,
+  sub_title:    DataTypes.STRING,
+  description:  DataTypes.TEXT,
+
+  // Set FK relationship (hasMany) with `Trainer`
+  trainer_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: &quot;trainer&quot;,
+      key: &quot;id&quot;
+    }
+  }
+})
+
+const Trainer = sequelize.define(&#39;trainer&#39;, {
+  first_name: DataTypes.STRING,
+  last_name:  DataTypes.STRING
+});
+
+// Video has a series_id=Series.id foreign reference key after we call Series.hasOne(Video)...
+const Video = sequelize.define(&#39;video&#39;, {
+  title:        DataTypes.STRING,
+  sequence:     DataTypes.INTEGER,
+  description:  DataTypes.TEXT,
+
+  // set relationship (hasOne) with `Series`
+  series_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Series, // Can be both a string representing the table name, or a reference to the model
+      key:   &quot;id&quot;
+    }
+  }
+});
+
+Series.hasOne(Video);
+Trainer.hasMany(Series);
+</code></pre>
+
+<p>理解:<br/>
+1. 无论是<code>hasOne</code>还是<code>belongsTo</code>，左面的都是源对象（source）右面都是目标对象（target）<br/>
+2. 不指定<code>sourceKey</code>或者<code>targetKey</code>都是指<strong>对象主键列作为外键所指向的列</strong><br/>
+3. <code>as</code>作为别名，能替代外键名称，如 <code>roleID</code>代替<code>userRoleId</code>,同时<code>getRole</code>、<code>setRole</code>代替<code>getUserRole</code>、<code>setUserRole</code><br/>
+4. 可以使用<code>foreignKey</code>指定外键名称来替代默认的<code>modelId</code>名称<br/>
+5. <code>belongsTo</code>模式下外键默认在<strong>源目标对象</strong>上，外键默认指向<strong>目标对象主键列</strong>，使用<code>targetKey</code>来<strong>改变外键指向列</strong><br/>
+6. <code>belongsToMany</code>会生成中间表，<code>through</code>指定表名</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sequelize.html'>sequelize</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14892005669552.html">
+                
+                  <h1>passport</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>passport的验证过程主要依赖具体的验证策略来实现的，比较常用的有session策略、local策略和github策略等，验证逻辑都是在这些策略类中定义的。passport模块的定义主要包括三个部分：passport类、相关中间件和验证策略，passport自带了session验证策略，如果要使用其他验证策略，需要自行添加。</p>
+
+<pre><code>    passport的使用分为五个部分：
+</code></pre>
+
+<p>首先必须通过app.use(passport.initialize())对passport进行初始化，否则后面的验证方法无法执行<br/>
+在全局范围内添加session验证中间件，app.use(passport.session());，这个主要是为了记住用户的登录状态，可以指定session过期时间<br/>
+给passport添加验证策略<br/>
+在具体的路由上使用第三步中添加的验证中间件<br/>
+给passport定义序列化和反序列化函数</p>
+
+<p>Username &amp; Password</p>
+
+<p>The most widely used way for websites to authenticate users is via a username and password. Support for this mechanism is provided by the passport-local module.</p>
+
+<p>Install</p>
+
+<p>$ npm install passport-local<br/>
+Configuration</p>
+
+<p>var passport = require(&#39;passport&#39;)<br/>
+  , LocalStrategy = require(&#39;passport-local&#39;).Strategy;</p>
+
+<p>passport.use(new LocalStrategy(<br/>
+  function(username, password, done) {<br/>
+    User.findOne({ username: username }, function(err, user) {<br/>
+      if (err) { return done(err); }<br/>
+      if (!user) {<br/>
+        return done(null, false, { message: &#39;Incorrect username.&#39; });<br/>
+      }<br/>
+      if (!user.validPassword(password)) {<br/>
+        return done(null, false, { message: &#39;Incorrect password.&#39; });<br/>
+      }<br/>
+      return done(null, user);<br/>
+    });<br/>
+  }<br/>
+));<br/>
+The verify callback for local authentication accepts username and password arguments, which are submitted to the application via a login form.</p>
+
+<p>Form</p>
+
+<p>A form is placed on a web page, allowing the user to enter their credentials and log in.</p>
+
+<form action="/login" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Log In"/>
+    </div>
+</form>
+
+<p>Route</p>
+
+<p>The login form is submitted to the server via the POST method. Using authenticate() with the local strategy will handle the login request.</p>
+
+<p>app.post(&#39;/login&#39;,<br/>
+  passport.authenticate(&#39;local&#39;, { successRedirect: &#39;/&#39;,<br/>
+                                   failureRedirect: &#39;/login&#39;,<br/>
+                                   failureFlash: true })<br/>
+);<br/>
+Setting the failureFlash option to true instructs Passport to flash an error message using the message option set by the verify callback above. This is helpful when prompting the user to try again.</p>
+
+<p>Parameters</p>
+
+<p>By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults.</p>
+
+<p>passport.use(new LocalStrategy({<br/>
+    usernameField: &#39;email&#39;,<br/>
+    passwordField: &#39;passwd&#39;<br/>
+  },<br/>
+  function(username, password, done) {<br/>
+    // ...<br/>
+  }<br/>
+));</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='express.html'>express</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14875633942562.html">
+                
+                  <h1>SVGKit 导入</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>framework导入<br/>
+```objc</p>
+
+<h1 id="toc_0">import <CocoaLumberjack/CocoaLumberjack.h></h1>
+
+<h1 id="toc_1">ifdef DEBUG</h1>
+
+<p>static const DDLogLevel ddLogLevel = DDLogLevelVerbose;</p>
+
+<h1 id="toc_2">else</h1>
+
+<p>static const DDLogLevel ddLogLevel = DDLogLevelWarning;</p>
+
+<h1 id="toc_3">endif</h1>
+
+<pre><code>
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/2/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ios.html'>ios</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html">
+                
+                  <h1>拦截UIViewController的popViewController事件</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>实现拦截<code>UIViewController</code>的<code>pop</code>操作有两种方式：</p>
+
+<ul>
+<li>自定义实现返回按钮，即设置<code>UIBarButtonItem</code>来实现自定义的返回操作。</li>
+<li>创建<code>UINavigatonController</code>的<code>Category</code>，来定制<code>navigationBar: shouldPopItem:</code>的逻辑。</li>
+</ul>
+
+<p><strong>UIViewController+BackButtonHandler.h：</strong></p>
+
+<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
+
+@protocol BackButtonHandlerProtocol &lt;NSObject&gt;
+@optional
+// Override this method in UIViewController derived class to handle &#39;Back&#39; button click
+-(BOOL)navigationShouldPopOnBackButton;
+@end
+
+@interface UIViewController (BackButtonHandler) &lt;BackButtonHandlerProtocol&gt;
+
+@end
+</code></pre>
+
+<p><strong>UIViewController+BackButtonHandler.m：</strong></p>
+
+<pre><code class="language-objc">#import &quot;UIViewController+BackButtonHandler.h&quot;
+
+@implementation UIViewController (BackButtonHandler)
+
+@end
+
+@implementation UINavigationController (ShouldPopOnBackButton)
+
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
+
+    if([self.viewControllers count] &lt; [navigationBar.items count]) {
+        return YES;
+    }
+
+    BOOL shouldPop = YES;
+    UIViewController* vc = [self topViewController];
+    if([vc respondsToSelector:@selector(navigationShouldPopOnBackButton)]) {
+        shouldPop = [vc navigationShouldPopOnBackButton];
+    }
+
+    if(shouldPop) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self popViewControllerAnimated:YES];
+        });
+    } else {
+        // Workaround for iOS7.1. Thanks to @boliva - http://stackoverflow.com/posts/comments/34452906
+        for(UIView *subview in [navigationBar subviews]) {
+            if(0. &lt; subview.alpha &amp;&amp; subview.alpha &lt; 1.) {
+                [UIView animateWithDuration:.25 animations:^{
+                    subview.alpha = 1.;
+                }];
+            }
+        }
+    }
+
+    return NO;
+}
+
+</code></pre>
+
+<p><strong>使用：</strong></p>
+
+<ul>
+<li>在<code>UIViewController</code>当中引入头文件</li>
+</ul>
+
+<pre><code>#import &quot;UIViewController+BackButtonHandler.h&quot;
+</code></pre>
+
+<ul>
+<li>在<code>UIViewController</code>中实现<code>navigationShouldPopOnBackButton</code>方法。</li>
+</ul>
+
+<pre><code class="language-objc">- (BOOL)navigationShouldPopOnBackButton{
+    [[[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;确定返回上一界面?&quot;
+                               delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil] show];
+    //renturn no 拦截pop事件
+    return NO;
+}
+</code></pre>
+
+<p><strong>参考：</strong></p>
+
+<ul>
+<li><p><a href="http://www.jianshu.com/p/25fd027916fa">iOS拦截导航栏返回按钮事件的正确方式</a></p></li>
+<li><p><a href="https://github.com/onegray/UIViewController-BackButtonHandler">UIViewController-BackButtonHandler</a></p></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="iOS%E6%B2%99%E7%9B%92.html">
+                
+                  <h1>沙盒SandBox</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>每个App都有自己的沙盒，也就是一个存储空间。App之间没有权限访问对方的沙盒资源。沙盒的目录下有三个文件夹：<code>Documents</code>、<code>Library</code>、<code>temp</code></p>
+
+<p><img src="media/14823759670877/14823785020292.png" alt="" style="width:383px;"/></p>
+
+<h2 id="toc_0">目录结构</h2>
+
+<p><img src="media/14823759670877/14823792632365.jpg" alt=""/><br/>
+* <code>Documents</code>：用于存储用户数据，<code>iTunes</code>备份和恢复的时候会包括此目录，所以，苹果建议将程序中建立的或在程序中浏览到的文件数据保存在该目录下。<br/>
+* <code>Documents/Inbox</code>:主要用来存放其他程序请求当前程序打开的文件。当前App只能读取和删除该目录下的文件，不能新建新文件和修改已存在的文件，如果想修改该目录下已存在的文件，需要将它先移动到别的文件夹下。<br/>
+* <code>Library</code>：包含两个子目录：<code>Caches</code> 和 <code>Preferences</code>。<code>Caches</code>用来存放用户存放的文件。<code>Preferences</code>是APP的偏好设置，可以通过<code>NSUserDefaults</code>来读取和设置。<code>itunes</code>会备份此目录。<br/>
+* <code>tmp</code>： 用于存放临时文件，这个可以放一些当APP退出后不再需要的文件。app不运行的时候，系统也可能会销毁此目录保存的临时文件。<code>itunes</code>不备份此目录</p>
+
+<h2 id="toc_1">目录路径获取</h2>
+
+<h4 id="toc_2">沙盒目录</h4>
+
+<pre><code> NSHomeDirectory()
+</code></pre>
+
+<h4 id="toc_3">.app</h4>
+
+<pre><code>[NSBundle mainBundle].bundlePath
+ .app 中的资源文件：[[NSBundle mainBundle] pathForResource:@&quot;audio&quot; ofType:@&quot;wav&quot;]
+</code></pre>
+
+<h4 id="toc_4">Documents</h4>
+
+<pre><code>// 在某个范围内容搜索文件夹的路径     // directory:获取哪个文件夹.这里:NSUserDomainMask 代表从用户文件夹下找
+// domainMask:在哪个范围下获取 NSUserDomainMask:在用户的范围内搜索
+// expandTilde是否展开全路径, NO:~(选NO存commond+G不进去) YES:显示全路径
+NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); // 在iOS中,只有一个目录跟传入的参数匹配,所以这个集合里面只有一个元素:
+NSString *documentsPath = [array objectAtIndex:0];
+</code></pre>
+
+<h4 id="toc_5">Preferences</h4>
+
+<pre><code>NSString *preferenceParh = NSSearchPathForDirectoriesInDomains(NSPreferencePanesDirectory, NSUserDomainMask, YES)[0];
+</code></pre>
+
+<h4 id="toc_6">Caches</h4>
+
+<pre><code>NSString *cachePath =           NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+</code></pre>
+
+<h4 id="toc_7">Tmp</h4>
+
+<pre><code> NSTemporaryDirectory()
+</code></pre>
+
+<p>参考：</p>
+
+<ul>
+<li><a href="http://www.lilongcnc.cc/2016/05/16/17-ios%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%B2%99%E7%9B%92sandbox%E8%B7%AF%E5%BE%84%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/"> iOS获取应用沙盒Sandbox路径和基础保存数据方式</a></li>
+<li><a href="http://www.superqq.com/blog/2015/07/20/ioskai-fa-zhi-sha-he-ji-zhi-(sandbox/)">iOS开发之沙盒机制</a></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/22</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html'>基础知识</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14817135429113.html">
+                
+                  <h1>URL Loading System</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><img src="media/14817135429113/14817135654190.png" alt=""/></p>
+
+<h1 id="toc_0">URL 资源访问</h1>
+
+<p>有两种方式：<br/>
+* 使用<code>URLSession</code>通过<code>NSURL</code>直接访问，获得<code>NSData</code>类型或文件<br/>
+* 向<code>URLSession</code>提供<code>NSURLRquest</code>获得资源<br/>
+无论怎样都有两种方法提供处理结果的方法<br/>
+* 提供一个完成回调block（completion handler block）<br/>
+* 提供一个自定义委托</p>
+
+<h1 id="toc_1">Sessions Type</h1>
+
+<ul>
+<li>Default sessions   常用来做下载回话，保存数据证书至用户磁盘目录</li>
+<li>Ephemeral sessions  短暂会话，一切结果保存到ram中</li>
+<li>Background sessions  上传任务会话，支持app在后台任务上传</li>
+</ul>
+
+<h1 id="toc_2">后台传输注意事项</h1>
+
+<p>要想在app挂起时继续执行后台传输数据任务，只有配置了<code>background session config</code>的<code>session</code>会话才能在app挂起时执行任务。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/14</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">
+                
+                  <h1>Ruby,Rails环境搭建</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">步骤0 － 安装系统需要的包</h2>
+
+<pre><code># For Mac 
+# 先安装 [Xcode](http://developer.apple.com/xcode/) 开发工具，它将帮你安装好 Unix 环境需要的开发包
+# 然后安装 [Homebrew](http://brew.sh)
+$ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<p>OS X 安装 Rails 必要的一些三方库</p>
+
+<pre><code>$ brew install libxml2 libxslt libiconv
+</code></pre>
+
+<h2 id="toc_1">步骤1 － 安装 RVM</h2>
+
+<p>RVM 是干什么的这里就不解释了，后面你将会慢慢搞明白。</p>
+
+<pre><code>$ brew install gpg
+$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+$ curl -sSL https://get.rvm.io | bash -s stable
+# 如果上面的连接失败，可以尝试: 
+$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
+</code></pre>
+
+<p>期间可能会问你 sudo 管理员密码，以及自动通过 Homebrew 安装依赖包，等待一段时间后就可以成功安装好 RVM。</p>
+
+<p>然后，载入 RVM 环境（新开 Termal 就不用这么做了，会自动重新载入的）</p>
+
+<pre><code>$ source ~/.rvm/scripts/rvm
+</code></pre>
+
+<p>修改 RVM 下载 Ruby 的源，到 Ruby China 的镜像</p>
+
+<pre><code>echo &quot;ruby_url=https://cache.ruby-china.org/pub/ruby&quot; &gt; ~/.rvm/user/db
+</code></pre>
+
+<p>检查一下是否安装正确</p>
+
+<pre><code>coolwxbdeMacBook-Pro:~ coolwxb$ rvm -v
+rvm 1.27.0 (latest) by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]
+</code></pre>
+
+<h2 id="toc_2">步骤2 － 用 RVM 安装 Ruby 环境</h2>
+
+<pre><code>$ rvm requirements
+$ rvm install 2.3.0
+</code></pre>
+
+<p>同样继续等待漫长的下载，编译过程，完成以后，Ruby, Ruby Gems 就安装好了。</p>
+
+<h2 id="toc_3">步骤3 － 设置 Ruby 版本</h2>
+
+<p>RVM 装好以后，需要执行下面的命令将指定版本的 Ruby 设置为系统默认版本</p>
+
+<pre><code>$ rvm use 2.3.0 --default
+</code></pre>
+
+<p>同样，也可以用其他版本号，前提是你有用 rvm install 安装过那个版本</p>
+
+<p>这个时候你可以测试是否正确</p>
+
+<pre><code>$ ruby -v
+ruby 2.3.0 ...
+
+$ gem -v
+2.1.6
+
+$ gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+</code></pre>
+
+<h3 id="toc_4">安装 Bundler</h3>
+
+<pre><code>$ gem install bundler
+</code></pre>
+
+<h2 id="toc_5">步骤4 － 安装 Rails 环境</h2>
+
+<p>上面 3 个步骤过后，Ruby 环境就安装好了，接下来安装 Rails</p>
+
+<pre><code>$ gem install rails
+</code></pre>
+
+<p>然后测试安装是否正确</p>
+
+<pre><code>$ rails -v
+Rails 4.2.5
+</code></pre>
+
+<p><strong>转自：</strong><a href="https://ruby-china.org/wiki/install_ruby_guide">如何快速正确的安装 Ruby, Rails 运行环境</a></p>
+
+<h1 id="toc_6">配置数据库MySql</h1>
+
+<pre><code>$ brew install mysql
+$ mysql.server start
+</code></pre>
+
+<p>配置<code>mysql</code>开机启动</p>
+
+<h1 id="toc_7">安装Redis</h1>
+
+<pre><code>$brew install redis
+</code></pre>
+
+<h1 id="toc_8">安装imagemagick\ghostscript</h1>
+
+<pre><code>$ brew install imagemagick ghostscript
+</code></pre>
+
+<h1 id="toc_9">配置运行环境文件</h1>
+
+<p>进入项目目录中的<code>config</code>文件夹，拷贝文件<code>application.yml.default</code>和<code>database.yml.default</code>，去掉后缀<code>default</code>。<br/>
+拷贝服务器配置到<code>development</code>的<code>defaults</code>下<br/>
+同时修改配置文件（IP和数据库信息）</p>
+
+<h1 id="toc_10">拷贝schema.rb</h1>
+
+<p>拷贝<code>schema.rb</code>文件到工程目录下的<code>db</code>文件夹下,在文件夹下运行命令</p>
+
+<pre><code>rake db:drop db:create db:schema:load
+</code></pre>
+
+<p>有可能会出现提示</p>
+
+<pre><code>$ rake db:drop db:create db:schema:load
+(in /Users/coolwxb/server)
+Your bundle is locked to rake (11.3.0), but that version could not be found in any of the sources listed in your Gemfile. If you haven&#39;t changed sources, that means the author of rake (11.3.0) has removed it. You&#39;ll need to update your bundle to a different version of rake (11.3.0) that hasn&#39;t been removed in order to install.
+Run `bundle install` to install missing gems.
+</code></pre>
+
+<p>按照提示，执行命令<code>bundle install</code>更新</p>
+
+<h1 id="toc_11">运行</h1>
+
+<ul>
+<li>启动队列服务</li>
+</ul>
+
+<pre><code>$sidekiq
+</code></pre>
+
+<ul>
+<li>切换到工程下运行</li>
+</ul>
+
+<pre><code>rails s -b 你的ip -p 3000
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/12</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%85%B6%E4%BB%96.html'>其他</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="Images.xcassets%E4%B8%8D%E8%83%BD%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84.html">
+                
+                  <h1>Images.xcassets不能获取图片路径</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>原文地址：</strong><a href="http://www.jianshu.com/p/5358f587af38">http://www.jianshu.com/p/5358f587af38</a></p>
+
+<p>Images.xcassets在app打包后，以Assets.car文件的形式出现在bundle中。其作用在于：</p>
+
+<blockquote>
+<p>自动识别@2x，@3x图片，对内容相同但分辨率不同的图片统一管理。<br/>
+可以对图片进行剪裁和拉伸处理。<br/>
+UIImage从bundle中加载图片资源</p>
+</blockquote>
+
+<p><strong>注意</strong><br/>
+<code>Images.xcassets</code>中的图片资源只能通过<code>imageNamed:</code>方法加载，通过<code>NSBundle</code>的<code>pathForResource:ofType:</code>无法获得图片路径。因此，<code>Images.xcassets</code>只适合存放系统常用的，占用内存小的图片资源。</p>
+
+<p><code>imageNamed:</code>方法同样可以加载根目录中的图片资源。</p>
+
+<p>要想利用<code>imageWithContentsOfFile:</code>方法以不缓存的形式加载图片，必须将图片资源放置在根目录中。</p>
+
+<p>相对于jpg，iOS对png的支持较好，例如，如果从<code>Images.xcassets</code>以外的地方加载图片，必须在文件名后加扩展名，例如：</p>
+
+<pre><code>// pic.jpg处于根目录下
+[UIImage imageNamed:@&quot;pic&quot;]; // 错误，图片未能正确加载
+[UIImage imageNamed:@&quot;pic.jpg&quot;]; // 正确
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/8</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   <a href="all.html">&laquo; Prev Page</a>  
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			 <a href="all_2.html">&raquo; Next Page</a> 
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
+            
+                <h1>小小程序猿</h1>
+                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="ios.html"><strong>ios</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
+        
+            <a href="express.html"><strong>express</strong></a>
+        
+            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
+        
+            <a href="Vue.html"><strong>Vue</strong></a>
+        
+            <a href="sequelize.html"><strong>sequelize</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120934542709.html">NSTimer 闪退问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120110700552.html">地图画线 polygon</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15117817736257.html">node xlsx</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
@@ -389,6 +1778,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 
   </body>
 </html>

@@ -8,17 +8,23 @@
   总结 - 小小程序猿
   
   </title>
- <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
- <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,32 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html">小小程序猿</a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; 小小程序猿</span>
@@ -41,220 +68,57 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>ios</label></li>
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
 
-          
-            <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-          
-            <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-          
-            <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-          
-            <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-          
-            <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>Android</label></li>
+        
+            <li><a href="ios.html">ios</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
+        
+            <li><a href="express.html">express</a></li>
+        
+            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
+        
+            <li><a href="Vue.html">Vue</a></li>
+        
+            <li><a href="sequelize.html">sequelize</a></li>
+         
 
-          
-            <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-          
-            <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-          
-            <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-          
-            <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-          
-            <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-          
-            <li><a title="guava" href="14729744657413.html">guava</a></li>
-          
-            <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>其他</label></li>
-
-          
-            <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-          
-            <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-          
-            <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>express</label></li>
-
-          
-            <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-          
-            <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-          
-            <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-          
-            <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-          
-            <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-          
-            <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-          
-            <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-          
-            <li><a title="passport" href="14892005669552.html">passport</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>数据库</label></li>
-
-          
-            <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-          
-            <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>Vue</label></li>
-
-          
-            <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>sequelize</label></li>
-
-          
-            <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-          
-            <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
-
-                    
-                      <li class="side-title"><span>ios</span></li>
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15120110700552.html">
+                
+                  <h1>地图画线 polygon</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
                         
-                          <li><a title="UIImageWriteToSavedPhotosAlbum CRASH" href="15117654413201.html">UIImageWriteToSavedPhotosAlbum CRASH</a></li>
-                        
-                          <li><a title="水波动画,类似咻咻咻" href="15096738267082.html">水波动画,类似咻咻咻</a></li>
-                        
-                          <li><a title="结构体封装成对象" href="%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85%E6%88%90NSValue%E5%AF%B9%E8%B1%A1.html">结构体封装成对象</a></li>
-                        
-                          <li><a title="IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。" href="14944738769390.html">IQKeyboardManager是一个非常方便的库，但是使用的时候有一个坑，一直困扰了我很久。</a></li>
-                        
-                          <li><a title="SVGKit 导入" href="14875633942562.html">SVGKit 导入</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Android</span></li>
-                        
-                          <li><a title="Android studio 换源" href="14729756163770.html">Android studio 换源</a></li>
-                        
-                          <li><a title="点在面内（2）" href="14729754866475.html">点在面内（2）</a></li>
-                        
-                          <li><a title="点在面内（1）" href="14729754588363.html">点在面内（1）</a></li>
-                        
-                          <li><a title="android对svg矢量图的支持" href="14729754295011.html">android对svg矢量图的支持</a></li>
-                        
-                          <li><a title="Android 6.0 (Marshmallow) 加载svg图片 报错" href="14729753957657.html">Android 6.0 (Marshmallow) 加载svg图片 报错</a></li>
-                        
-                          <li><a title="guava" href="14729744657413.html">guava</a></li>
-                        
-                          <li><a title="FastJson" href="14729743869940.html">FastJson</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>其他</span></li>
-                        
-                          <li><a title="Git 删除已经跟踪的文件或目录" href="15123557749433.html">Git 删除已经跟踪的文件或目录</a></li>
-                        
-                          <li><a title="webGL浏览器支持" href="14944963010893.html">webGL浏览器支持</a></li>
-                        
-                          <li><a title="Ruby,Rails环境搭建" href="%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%89%E8%A3%85%20Ruby,%20Rails%20%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">Ruby,Rails环境搭建</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>express</span></li>
-                        
-                          <li><a title="node xlsx" href="15117817736257.html">node xlsx</a></li>
-                        
-                          <li><a title="PM2日志分割" href="14914632553537.html">PM2日志分割</a></li>
-                        
-                          <li><a title="Promise 使用" href="14909323944752.html">Promise 使用</a></li>
-                        
-                          <li><a title="NPM 使用" href="14904296924146.html">NPM 使用</a></li>
-                        
-                          <li><a title="Reids使用" href="14903271954232.html">Reids使用</a></li>
-                        
-                          <li><a title="Node 学习" href="14896551414725.html">Node 学习</a></li>
-                        
-                          <li><a title="常用正则" href="14892247193418.html">常用正则</a></li>
-                        
-                          <li><a title="passport" href="14892005669552.html">passport</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>数据库</span></li>
-                        
-                          <li><a title="PostgresSQL" href="15114058607700.html">PostgresSQL</a></li>
-                        
-                          <li><a title="PostGreSql导表" href="14901728464166.html">PostGreSql导表</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>Vue</span></li>
-                        
-                          <li><a title="Vue学习" href="15064062122465.html">Vue学习</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>sequelize</span></li>
-                        
-                          <li><a title="Sequelize 创建连接" href="15116580970818.html">Sequelize 创建连接</a></li>
-                        
-                          <li><a title="sequelize. 钩子" href="14892215616260.html">sequelize. 钩子</a></li>
-                        
-
-                    
-                  </ul>
-                </nav>
-                </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>地图画线 polygon</h1>
-
-		<p>转自： <a href="http://www.jianshu.com/p/f925cdb53aa2">百度地图画面</a></p>
+                        	<p>转自： <a href="http://www.jianshu.com/p/f925cdb53aa2">百度地图画面</a></p>
 
 <p>方法一:</p>
 
@@ -302,84 +166,1134 @@ free(coords);
 
 <p>百度静态库中采用<code>ObjectC++</code>实现，以上是<code>ObjectC++</code>的特性。如果把文件后缀改为<code>mm</code>，则<code>xcode</code>会用<code>ObjectC++</code>的方式来编译文件</p>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/11/30</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="%E6%8B%A6%E6%88%AAPopViewController%E7%9A%84popViewController%E4%BA%8B%E4%BB%B6.html">
+                
+                  <h1>拦截UIViewController的popViewController事件</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>实现拦截<code>UIViewController</code>的<code>pop</code>操作有两种方式：</p>
+
+<ul>
+<li>自定义实现返回按钮，即设置<code>UIBarButtonItem</code>来实现自定义的返回操作。</li>
+<li>创建<code>UINavigatonController</code>的<code>Category</code>，来定制<code>navigationBar: shouldPopItem:</code>的逻辑。</li>
+</ul>
+
+<p><strong>UIViewController+BackButtonHandler.h：</strong></p>
+
+<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
+
+@protocol BackButtonHandlerProtocol &lt;NSObject&gt;
+@optional
+// Override this method in UIViewController derived class to handle &#39;Back&#39; button click
+-(BOOL)navigationShouldPopOnBackButton;
+@end
+
+@interface UIViewController (BackButtonHandler) &lt;BackButtonHandlerProtocol&gt;
+
+@end
+</code></pre>
+
+<p><strong>UIViewController+BackButtonHandler.m：</strong></p>
+
+<pre><code class="language-objc">#import &quot;UIViewController+BackButtonHandler.h&quot;
+
+@implementation UIViewController (BackButtonHandler)
+
+@end
+
+@implementation UINavigationController (ShouldPopOnBackButton)
+
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
+
+    if([self.viewControllers count] &lt; [navigationBar.items count]) {
+        return YES;
+    }
+
+    BOOL shouldPop = YES;
+    UIViewController* vc = [self topViewController];
+    if([vc respondsToSelector:@selector(navigationShouldPopOnBackButton)]) {
+        shouldPop = [vc navigationShouldPopOnBackButton];
+    }
+
+    if(shouldPop) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self popViewControllerAnimated:YES];
+        });
+    } else {
+        // Workaround for iOS7.1. Thanks to @boliva - http://stackoverflow.com/posts/comments/34452906
+        for(UIView *subview in [navigationBar subviews]) {
+            if(0. &lt; subview.alpha &amp;&amp; subview.alpha &lt; 1.) {
+                [UIView animateWithDuration:.25 animations:^{
+                    subview.alpha = 1.;
+                }];
+            }
+        }
+    }
+
+    return NO;
+}
+
+</code></pre>
+
+<p><strong>使用：</strong></p>
+
+<ul>
+<li>在<code>UIViewController</code>当中引入头文件</li>
+</ul>
+
+<pre><code>#import &quot;UIViewController+BackButtonHandler.h&quot;
+</code></pre>
+
+<ul>
+<li>在<code>UIViewController</code>中实现<code>navigationShouldPopOnBackButton</code>方法。</li>
+</ul>
+
+<pre><code class="language-objc">- (BOOL)navigationShouldPopOnBackButton{
+    [[[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;确定返回上一界面?&quot;
+                               delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil] show];
+    //renturn no 拦截pop事件
+    return NO;
+}
+</code></pre>
+
+<p><strong>参考：</strong></p>
+
+<ul>
+<li><p><a href="http://www.jianshu.com/p/25fd027916fa">iOS拦截导航栏返回按钮事件的正确方式</a></p></li>
+<li><p><a href="https://github.com/onegray/UIViewController-BackButtonHandler">UIViewController-BackButtonHandler</a></p></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14817135429113.html">
+                
+                  <h1>URL Loading System</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><img src="media/14817135429113/14817135654190.png" alt=""/></p>
+
+<h1 id="toc_0">URL 资源访问</h1>
+
+<p>有两种方式：<br/>
+* 使用<code>URLSession</code>通过<code>NSURL</code>直接访问，获得<code>NSData</code>类型或文件<br/>
+* 向<code>URLSession</code>提供<code>NSURLRquest</code>获得资源<br/>
+无论怎样都有两种方法提供处理结果的方法<br/>
+* 提供一个完成回调block（completion handler block）<br/>
+* 提供一个自定义委托</p>
+
+<h1 id="toc_1">Sessions Type</h1>
+
+<ul>
+<li>Default sessions   常用来做下载回话，保存数据证书至用户磁盘目录</li>
+<li>Ephemeral sessions  短暂会话，一切结果保存到ram中</li>
+<li>Background sessions  上传任务会话，支持app在后台任务上传</li>
+</ul>
+
+<h1 id="toc_2">后台传输注意事项</h1>
+
+<p>要想在app挂起时继续执行后台传输数据任务，只有配置了<code>background session config</code>的<code>session</code>会话才能在app挂起时执行任务。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/14</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="Images.xcassets%E4%B8%8D%E8%83%BD%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84.html">
+                
+                  <h1>Images.xcassets不能获取图片路径</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>原文地址：</strong><a href="http://www.jianshu.com/p/5358f587af38">http://www.jianshu.com/p/5358f587af38</a></p>
+
+<p>Images.xcassets在app打包后，以Assets.car文件的形式出现在bundle中。其作用在于：</p>
+
+<blockquote>
+<p>自动识别@2x，@3x图片，对内容相同但分辨率不同的图片统一管理。<br/>
+可以对图片进行剪裁和拉伸处理。<br/>
+UIImage从bundle中加载图片资源</p>
+</blockquote>
+
+<p><strong>注意</strong><br/>
+<code>Images.xcassets</code>中的图片资源只能通过<code>imageNamed:</code>方法加载，通过<code>NSBundle</code>的<code>pathForResource:ofType:</code>无法获得图片路径。因此，<code>Images.xcassets</code>只适合存放系统常用的，占用内存小的图片资源。</p>
+
+<p><code>imageNamed:</code>方法同样可以加载根目录中的图片资源。</p>
+
+<p>要想利用<code>imageWithContentsOfFile:</code>方法以不缓存的形式加载图片，必须将图片资源放置在根目录中。</p>
+
+<p>相对于jpg，iOS对png的支持较好，例如，如果从<code>Images.xcassets</code>以外的地方加载图片，必须在文件名后加扩展名，例如：</p>
+
+<pre><code>// pic.jpg处于根目录下
+[UIImage imageNamed:@&quot;pic&quot;]; // 错误，图片未能正确加载
+[UIImage imageNamed:@&quot;pic.jpg&quot;]; // 正确
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/12/8</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="js%E4%B8%8Enative%E4%B9%8B%E9%97%B4%E8%B0%83%E7%94%A8.html">
+                
+                  <h1>js与native交互</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">UIWebView</h2>
+
+<blockquote>
+<p>Native调用JS,使用<code>stringByEvaluatingJavaScriptFromString</code>来解释执行js脚本。</p>
+</blockquote>
+
+<pre><code class="language-objc">//script即为要执行的js方法名称
+- (NSString *)stringByEvaluatingJavaScriptFromString:(NSString *)script;
+</code></pre>
+
+<p><strong>PS：</strong>苹果推荐iOS8之后的app使用<code>WKWebView</code>来代替<del>UIWebView</del>，同时也使用方法<code>evaluateJavaScript:completionHandler:</code>来替代<del>stringByEvaluatingJavaScriptFromString</del>，因为会一直等待<del>stringByEvaluatingJavaScriptFromString</del>方法执行完毕</p>
+
+<p>JS调用Native，需要通过<code>UIWebView</code>拦截跳转请求并判断<code>请求头</code>是否是协商好的协议头来判断是否是JS发起调用Native的请求。</p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="js%E4%B8%8Enative%E4%B9%8B%E9%97%B4%E8%B0%83%E7%94%A8.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2016/12/1</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14794331398755.html">
+                
+                  <h1>百度地图隐藏BMKAnnotationView</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>BMKAnnotationview.hidden 失效，只能移除Annotation</strong></p>
+
+<p><a href="http://bbs.lbsyun.baidu.com/forum.php?mod=viewthread&amp;tid=121286&amp;highlight=hidden">BMKPinAnnotationView设置setHidden为yes时不能隐藏</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/11/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14792095195618.html">
+                
+                  <h1>UIView显示单侧border</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><a href="http://rainbownight.blog.51cto.com/1336585/1332286">UIView 显示单侧border</a></p>
+
+<pre><code class="language-objc">- (void)setBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width
+{
+    if (top) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, 0, view.frame.size.width, width);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (left) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, 0, width, view.frame.size.height);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (bottom) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, view.frame.size.height - width, view.frame.size.width, width);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (right) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(view.frame.size.width - width, 0, width, view.frame.size.height);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+}
+
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/11/15</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14779048724646.html">
+                
+                  <h1>升级Xcode8不能用ios7的真机和模拟器测试</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/</code>在这个目录下应该没有<code>7.1</code>的文件夹，下载<code>7.1</code>的<code>device support</code>拷贝到这个目录下即可</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/10/31</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14751293086902.html">
+                
+                  <h1>Objection 注册ViewController（xib名称与controller不一致）导致controller不释放</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>1、在<code>module</code>中注册controller</p>
+
+<p>2、使用<code>protocol</code>获取controller跳转在退出，controller不能释放</p>
+
+<p>3、修改xib与controller名称一致，module中使用bindclass方法绑定</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/29</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14746843595369.html">
+                
+                  <h1>dismissViewControllerAnimated:YES 失效</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>因次，在该VC内部调用方法消失自己的时候应该对应该VC出现的方法。</p>
+
+<p>self dismissModalViewControllerAnimated  对应 presentModalViewController方式显示</p>
+
+<p>self.navigationController popViewControllerAnimate 对应 pushViewController 方式显示</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14741645219525.html">
+                
+                  <h1>截取指定区域图片</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-objc">-(UIImage *)imageFromViewAtFrame:(CGRect)rect{
+    UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
+
+    UIGraphicsBeginImageContext(screenWindow.frame.size);//全屏截图，包括window
+
+    [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    //截取指定区域生成图片
+    CGImageRef imageRef = viewImage.CGImage;
+    //myInmageRect想要截取的区域
+    CGRect myImageRect=rect ;
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(imageRef, myImageRect);
+
+    //获取上下文
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, myImageRect, subImageRef);
+    //转换img
+    UIImage* image = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+
+    return image;
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14737664411987.html">
+                
+                  <h1>UILongPressGestureRecognizer 回调方法执行两次的问题</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>解释：</strong></p>
+
+<blockquote>
+<p>Long-press gestures are continuous. The gesture begins (UIGestureRecognizerStateBegan) when the number of allowable fingers (numberOfTouchesRequired) have been pressed for the specified period (minimumPressDuration) and the touches do not move beyond the allowable range of movement (allowableMovement). The gesture recognizer transitions to the Change state whenever a finger moves, and it ends (UIGestureRecognizerStateEnded) when any of the fingers are lifted.</p>
+</blockquote>
+
+<p>翻译过来大概就是长按事件是连续的事件，有手指按下和离开这两个动作，会调用两次事件方法。所以我们只需判断两种状态来执行我们的业务逻辑就好，如下：</p>
+
+<pre><code class="language-objc">
+-  (void)handleLongPress:(UILongPressGestureRecognizer*)sender { 
+    if (sender.state == UIGestureRecognizerStateEnded) {
+      NSLog(@&quot;UIGestureRecognizerStateEnded&quot;);
+    //Do Whatever You want on End of Gesture
+     }
+    else if (sender.state == UIGestureRecognizerStateBegan){
+       NSLog(@&quot;UIGestureRecognizerStateBegan.&quot;);
+   //Do Whatever You want on Began of Gesture
+     }
+  }
+</code></pre>
+
+<p><strong>From</strong> ：<a href="http://stackoverflow.com/questions/3319591/uilongpressgesturerecognizer-gets-called-twice-when-pressing-down">StackOverFlow</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/13</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14730552753771.html">
+                
+                  <h1>xib 自定义UIView</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>必须得是<br/>
+<img src="media/14730552753771/14730554330719.jpg" alt=""/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/5</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729761281587.html">
+                
+                  <h1>模态视图跳转到navigationcontroller的其他视图</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code>UIViewController *rootVC = self.presentingViewController;
+    while (rootVC.presentingViewController) {
+        rootVC = rootVC.presentingViewController;
+    }
+    [rootVC dismissViewControllerAnimated:YES completion:nil];
+    if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        for (UIViewController* controller in rootVC.childViewControllers) {
+            if ([controller isKindOfClass:[MapViewController class]]) {
+                [(UINavigationController *)rootVC popToViewController:controller animated:YES];
+            }
+        }
+    }
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14729759839665.html">
+                
+                  <h1>JokeClient-Swift 仿写学习</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">required init?(coder aDecoder: NSCoder) <strong>可失败构造器</strong></h2>
+
+<blockquote>
+<p>在init关键字后面添加问号(init?)。<br/>
+可失败构造器会创建一个类型为自身类型的可选类型的对象。你通过return nil语句来表明可失败构造器在何种情况下应该“失败”。</p>
+</blockquote>
+
+<pre><code>struct Animal {
+    let species: String
+    init?(species: String) {
+        if species.isEmpty { return nil }
+        self.species = species
+    }
+}
+
+</code></pre>
+
+<h2 id="toc_1">2、 as、as!、as?三种类型转换操作符使用详解</h2>
+
+<h3 id="toc_2"><strong>as使用场合</strong></h3>
+
+<h4 id="toc_3">1、从派生类转换为基类，向上转型（upcasts）</h4>
+
+<pre><code>    class Animal {}
+    class Cat: Animal {}
+    let cat = Cat()
+    let animal = cat as Animal
+
+</code></pre>
+
+<h4 id="toc_4">2.消除二义性，数值类型转换</h4>
+
+<pre><code>let num1 = 42 as CGFloat
+let num2 = 42 as Int
+let num3 = 42.5 as Int
+let num4 = (42 / 2) as Double
+
+</code></pre>
+
+<h4 id="toc_5">3. switch 语句中进行模式匹配</h4>
+
+<p>如果不知道一个对象是什么类型，你可以通过switch语法检测它的类型，并且尝试在不同的情况下使用对应的类型进行相应的处理</p>
+
+<pre><code>switch animal {
+case let cat as Cat:
+    print(&quot;如果是Cat类型对象，则做相应处理&quot;)
+case let dog as Dog:
+    print(&quot;如果是Dog类型对象，则做相应处理&quot;)
+default: break
+}
+
+</code></pre>
+
+<h3 id="toc_6">as!使用场合</h3>
+
+<p>as? 和 as! 操作符的转换规则完全一样。但 as? 如果转换不成功的时候便会返回一个 nil 对象。成功的话返回可选类型值（optional），需要我们拆包使用。<br/>
+由于 as? 在转换失败的时候也不会出现错误，所以对于如果能确保100%会成功的转换则可使用 as!，否则使用 as?</p>
+
+<pre><code>
+let animal:Animal = Cat()
+
+if let cat = animal as? Cat{
+    print(&quot;cat is not nil&quot;)
+} else {
+    print(&quot;cat is nil&quot;)
+}
+
+</code></pre>
+
+<p><strong>转自：</strong><a href="http://www.hangge.com/blog/cache/detail_1089.html">Swift - as、as!、as?三种类型转换操作符使用详解（附样例）</a></p>
+
+<h2 id="toc_7">方法的局部参数名称和外部参数名称</h2>
+
+<p>函数参数可以同时有一个局部名称（在函数体内部使用）和一个外部名称（在调用函数时使用），详情参见函数的外部参数名。方法参数也一样（因为方法就是函数，只是这个函数与某个类型相关联了）。但是，方法和函数的局部名称和外部名称的默认行为是不一样的。</p>
+
+<h2 id="toc_8">STATIC 和 CLASS</h2>
+
+<p>Swift 中表示 “类型范围作用域” 这一概念有两个不同的关键字，它们分别是 static 和 class。</p>
+
+<p>有一个比较特殊的是 protocol。在 Swift 中 class，struct 和 enum 都是可以实现某个 protocol 的。那么如果我们想在 protocol 里定义一个类型域上的方法或者计算属性的话，应该用哪个关键字呢？答案是使用 static 进行定义。在使用的时候，struct 或 enum 中仍然使用 static，而在 class 里我们既可以使用 class 关键字，也可以用 static，它们的结果是相同的</p>
+
+<p>现在只需要记住结论，在任何时候使用 static 应该都是没有问题的。</p>
+
+<p>摘自：<a href="http://swifter.tips/static-class/">STATIC 和 CLASS</a></p>
+
+<h2 id="toc_9">ANY 和 ANYOBJECT</h2>
+
+<p>Any 和 AnyObject 是 Swift 中两个妥协的产物，也是很让人迷惑的概念。</p>
+
+<blockquote>
+<p>AnyObject 可以代表任何 class 类型的实例<br/>
+Any 可以表示任意类型，甚至包括方法 (func) 类型</p>
+</blockquote>
+
+<p>Swift 最主要的用途依然是使用 Cocoa 框架进行 app 开发，因此为了与 Cocoa 架构协作，将原来 id 的概念使用了一个类似的，可以代表任意 class 类型的 AnyObject 来进行替代。</p>
+
+<p>在 Swift 中编译器不仅不会对 AnyObject 实例的方法调用做出检查，甚至对于 AnyObject 的所有方法调用都会返回 Optional 的结果。</p>
+
+<p>Swift 中所有的基本类型，包括 Array 和 Dictionary 这些传统意义上会是 class 的东西，统统都是 struct 类型，并不能由 AnyObject 来表示，于是 Apple 提出了一个更为特殊的 Any，除了 class 以外，它还可以表示包括 struct 和 enum 在内的所有类型。</p>
+
+<p>摘自：<a href="http://swifter.tips/any-anyobject/">ANY 和 ANYOBJECT</a></p>
+
+<h2 id="toc_10">SELECTOR</h2>
+
+<p>在 Swift 中没有 @selector 了，取而代之，从 Swift 2.2 开始我们使用 #selector 来从暴露给 Objective-C 的代码中获取一个 selector。</p>
+
+<pre><code>
+func callMe() {
+    //...
+}
+
+func callMeWithParam(obj: AnyObject!) {
+    //...
+}
+func turnByAngle(theAngle: Int, speed: Float) {
+    //...
+}
+
+let someMethod = #selector(callMe)
+let anotherMethod = #selector(callMeWithParam(_:))
+let method = #selector(turnByAngle(_:speed:))
+
+</code></pre>
+
+<p>最后需要注意的是，selector 其实是 Objective-C runtime 的概念，如果你的 selector 对应的方法只在 Swift 中可见的话 (也就是说它是一个 Swift 中的 private 方法)，在调用这个 selector 时你会遇到一个 unrecognized selector 错误：</p>
+
+<pre><code>//错误：
+private func callMe() {
+     //...
+}
+
+NSTimer.scheduledTimerWithTimeInterval(1, target: self,
+            selector:#selector(callMe), userInfo: nil, repeats: true)
+
+//正确          
+@objc private func callMe() {
+    //...
+}
+
+NSTimer.scheduledTimerWithTimeInterval(1, target: self,
+             selector:#selector(callMe), userInfo: nil, repeats: true)
+
+</code></pre>
+
+<p>最后，值得一提的是，如果方法名字在方法所在域内是唯一的话，我们可以简单地只是用方法的名字来作为 #selector 的内容。相比于前面带有冒号的完整的形式来说，这么写起来会方便一些：</p>
+
+<pre><code>
+let someMethod = #selector(callMe)
+let anotherMethod = #selector(callMeWithParam)
+let method = #selector(turnByAngle)
+
+</code></pre>
+
+<p>但是，如果在同一个作用域中存在同样名字的两个方法，即使它们的函数签名不相同，Swift 编译器也不允许编译通过：</p>
+
+<pre><code>
+func commonFunc() {
+
+}
+
+func commonFunc(input: Int) -&gt; Int {
+    return input
+}
+
+let method = #selector(commonFunc)
+// 编译错误，`commonFunc` 有歧义
+
+</code></pre>
+
+<p>对于这种问题，我们可以通过将方法进行强制转换来使用：</p>
+
+<pre><code>
+let method1 = #selector(commonFunc as ()-&gt;())
+let method2 = #selector(commonFunc as Int-&gt;Int)
+
+</code></pre>
+
+<p><strong>转自：<a href="http://swifter.tips/selector/">SELECTOR</a></strong></p>
+
+<h2 id="toc_11">guard</h2>
+
+<p>swift 2.0 带来了 <code>guard</code> 语句，这里主要用来与 <code>if</code> 来做比较</p>
+
+<pre><code>
+//好的写法
+func createPerson() throws -&gt; Person {
+        guard let age = age, let name = name
+            where name.characters.count &gt; 0 &amp;&amp; age.characters.count &gt; 0 else {
+                throw InputError.InputMissing
+        }
+
+        guard let ageFormatted = Int(age) else {
+            throw InputError.AgeIncorrect
+        }
+
+        return Person(name: name, age: ageFormatted)
+    }
+
+//差的写法
+func createPersonNoGuard() -&gt; Person? {
+    if let age = age, let name = name
+        where name.characters.count &gt; 0 &amp;&amp; age.characters.count &gt; 0
+    {
+        if let ageFormatted = Int(age) {
+            return Person(name: name, age: ageFormatted)
+        } else {
+            return nil
+        }
+    } else {
+        return nil
+    }
+}    
+
+</code></pre>
+
+<p>使用 guard 可以很容易地看到 Person 实例的返回值，这样就能明白这个方法的主要目的是什么</p>
+
+<p><strong>转自：<a href="http://swift.gg/2015/08/06/swift-guard-better-than-if/">为什么 guard 比 if 好</a></strong></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/9/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%80%BB%E7%BB%93.html'>总结</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			 <a href="总结_1.html">&raquo; Next Page</a> 
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
+            
+                <h1>小小程序猿</h1>
+                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="ios.html"><strong>ios</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
+        
+            <a href="express.html"><strong>express</strong></a>
+        
+            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
+        
+            <a href="Vue.html"><strong>Vue</strong></a>
+        
+            <a href="sequelize.html"><strong>sequelize</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120934542709.html">NSTimer 闪退问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15120110700552.html">地图画线 polygon</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15117817736257.html">node xlsx</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
@@ -391,6 +1305,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 
   </body>
 </html>

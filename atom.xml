@@ -4,14 +4,55 @@
   <title><![CDATA[小小程序猿]]></title>
   <link href="http://daycoding.com/atom.xml" rel="self"/>
   <link href="http://daycoding.com/"/>
-  <updated>2017-11-27T11:46:55+08:00</updated>
+  <updated>2017-12-04T20:08:47+08:00</updated>
   <id>http://daycoding.com/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
-  <generator uri="http://www.mweb.im">MWeb</generator>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[MAC 电脑自带软件处理PNG图片背景透明]]></title>
+    <link href="http://daycoding.com/15125625563816.html"/>
+    <updated>2017-12-06T20:15:56+08:00</updated>
+    <id>http://daycoding.com/15125625563816.html</id>
+    <content type="html"><![CDATA[
+<p>转自：<a href="https://www.macx.cn/thread-2093768-1-1.html">https://www.macx.cn/thread-2093768-1-1.html</a></p>
 
+<p>现在OS X中自带的【预览】功能十分强大，我们甚至可以通过预览来直接制作一些透明效果的PNG图片，当做图片素材（例如图标）使用。这里要用到的是【预览】中的“即时Alpha”工具。</p>
+
+<ol>
+<li>首先我们要使用预览打开你希望制作成为透明背景效果的图片</li>
+</ol>
+
+<p><img src="media/15125625563816/15125629162268.jpg" alt=""/></p>
+
+<ol>
+<li><p>点击预览上方工具栏的笔状编辑工具，显示编辑工具栏</p>
+
+<p><img src="media/15125625563816/15125629306238.jpg" alt=""/></p></li>
+<li><p>在出现的编辑工具栏中，找到 &quot;即时Alpha&quot; 这个功能，像一个魔术笔一样的按钮，点一下准备开始编辑（如果没出现在默认列表，那即时Alpha就是在选择工具的下拉菜单中）</p></li>
+<li><p>这个时候，用鼠标点击一下图片，不要松开，开始进行拖动，上下移动，直到选中图案为止，一般情况下红色区域都会变成透明的；这里涉及到几个细节问题，鼠标光标第一点就是拖动的要慢；另外如果图形复杂不好选中，可以采用反向选择法，就是先+A全选图片，再使用“即时Alpha”拖动空白区域，示例中的WWDC就是这样选中的。其中道理大家可以自行体会实践，简单地说即时Alpha就是一个特殊的选择工具。</p></li>
+</ol>
+
+<p><img src="media/15125625563816/15125629538589.jpg" alt=""/></p>
+
+<ol>
+<li>当把希望成为透明的区域准确选中以后，可以按Delete键，或者+X 剪裁掉不需要的区域，这次剩下的就只有图标了</li>
+</ol>
+
+<p><img src="media/15125625563816/15125629694819.jpg" alt=""/></p>
+
+<p>这样任务就已经基本完成，之后就是导出保存图片，在预览左上方文件下拉菜单中可以找到</p>
+
+<p><img src="media/15125625563816/15125629844406.jpg" alt=""/></p>
+
+<p>-一般我们选择使用图像质量较高的PNG格式来导出透明背景的图案，记得选中Alpha<br/>
+<img src="media/15125625563816/15125629926108.jpg" alt=""/></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git 删除已经跟踪的文件或目录]]></title>
@@ -1544,72 +1585,6 @@ npm uninstall --save lodash//会更新到`package.json`
 <h2 id="toc_0">导出表</h2>
 
 <p><code>pg_dump -h 10.15.128.51 -U postgres -d lakala -t \&quot;DailyActiveTerminalInfos\&quot; &gt;daily.sql；</code></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Node 学习]]></title>
-    <link href="http://daycoding.com/14896551414725.html"/>
-    <updated>2017-03-16T17:05:41+08:00</updated>
-    <id>http://daycoding.com/14896551414725.html</id>
-    <content type="html"><![CDATA[
-<h2 id="toc_0">全局对象和全局变量</h2>
-
-<p>它们是所有模块都可以调用的。<br/>
-全局对象：</p>
-
-<blockquote>
-<blockquote>
-<p><code>global</code>：表示Node所在的全局环境，类似于浏览器的window对象。需要注意的是，如果在浏览器中声明一个全局变量，实际上是声明了一个全局对象的属性，比如var x = 1等同于设置window.x = 1，但是Node不是这样，至少在模块中不是这样（REPL环境的行为与浏览器一致）。在模块文件中，声明var x = 1，该变量不是global对象的属性，global.x等于undefined。这是因为模块的全局变量都是该模块私有的，其他模块无法取到。<br/>
-<code>process</code>：该对象表示Node所处的当前进程，允许开发者与该进程互动。<br/>
-<code>console</code>：指向Node内置的console模块，提供命令行环境中的标准输入、标准输出功能。<br/>
-<code>Buffer</code>:Node处理二进制数据的一个接口。</p>
-</blockquote>
-</blockquote>
-
-<p>全局变量：</p>
-
-<blockquote>
-<blockquote>
-<p>__filename：指向当前运行的脚本文件名。<br/>
-__dirname：指向当前运行的脚本所在的目录。</p>
-</blockquote>
-</blockquote>
-
-<h2 id="toc_1">核心模块</h2>
-
-<p>Node.js的用处在于，它本身还提供了一系列功能模块，与操作系统互动。这些核心的功能模块，不用安装就可以使用</p>
-
-<blockquote>
-<blockquote>
-<p><code>http</code>：提供HTTP服务器功能。<br/>
-<code>url</code>：解析URL。<br/>
-<code>fs</code>：与文件系统交互。<br/>
-<code>querystring</code>：解析URL的查询字符串。<br/>
-<code>child_process</code>：新建子进程。<br/>
-<code>util</code>：提供一系列实用小工具。<br/>
-<code>path</code>：处理文件路径。<br/>
-<code>crypto</code>：提供加密和解密功能，基本上是对OpenSSL的包装。</p>
-</blockquote>
-</blockquote>
-
-<h2 id="toc_2">Child Process模块</h2>
-
-<p>child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。</p>
-
-<h2 id="toc_3">Node 升级</h2>
-
-<p>node有一个模块叫n，是专门用来管理node.js的版本的。<br/>
-首先安装n模块：</p>
-
-<pre><code>npm install -g n
-</code></pre>
-
-<p>升级node.js到最新稳定版</p>
-
-<pre><code>n stable
-</code></pre>
 
 ]]></content>
   </entry>
