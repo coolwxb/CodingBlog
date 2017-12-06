@@ -1,124 +1,94 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
     
   基础控件 - 小小程序猿
   
+
   </title>
+  <meta name="author" content="">
+  <meta name="description" content="目前就职于一家北京的创业公司，正在苦逼成长中...">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="atom.xml" rel="alternate" title="小小程序猿" type="application/atom+xml">
-    <link rel="stylesheet" href="asset/css/foundation.min.css" />
-    <link rel="stylesheet" href="asset/css/docs.css" />
-    <script src="asset/js/vendor/modernizr.js"></script>
-    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
   <script src="asset/highlightjs/highlight.pack.js"></script>
-  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
 <script type="text/javascript">
-  function before_search(){
-    var searchVal = 'site:daycoding.com ' + document.getElementById('search_input').value;
-    document.getElementById('search_q').value = searchVal;
-    return true;
-  }
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
 </script>
-  </head>
-  <body class="antialiased hide-extras">
-    
-    <div class="marketing off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html">小小程序猿</a></h1>
+  
+    <h2>目前就职于一家北京的创业公司，正在苦逼成长中...</h2>
+  
+</hgroup>
 
-
-<nav class="top-bar docs-bar hide-for-small" data-topbar>
-
-
-  <section class="top-bar-section">
-  <div class="row">
-      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
-        <ul id="main-menu" class="left">
-        
-        <li id=""><a target="self" href="index.html">Home</a></li>
-        
-        <li id=""><a target="_self" href="archives.html">Archives</a></li>
-        
-        </ul>
-
-        <ul class="right" id="search-wrap">
-          <li>
-<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
-    <input type="hidden" id="search_q" name="q" value="" />
-    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:daycoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
 </form>
-</li>
-          </ul>
-      </div></div>
-  </div>
-  </section>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
 
 </nav>
+  <div id="main">
+    <div id="content"> 
+<div class="blog-index">
 
-        <nav class="tab-bar show-for-small">
-  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
-    <span> &nbsp; 小小程序猿</span>
-  </a>
-</nav>
-
-<aside class="left-off-canvas-menu">
-      <ul class="off-canvas-list">
-       
-       <li><a href="index.html">HOME</a></li>
-    <li><a href="archives.html">Archives</a></li>
-    <li><a href="about.html">ABOUT</a></li>
-
-    <li><label>Categories</label></li>
-
-        
-            <li><a href="ios.html">ios</a></li>
-        
-            <li><a href="Android.html">Android</a></li>
-        
-            <li><a href="%E5%85%B6%E4%BB%96.html">其他</a></li>
-        
-            <li><a href="express.html">express</a></li>
-        
-            <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a></li>
-        
-            <li><a href="Vue.html">Vue</a></li>
-        
-            <li><a href="sequelize.html">sequelize</a></li>
-         
-
-      </ul>
-    </aside>
-
-<a class="exit-off-canvas" href="#"></a>
-
-
-        <section id="main-content" role="main" class="scroll-container">
-        
-       
-
- <script type="text/javascript">
-	$(function(){
-		$('#menu_item_index').addClass('is_active');
-	});
-</script>
-<div class="row">
-	<div class="large-8 medium-8 columns">
-		<div class="markdown-body home-categories">
-		
-			<div class="article">
-                <a class="clearlink" href="14729751502502.html">
-                
-                  <h1>UIWindow</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">获取屏幕window</h2>
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729751502502.html">UIWindow</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:45:50+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">获取屏幕window</h2>
 
 <pre><code>[UIApplication sharedApplication].keyWindow]
 
@@ -173,38 +143,22 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 [window addSubview:bg];
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729750807474.html">
-                
-                  <h1>UIView</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">masonry 添加约束，并修改约束添加View动画</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729750807474.html">UIView</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:44:40+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">masonry 添加约束，并修改约束添加View动画</h2>
 
 <pre><code>
 //添加约束
@@ -289,38 +243,22 @@ m_mainImgView.layer.masksToBounds = YES;
 }  
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729750523588.html">
-                
-                  <h1>TextView</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">输入单行文本</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729750523588.html">TextView</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:44:12+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">输入单行文本</h2>
 
 <p>使用UITextField</p>
 
@@ -487,38 +425,22 @@ return 100;
 <pre><code>
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729750129157.html">
-                
-                  <h1>UITextField</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">UITextField 快速添加左侧内边距padding</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729750129157.html">UITextField</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:43:32+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">UITextField 快速添加左侧内边距padding</h2>
 
 <p>思路1：可向UITextField左侧添加一个空白的view，来调整内边距</p>
 
@@ -536,38 +458,22 @@ _et_groupName.leftViewMode = UITextFieldViewModeAlways;
 
 <p><strong>from:</strong><a href="http://stackoverflow.com/questions/2694411/text-inset-for-uitextfield">Text inset for UITextField</a></p>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729749889650.html">
-                
-                  <h1>UITabelView</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">使用开源组件FDTemplateLayoutCell 动态计算Cell高度相关问题</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729749889650.html">UITabelView</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:43:08+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">使用开源组件FDTemplateLayoutCell 动态计算Cell高度相关问题</h2>
 
 <ol>
 <li>自定义Cell</li>
@@ -743,38 +649,22 @@ AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
 <pre><code>self.tableView.fd_debugLogEnabled = YES;//开启log打印高度
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729749117844.html">
-                
-                  <h1>UIScreen</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">Controller中非成员变量window添加到窗口不显示</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729749117844.html">UIScreen</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:41:51+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">Controller中非成员变量window添加到窗口不显示</h2>
 
 <p><strong>不显示：</strong></p>
 
@@ -802,38 +692,22 @@ AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
 }
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729748694506.html">
-                
-                  <h1>UINavigationController</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">UINavigationController 调整controller的顺序</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729748694506.html">UINavigationController</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:41:09+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">UINavigationController 调整controller的顺序</h2>
 
 <p><strong>业务场景：</strong></p>
 
@@ -889,38 +763,22 @@ AddGroupMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
 <p>导致卡顿的的罪魁祸首就是UIViewController的View的默认color为空，背景色是透明的。这其实不是卡顿，而是由于透明颜色重叠后视觉上的问题，设置一个背景色就可以了。</p>
 </blockquote>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729748445236.html">
-                
-                  <h1>UILabel</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h4 id="toc_0">UILabel 添加富文本</h4>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729748445236.html">UILabel</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:40:44+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h4 id="toc_0">UILabel 添加富文本</h4>
 
 <pre><code> // 创建一个富文本
             NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:[cell.btn_title.text stringByAppendingString:@&quot; &quot;]];
@@ -1019,38 +877,22 @@ label.attributedText = attrStr;
 NSLog(@&quot;height = %f&quot;,height);
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729747772832.html">
-                
-                  <h1>UIAlert</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h4 id="toc_0">UIAlertView 添加参数</h4>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729747772832.html">UIAlert</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:39:37+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h4 id="toc_0">UIAlertView 添加参数</h4>
 
 <p>使用<code>运行时</code>来添加附带的参数</p>
 
@@ -1088,38 +930,22 @@ objc_setAssociatedObject(alert, &amp;alertKey, paramDic, OBJC_ASSOCIATION_RETAIN
 
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729747441498.html">
-                
-                  <h1>GCD</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">计时</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729747441498.html">GCD</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:39:04+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">计时</h2>
 
 <h3 id="toc_1">GCD计时器</h3>
 
@@ -1167,38 +993,22 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:5.0 target:self selector:@select
 
 <p>参考：<a href="https://www.mgenware.com/blog/?p=459">OS: NSTimer使用小记</a></p>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729747060001.html">
-                
-                  <h1>UISearchBar</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">修改背景色</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729747060001.html">UISearchBar</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:38:26+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">修改背景色</h2>
 
 <pre><code>mySearchBar.backgroundColor = RGBACOLOR(249,249,249,1);
 mySearchBar.backgroundImage = [self imageWithColor:[UIColor clearColor] size:mySearchBar.bounds.size];
@@ -1226,38 +1036,22 @@ mySearchBar.backgroundImage = [self imageWithColor:[UIColor clearColor] size:myS
  [_oneSearchBar becomeFirstResponder];
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729746812409.html">
-                
-                  <h1>Navigation</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">屏蔽NavigationBar的title</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729746812409.html">Navigation</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:38:01+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">屏蔽NavigationBar的title</h2>
 
 <pre><code>
     //屏蔽显示navigationbar 的title
@@ -1279,38 +1073,22 @@ self.navigationBar.titleTextAttributes = dict;
 
 <p>PS：相关属性在<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/"><code>NSAttributedString.h</code></a>这个头文件中</p>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14729746247024.html">
-                
-                  <h1>Popupwindow</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">点击空白消失</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14729746247024.html">Popupwindow</a></h1>
+			<p class="meta"><time datetime="2016-09-04T15:37:04+08:00" 
+			pubdate data-updated="true">2016/9/4</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">点击空白消失</h2>
 
 <pre><code>myPopupWindow.setBackgroundDrawable(new BitmapDrawable());
 myPopupWindow.setOutsideTouchable(true);
@@ -1320,38 +1098,22 @@ myPopupWindow.setFocusable(true);
 
 <p><strong>需要设置popupwindow的backgroundDrawable才能使outsideTouchable生效</strong></p>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/4</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="14726959092290.html">
-                
-                  <h1>UIWindow相关知识</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">获取屏幕window</h2>
+		</div>
+
+		
+
+	</article>
+ 
+	<article>
+		 <header>
+		  	<h1 class="entry-title"><a href="14726959092290.html">UIWindow相关知识</a></h1>
+			<p class="meta"><time datetime="2016-09-01T10:11:49+08:00" 
+			pubdate data-updated="true">2016/9/1</time></p>
+		 </header>
+	  	<div class="entry-content">
+		  	
+		  	<h2 id="toc_0">获取屏幕window</h2>
 
 <pre><code>[UIApplication sharedApplication].keyWindow]
 </code></pre>
@@ -1401,212 +1163,168 @@ UIWindow* window = [[UIApplication sharedApplication]keyWindow];
 [window addSubview:bg];
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/1</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html'>基础控件</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-              
-
-
-			<div class="row">
-			  <div class="large-6 columns">
-			  <p class="text-left" style="padding-top:25px;">
-			   
-			  </p>
-			  </div>
-			  <div class="large-6 columns">
-			<p class="text-right" style="padding-top:25px;">
-			
-			</p>
-			  </div>
-			</div>
 		</div>
-	</div><!-- large 8 -->
 
- <div class="large-4 medium-4 columns">
-  <div class="hide-for-small">
-    <div id="sidebar" class="sidebar">
-          <div id="site-info" class="site-info">
-            
-                <div class="site-a-logo"><img src="http://7xk16d.com1.z0.glb.clouddn.com/97A0110B-DF4C-45FA-A732-AF9BD1B1FA36.JPG" /></div>
-            
-                <h1>小小程序猿</h1>
-                <div class="site-des">目前就职于一家北京的创业公司，正在苦逼成长中...</div>
-                <div class="social">
+		
 
-
-
-
-
-
-
-
-
-
-
-  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
-                
-              	 </div>
-          	</div>
-
-             
-
-              <div id="site-categories" class="side-item ">
-                <div class="side-header">
-                  <h2>Categories</h2>
-                </div>
-                <div class="side-content">
-
-      	<p class="cat-list">
-        
-            <a href="ios.html"><strong>ios</strong></a>
-        
-            <a href="Android.html"><strong>Android</strong></a>
-        
-            <a href="%E5%85%B6%E4%BB%96.html"><strong>其他</strong></a>
-        
-            <a href="express.html"><strong>express</strong></a>
-        
-            <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库</strong></a>
-        
-            <a href="Vue.html"><strong>Vue</strong></a>
-        
-            <a href="sequelize.html"><strong>sequelize</strong></a>
-         
-        </p>
-
-
-                </div>
-              </div>
-
-              <div id="site-categories" class="side-item">
-                <div class="side-header">
-                  <h2>Recent Posts</h2>
-                </div>
-                <div class="side-content">
-                <ul class="posts-list">
-	      
-		      
-			      <li class="post">
-			        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15120934542709.html">NSTimer 闪退问题</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15120110700552.html">地图画线 polygon</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15117817736257.html">node xlsx</a>
-			      </li>
-		     
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		  
-		      
-		   
-		  		</ul>
-                </div>
-              </div>
-        </div><!-- sidebar -->
-      </div><!-- hide for small -->
-</div><!-- large 4 -->
-
-</div><!-- row -->
-
- <div class="page-bottom clearfix">
-  <div class="row">
-   <p class="copyright">Copyright &copy; 2015
-Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
-Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
+	</article>
+  
+	<div class="pagination">
+	
+<a href="archives.html">Blog Archives</a>
+	 
+	    
+	</div>
 </div>
+ <aside class="sidebar"> 
 
-        </section>
-      </div>
-    </div>
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="ios.html"><strong>ios&nbsp;(59)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6.html">基础控件&nbsp;(14)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B1%BB%E5%BA%93.html">第三方类库&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E6%80%BB%E7%BB%93.html">总结&nbsp;(23)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html">基础知识&nbsp;(12)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E7%AE%97%E6%B3%95.html">算法&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	        	<a href="%E4%B8%B4%E6%97%B6.html">临时&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(7)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E5%85%B6%E4%BB%96.html"><strong>其他&nbsp;(4)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="express.html"><strong>express&nbsp;(8)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html"><strong>数据库&nbsp;(2)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Vue.html"><strong>Vue&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="sequelize.html"><strong>sequelize&nbsp;(2)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="15125625563816.html">MAC 电脑自带软件处理PNG图片背景透明</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15123557749433.html">Git 删除已经跟踪的文件或目录</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15120934542709.html">NSTimer 闪退问题</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15120110700552.html">地图画线 polygon</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15117817736257.html">node xlsx</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
 
   
     
 
-    <script src="asset/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-      function fixSidebarHeight(){
-        var w1 = $('.markdown-body').height();
-          var w2 = $('#sidebar').height();
-          if (w1 > w2) { $('#sidebar').height(w1); };
-      }
-      $(function(){
-        fixSidebarHeight();
-      })
-      $(window).load(function(){
-          fixSidebarHeight();
-      });
-     
-    </script>
-
-    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 <script>
 var _hmt = _hmt || [];
@@ -1618,6 +1336,5 @@ var _hmt = _hmt || [];
 })();
 </script>
 
-
-  </body>
+</body>
 </html>
